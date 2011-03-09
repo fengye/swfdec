@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecAsFunction">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecAsFunction.top_of_page">SwfdecAsFunction</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecAsFunction</refname>
+<refpurpose>script objects that can be executed</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecAsFunction.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="SwfdecAsNativeFunction"/>
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecAsFunction-struct">SwfdecAsFunction</link>;
+<link linkend="void">void</link>                (<link linkend="SwfdecAsNative">*SwfdecAsNative</link>)                   (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *thisp,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *retval);
+                    <link linkend="SwfdecAsNativeFunction-struct">SwfdecAsNativeFunction</link>;
+#define             <link linkend="swfdec-as-function-call">swfdec_as_function_call</link>             (function, thisp, n_args, args, return_value)
+<link linkend="void">void</link>                <link linkend="swfdec-as-function-call-full">swfdec_as_function_call_full</link>        (<link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *function,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *thisp,
+                                                         <link linkend="gboolean">gboolean</link> construct,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *super_reference,
+                                                         <link linkend="guint">guint</link> n_args,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *args,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);
+<link linkend="SwfdecAsFunction">SwfdecAsFunction</link>*   <link linkend="swfdec-as-native-function-new">swfdec_as_native_function_new</link>       (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="SwfdecAsNative">SwfdecAsNative</link> native,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *prototype);
+<link linkend="void">void</link>                <link linkend="swfdec-as-native-function-set-construct-type">swfdec_as_native_function_set_construct_type</link>
+                                                        (<link linkend="SwfdecAsNativeFunction">SwfdecAsNativeFunction</link> *function,
+                                                         <link linkend="GType">GType</link> type);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-native-function-check">swfdec_as_native_function_check</link>     (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *cx,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="GType">GType</link> type,
+                                                         <link linkend="gpointer">gpointer</link> *result,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         const <link linkend="char">char</link> *args,
+                                                         ...);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-native-function-checkv">swfdec_as_native_function_checkv</link>    (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *cx,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="GType">GType</link> type,
+                                                         <link linkend="gpointer">gpointer</link> *result,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         const <link linkend="char">char</link> *args,
+                                                         <link linkend="va-list">va_list</link> varargs);
+#define             <link linkend="SWFDEC-AS-CHECK:CAPS">SWFDEC_AS_CHECK</link>                     (type,result,...)
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecAsFunction.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecGcObject">SwfdecGcObject</link>
+         +----<link linkend="SwfdecAsObject">SwfdecAsObject</link>
+               +----SwfdecAsFunction
+                     +----<link linkend="SwfdecAsNativeFunction">SwfdecAsNativeFunction</link>
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecGcObject">SwfdecGcObject</link>
+         +----<link linkend="SwfdecAsObject">SwfdecAsObject</link>
+               +----<link linkend="SwfdecAsFunction">SwfdecAsFunction</link>
+                     +----SwfdecAsNativeFunction
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="SwfdecAsFunction.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Functions is the basic object for executing code in the Swfdec script engine.
+There is multiple different variants of functions, such as script-created 
+ones and native functions.
+</para>
+<para>
+If you want to create your own functions, you should create native functions.
+The easiest way to do this is with <link linkend="swfdec-as-object-add-function"><function>swfdec_as_object_add_function()</function></link> or
+<link linkend="swfdec-as-native-function-new"><function>swfdec_as_native_function_new()</function></link>.
+</para>
+<para>
+In Actionscript, every function can be used as a constructor. If you want to
+make a native function be used as a constructor for your own <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+subclass, have a look at <link linkend="swfdec-as-native-function-set-construct-type"><function>swfdec_as_native_function_set_construct_type()</function></link>.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecAsFunction.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecAsFunction-struct" role="struct">
+<title>SwfdecAsFunction</title>
+<indexterm zone="SwfdecAsFunction-struct"><primary>SwfdecAsFunction</primary></indexterm><programlisting>typedef struct _SwfdecAsFunction SwfdecAsFunction;</programlisting>
+<para>
+This is the base executable object in Swfdec. It is an abstract object. If 
+you want to create functions yourself, use <link linkend="SwfdecAsNativeFunction"><type>SwfdecAsNativeFunction</type></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecAsNative" role="function">
+<title>SwfdecAsNative ()</title>
+<indexterm zone="SwfdecAsNative"><primary>SwfdecAsNative</primary></indexterm><programlisting><link linkend="void">void</link>                (*SwfdecAsNative)                   (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *thisp,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *retval);</programlisting>
+<para>
+This is the prototype for all native functions.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>thisp</parameter>&nbsp;:</term>
+<listitem><simpara> the this object. <warning>Can be <link linkend="NULL:CAPS"><literal>NULL</literal></link>.</warning>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argc</parameter>&nbsp;:</term>
+<listitem><simpara> number of arguments passed to this function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> the <parameter>argc</parameter> arguments passed to this function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>retval</parameter>&nbsp;:</term>
+<listitem><simpara> set to the return value. Initialized to undefined by default
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecAsNativeFunction-struct" role="struct">
+<title>SwfdecAsNativeFunction</title>
+<indexterm zone="SwfdecAsNativeFunction-struct"><primary>SwfdecAsNativeFunction</primary></indexterm><programlisting>typedef struct _SwfdecAsNativeFunction SwfdecAsNativeFunction;</programlisting>
+<para>
+This is the object type for native functions.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-as-function-call" role="macro">
+<title>swfdec_as_function_call()</title>
+<indexterm zone="swfdec-as-function-call"><primary>swfdec_as_function_call</primary></indexterm><programlisting>#define             swfdec_as_function_call(function, thisp, n_args, args, return_value)</programlisting>
+<para>
+Calls the given function. This is a macro that resolves to 
+<link linkend="swfdec-as-function-call-full"><function>swfdec_as_function_call_full()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>function</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAsFunction"><type>SwfdecAsFunction</type></link> to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>thisp</parameter>&nbsp;:</term>
+<listitem><simpara> this argument to use for the call or <link linkend="NULL:CAPS"><literal>NULL</literal></link> for none
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_args</parameter>&nbsp;:</term>
+<listitem><simpara> number of arguments to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> the arguments to pass or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to read the last <parameter>n_args</parameter> stack elements.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>return_value</parameter>&nbsp;:</term>
+<listitem><simpara> pointer for return value or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to push the return value to 
+               the stack
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-function-call-full" role="function">
+<title>swfdec_as_function_call_full ()</title>
+<indexterm zone="swfdec-as-function-call-full"><primary>swfdec_as_function_call_full</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_function_call_full        (<link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *function,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *thisp,
+                                                         <link linkend="gboolean">gboolean</link> construct,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *super_reference,
+                                                         <link linkend="guint">guint</link> n_args,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *args,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);</programlisting>
+<para>
+Calls the given function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>function</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAsFunction"><type>SwfdecAsFunction</type></link> to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>thisp</parameter>&nbsp;:</term>
+<listitem><simpara> this argument to use for the call or <link linkend="NULL:CAPS"><literal>NULL</literal></link> for none
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>construct</parameter>&nbsp;:</term>
+<listitem><simpara> call this function as a constructor. This is only relevant for 
+            native functions.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>super_reference</parameter>&nbsp;:</term>
+<listitem><simpara> The object to be referenced by the super object in this 
+                  function call or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to use the default.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_args</parameter>&nbsp;:</term>
+<listitem><simpara> number of arguments to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> the arguments to pass or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to read the last <parameter>n_args</parameter> stack elements.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>return_value</parameter>&nbsp;:</term>
+<listitem><simpara> pointer for return value or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to push the return value to 
+               the stack
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-native-function-new" role="function">
+<title>swfdec_as_native_function_new ()</title>
+<indexterm zone="swfdec-as-native-function-new"><primary>swfdec_as_native_function_new</primary></indexterm><programlisting><link linkend="SwfdecAsFunction">SwfdecAsFunction</link>*   swfdec_as_native_function_new       (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="SwfdecAsNative">SwfdecAsNative</link> native,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *prototype);</programlisting>
+<para>
+Creates a new native function, that will execute <parameter>native</parameter> when called. You 
+might want to use <link linkend="swfdec-as-object-add-function"><function>swfdec_as_object_add_function()</function></link> instead of this function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> name of the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>native</parameter>&nbsp;:</term>
+<listitem><simpara> function to call when executed
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prototype</parameter>&nbsp;:</term>
+<listitem><simpara> The object to be used as "prototype" property for the created 
+            function or <link linkend="NULL:CAPS"><literal>NULL</literal></link> for none.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecAsFunction"><type>SwfdecAsFunction</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-native-function-set-construct-type" role="function">
+<title>swfdec_as_native_function_set_construct_type ()</title>
+<indexterm zone="swfdec-as-native-function-set-construct-type"><primary>swfdec_as_native_function_set_construct_type</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_native_function_set_construct_type
+                                                        (<link linkend="SwfdecAsNativeFunction">SwfdecAsNativeFunction</link> *function,
+                                                         <link linkend="GType">GType</link> type);</programlisting>
+<para>
+Sets the <parameter>type</parameter> to be used when using <parameter>function</parameter> as a constructor. If this is
+not set, using <parameter>function</parameter> as a constructor will create a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>function</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsNativeFunction"><type>SwfdecAsNativeFunction</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GType"><type>GType</type></link> used when constructing an object with <parameter>function</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-native-function-check" role="function">
+<title>swfdec_as_native_function_check ()</title>
+<indexterm zone="swfdec-as-native-function-check"><primary>swfdec_as_native_function_check</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_native_function_check     (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *cx,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="GType">GType</link> type,
+                                                         <link linkend="gpointer">gpointer</link> *result,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         const <link linkend="char">char</link> *args,
+                                                         ...);</programlisting>
+<para>
+This function is a convenience function to validate and convert arguments to 
+a native function while avoiding common pitfalls. You typically want to call
+it at the beginning of every native function you write. Or you can use the 
+<link linkend="SWFDEC-AS-CHECK:CAPS"><function>SWFDEC_AS_CHECK()</function></link> macro instead which calls this function.
+The <parameter>cx</parameter>, <parameter>object</parameter>, <parameter>argc</parameter> and <parameter>argv</parameter> paramters should be passed verbatim from 
+the function call to your native function. If <parameter>type</parameter> is not 0, <parameter>object</parameter> is then
+checked to be of that type and cast to <parameter>result</parameter>. After that the <parameter>args</parameter> string 
+is used to convert the arguments. Every character in <parameter>args</parameter> describes the 
+conversion of one argument. For that argument, you have to pass a pointer 
+that takes the value. For the conversion, the default conversion functions 
+like <link linkend="swfdec-as-value-to-string"><function>swfdec_as_value_to_string()</function></link> are used. If not enough arguments are 
+available, the function stops converting and returns <link linkend="NULL:CAPS"><literal>NULL</literal></link>. The following 
+conversion characters are allowed:<itemizedlist>
+<listitem><para>"b": convert to boolean. Requires a <link linkend="gboolean"><literal>gboolean</literal></link> pointer
+                </para></listitem>
+<listitem><para>"i": convert to integer. Requires an <link linkend="integer"><literal>integer</literal></link> pointer
+                </para></listitem>
+<listitem><para>"n": convert to number. Requires a <link linkend="double"><literal>double</literal></link> pointer
+                </para></listitem>
+<listitem><para>"o": convert to object. Requires a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link> pointer.
+                If the conversion fails, this function immediately returns
+                <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>.</para></listitem>
+<listitem><para>"O": convert to object or <link linkend="NULL:CAPS"><literal>NULL</literal></link>. Requires a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+                pointer.</para></listitem>
+<listitem><para>"s": convert to garbage-collected string. Requires a const 
+                <link linkend="char"><literal>char</literal></link> pointer</para></listitem>
+<listitem><para>"v": copy the value. The given argument must be a pointer 
+                to a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link></para></listitem>
+<listitem><para>"|": optional arguments follow. Optional arguments will be
+	   initialized to the empty value for their type. This 
+	   conversion character is only allowed once in the conversion 
+	   string.</para></listitem>
+</itemizedlist></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>cx</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> this object passed to the native function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> expected type of <parameter>object</parameter> or 0 for any
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to variable taking cast result of <parameter>object</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argc</parameter>&nbsp;:</term>
+<listitem><simpara> count of arguments passed to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> arguments passed to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> argument conversion string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> pointers to variables taking converted arguments
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the conversion succeeded, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-native-function-checkv" role="function">
+<title>swfdec_as_native_function_checkv ()</title>
+<indexterm zone="swfdec-as-native-function-checkv"><primary>swfdec_as_native_function_checkv</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_native_function_checkv    (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *cx,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="GType">GType</link> type,
+                                                         <link linkend="gpointer">gpointer</link> *result,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         const <link linkend="char">char</link> *args,
+                                                         <link linkend="va-list">va_list</link> varargs);</programlisting>
+<para>
+This is the valist version of <link linkend="swfdec-as-native-function-check"><function>swfdec_as_native_function_check()</function></link>. See that
+function for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>cx</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> this object passed to the native function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> expected type of <parameter>object</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to variable taking cast result of <parameter>object</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argc</parameter>&nbsp;:</term>
+<listitem><simpara> count of arguments passed to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> arguments passed to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> argument conversion string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>varargs</parameter>&nbsp;:</term>
+<listitem><simpara> pointers to variables taking converted arguments
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the conversion succeeded, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-CHECK:CAPS" role="macro">
+<title>SWFDEC_AS_CHECK()</title>
+<indexterm zone="SWFDEC-AS-CHECK:CAPS"><primary>SWFDEC_AS_CHECK</primary></indexterm><programlisting>#define             SWFDEC_AS_CHECK(type,result,...)</programlisting>
+<para>
+This is a shortcut macro for calling <link linkend="swfdec-as-native-function-check"><function>swfdec_as_native_function_check()</function></link> at
+the beginning of a native function. See that function for details.
+It requires the native function parameters to have the default name. So your
+function must be declared like this:
+<informalexample><programlisting>static void
+my_function (SwfdecAsContext *cx, SwfdecAsObject *object,
+    guint argc, SwfdecAsValue *argv, SwfdecAsValue *rval);</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> required type of this object or 0 for ignoring
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> converted this object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> conversion string and pointers taking converted values
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

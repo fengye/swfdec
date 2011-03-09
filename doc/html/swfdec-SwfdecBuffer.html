@@ -1,0 +1,865 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecBuffer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch02.html" title="Swfdec library">
+<link rel="prev" href="swfdec-SwfdecRectangle.html" title="SwfdecRectangle">
+<link rel="next" href="swfdec-SwfdecURL.html" title="SwfdecURL">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="swfdec-SwfdecRectangle.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="swfdec-SwfdecURL.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-SwfdecBuffer.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-SwfdecBuffer.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-SwfdecBuffer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-SwfdecBuffer.top_of_page"></a>SwfdecBuffer</span></h2>
+<p>SwfdecBuffer — memory region handling</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-SwfdecBuffer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>;
+                    <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a>;
+void                (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferFreeFunc" title="SwfdecBufferFreeFunc ()">*SwfdecBufferFreeFunc</a>)             (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> *priv,
+                                                         unsigned char *data);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new" title="swfdec_buffer_new ()">swfdec_buffer_new</a>                   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new0" title="swfdec_buffer_new0 ()">swfdec_buffer_new0</a>                  (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-full" title="swfdec_buffer_new_full ()">swfdec_buffer_new_full</a>              (unsigned char *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size,
+                                                         <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferFreeFunc" title="SwfdecBufferFreeFunc ()">SwfdecBufferFreeFunc</a> free_func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> priv);
+#define             <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-static" title="swfdec_buffer_new_static()">swfdec_buffer_new_static</a>            (data, size)
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-for-data" title="swfdec_buffer_new_for_data ()">swfdec_buffer_new_for_data</a>          (unsigned char *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-subbuffer" title="swfdec_buffer_new_subbuffer ()">swfdec_buffer_new_subbuffer</a>         (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> length);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-from-file" title="swfdec_buffer_new_from_file ()">swfdec_buffer_new_from_file</a>         (const char *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-ref" title="swfdec_buffer_ref ()">swfdec_buffer_ref</a>                   (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);
+void                <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-unref" title="swfdec_buffer_unref ()">swfdec_buffer_unref</a>                 (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-get-super" title="swfdec_buffer_get_super ()">swfdec_buffer_get_super</a>             (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a>*  <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-new" title="swfdec_buffer_queue_new ()">swfdec_buffer_queue_new</a>             (void);
+void                <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-clear" title="swfdec_buffer_queue_clear ()">swfdec_buffer_queue_clear</a>           (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a>*  <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-ref" title="swfdec_buffer_queue_ref ()">swfdec_buffer_queue_ref</a>             (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);
+void                <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-unref" title="swfdec_buffer_queue_unref ()">swfdec_buffer_queue_unref</a>           (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a>               <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-get-depth" title="swfdec_buffer_queue_get_depth ()">swfdec_buffer_queue_get_depth</a>       (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a>               <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-get-offset" title="swfdec_buffer_queue_get_offset ()">swfdec_buffer_queue_get_offset</a>      (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);
+void                <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-push" title="swfdec_buffer_queue_push ()">swfdec_buffer_queue_push</a>            (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-pull" title="swfdec_buffer_queue_pull ()">swfdec_buffer_queue_pull</a>            (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> length);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-pull-buffer" title="swfdec_buffer_queue_pull_buffer ()">swfdec_buffer_queue_pull_buffer</a>     (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-peek" title="swfdec_buffer_queue_peek ()">swfdec_buffer_queue_peek</a>            (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> length);
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-peek-buffer" title="swfdec_buffer_queue_peek_buffer ()">swfdec_buffer_queue_peek_buffer</a>     (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);
+void                <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-flush" title="swfdec_buffer_queue_flush ()">swfdec_buffer_queue_flush</a>           (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> n_bytes);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecBuffer.description"></a><h2>Description</h2>
+<p>
+This section describes how memory is to be handled when interacting with the 
+Swfdec library. Memory regions are refcounted and passed using a 
+<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a>. If large memory segments need to be handled that may span
+multiple buffers, Swfdec uses a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecBuffer.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecBuffer"></a><h3>SwfdecBuffer</h3>
+<pre class="programlisting">typedef struct {
+  unsigned char *	data;		/* memory region (consider as read only) */
+  gsize			length;		/* length of the memory region pointer do by @data */
+} SwfdecBuffer;
+</pre>
+<p>
+To allow for easy sharing of memory regions, <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> was created. 
+Every buffer refers to a memory region and its size and takes care of 
+freeing that region when the buffer is no longer needed. They are 
+reference countedto make it easy to refer to the same region from various
+independant parts of your code. Buffers also support some advanced 
+functionalities like extracting parts of the buffer using 
+<a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-subbuffer" title="swfdec_buffer_new_subbuffer ()"><code class="function">swfdec_buffer_new_subbuffer()</code></a> or using mmapped files with 
+<a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-from-file" title="swfdec_buffer_new_from_file ()"><code class="function">swfdec_buffer_new_from_file()</code></a> without the need for a different API.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">unsigned char *<em class="structfield"><code>data</code></em>;</span></p></td>
+<td> the data. read-only
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> <em class="structfield"><code>length</code></em>;</span></p></td>
+<td> number of bytes in <em class="parameter"><code>data</code></em>. read-only
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecBufferQueue"></a><h3>SwfdecBufferQueue</h3>
+<pre class="programlisting">typedef struct {
+} SwfdecBufferQueue;
+</pre>
+<p>
+A <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a> is a queue of continuous buffers that allows reading
+its data in chunks of pre-defined sizes. It is used to transform a data 
+stream that was provided by buffers of random sizes to buffers of the right
+size.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecBufferFreeFunc"></a><h3>SwfdecBufferFreeFunc ()</h3>
+<pre class="programlisting">void                (*SwfdecBufferFreeFunc)             (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> *priv,
+                                                         unsigned char *data);</pre>
+<p>
+This is the function prototype for the function that is called for freeing
+the memory pointed to by a buffer. See <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new" title="swfdec_buffer_new ()"><code class="function">swfdec_buffer_new()</code></a> for an example.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>priv</code></em> :</span></p></td>
+<td> The private data registered for passing to this function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> The data to free
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-new"></a><h3>swfdec_buffer_new ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_new                   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size);</pre>
+<p>
+Creates a new buffer and allocates new memory of <em class="parameter"><code>size</code></em> bytes to be used with 
+the buffer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> amount of bytes to allocate
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> with buffer-&gt;data pointing to new data
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-new0"></a><h3>swfdec_buffer_new0 ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_new0                  (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size);</pre>
+<p>
+Createsa new buffer just like <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new" title="swfdec_buffer_new ()"><code class="function">swfdec_buffer_new()</code></a>, but ensures 
+that the returned data gets initialized to be 0.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> amount of bytes to allocate
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> with buffer-&gt;data pointing to new data
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-new-full"></a><h3>swfdec_buffer_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_new_full              (unsigned char *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size,
+                                                         <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferFreeFunc" title="SwfdecBufferFreeFunc ()">SwfdecBufferFreeFunc</a> free_func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> priv);</pre>
+<p>
+Creates a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> for managing <em class="parameter"><code>data</code></em>. The provided <em class="parameter"><code>free_func</code></em>
+will be called when the returned buffer is not referenced anymore, the 
+provided data needs to stay valid until that point.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> memory region to reference
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> size of the provided memory region
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>free_func</code></em> :</span></p></td>
+<td> function to call for freeing the <em class="parameter"><code>data</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>priv</code></em> :</span></p></td>
+<td> private data to bass to <em class="parameter"><code>free_func</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> pointing to <em class="parameter"><code>data</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-new-static"></a><h3>swfdec_buffer_new_static()</h3>
+<pre class="programlisting">#define             swfdec_buffer_new_static(data, size)</pre>
+<p>
+Creates a buffer for static data.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> static data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> size of <em class="parameter"><code>data</code></em> in bytes
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-new-for-data"></a><h3>swfdec_buffer_new_for_data ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_new_for_data          (unsigned char *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> size);</pre>
+<p>
+Takes ownership of <em class="parameter"><code>data</code></em> and creates a new buffer managing it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> memory region allocated with <a
+href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-malloc"
+><code class="function">g_malloc()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> size of <em class="parameter"><code>data</code></em> in bytes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> pointing to <em class="parameter"><code>data</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-new-subbuffer"></a><h3>swfdec_buffer_new_subbuffer ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_new_subbuffer         (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> length);</pre>
+<p>
+Creates a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> for managing a partial section of the memory pointed
+to by <em class="parameter"><code>buffer</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td> <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> managing the region of memory
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offset</code></em> :</span></p></td>
+<td> starting offset into data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> amount of bytes to manage
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> managing the indicated region.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-new-from-file"></a><h3>swfdec_buffer_new_from_file ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_new_from_file         (const char *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Creates a buffer containing the contents of the given file. If loading the
+file fails, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned and <em class="parameter"><code>error</code></em> is set. The error can be
+any of the errors that are valid for <a
+href="/usr/share/gtk-doc/html/glib/glib-File-Utilities.html#g-file-get-contents"
+><code class="function">g_file_get_contents()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
+<td> file to read, in filename encoding
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> on failure
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-ref"></a><h3>swfdec_buffer_ref ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_ref                   (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);</pre>
+<p>
+increases the reference count of <em class="parameter"><code>buffer</code></em> by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The passed in <em class="parameter"><code>buffer</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-unref"></a><h3>swfdec_buffer_unref ()</h3>
+<pre class="programlisting">void                swfdec_buffer_unref                 (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);</pre>
+<p>
+Decreases the reference count of <em class="parameter"><code>buffer</code></em> by one. If no reference to this
+buffer exists anymore, the buffer and the memory it manages are freed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-get-super"></a><h3>swfdec_buffer_get_super ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_get_super             (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);</pre>
+<p>
+Returns the largest buffer that contains the memory pointed to by <em class="parameter"><code>buffer</code></em>.
+This will either be the passed <em class="parameter"><code>buffer</code></em> itself, or if the buffer was created
+via <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-new-subbuffer" title="swfdec_buffer_new_subbuffer ()"><code class="function">swfdec_buffer_new_subbuffer()</code></a>, the buffer used for that.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The largest <em class="parameter"><code>buffer</code></em> available that contains the memory pointed to 
+         by <em class="parameter"><code>buffer</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-new"></a><h3>swfdec_buffer_queue_new ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a>*  swfdec_buffer_queue_new             (void);</pre>
+<p>
+Creates a new empty buffer queue.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new buffer queue. Use <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-unref" title="swfdec_buffer_queue_unref ()"><code class="function">swfdec_buffer_queue_unref()</code></a> to free it.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-clear"></a><h3>swfdec_buffer_queue_clear ()</h3>
+<pre class="programlisting">void                swfdec_buffer_queue_clear           (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);</pre>
+<p>
+Resets <em class="parameter"><code>queue</code></em> into to initial state. All buffers it contains will be 
+released and the offset will be reset to 0.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-ref"></a><h3>swfdec_buffer_queue_ref ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a>*  swfdec_buffer_queue_ref             (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);</pre>
+<p>
+increases the reference count of <em class="parameter"><code>queue</code></em> by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The passed in <em class="parameter"><code>queue</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-unref"></a><h3>swfdec_buffer_queue_unref ()</h3>
+<pre class="programlisting">void                swfdec_buffer_queue_unref           (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);</pre>
+<p>
+Decreases the reference count of <em class="parameter"><code>queue</code></em> by one. If no reference 
+to this buffer exists anymore, the buffer and the memory 
+it manages are freed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-get-depth"></a><h3>swfdec_buffer_queue_get_depth ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a>               swfdec_buffer_queue_get_depth       (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);</pre>
+<p>
+Returns the number of bytes currently in <em class="parameter"><code>queue</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> amount of bytes in <em class="parameter"><code>queue</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-get-offset"></a><h3>swfdec_buffer_queue_get_offset ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a>               swfdec_buffer_queue_get_offset      (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);</pre>
+<p>
+Queries the amount of bytes that has already been pulled out of
+<em class="parameter"><code>queue</code></em> using functions like <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-pull" title="swfdec_buffer_queue_pull ()"><code class="function">swfdec_buffer_queue_pull()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Number of bytes that were already pulled from this queue.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-push"></a><h3>swfdec_buffer_queue_push ()</h3>
+<pre class="programlisting">void                swfdec_buffer_queue_push            (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);</pre>
+<p>
+Appends the given <em class="parameter"><code>buffer</code></em> to the buffers already in <em class="parameter"><code>queue</code></em>. This function
+will take ownership of the given <em class="parameter"><code>buffer</code></em>. Use <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-ref" title="swfdec_buffer_ref ()"><code class="function">swfdec_buffer_ref()</code></a> before
+calling this function to keep a reference.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td> <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> to append to <em class="parameter"><code>queue</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-pull"></a><h3>swfdec_buffer_queue_pull ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_queue_pull            (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> length);</pre>
+<p>
+If enough data is still available in <em class="parameter"><code>queue</code></em>, the first <em class="parameter"><code>length</code></em> bytes are 
+put into a new buffer and that buffer is returned. The <em class="parameter"><code>length</code></em> bytes are
+removed from the head of the queue. If not enough data is available, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> amount of bytes to pull
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-pull-buffer"></a><h3>swfdec_buffer_queue_pull_buffer ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_queue_pull_buffer     (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);</pre>
+<p>
+Pulls the first buffer out of <em class="parameter"><code>queue</code></em> and returns it. This function is 
+equivalent to calling <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-pull" title="swfdec_buffer_queue_pull ()"><code class="function">swfdec_buffer_queue_pull()</code></a> with the size of the
+first buffer in it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The first buffer in <em class="parameter"><code>queue</code></em> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if <em class="parameter"><code>queue</code></em> is empty.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-peek"></a><h3>swfdec_buffer_queue_peek ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_queue_peek            (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> length);</pre>
+<p>
+Creates a new buffer with the first <em class="parameter"><code>length</code></em> bytes from <em class="parameter"><code>queue</code></em>, but unlike 
+<a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-pull" title="swfdec_buffer_queue_pull ()"><code class="function">swfdec_buffer_queue_pull()</code></a>, does not remove them from <em class="parameter"><code>queue</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a> to read from
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> amount of bytes to peek
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> NULL if the requested amount of data wasn't available or a new 
+         readonly <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a>. Use <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-unref" title="swfdec_buffer_unref ()"><code class="function">swfdec_buffer_unref()</code></a> after use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-peek-buffer"></a><h3>swfdec_buffer_queue_peek_buffer ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a>*       swfdec_buffer_queue_peek_buffer     (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue);</pre>
+<p>
+Gets the first buffer out of <em class="parameter"><code>queue</code></em> and returns it. This function is 
+equivalent to calling <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-peek" title="swfdec_buffer_queue_peek ()"><code class="function">swfdec_buffer_queue_peek()</code></a> with the size of the
+first buffer in it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The first buffer in <em class="parameter"><code>queue</code></em> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if <em class="parameter"><code>queue</code></em> is empty. Use 
+         <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-unref" title="swfdec_buffer_unref ()"><code class="function">swfdec_buffer_unref()</code></a> after use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-buffer-queue-flush"></a><h3>swfdec_buffer_queue_flush ()</h3>
+<pre class="programlisting">void                swfdec_buffer_queue_flush           (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue">SwfdecBufferQueue</a> *queue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> n_bytes);</pre>
+<p>
+Removes the first <em class="parameter"><code>n_bytes</code></em> bytes from the queue.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>queue</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBufferQueue" title="SwfdecBufferQueue"><span class="type">SwfdecBufferQueue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_bytes</code></em> :</span></p></td>
+<td> amount of bytes to flush from the queue
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

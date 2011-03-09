@@ -1,0 +1,820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecURL</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch02.html" title="Swfdec library">
+<link rel="prev" href="swfdec-SwfdecBuffer.html" title="SwfdecBuffer">
+<link rel="next" href="SwfdecPlayer.html" title="SwfdecPlayer">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="swfdec-SwfdecBuffer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecPlayer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-SwfdecURL.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-SwfdecURL.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-SwfdecURL"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-SwfdecURL.top_of_page"></a>SwfdecURL</span></h2>
+<p>SwfdecURL — URL handling in Swfdec</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-SwfdecURL.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>;
+<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-new" title="swfdec_url_new ()">swfdec_url_new</a>                      (const char *string);
+<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-new-from-input" title="swfdec_url_new_from_input ()">swfdec_url_new_from_input</a>           (const char *input);
+<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-new-components" title="swfdec_url_new_components ()">swfdec_url_new_components</a>           (const char *protocol,
+                                                         const char *hostname,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> port,
+                                                         const char *path,
+                                                         const char *query);
+<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-new-relative" title="swfdec_url_new_relative ()">swfdec_url_new_relative</a>             (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url,
+                                                         const char *string);
+<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-new-parent" title="swfdec_url_new_parent ()">swfdec_url_new_parent</a>               (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-copy" title="swfdec_url_copy ()">swfdec_url_copy</a>                     (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+void                <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-free" title="swfdec_url_free ()">swfdec_url_free</a>                     (<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+const char*         <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-get-protocol" title="swfdec_url_get_protocol ()">swfdec_url_get_protocol</a>             (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-has-protocol" title="swfdec_url_has_protocol ()">swfdec_url_has_protocol</a>             (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url,
+                                                         const char *protocol);
+const char*         <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-get-host" title="swfdec_url_get_host ()">swfdec_url_get_host</a>                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-get-port" title="swfdec_url_get_port ()">swfdec_url_get_port</a>                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+const char*         <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-get-path" title="swfdec_url_get_path ()">swfdec_url_get_path</a>                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+const char*         <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-get-query" title="swfdec_url_get_query ()">swfdec_url_get_query</a>                (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+const char*         <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-get-url" title="swfdec_url_get_url ()">swfdec_url_get_url</a>                  (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-is-local" title="swfdec_url_is_local ()">swfdec_url_is_local</a>                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-is-parent" title="swfdec_url_is_parent ()">swfdec_url_is_parent</a>                (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *parent,
+                                                         const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *child);
+char*               <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-format-for-display" title="swfdec_url_format_for_display ()">swfdec_url_format_for_display</a>       (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-hash" title="swfdec_url_hash ()">swfdec_url_hash</a>                     (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> url);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-equal" title="swfdec_url_equal ()">swfdec_url_equal</a>                    (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> a,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> b);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-host-equal" title="swfdec_url_host_equal ()">swfdec_url_host_equal</a>               (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> a,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> b);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-path-is-relative" title="swfdec_url_path_is_relative ()">swfdec_url_path_is_relative</a>         (const char *path);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecURL.description"></a><h2>Description</h2>
+<p>
+SwfdecURL is Swfdec's way of handling URLs. You probably don't need to mess 
+with this type unless you want to write a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>. In that case you 
+will want to use <a class="link" href="SwfdecLoader.html#swfdec-loader-get-url" title="swfdec_loader_get_url ()"><code class="function">swfdec_loader_get_url()</code></a> to get its url and then use the 
+functions in this section to access it.
+</p>
+<p>
+Note that URLs inside Swfdec mirror the behavior of Flash and will therefore
+not miror standards behavior, but the behavior of Flash.
+</p>
+<p>
+<em class="parameter"><code>see_also</code></em>: <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a></p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecURL.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecURL"></a><h3>SwfdecURL</h3>
+<pre class="programlisting">typedef struct _SwfdecURL SwfdecURL;</pre>
+<p>
+this is the structure used for URLs. It is a boxed type to glib's type system
+and it is not reference counted. It is also a static struct in that it cannot
+be modified after creation.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-new"></a><h3>swfdec_url_new ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          swfdec_url_new                      (const char *string);</pre>
+<p>
+Parses the given string into a URL for use in swfdec.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td> a valid utf-8 string possibly containing an URL
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if the URL was invalid
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-new-from-input"></a><h3>swfdec_url_new_from_input ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          swfdec_url_new_from_input           (const char *input);</pre>
+<p>
+Tries to guess the right URL from the given <em class="parameter"><code>input</code></em>. This function is meant 
+as a utility function helping to convert user input (like command line 
+arguments) to a URL without requiring the full URL.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> the input povided
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new url best matching the given <em class="parameter"><code>input</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-new-components"></a><h3>swfdec_url_new_components ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          swfdec_url_new_components           (const char *protocol,
+                                                         const char *hostname,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> port,
+                                                         const char *path,
+                                                         const char *query);</pre>
+<p>
+Creates a new URL from the given components.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
+<td> protocol to use
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>hostname</code></em> :</span></p></td>
+<td> hostname or IP address or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> port number or 0. Must be 0 if no hostname is given
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
+<td> a path or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>query</code></em> :</span></p></td>
+<td> the query string or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new url pointing to the url from the given components
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-new-relative"></a><h3>swfdec_url_new_relative ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          swfdec_url_new_relative             (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url,
+                                                         const char *string);</pre>
+<p>
+Parses <em class="parameter"><code>string</code></em> into a new URL. If the given <em class="parameter"><code>string</code></em> is a relative URL, it 
+uses <em class="parameter"><code>url</code></em> to resolve it to an absolute url; <em class="parameter"><code>url</code></em> must already contain a
+directory path.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td> a relative or absolute URL path
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if an error was detected.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-new-parent"></a><h3>swfdec_url_new_parent ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          swfdec_url_new_parent               (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Creates a new url that is the parent of <em class="parameter"><code>url</code></em>. If the given <em class="parameter"><code>url</code></em> has no 
+parent, a copy of itself is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new url pointing to the parent of <em class="parameter"><code>url</code></em> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> on failure.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-copy"></a><h3>swfdec_url_copy ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*          swfdec_url_copy                     (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+copies the given url.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-free"></a><h3>swfdec_url_free ()</h3>
+<pre class="programlisting">void                swfdec_url_free                     (<a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Frees the URL and its associated ressources.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-get-protocol"></a><h3>swfdec_url_get_protocol ()</h3>
+<pre class="programlisting">const char*         swfdec_url_get_protocol             (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Gets the protocol used by this URL, such as "http" or "file".</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the protocol used or "error" if the URL is broken
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-has-protocol"></a><h3>swfdec_url_has_protocol ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_url_has_protocol             (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url,
+                                                         const char *protocol);</pre>
+<p>
+Checks if the given <em class="parameter"><code>url</code></em> references the given <em class="parameter"><code>protocol</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a url
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
+<td> protocol name to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if both protocols match, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-get-host"></a><h3>swfdec_url_get_host ()</h3>
+<pre class="programlisting">const char*         swfdec_url_get_host                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Gets the host for <em class="parameter"><code>url</code></em> as a lower case string.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the host or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if none (typically for file URLs).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-get-port"></a><h3>swfdec_url_get_port ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               swfdec_url_get_port                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Gets the port number specified by the given <em class="parameter"><code>url</code></em>. If the <em class="parameter"><code>url</code></em> does not 
+specify a port number, 0 will be returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the specified port or 0 if none was given.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-get-path"></a><h3>swfdec_url_get_path ()</h3>
+<pre class="programlisting">const char*         swfdec_url_get_path                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Gets the path associated with <em class="parameter"><code>url</code></em>. If it contains no path, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is 
+returned.
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>The returned path does not start with a slash. So in particular for 
+files, you want to prepend the slash yourself.</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the path or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if none
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-get-query"></a><h3>swfdec_url_get_query ()</h3>
+<pre class="programlisting">const char*         swfdec_url_get_query                (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Gets the query string associated with <em class="parameter"><code>url</code></em>. If the URL does not have a query
+string, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Query string or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-get-url"></a><h3>swfdec_url_get_url ()</h3>
+<pre class="programlisting">const char*         swfdec_url_get_url                  (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Gets the whole URL.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the complete URL as string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-is-local"></a><h3>swfdec_url_is_local ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_url_is_local                 (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Checks if the given <em class="parameter"><code>url</code></em> references a local resource. Local resources are
+treated differently by Flash, since they get a higher degree of trust.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> the url to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the given url is local.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-is-parent"></a><h3>swfdec_url_is_parent ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_url_is_parent                (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *parent,
+                                                         const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *child);</pre>
+<p>
+Checks if the given <em class="parameter"><code>parent</code></em> url is a parent url of the given <em class="parameter"><code>child</code></em> url. The
+algorithm used is the same as checking policy files if hey apply. If <em class="parameter"><code>parent</code></em>
+equals <em class="parameter"><code>child</code></em>, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> is returned. This function does not compare query 
+strings.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> the supposed parent url
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> the supposed child url
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>parent</code></em> is a parent of <em class="parameter"><code>child</code></em>, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-format-for-display"></a><h3>swfdec_url_format_for_display ()</h3>
+<pre class="programlisting">char*               swfdec_url_format_for_display       (const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Creates a string suitable to display the given <em class="parameter"><code>url</code></em>. An example for using
+this function is to identify a currently playing Flash URL. Use 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-get-url" title="swfdec_player_get_url ()"><code class="function">swfdec_player_get_url()</code></a> to query the player's URL and then use this function
+to get a displayable string.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> the url to display
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new string containig a short description for this URL. <a
+href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a>
+         after use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-hash"></a><h3>swfdec_url_hash ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               swfdec_url_hash                     (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> url);</pre>
+<p>
+Creates a hash value for the given <em class="parameter"><code>url</code></em>. This function is intended to be 
+used together with <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-equal" title="swfdec_url_equal ()"><code class="function">swfdec_url_equal()</code></a> in a <span class="type">GHashtable</span>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a hash value
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-equal"></a><h3>swfdec_url_equal ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_url_equal                    (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> a,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> b);</pre>
+<p>
+Compares the 2 given URLs for equality. 2 URLs are considered equal, when
+they point to the same resource. This function is intended to be
+used together with <a class="link" href="swfdec-SwfdecURL.html#swfdec-url-hash" title="swfdec_url_hash ()"><code class="function">swfdec_url_hash()</code></a> in a <span class="type">GHashtable</span>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the 2 given urls point to the same resource, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>
+         otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-host-equal"></a><h3>swfdec_url_host_equal ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_url_host_equal               (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> a,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> b);</pre>
+<p>
+Compares the 2 given URLs for equality, ignoring path. 2 URLs are
+considered to have equal hosts when they have the same protocol,
+host, and port.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the 2 given urls point to the same host, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>
+         otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-url-path-is-relative"></a><h3>swfdec_url_path_is_relative ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_url_path_is_relative         (const char *path);</pre>
+<p>
+Checks if the given URL is relative or absolute.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
+<td> a string used to specify a url
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the path is a relative path, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if it is absolute
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

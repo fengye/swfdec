@@ -1,0 +1,516 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecAsArray</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch04.html" title="Actionscript interpreter">
+<link rel="prev" href="SwfdecAsObject.html" title="SwfdecAsObject">
+<link rel="next" href="SwfdecAsFunction.html" title="SwfdecAsFunction">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecAsObject.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecAsFunction.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecAsArray.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecAsArray.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecAsArray.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecAsArray"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecAsArray.top_of_page"></a>SwfdecAsArray</span></h2>
+<p>SwfdecAsArray — the array object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecAsArray.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecAsArray.html#SwfdecAsArray-struct" title="SwfdecAsArray">SwfdecAsArray</a>;
+<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     <a class="link" href="SwfdecAsArray.html#swfdec-as-array-new" title="swfdec_as_array_new ()">swfdec_as_array_new</a>                 (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+#define             <a class="link" href="SwfdecAsArray.html#swfdec-as-array-append" title="swfdec_as_array_append()">swfdec_as_array_append</a>              (array,n,values)
+void                <a class="link" href="SwfdecAsArray.html#swfdec-as-array-append-with-flags" title="swfdec_as_array_append_with_flags ()">swfdec_as_array_append_with_flags</a>   (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *values,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);
+void                <a class="link" href="SwfdecAsArray.html#swfdec-as-array-insert" title="swfdec_as_array_insert ()">swfdec_as_array_insert</a>              (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+void                <a class="link" href="SwfdecAsArray.html#swfdec-as-array-insert-with-flags" title="swfdec_as_array_insert_with_flags ()">swfdec_as_array_insert_with_flags</a>   (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);
+#define             <a class="link" href="SwfdecAsArray.html#swfdec-as-array-push" title="swfdec_as_array_push()">swfdec_as_array_push</a>                (array,value)
+#define             <a class="link" href="SwfdecAsArray.html#swfdec-as-array-push-with-flags" title="swfdec_as_array_push_with_flags()">swfdec_as_array_push_with_flags</a>     (array,value,flags)
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a>              <a class="link" href="SwfdecAsArray.html#swfdec-as-array-get-length" title="swfdec_as_array_get_length ()">swfdec_as_array_get_length</a>          (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array);
+void                <a class="link" href="SwfdecAsArray.html#swfdec-as-array-set-length" title="swfdec_as_array_set_length ()">swfdec_as_array_set_length</a>          (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> length);
+void                <a class="link" href="SwfdecAsArray.html#swfdec-as-array-get-value" title="swfdec_as_array_get_value ()">swfdec_as_array_get_value</a>           (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+void                <a class="link" href="SwfdecAsArray.html#swfdec-as-array-set-value" title="swfdec_as_array_set_value ()">swfdec_as_array_set_value</a>           (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+void                <a class="link" href="SwfdecAsArray.html#swfdec-as-array-remove" title="swfdec_as_array_remove ()">swfdec_as_array_remove</a>              (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsArray.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecGcObject
+         +----<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>
+               +----SwfdecAsArray
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsArray.description"></a><h2>Description</h2>
+<p>
+The array object provides some convenience functions for creating and
+modifying arrays.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsArray.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsArray-struct"></a><h3>SwfdecAsArray</h3>
+<pre class="programlisting">typedef struct _SwfdecAsArray SwfdecAsArray;</pre>
+<p>
+This is the type of the array object.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-new"></a><h3>swfdec_as_array_new ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     swfdec_as_array_new                 (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Creates a new <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the new array
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-append"></a><h3>swfdec_as_array_append()</h3>
+<pre class="programlisting">#define             swfdec_as_array_append(array,n,values)</pre>
+<p>
+Appends the given <em class="parameter"><code>values</code></em> to the <em class="parameter"><code>array</code></em>. This is a macro that just calls
+<a class="link" href="SwfdecAsArray.html#swfdec-as-array-append-with-flags" title="swfdec_as_array_append_with_flags ()"><code class="function">swfdec_as_array_append_with_flags()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n</code></em> :</span></p></td>
+<td> number of values to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>values</code></em> :</span></p></td>
+<td> the values to add
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-append-with-flags"></a><h3>swfdec_as_array_append_with_flags ()</h3>
+<pre class="programlisting">void                swfdec_as_array_append_with_flags   (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *values,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);</pre>
+<p>
+Appends the given <em class="parameter"><code>values</code></em> to the <em class="parameter"><code>array</code></em> using the given <em class="parameter"><code>flags</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n</code></em> :</span></p></td>
+<td> number of values to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>values</code></em> :</span></p></td>
+<td> the values to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag"><span class="type">SwfdecAsVariableFlag</span></a> flags to use
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-insert"></a><h3>swfdec_as_array_insert ()</h3>
+<pre class="programlisting">void                swfdec_as_array_insert              (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Inserts <em class="parameter"><code>value</code></em> to <em class="parameter"><code>array</code></em> at given index, making room for it by moving
+elements to bigger indexes if necessary. This is a macro that just calls
+<a class="link" href="SwfdecAsArray.html#swfdec-as-array-insert-with-flags" title="swfdec_as_array_insert_with_flags ()"><code class="function">swfdec_as_array_insert_with_flags()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>idx</code></em> :</span></p></td>
+<td> index to insert the value to
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-insert-with-flags"></a><h3>swfdec_as_array_insert_with_flags ()</h3>
+<pre class="programlisting">void                swfdec_as_array_insert_with_flags   (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);</pre>
+<p>
+Inserts <em class="parameter"><code>value</code></em> to <em class="parameter"><code>array</code></em> at given index using given <em class="parameter"><code>flags</code></em>, making room for
+it by moving elements to bigger indexes if necessary.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>idx</code></em> :</span></p></td>
+<td> index to insert the value to
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag"><span class="type">SwfdecAsVariableFlag</span></a> flags to use
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-push"></a><h3>swfdec_as_array_push()</h3>
+<pre class="programlisting">#define             swfdec_as_array_push(array,value)</pre>
+<p>
+Adds the given <em class="parameter"><code>value</code></em> to the <em class="parameter"><code>array</code></em>. This is a macro that just calls
+<a class="link" href="SwfdecAsArray.html#swfdec-as-array-append-with-flags" title="swfdec_as_array_append_with_flags ()"><code class="function">swfdec_as_array_append_with_flags()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> the value to add
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-push-with-flags"></a><h3>swfdec_as_array_push_with_flags()</h3>
+<pre class="programlisting">#define             swfdec_as_array_push_with_flags(array,value,flags)</pre>
+<p>
+Adds the given <em class="parameter"><code>value</code></em> to the <em class="parameter"><code>array</code></em> with the given <em class="parameter"><code>flags</code></em>. This is a macro
+that just calls <a class="link" href="SwfdecAsArray.html#swfdec-as-array-append-with-flags" title="swfdec_as_array_append_with_flags ()"><code class="function">swfdec_as_array_append_with_flags()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> the value to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag"><span class="type">SwfdecAsVariableFlag</span></a> flags to use
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-get-length"></a><h3>swfdec_as_array_get_length ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a>              swfdec_as_array_get_length          (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array);</pre>
+<p>
+Gets the current length of the <em class="parameter"><code>array</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Current length of the <em class="parameter"><code>array</code></em>, always &gt;= 0
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-set-length"></a><h3>swfdec_as_array_set_length ()</h3>
+<pre class="programlisting">void                swfdec_as_array_set_length          (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> length);</pre>
+<p>
+Sets the length of the <em class="parameter"><code>array</code></em>. Values outside the new length will be
+removed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> the new length
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-get-value"></a><h3>swfdec_as_array_get_value ()</h3>
+<pre class="programlisting">void                swfdec_as_array_get_value           (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Gets a value from given index, if the value doesn't exists an undefined
+value is set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>idx</code></em> :</span></p></td>
+<td> index of the value to get
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a pointer to <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> that will be set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-set-value"></a><h3>swfdec_as_array_set_value ()</h3>
+<pre class="programlisting">void                swfdec_as_array_set_value           (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Sets a <em class="parameter"><code>value</code></em> to given index. The <em class="parameter"><code>array</code></em>'s length will be increased if
+necessary.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>idx</code></em> :</span></p></td>
+<td> index of the value to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a pointer to <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-array-remove"></a><h3>swfdec_as_array_remove ()</h3>
+<pre class="programlisting">void                swfdec_as_array_remove              (<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a> *array,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint32"
+>gint32</a> idx);</pre>
+<p>
+Removes value at given index from the <em class="parameter"><code>array</code></em>, elements with higher indexes
+will be moved towards the start of the <em class="parameter"><code>array</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray"><span class="type">SwfdecAsArray</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>idx</code></em> :</span></p></td>
+<td> index of the value to remove
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

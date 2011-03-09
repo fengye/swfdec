@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecLoader">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecLoader.top_of_page">SwfdecLoader</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecLoader</refname>
+<refpurpose>object used for input</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecLoader.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="SwfdecFileLoader"/>
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecLoader-struct">SwfdecLoader</link>;
+                    <link linkend="SwfdecFileLoader-struct">SwfdecFileLoader</link>;
+                    <link linkend="SwfdecLoaderClass">SwfdecLoaderClass</link>;
+<link linkend="void">void</link>                <link linkend="swfdec-loader-set-url">swfdec_loader_set_url</link>               (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader,
+                                                         const <link linkend="char">char</link> *url);
+const <link linkend="SwfdecURL">SwfdecURL</link>*    <link linkend="swfdec-loader-get-url">swfdec_loader_get_url</link>               (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);
+<link linkend="void">void</link>                <link linkend="swfdec-loader-set-size">swfdec_loader_set_size</link>              (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader,
+                                                         <link linkend="gulong">gulong</link> size);
+<link linkend="glong">glong</link>               <link linkend="swfdec-loader-get-size">swfdec_loader_get_size</link>              (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);
+<link linkend="gulong">gulong</link>              <link linkend="swfdec-loader-get-loaded">swfdec_loader_get_loaded</link>            (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);
+<link linkend="SwfdecLoaderDataType">SwfdecLoaderDataType</link> <link linkend="swfdec-loader-get-data-type">swfdec_loader_get_data_type</link>        (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecLoader.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecStream">SwfdecStream</link>
+         +----SwfdecLoader
+               +----<link linkend="SwfdecFileLoader">SwfdecFileLoader</link>
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecStream">SwfdecStream</link>
+         +----<link linkend="SwfdecLoader">SwfdecLoader</link>
+               +----SwfdecFileLoader
+                     +----<link linkend="SwfdecGtkLoader">SwfdecGtkLoader</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="SwfdecLoader.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecLoader--data-type">data-type</link>&quot;                <link linkend="SwfdecLoaderDataType">SwfdecLoaderDataType</link>  : Read
+  &quot;<link linkend="SwfdecLoader--loaded">loaded</link>&quot;                   <link linkend="gulong">gulong</link>                : Read / Write
+  &quot;<link linkend="SwfdecLoader--size">size</link>&quot;                     <link linkend="glong">glong</link>                 : Read / Write
+  &quot;<link linkend="SwfdecLoader--url">url</link>&quot;                      <link linkend="SwfdecURL">SwfdecURL</link>*            : Read
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="SwfdecLoader.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+SwfdecLoader is the base class used for reading input. Since developers 
+normally need to adapt input to the needs of their application, this class 
+is provided to be adapted to their needs. It is used both for HTTP and
+RTMP access.
+</para>
+<para>
+Since Flash files can load new resources while operating, a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>
+can be instructed to load another resource.
+</para>
+<para>
+For convenience, a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link> for file access is provided by Swfdec.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecLoader.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecLoader-struct" role="struct">
+<title>SwfdecLoader</title>
+<indexterm zone="SwfdecLoader-struct"><primary>SwfdecLoader</primary></indexterm><programlisting>typedef struct _SwfdecLoader SwfdecLoader;</programlisting>
+<para>
+This is the base object used for providing input. It is abstract, use a 
+subclass to provide your input.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecFileLoader-struct" role="struct">
+<title>SwfdecFileLoader</title>
+<indexterm zone="SwfdecFileLoader-struct"><primary>SwfdecFileLoader</primary></indexterm><programlisting>typedef struct _SwfdecFileLoader SwfdecFileLoader;</programlisting>
+<para>
+This is a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link> that can load content from files. This symbol is
+exported so you can subclass your own loaders from it and have automatic
+file access.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecLoaderClass" role="struct">
+<title>SwfdecLoaderClass</title>
+<indexterm zone="SwfdecLoaderClass"><primary>SwfdecLoaderClass</primary></indexterm><programlisting>typedef struct {
+  void			(* load)	(SwfdecLoader *			loader, 
+					 SwfdecPlayer *			player,
+					 const char *			url,
+					 SwfdecBuffer *			buffer,
+					 guint				n_headers,
+					 const char **			header_names,
+					 const char **			header_values);
+} SwfdecLoaderClass;
+</programlisting>
+<para>
+This is the base class used for input. If you create a subclass, you are 
+supposed to set the function pointers listed above.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>load</structfield>&nbsp;()</term>
+<listitem><simpara> initialize a new loader based on a parent loader object. The new 
+       loader will already have its URL set.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-loader-set-url" role="function">
+<title>swfdec_loader_set_url ()</title>
+<indexterm zone="swfdec-loader-set-url"><primary>swfdec_loader_set_url</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_loader_set_url               (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader,
+                                                         const <link linkend="char">char</link> *url);</programlisting>
+<para>
+Updates the url of the given <parameter>loader</parameter> to point to the new <parameter>url</parameter>. This is useful
+whe encountering HTTP redirects, as the loader is supposed to reference the
+final URL after all rdirections.
+This function may only be called once and must have been called before 
+calling <link linkend="swfdec-stream-open"><function>swfdec_stream_open()</function></link> on <parameter>loader</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>loader</parameter>&nbsp;:</term>
+<listitem><simpara> the loader to update
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> string specifying the new URL. The url must be a valid absolute URL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-loader-get-url" role="function">
+<title>swfdec_loader_get_url ()</title>
+<indexterm zone="swfdec-loader-get-url"><primary>swfdec_loader_get_url</primary></indexterm><programlisting>const <link linkend="SwfdecURL">SwfdecURL</link>*    swfdec_loader_get_url               (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);</programlisting>
+<para>
+Gets the url this loader is handling. This is mostly useful for writing 
+subclasses of <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>loader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link> describing <parameter>loader</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if the <parameter>url</parameter> is not known 
+         yet.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-loader-set-size" role="function">
+<title>swfdec_loader_set_size ()</title>
+<indexterm zone="swfdec-loader-set-size"><primary>swfdec_loader_set_size</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_loader_set_size              (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader,
+                                                         <link linkend="gulong">gulong</link> size);</programlisting>
+<para>
+Sets the size of bytes in this loader. This function may only be called once.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>loader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> the amount of bytes in this loader
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-loader-get-size" role="function">
+<title>swfdec_loader_get_size ()</title>
+<indexterm zone="swfdec-loader-get-size"><primary>swfdec_loader_get_size</primary></indexterm><programlisting><link linkend="glong">glong</link>               swfdec_loader_get_size              (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);</programlisting>
+<para>
+Queries the amount of bytes inside <parameter>loader</parameter>. If the size is unknown, -1 is 
+returned. Otherwise the number is greater or equal to 0.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>loader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the total number of bytes for this loader or -1 if unknown
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-loader-get-loaded" role="function">
+<title>swfdec_loader_get_loaded ()</title>
+<indexterm zone="swfdec-loader-get-loaded"><primary>swfdec_loader_get_loaded</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              swfdec_loader_get_loaded            (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);</programlisting>
+<para>
+Gets the amount of bytes that have already been pushed into <parameter>loader</parameter> and are
+available to Swfdec.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>loader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Amount of bytes in <parameter>loader</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-loader-get-data-type" role="function">
+<title>swfdec_loader_get_data_type ()</title>
+<indexterm zone="swfdec-loader-get-data-type"><primary>swfdec_loader_get_data_type</primary></indexterm><programlisting><link linkend="SwfdecLoaderDataType">SwfdecLoaderDataType</link> swfdec_loader_get_data_type        (<link linkend="SwfdecLoader">SwfdecLoader</link> *loader);</programlisting>
+<para>
+Queries the type of data this loader provides. The type is determined 
+automatically by Swfdec.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>loader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the type this data was identified to be in or 
+         <link linkend="SWFDEC-LOADER-DATA-UNKNOWN:CAPS"><type>SWFDEC_LOADER_DATA_UNKNOWN</type></link> if not identified
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecLoader.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecLoader--data-type"><title>The <literal>&quot;data-type&quot;</literal> property</title>
+<indexterm zone="SwfdecLoader--data-type"><primary>SwfdecLoader:data-type</primary></indexterm><programlisting>  &quot;data-type&quot;                <link linkend="SwfdecLoaderDataType">SwfdecLoaderDataType</link>  : Read</programlisting>
+<para>the data's type as identified by Swfdec.</para><para>Default value: SWFDEC_LOADER_DATA_UNKNOWN</para>
+</refsect2>
+<refsect2 id="SwfdecLoader--loaded"><title>The <literal>&quot;loaded&quot;</literal> property</title>
+<indexterm zone="SwfdecLoader--loaded"><primary>SwfdecLoader:loaded</primary></indexterm><programlisting>  &quot;loaded&quot;                   <link linkend="gulong">gulong</link>                : Read / Write</programlisting>
+<para>bytes already loaded.</para></refsect2>
+<refsect2 id="SwfdecLoader--size"><title>The <literal>&quot;size&quot;</literal> property</title>
+<indexterm zone="SwfdecLoader--size"><primary>SwfdecLoader:size</primary></indexterm><programlisting>  &quot;size&quot;                     <link linkend="glong">glong</link>                 : Read / Write</programlisting>
+<para>amount of bytes in loader.</para><para>Allowed values: &gt;= -1</para>
+<para>Default value: -1</para>
+</refsect2>
+<refsect2 id="SwfdecLoader--url"><title>The <literal>&quot;url&quot;</literal> property</title>
+<indexterm zone="SwfdecLoader--url"><primary>SwfdecLoader:url</primary></indexterm><programlisting>  &quot;url&quot;                      <link linkend="SwfdecURL">SwfdecURL</link>*            : Read</programlisting>
+<para>URL for this file.</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

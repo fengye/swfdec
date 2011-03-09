@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecSystem">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecSystem.top_of_page">SwfdecSystem</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecSystem</refname>
+<refpurpose>object holding system settings</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecSystem.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecSystem-struct">SwfdecSystem</link>;
+<link linkend="SwfdecSystem">SwfdecSystem</link>*       <link linkend="swfdec-system-new">swfdec_system_new</link>                   (void);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecSystem.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----SwfdecSystem
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="SwfdecSystem.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecSystem--color-mode">color-mode</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--debugger">debugger</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--dpi">dpi</link>&quot;                      <link linkend="guint">guint</link>                 : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--language">language</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--manufacturer">manufacturer</link>&quot;             <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--os">os</link>&quot;                       <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--os-type">os-type</link>&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--pixel-aspect-ratio">pixel-aspect-ratio</link>&quot;       <link linkend="gdouble">gdouble</link>               : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--player-type">player-type</link>&quot;              <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--screen-height">screen-height</link>&quot;            <link linkend="guint">guint</link>                 : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--screen-width">screen-width</link>&quot;             <link linkend="guint">guint</link>                 : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--server-manufacturer">server-manufacturer</link>&quot;      <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--utc-offset">utc-offset</link>&quot;               <link linkend="gint">gint</link>                  : Read / Write / Construct
+  &quot;<link linkend="SwfdecSystem--version">version</link>&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="SwfdecSystem.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This object is used to provide information about the system Swfdec currently 
+runs on.
+</para>
+<para>
+Almost all of this information can be categorized into three types:
+Information about the current playback engine like manufacturer or version,
+information about the current operating system and capabilities of the output
+capabilities of the System like screen size.
+</para>
+<para>
+The information provided by this object is used by the Actionscript 
+System.capabilities.<link linkend="Query"><function>Query()</function></link> function that is usually only run once during 
+initialization of the Flash player. If you want to set custom properties and
+have them affect a running <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>, you should change them before the
+player gets initialized.
+</para>
+<para>
+Note that the System.capabilites object in Flash provides more functionality
+than provided by this object. That information can be and is determined 
+automatically by Swfdec.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecSystem.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecSystem-struct" role="struct">
+<title>SwfdecSystem</title>
+<indexterm zone="SwfdecSystem-struct"><primary>SwfdecSystem</primary></indexterm><programlisting>typedef struct _SwfdecSystem SwfdecSystem;</programlisting>
+<para>
+This is the object used for holding information about the current system. See
+the introduction for details.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-system-new" role="function">
+<title>swfdec_system_new ()</title>
+<indexterm zone="swfdec-system-new"><primary>swfdec_system_new</primary></indexterm><programlisting><link linkend="SwfdecSystem">SwfdecSystem</link>*       swfdec_system_new                   (void);</programlisting>
+<para>
+Creates a new <link linkend="SwfdecSystem"><type>SwfdecSystem</type></link> object using default settings. These settings are 
+mirroring the most common settings used by a Flash player. Currently this is
+equivalent to a Flash player running on Windows XP.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecSystem"><type>SwfdecSystem</type></link> object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecSystem.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecSystem--color-mode"><title>The <literal>&quot;color-mode&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--color-mode"><primary>SwfdecSystem:color-mode</primary></indexterm><programlisting>  &quot;color-mode&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>"color", "gray" or "bw".</para><para>Default value: "color"</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--debugger"><title>The <literal>&quot;debugger&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--debugger"><primary>SwfdecSystem:debugger</primary></indexterm><programlisting>  &quot;debugger&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write / Construct</programlisting>
+<para>TRUE if this player is supposed to be a debugger.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--dpi"><title>The <literal>&quot;dpi&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--dpi"><primary>SwfdecSystem:dpi</primary></indexterm><programlisting>  &quot;dpi&quot;                      <link linkend="guint">guint</link>                 : Read / Write / Construct</programlisting>
+<para>DPI setting of screen.</para><para>Default value: 96</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--language"><title>The <literal>&quot;language&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--language"><primary>SwfdecSystem:language</primary></indexterm><programlisting>  &quot;language&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>ISO 639-1 language code.</para><para>Default value: "en"</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--manufacturer"><title>The <literal>&quot;manufacturer&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--manufacturer"><primary>SwfdecSystem:manufacturer</primary></indexterm><programlisting>  &quot;manufacturer&quot;             <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>string describing the manufacturer of this system.</para><para>Default value: "Macromedia Windows"</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--os"><title>The <literal>&quot;os&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--os"><primary>SwfdecSystem:os</primary></indexterm><programlisting>  &quot;os&quot;                       <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>description of the operating system.</para><para>Default value: "Windows XP"</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--os-type"><title>The <literal>&quot;os-type&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--os-type"><primary>SwfdecSystem:os-type</primary></indexterm><programlisting>  &quot;os-type&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>the operating system type: WIN, LIN or MAC.</para><para>Default value: "WIN"</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--pixel-aspect-ratio"><title>The <literal>&quot;pixel-aspect-ratio&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--pixel-aspect-ratio"><primary>SwfdecSystem:pixel-aspect-ratio</primary></indexterm><programlisting>  &quot;pixel-aspect-ratio&quot;       <link linkend="gdouble">gdouble</link>               : Read / Write / Construct</programlisting>
+<para>the screen's pixel aspect ratio.</para><para>Allowed values: &gt;= G_MINDOUBLE</para>
+<para>Default value: 1</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--player-type"><title>The <literal>&quot;player-type&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--player-type"><primary>SwfdecSystem:player-type</primary></indexterm><programlisting>  &quot;player-type&quot;              <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>"StandAlone", "External", "PlugIn" or "ActiveX".</para><para>Default value: "StandAlone"</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--screen-height"><title>The <literal>&quot;screen-height&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--screen-height"><primary>SwfdecSystem:screen-height</primary></indexterm><programlisting>  &quot;screen-height&quot;            <link linkend="guint">guint</link>                 : Read / Write / Construct</programlisting>
+<para>height of the screen in pixels.</para><para>Default value: 768</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--screen-width"><title>The <literal>&quot;screen-width&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--screen-width"><primary>SwfdecSystem:screen-width</primary></indexterm><programlisting>  &quot;screen-width&quot;             <link linkend="guint">guint</link>                 : Read / Write / Construct</programlisting>
+<para>width of the screen in pixels.</para><para>Default value: 1024</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--server-manufacturer"><title>The <literal>&quot;server-manufacturer&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--server-manufacturer"><primary>SwfdecSystem:server-manufacturer</primary></indexterm><programlisting>  &quot;server-manufacturer&quot;      <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>manufacturer of this system as used in serverString.</para><para>Default value: "Adobe Windows"</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--utc-offset"><title>The <literal>&quot;utc-offset&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--utc-offset"><primary>SwfdecSystem:utc-offset</primary></indexterm><programlisting>  &quot;utc-offset&quot;               <link linkend="gint">gint</link>                  : Read / Write / Construct</programlisting>
+<para>Difference between UTC and local timezone in minutes.</para><para>Allowed values: [-720,720]</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="SwfdecSystem--version"><title>The <literal>&quot;version&quot;</literal> property</title>
+<indexterm zone="SwfdecSystem--version"><primary>SwfdecSystem:version</primary></indexterm><programlisting>  &quot;version&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>version string.</para><para>Default value: "WIN 9,0,999,0"</para>
+</refsect2>
+
+</refsect1>
+
+
+
+<refsect1 id="SwfdecSystem.see-also">
+<title>See Also</title>
+SwfdecPlayer
+</refsect1>
+
+</refentry>

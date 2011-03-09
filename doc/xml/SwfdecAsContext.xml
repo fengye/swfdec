@@ -1,0 +1,434 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecAsContext">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecAsContext.top_of_page">SwfdecAsContext</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecAsContext</refname>
+<refpurpose>the main script engine context</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecAsContext.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecAsContext-struct">SwfdecAsContext</link>;
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-startup">swfdec_as_context_startup</link>           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-abort">swfdec_as_context_abort</link>             (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="char">char</link> *reason);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-context-is-aborted">swfdec_as_context_is_aborted</link>        (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+const <link linkend="char">char</link>*         <link linkend="swfdec-as-context-get-string">swfdec_as_context_get_string</link>        (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="char">char</link> *string);
+const <link linkend="char">char</link>*         <link linkend="swfdec-as-context-give-string">swfdec_as_context_give_string</link>       (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="char">char</link> *string);
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-use-mem">swfdec_as_context_use_mem</link>           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="gsize">gsize</link> bytes);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-context-try-use-mem">swfdec_as_context_try_use_mem</link>       (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="gsize">gsize</link> bytes);
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-unuse-mem">swfdec_as_context_unuse_mem</link>         (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="gsize">gsize</link> bytes);
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-gc">swfdec_as_context_gc</link>                (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-maybe-gc">swfdec_as_context_maybe_gc</link>          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-throw">swfdec_as_context_throw</link>             (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-context-catch">swfdec_as_context_catch</link>             (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="void">void</link>                <link linkend="swfdec-as-context-get-time">swfdec_as_context_get_time</link>          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="GTimeVal">GTimeVal</link> *tv);
+<link linkend="SwfdecAsFrame">SwfdecAsFrame</link>*      <link linkend="swfdec-as-context-get-frame">swfdec_as_context_get_frame</link>         (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-context-is-constructing">swfdec_as_context_is_constructing</link>   (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecAsContext.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----SwfdecAsContext
+         +----<link linkend="SwfdecPlayer">SwfdecPlayer</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="SwfdecAsContext.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecAsContext--aborted">aborted</link>&quot;                  <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="SwfdecAsContext--debugger">debugger</link>&quot;                 <link linkend="SwfdecAsDebugger">SwfdecAsDebugger</link>*     : Read / Write / Construct Only
+  &quot;<link linkend="SwfdecAsContext--memory-until-gc">memory-until-gc</link>&quot;          <link linkend="gulong">gulong</link>                : Read / Write / Construct
+  &quot;<link linkend="SwfdecAsContext--random-seed">random-seed</link>&quot;              <link linkend="guint">guint</link>                 : Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="SwfdecAsContext.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="SwfdecAsContext-trace">trace</link>&quot;                                          : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="SwfdecAsContext.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link> provides the main execution environment for Actionscript
+execution. It provides the objects typically available in ECMAScript and
+manages script execution, garbage collection etc. <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> is a
+subclass of the context that implements Flash specific objects on top of it.
+However, it is possible to use the context for completely different functions
+where a sandboxed scripting environment is needed. An example is the Swfdec 
+debugger.
+<note>The Actionscript engine is similar, but not equal to Javascript. It
+is not very different, but it is different.</note></para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecAsContext.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecAsContext-struct" role="struct">
+<title>SwfdecAsContext</title>
+<indexterm zone="SwfdecAsContext-struct"><primary>SwfdecAsContext</primary></indexterm><programlisting>typedef struct _SwfdecAsContext SwfdecAsContext;</programlisting>
+<para>
+This is the main object ued to hold the state of a script engine. All members 
+are private and should not be accessed.
+</para>
+<para>
+Subclassing this structure to get scripting support in your own appliation is
+encouraged.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-as-context-startup" role="function">
+<title>swfdec_as_context_startup ()</title>
+<indexterm zone="swfdec-as-context-startup"><primary>swfdec_as_context_startup</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_startup           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Starts up the context. This function must be called before any Actionscript
+is called on <parameter>context</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-abort" role="function">
+<title>swfdec_as_context_abort ()</title>
+<indexterm zone="swfdec-as-context-abort"><primary>swfdec_as_context_abort</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_abort             (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="char">char</link> *reason);</programlisting>
+<para>
+Aborts script execution in <parameter>context</parameter>. Call this functon if the script engine 
+encountered a fatal error and cannot continue. A possible reason for this is
+an out-of-memory condition.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>reason</parameter>&nbsp;:</term>
+<listitem><simpara> a string describing why execution was aborted
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-is-aborted" role="function">
+<title>swfdec_as_context_is_aborted ()</title>
+<indexterm zone="swfdec-as-context-is-aborted"><primary>swfdec_as_context_is_aborted</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_context_is_aborted        (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Determines if the given context is aborted. An aborted context is not able
+to execute any scripts. Aborting can happen if the script engine detects bad 
+scripts that cause excessive memory usage, infinite loops or other problems.
+In that case the script engine aborts for safety reasons.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the player is aborted, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if it runs normally.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-get-string" role="function">
+<title>swfdec_as_context_get_string ()</title>
+<indexterm zone="swfdec-as-context-get-string"><primary>swfdec_as_context_get_string</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_as_context_get_string        (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="char">char</link> *string);</programlisting>
+<para>
+Gets the garbage-collected version of <parameter>string</parameter>. You need to call this function
+for every not garbage-collected string that you want to use in Swfdecs script
+interpreter.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>string</parameter>&nbsp;:</term>
+<listitem><simpara> a sting that is not garbage-collected
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the garbage-collected version of <parameter>string</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-give-string" role="function">
+<title>swfdec_as_context_give_string ()</title>
+<indexterm zone="swfdec-as-context-give-string"><primary>swfdec_as_context_give_string</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_as_context_give_string       (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="char">char</link> *string);</programlisting>
+<para>
+Takes ownership of <parameter>string</parameter> and returns a refcounted version of the same 
+string. This function is the same as <link linkend="swfdec-as-context-get-string"><function>swfdec_as_context_get_string()</function></link>, but 
+takes ownership of <parameter>string</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>string</parameter>&nbsp;:</term>
+<listitem><simpara> string to make refcounted
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A refcounted string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-use-mem" role="function">
+<title>swfdec_as_context_use_mem ()</title>
+<indexterm zone="swfdec-as-context-use-mem"><primary>swfdec_as_context_use_mem</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_use_mem           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="gsize">gsize</link> bytes);</programlisting>
+<para>
+Registers <parameter>bytes</parameter> additional bytes as in use by the <parameter>context</parameter>. This function
+keeps track of the memory that script code consumes. If too much memory is
+in use, this function may decide to stop the script engine with an out of
+memory error.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bytes</parameter>&nbsp;:</term>
+<listitem><simpara> number of bytes to use
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-try-use-mem" role="function">
+<title>swfdec_as_context_try_use_mem ()</title>
+<indexterm zone="swfdec-as-context-try-use-mem"><primary>swfdec_as_context_try_use_mem</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_context_try_use_mem       (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="gsize">gsize</link> bytes);</programlisting>
+<para>
+Tries to register <parameter>bytes</parameter> additional bytes as in use by the <parameter>context</parameter>. This
+function keeps track of the memory that script code consumes. The scripting
+engine won't be stopped, even if there wasn't enough memory left.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bytes</parameter>&nbsp;:</term>
+<listitem><simpara> number of bytes to use
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the memory could be allocated. <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> on OOM.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-unuse-mem" role="function">
+<title>swfdec_as_context_unuse_mem ()</title>
+<indexterm zone="swfdec-as-context-unuse-mem"><primary>swfdec_as_context_unuse_mem</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_unuse_mem         (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="gsize">gsize</link> bytes);</programlisting>
+<para>
+Releases a number of bytes previously allocated using 
+<link linkend="swfdec-as-context-use-mem"><function>swfdec_as_context_use_mem()</function></link>. See that function for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bytes</parameter>&nbsp;:</term>
+<listitem><simpara> number of bytes to release
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-gc" role="function">
+<title>swfdec_as_context_gc ()</title>
+<indexterm zone="swfdec-as-context-gc"><primary>swfdec_as_context_gc</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_gc                (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Calls the Swfdec Gargbage collector and reclaims any unused memory. You 
+should call this function or <link linkend="swfdec-as-context-maybe-gc"><function>swfdec_as_context_maybe_gc()</function></link> regularly.
+<warning>Calling the GC during execution of code or initialization is not
+         allowed.</warning></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-maybe-gc" role="function">
+<title>swfdec_as_context_maybe_gc ()</title>
+<indexterm zone="swfdec-as-context-maybe-gc"><primary>swfdec_as_context_maybe_gc</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_maybe_gc          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Calls the garbage collector if necessary. It's a good idea to call this
+function regularly instead of <link linkend="swfdec-as-context-gc"><function>swfdec_as_context_gc()</function></link> as it only does collect
+garage as needed. For example, <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> calls this function after every
+frame advancement.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-throw" role="function">
+<title>swfdec_as_context_throw ()</title>
+<indexterm zone="swfdec-as-context-throw"><primary>swfdec_as_context_throw</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_throw             (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Throws a new exception in the <parameter>context</parameter> using the given <parameter>value</parameter>. This function
+can only be called if the <parameter>context</parameter> is not already throwing an exception.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> to be thrown
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-catch" role="function">
+<title>swfdec_as_context_catch ()</title>
+<indexterm zone="swfdec-as-context-catch"><primary>swfdec_as_context_catch</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_context_catch             (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Removes the currently thrown exception from <parameter>context</parameter> and sets <parameter>value</parameter> to the
+thrown value</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> to be thrown
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if an exception was catched, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-get-time" role="function">
+<title>swfdec_as_context_get_time ()</title>
+<indexterm zone="swfdec-as-context-get-time"><primary>swfdec_as_context_get_time</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_context_get_time          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="GTimeVal">GTimeVal</link> *tv);</programlisting>
+<para>
+This function queries the time to be used inside this context. By default,
+this is the same as <link linkend="g-get-current-time"><function>g_get_current_time()</function></link>, but it may be overwriten to allow
+things such as slower or faster playback.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tv</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GTimeVal"><type>GTimeVal</type></link> to be set to the context's time
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-get-frame" role="function">
+<title>swfdec_as_context_get_frame ()</title>
+<indexterm zone="swfdec-as-context-get-frame"><primary>swfdec_as_context_get_frame</primary></indexterm><programlisting><link linkend="SwfdecAsFrame">SwfdecAsFrame</link>*      swfdec_as_context_get_frame         (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+This is a debugging function. It gets the topmost stack frame that is 
+currently executing. If no function is executing, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned. You can
+easily get a backtrace with code like this:
+<informalexample><programlisting>for (frame = swfdec_as_context_get_frame (context); frame != NULL; 
+    frame = swfdec_as_frame_get_next (frame)) {
+  char *s = swfdec_as_object_get_debug (SWFDEC_AS_OBJECT (frame));
+  g_print ("%s\n", s);
+  g_free (s);
+}</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the currently executing frame or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if none
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-context-is-constructing" role="function">
+<title>swfdec_as_context_is_constructing ()</title>
+<indexterm zone="swfdec-as-context-is-constructing"><primary>swfdec_as_context_is_constructing</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_context_is_constructing   (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Determines if the contexxt is currently constructing. This information is
+used by various constructors to do different things when they are 
+constructing and when they are not. The Boolean, Number and String functions
+for example setup the newly constructed objects when constructing but only
+cast the provided argument when being called.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsConstruct"><type>SwfdecAsConstruct</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the currently executing frame is a constructor
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecAsContext.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecAsContext--aborted"><title>The <literal>&quot;aborted&quot;</literal> property</title>
+<indexterm zone="SwfdecAsContext--aborted"><primary>SwfdecAsContext:aborted</primary></indexterm><programlisting>  &quot;aborted&quot;                  <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>set when the script engine aborts due to an error.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="SwfdecAsContext--debugger"><title>The <literal>&quot;debugger&quot;</literal> property</title>
+<indexterm zone="SwfdecAsContext--debugger"><primary>SwfdecAsContext:debugger</primary></indexterm><programlisting>  &quot;debugger&quot;                 <link linkend="SwfdecAsDebugger">SwfdecAsDebugger</link>*     : Read / Write / Construct Only</programlisting>
+<para>debugger used in this player.</para></refsect2>
+<refsect2 id="SwfdecAsContext--memory-until-gc"><title>The <literal>&quot;memory-until-gc&quot;</literal> property</title>
+<indexterm zone="SwfdecAsContext--memory-until-gc"><primary>SwfdecAsContext:memory-until-gc</primary></indexterm><programlisting>  &quot;memory-until-gc&quot;          <link linkend="gulong">gulong</link>                : Read / Write / Construct</programlisting>
+<para>amount of bytes that need to be allocated before garbage collection triggers.</para></refsect2>
+<refsect2 id="SwfdecAsContext--random-seed"><title>The <literal>&quot;random-seed&quot;</literal> property</title>
+<indexterm zone="SwfdecAsContext--random-seed"><primary>SwfdecAsContext:random-seed</primary></indexterm><programlisting>  &quot;random-seed&quot;              <link linkend="guint">guint</link>                 : Write</programlisting>
+<para>seed used for calculating random numbers.</para><para>Default value: 0</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="SwfdecAsContext.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="SwfdecAsContext-trace"><title>The <literal>&quot;trace&quot;</literal> signal</title>
+<indexterm zone="SwfdecAsContext-trace"><primary>SwfdecAsContext::trace</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                        <link linkend="gchar">gchar</link>           *text,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+Emits a debugging string while running. The effect of calling any swfdec 
+functions on the emitting <parameter>context</parameter> is undefined.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the debugging string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+<refsect1 id="SwfdecAsContext.see-also">
+<title>See Also</title>
+SwfdecPlayer
+</refsect1>
+
+</refentry>

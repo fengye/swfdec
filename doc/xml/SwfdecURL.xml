@@ -1,0 +1,456 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-SwfdecURL">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-SwfdecURL.top_of_page">SwfdecURL</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecURL</refname>
+<refpurpose>URL handling in Swfdec</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-SwfdecURL.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecURL">SwfdecURL</link>;
+<link linkend="SwfdecURL">SwfdecURL</link>*          <link linkend="swfdec-url-new">swfdec_url_new</link>                      (const <link linkend="char">char</link> *string);
+<link linkend="SwfdecURL">SwfdecURL</link>*          <link linkend="swfdec-url-new-from-input">swfdec_url_new_from_input</link>           (const <link linkend="char">char</link> *input);
+<link linkend="SwfdecURL">SwfdecURL</link>*          <link linkend="swfdec-url-new-components">swfdec_url_new_components</link>           (const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *hostname,
+                                                         <link linkend="guint">guint</link> port,
+                                                         const <link linkend="char">char</link> *path,
+                                                         const <link linkend="char">char</link> *query);
+<link linkend="SwfdecURL">SwfdecURL</link>*          <link linkend="swfdec-url-new-relative">swfdec_url_new_relative</link>             (const <link linkend="SwfdecURL">SwfdecURL</link> *url,
+                                                         const <link linkend="char">char</link> *string);
+<link linkend="SwfdecURL">SwfdecURL</link>*          <link linkend="swfdec-url-new-parent">swfdec_url_new_parent</link>               (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+<link linkend="SwfdecURL">SwfdecURL</link>*          <link linkend="swfdec-url-copy">swfdec_url_copy</link>                     (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+<link linkend="void">void</link>                <link linkend="swfdec-url-free">swfdec_url_free</link>                     (<link linkend="SwfdecURL">SwfdecURL</link> *url);
+const <link linkend="char">char</link>*         <link linkend="swfdec-url-get-protocol">swfdec_url_get_protocol</link>             (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-url-has-protocol">swfdec_url_has_protocol</link>             (const <link linkend="SwfdecURL">SwfdecURL</link> *url,
+                                                         const <link linkend="char">char</link> *protocol);
+const <link linkend="char">char</link>*         <link linkend="swfdec-url-get-host">swfdec_url_get_host</link>                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+<link linkend="guint">guint</link>               <link linkend="swfdec-url-get-port">swfdec_url_get_port</link>                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+const <link linkend="char">char</link>*         <link linkend="swfdec-url-get-path">swfdec_url_get_path</link>                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+const <link linkend="char">char</link>*         <link linkend="swfdec-url-get-query">swfdec_url_get_query</link>                (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+const <link linkend="char">char</link>*         <link linkend="swfdec-url-get-url">swfdec_url_get_url</link>                  (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-url-is-local">swfdec_url_is_local</link>                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-url-is-parent">swfdec_url_is_parent</link>                (const <link linkend="SwfdecURL">SwfdecURL</link> *parent,
+                                                         const <link linkend="SwfdecURL">SwfdecURL</link> *child);
+<link linkend="char">char</link>*               <link linkend="swfdec-url-format-for-display">swfdec_url_format_for_display</link>       (const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+<link linkend="guint">guint</link>               <link linkend="swfdec-url-hash">swfdec_url_hash</link>                     (<link linkend="gconstpointer">gconstpointer</link> url);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-url-equal">swfdec_url_equal</link>                    (<link linkend="gconstpointer">gconstpointer</link> a,
+                                                         <link linkend="gconstpointer">gconstpointer</link> b);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-url-host-equal">swfdec_url_host_equal</link>               (<link linkend="gconstpointer">gconstpointer</link> a,
+                                                         <link linkend="gconstpointer">gconstpointer</link> b);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-url-path-is-relative">swfdec_url_path_is_relative</link>         (const <link linkend="char">char</link> *path);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-SwfdecURL.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+SwfdecURL is Swfdec's way of handling URLs. You probably don't need to mess 
+with this type unless you want to write a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>. In that case you 
+will want to use <link linkend="swfdec-loader-get-url"><function>swfdec_loader_get_url()</function></link> to get its url and then use the 
+functions in this section to access it.
+</para>
+<para>
+Note that URLs inside Swfdec mirror the behavior of Flash and will therefore
+not miror standards behavior, but the behavior of Flash.
+</para>
+<para>
+<parameter>see_also</parameter>: <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link></para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-SwfdecURL.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecURL" role="struct">
+<title>SwfdecURL</title>
+<indexterm zone="SwfdecURL"><primary>SwfdecURL</primary></indexterm><programlisting>typedef struct _SwfdecURL SwfdecURL;</programlisting>
+<para>
+this is the structure used for URLs. It is a boxed type to glib's type system
+and it is not reference counted. It is also a static struct in that it cannot
+be modified after creation.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-url-new" role="function">
+<title>swfdec_url_new ()</title>
+<indexterm zone="swfdec-url-new"><primary>swfdec_url_new</primary></indexterm><programlisting><link linkend="SwfdecURL">SwfdecURL</link>*          swfdec_url_new                      (const <link linkend="char">char</link> *string);</programlisting>
+<para>
+Parses the given string into a URL for use in swfdec.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>string</parameter>&nbsp;:</term>
+<listitem><simpara> a valid utf-8 string possibly containing an URL
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecURL"><type>SwfdecURL</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if the URL was invalid
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-new-from-input" role="function">
+<title>swfdec_url_new_from_input ()</title>
+<indexterm zone="swfdec-url-new-from-input"><primary>swfdec_url_new_from_input</primary></indexterm><programlisting><link linkend="SwfdecURL">SwfdecURL</link>*          swfdec_url_new_from_input           (const <link linkend="char">char</link> *input);</programlisting>
+<para>
+Tries to guess the right URL from the given <parameter>input</parameter>. This function is meant 
+as a utility function helping to convert user input (like command line 
+arguments) to a URL without requiring the full URL.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> the input povided
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new url best matching the given <parameter>input</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-new-components" role="function">
+<title>swfdec_url_new_components ()</title>
+<indexterm zone="swfdec-url-new-components"><primary>swfdec_url_new_components</primary></indexterm><programlisting><link linkend="SwfdecURL">SwfdecURL</link>*          swfdec_url_new_components           (const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *hostname,
+                                                         <link linkend="guint">guint</link> port,
+                                                         const <link linkend="char">char</link> *path,
+                                                         const <link linkend="char">char</link> *query);</programlisting>
+<para>
+Creates a new URL from the given components.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>protocol</parameter>&nbsp;:</term>
+<listitem><simpara> protocol to use
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>hostname</parameter>&nbsp;:</term>
+<listitem><simpara> hostname or IP address or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&nbsp;:</term>
+<listitem><simpara> port number or 0. Must be 0 if no hostname is given
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> a path or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>query</parameter>&nbsp;:</term>
+<listitem><simpara> the query string or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new url pointing to the url from the given components
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-new-relative" role="function">
+<title>swfdec_url_new_relative ()</title>
+<indexterm zone="swfdec-url-new-relative"><primary>swfdec_url_new_relative</primary></indexterm><programlisting><link linkend="SwfdecURL">SwfdecURL</link>*          swfdec_url_new_relative             (const <link linkend="SwfdecURL">SwfdecURL</link> *url,
+                                                         const <link linkend="char">char</link> *string);</programlisting>
+<para>
+Parses <parameter>string</parameter> into a new URL. If the given <parameter>string</parameter> is a relative URL, it 
+uses <parameter>url</parameter> to resolve it to an absolute url; <parameter>url</parameter> must already contain a
+directory path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>string</parameter>&nbsp;:</term>
+<listitem><simpara> a relative or absolute URL path
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecURL"><type>SwfdecURL</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if an error was detected.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-new-parent" role="function">
+<title>swfdec_url_new_parent ()</title>
+<indexterm zone="swfdec-url-new-parent"><primary>swfdec_url_new_parent</primary></indexterm><programlisting><link linkend="SwfdecURL">SwfdecURL</link>*          swfdec_url_new_parent               (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Creates a new url that is the parent of <parameter>url</parameter>. If the given <parameter>url</parameter> has no 
+parent, a copy of itself is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new url pointing to the parent of <parameter>url</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> on failure.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-copy" role="function">
+<title>swfdec_url_copy ()</title>
+<indexterm zone="swfdec-url-copy"><primary>swfdec_url_copy</primary></indexterm><programlisting><link linkend="SwfdecURL">SwfdecURL</link>*          swfdec_url_copy                     (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+copies the given url.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-free" role="function">
+<title>swfdec_url_free ()</title>
+<indexterm zone="swfdec-url-free"><primary>swfdec_url_free</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_url_free                     (<link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Frees the URL and its associated ressources.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-get-protocol" role="function">
+<title>swfdec_url_get_protocol ()</title>
+<indexterm zone="swfdec-url-get-protocol"><primary>swfdec_url_get_protocol</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_url_get_protocol             (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Gets the protocol used by this URL, such as "http" or "file".</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the protocol used or "error" if the URL is broken
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-has-protocol" role="function">
+<title>swfdec_url_has_protocol ()</title>
+<indexterm zone="swfdec-url-has-protocol"><primary>swfdec_url_has_protocol</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_url_has_protocol             (const <link linkend="SwfdecURL">SwfdecURL</link> *url,
+                                                         const <link linkend="char">char</link> *protocol);</programlisting>
+<para>
+Checks if the given <parameter>url</parameter> references the given <parameter>protocol</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a url
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&nbsp;:</term>
+<listitem><simpara> protocol name to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if both protocols match, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-get-host" role="function">
+<title>swfdec_url_get_host ()</title>
+<indexterm zone="swfdec-url-get-host"><primary>swfdec_url_get_host</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_url_get_host                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Gets the host for <parameter>url</parameter> as a lower case string.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the host or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if none (typically for file URLs).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-get-port" role="function">
+<title>swfdec_url_get_port ()</title>
+<indexterm zone="swfdec-url-get-port"><primary>swfdec_url_get_port</primary></indexterm><programlisting><link linkend="guint">guint</link>               swfdec_url_get_port                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Gets the port number specified by the given <parameter>url</parameter>. If the <parameter>url</parameter> does not 
+specify a port number, 0 will be returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the specified port or 0 if none was given.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-get-path" role="function">
+<title>swfdec_url_get_path ()</title>
+<indexterm zone="swfdec-url-get-path"><primary>swfdec_url_get_path</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_url_get_path                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Gets the path associated with <parameter>url</parameter>. If it contains no path, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is 
+returned.
+<note>The returned path does not start with a slash. So in particular for 
+files, you want to prepend the slash yourself.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the path or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if none
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-get-query" role="function">
+<title>swfdec_url_get_query ()</title>
+<indexterm zone="swfdec-url-get-query"><primary>swfdec_url_get_query</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_url_get_query                (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Gets the query string associated with <parameter>url</parameter>. If the URL does not have a query
+string, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Query string or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-get-url" role="function">
+<title>swfdec_url_get_url ()</title>
+<indexterm zone="swfdec-url-get-url"><primary>swfdec_url_get_url</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_url_get_url                  (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Gets the whole URL.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the complete URL as string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-is-local" role="function">
+<title>swfdec_url_is_local ()</title>
+<indexterm zone="swfdec-url-is-local"><primary>swfdec_url_is_local</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_url_is_local                 (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Checks if the given <parameter>url</parameter> references a local resource. Local resources are
+treated differently by Flash, since they get a higher degree of trust.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> the url to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the given url is local.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-is-parent" role="function">
+<title>swfdec_url_is_parent ()</title>
+<indexterm zone="swfdec-url-is-parent"><primary>swfdec_url_is_parent</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_url_is_parent                (const <link linkend="SwfdecURL">SwfdecURL</link> *parent,
+                                                         const <link linkend="SwfdecURL">SwfdecURL</link> *child);</programlisting>
+<para>
+Checks if the given <parameter>parent</parameter> url is a parent url of the given <parameter>child</parameter> url. The
+algorithm used is the same as checking policy files if hey apply. If <parameter>parent</parameter>
+equals <parameter>child</parameter>, <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> is returned. This function does not compare query 
+strings.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara> the supposed parent url
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&nbsp;:</term>
+<listitem><simpara> the supposed child url
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>parent</parameter> is a parent of <parameter>child</parameter>, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-format-for-display" role="function">
+<title>swfdec_url_format_for_display ()</title>
+<indexterm zone="swfdec-url-format-for-display"><primary>swfdec_url_format_for_display</primary></indexterm><programlisting><link linkend="char">char</link>*               swfdec_url_format_for_display       (const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Creates a string suitable to display the given <parameter>url</parameter>. An example for using
+this function is to identify a currently playing Flash URL. Use 
+<link linkend="swfdec-player-get-url"><function>swfdec_player_get_url()</function></link> to query the player's URL and then use this function
+to get a displayable string.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> the url to display
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new string containig a short description for this URL. <link linkend="g-free"><function>g_free()</function></link>
+         after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-hash" role="function">
+<title>swfdec_url_hash ()</title>
+<indexterm zone="swfdec-url-hash"><primary>swfdec_url_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               swfdec_url_hash                     (<link linkend="gconstpointer">gconstpointer</link> url);</programlisting>
+<para>
+Creates a hash value for the given <parameter>url</parameter>. This function is intended to be 
+used together with <link linkend="swfdec-url-equal"><function>swfdec_url_equal()</function></link> in a <link linkend="GHashtable"><type>GHashtable</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a hash value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-equal" role="function">
+<title>swfdec_url_equal ()</title>
+<indexterm zone="swfdec-url-equal"><primary>swfdec_url_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_url_equal                    (<link linkend="gconstpointer">gconstpointer</link> a,
+                                                         <link linkend="gconstpointer">gconstpointer</link> b);</programlisting>
+<para>
+Compares the 2 given URLs for equality. 2 URLs are considered equal, when
+they point to the same resource. This function is intended to be
+used together with <link linkend="swfdec-url-hash"><function>swfdec_url_hash()</function></link> in a <link linkend="GHashtable"><type>GHashtable</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the 2 given urls point to the same resource, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>
+         otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-host-equal" role="function">
+<title>swfdec_url_host_equal ()</title>
+<indexterm zone="swfdec-url-host-equal"><primary>swfdec_url_host_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_url_host_equal               (<link linkend="gconstpointer">gconstpointer</link> a,
+                                                         <link linkend="gconstpointer">gconstpointer</link> b);</programlisting>
+<para>
+Compares the 2 given URLs for equality, ignoring path. 2 URLs are
+considered to have equal hosts when they have the same protocol,
+host, and port.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the 2 given urls point to the same host, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>
+         otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-url-path-is-relative" role="function">
+<title>swfdec_url_path_is_relative ()</title>
+<indexterm zone="swfdec-url-path-is-relative"><primary>swfdec_url_path_is_relative</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_url_path_is_relative         (const <link linkend="char">char</link> *path);</programlisting>
+<para>
+Checks if the given URL is relative or absolute.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> a string used to specify a url
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the path is a relative path, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if it is absolute
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

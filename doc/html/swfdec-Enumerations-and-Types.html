@@ -1,0 +1,1054 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Enumerations</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch02.html" title="Swfdec library">
+<link rel="prev" href="ch02.html" title="Swfdec library">
+<link rel="next" href="swfdec-SwfdecRectangle.html" title="SwfdecRectangle">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch02.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="swfdec-SwfdecRectangle.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-Enumerations-and-Types.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-Enumerations-and-Types.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-Enumerations-and-Types"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-Enumerations-and-Types.top_of_page"></a>Enumerations</span></h2>
+<p>Enumerations — enumerations used in Swfdec</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-Enumerations-and-Types.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+#define             <a class="link" href="swfdec-Enumerations-and-Types.html#SWFDEC-TYPE-TIME-VAL:CAPS" title="SWFDEC_TYPE_TIME_VAL">SWFDEC_TYPE_TIME_VAL</a>
+enum                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAsContextState" title="enum SwfdecAsContextState">SwfdecAsContextState</a>;
+enum                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAsDeleteReturn" title="enum SwfdecAsDeleteReturn">SwfdecAsDeleteReturn</a>;
+enum                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType">SwfdecLoaderDataType</a>;
+const char*         <a class="link" href="swfdec-Enumerations-and-Types.html#swfdec-loader-data-type-get-extension" title="swfdec_loader_data_type_get_extension ()">swfdec_loader_data_type_get_extension</a>
+                                                        (<a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType">SwfdecLoaderDataType</a> type);
+enum                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment">SwfdecAlignment</a>;
+enum                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecKey" title="enum SwfdecKey">SwfdecKey</a>;
+enum                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecMouseCursor" title="enum SwfdecMouseCursor">SwfdecMouseCursor</a>;
+enum                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode">SwfdecScaleMode</a>;
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Enumerations-and-Types.description"></a><h2>Description</h2>
+<p>
+This file lists all of the enumerations used in various parts of Swfdec.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Enumerations-and-Types.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-TYPE-TIME-VAL:CAPS"></a><h3>SWFDEC_TYPE_TIME_VAL</h3>
+<pre class="programlisting">#define SWFDEC_TYPE_TIME_VAL swfdec_time_val_get_type()
+</pre>
+<p>
+This type wraps a <em class="parameter"><code>GTimeVal</code></em> object as a boxed type and makes it available 
+for use in object properties.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsContextState"></a><h3>enum SwfdecAsContextState</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_AS_CONTEXT_NEW,
+  SWFDEC_AS_CONTEXT_RUNNING,
+  SWFDEC_AS_CONTEXT_INTERRUPTED,
+  SWFDEC_AS_CONTEXT_ABORTED
+} SwfdecAsContextState;
+</pre>
+<p>
+The state of the context describes what operations are possible on the context.
+It will be in the state <em class="parameter"><code>SWFDEC_AS_CONTEXT_STATE_RUNNING</code></em> almost all the time. If
+it is in the state <em class="parameter"><code>SWFDEC_AS_CONTEXT_STATE_ABORTED</code></em>, it will not work anymore and
+every operation on it will instantly fail.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-AS-CONTEXT-NEW:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_CONTEXT_NEW</code></span></p></td>
+<td> the context is not yet initialized, 
+                        <a class="link" href="SwfdecAsContext.html#swfdec-as-context-startup" title="swfdec_as_context_startup ()"><code class="function">swfdec_as_context_startup()</code></a> needs to be called.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-CONTEXT-RUNNING:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_CONTEXT_RUNNING</code></span></p></td>
+<td> the context is running normally
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-CONTEXT-INTERRUPTED:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_CONTEXT_INTERRUPTED</code></span></p></td>
+<td> the context has been interrupted by a 
+                            debugger
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-CONTEXT-ABORTED:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_CONTEXT_ABORTED</code></span></p></td>
+<td> the context has aborted execution due to a 
+                        fatal error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsDeleteReturn"></a><h3>enum SwfdecAsDeleteReturn</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_AS_DELETE_NOT_FOUND = 0,
+  SWFDEC_AS_DELETE_DELETED,
+  SWFDEC_AS_DELETE_NOT_DELETED
+} SwfdecAsDeleteReturn;
+</pre>
+<p>
+This is the return value used by <a class="link" href="SwfdecAsObject.html#swfdec-as-object-delete-variable" title="swfdec_as_object_delete_variable ()"><code class="function">swfdec_as_object_delete_variable()</code></a>. It 
+describes the various outcomes of trying to delete a variable.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-AS-DELETE-NOT-FOUND:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_DELETE_NOT_FOUND</code></span></p></td>
+<td> The variable was not found and therefore 
+                             couldn't be deleted.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-DELETE-DELETED:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_DELETE_DELETED</code></span></p></td>
+<td> The variable was deleted.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-DELETE-NOT-DELETED:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_DELETE_NOT_DELETED</code></span></p></td>
+<td> The variable was found but could not be 
+                               deleted.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecLoaderDataType"></a><h3>enum SwfdecLoaderDataType</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_LOADER_DATA_UNKNOWN,
+  SWFDEC_LOADER_DATA_SWF,
+  SWFDEC_LOADER_DATA_FLV,
+  SWFDEC_LOADER_DATA_XML,
+  SWFDEC_LOADER_DATA_TEXT,
+  SWFDEC_LOADER_DATA_JPEG,
+  SWFDEC_LOADER_DATA_PNG
+} SwfdecLoaderDataType;
+</pre>
+<p>
+This type describes the different types of data that can be loaded inside 
+Swfdec. Swfdec identifies its data streams and you can use the 
+<a class="link" href="SwfdecLoader.html#swfdec-loader-get-data-type" title="swfdec_loader_get_data_type ()"><code class="function">swfdec_loader_get_data_type()</code></a> to acquire more information about the data
+inside a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-LOADER-DATA-UNKNOWN:CAPS"></a><span class="term"><code class="literal">SWFDEC_LOADER_DATA_UNKNOWN</code></span></p></td>
+<td> Unidentified data or data that cannot be 
+                             identified.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-LOADER-DATA-SWF:CAPS"></a><span class="term"><code class="literal">SWFDEC_LOADER_DATA_SWF</code></span></p></td>
+<td> Data describing a normal Flash file.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-LOADER-DATA-FLV:CAPS"></a><span class="term"><code class="literal">SWFDEC_LOADER_DATA_FLV</code></span></p></td>
+<td> Data describing a Flash video stream.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-LOADER-DATA-XML:CAPS"></a><span class="term"><code class="literal">SWFDEC_LOADER_DATA_XML</code></span></p></td>
+<td> Data in XML format.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-LOADER-DATA-TEXT:CAPS"></a><span class="term"><code class="literal">SWFDEC_LOADER_DATA_TEXT</code></span></p></td>
+<td> Textual data.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-LOADER-DATA-JPEG:CAPS"></a><span class="term"><code class="literal">SWFDEC_LOADER_DATA_JPEG</code></span></p></td>
+<td> a JPEG image
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-LOADER-DATA-PNG:CAPS"></a><span class="term"><code class="literal">SWFDEC_LOADER_DATA_PNG</code></span></p></td>
+<td> a PNG image
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-loader-data-type-get-extension"></a><h3>swfdec_loader_data_type_get_extension ()</h3>
+<pre class="programlisting">const char*         swfdec_loader_data_type_get_extension
+                                                        (<a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType">SwfdecLoaderDataType</a> type);</pre>
+<p>
+Queries the extension to be used for data of the given <em class="parameter"><code>type</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType"><span class="type">SwfdecLoaderDataType</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the typical extension for this data type or the empty string
+         if the type has no extension
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAlignment"></a><h3>enum SwfdecAlignment</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_ALIGNMENT_TOP_LEFT,
+  SWFDEC_ALIGNMENT_TOP,
+  SWFDEC_ALIGNMENT_TOP_RIGHT,
+  SWFDEC_ALIGNMENT_LEFT,
+  SWFDEC_ALIGNMENT_CENTER,
+  SWFDEC_ALIGNMENT_RIGHT,
+  SWFDEC_ALIGNMENT_BOTTOM_LEFT,
+  SWFDEC_ALIGNMENT_BOTTOM,
+  SWFDEC_ALIGNMENT_BOTTOM_RIGHT
+} SwfdecAlignment;
+</pre>
+<p>
+These are the possible values for the alignment of an unscaled movie.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-TOP-LEFT:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_TOP_LEFT</code></span></p></td>
+<td> top left
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-TOP:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_TOP</code></span></p></td>
+<td> top
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-TOP-RIGHT:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_TOP_RIGHT</code></span></p></td>
+<td> top right
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-LEFT:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_LEFT</code></span></p></td>
+<td> left
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-CENTER:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_CENTER</code></span></p></td>
+<td> center
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-RIGHT:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_RIGHT</code></span></p></td>
+<td> right
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-BOTTOM-LEFT:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_BOTTOM_LEFT</code></span></p></td>
+<td> left
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-BOTTOM:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_BOTTOM</code></span></p></td>
+<td> bottom
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-ALIGNMENT-BOTTOM-RIGHT:CAPS"></a><span class="term"><code class="literal">SWFDEC_ALIGNMENT_BOTTOM_RIGHT</code></span></p></td>
+<td> bottom right
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecKey"></a><h3>enum SwfdecKey</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_KEY_LEFT_MOUSE = 1,
+  SWFDEC_KEY_RIGHT_MOUSE = 2,
+  SWFDEC_KEY_MIDDLE_MOUSE = 4,
+  SWFDEC_KEY_BACKSPACE = 8,
+  SWFDEC_KEY_TAB = 9,
+  SWFDEC_KEY_CLEAR = 12,
+  SWFDEC_KEY_ENTER = 13,
+  SWFDEC_KEY_SHIFT = 16,
+  SWFDEC_KEY_CONTROL = 17,
+  SWFDEC_KEY_ALT = 18,
+  SWFDEC_KEY_CAPS_LOCK = 20,
+  SWFDEC_KEY_ESCAPE = 27,
+  SWFDEC_KEY_SPACE = 32,
+  SWFDEC_KEY_PAGE_UP = 33,
+  SWFDEC_KEY_PAGE_DOWN = 34,
+  SWFDEC_KEY_END = 35,
+  SWFDEC_KEY_HOME = 36,
+  SWFDEC_KEY_LEFT = 37,
+  SWFDEC_KEY_UP = 38,
+  SWFDEC_KEY_RIGHT = 39,
+  SWFDEC_KEY_DOWN = 40,
+  SWFDEC_KEY_INSERT = 45,
+  SWFDEC_KEY_DELETE = 46,
+  SWFDEC_KEY_HELP = 47,
+  SWFDEC_KEY_0 = 48,
+  SWFDEC_KEY_1 = 49,
+  SWFDEC_KEY_2 = 50,
+  SWFDEC_KEY_3 = 51,
+  SWFDEC_KEY_4 = 52,
+  SWFDEC_KEY_5 = 53,
+  SWFDEC_KEY_6 = 54,
+  SWFDEC_KEY_7 = 55,
+  SWFDEC_KEY_8 = 56,
+  SWFDEC_KEY_9 = 57,
+  SWFDEC_KEY_A = 65,
+  SWFDEC_KEY_B = 66,
+  SWFDEC_KEY_C = 67,
+  SWFDEC_KEY_D = 68,
+  SWFDEC_KEY_E = 69,
+  SWFDEC_KEY_F = 70,
+  SWFDEC_KEY_G = 71,
+  SWFDEC_KEY_H = 72,
+  SWFDEC_KEY_I = 73,
+  SWFDEC_KEY_J = 74,
+  SWFDEC_KEY_K = 75,
+  SWFDEC_KEY_L = 76,
+  SWFDEC_KEY_M = 77,
+  SWFDEC_KEY_N = 78,
+  SWFDEC_KEY_O = 79,
+  SWFDEC_KEY_P = 80,
+  SWFDEC_KEY_Q = 81,
+  SWFDEC_KEY_R = 82,
+  SWFDEC_KEY_S = 83,
+  SWFDEC_KEY_T = 84,
+  SWFDEC_KEY_U = 85,
+  SWFDEC_KEY_V = 86,
+  SWFDEC_KEY_W = 87,
+  SWFDEC_KEY_X = 88,
+  SWFDEC_KEY_Y = 89,
+  SWFDEC_KEY_Z = 90,
+  SWFDEC_KEY_NUMPAD_0 = 96,
+  SWFDEC_KEY_NUMPAD_1 = 97,
+  SWFDEC_KEY_NUMPAD_2 = 98,
+  SWFDEC_KEY_NUMPAD_3 = 99,
+  SWFDEC_KEY_NUMPAD_4 = 100,
+  SWFDEC_KEY_NUMPAD_5 = 101,
+  SWFDEC_KEY_NUMPAD_6 = 102,
+  SWFDEC_KEY_NUMPAD_7 = 103,
+  SWFDEC_KEY_NUMPAD_8 = 104,
+  SWFDEC_KEY_NUMPAD_9 = 105,
+  SWFDEC_KEY_NUMPAD_MULTIPLY = 106,
+  SWFDEC_KEY_NUMPAD_ADD = 107,
+  SWFDEC_KEY_NUMPAD_SUBTRACT = 109,
+  SWFDEC_KEY_NUMPAD_DECIMAL = 110,
+  SWFDEC_KEY_NUMPAD_DIVIDE = 111,
+  SWFDEC_KEY_F1 = 112,
+  SWFDEC_KEY_F2 = 113,
+  SWFDEC_KEY_F3 = 114,
+  SWFDEC_KEY_F4 = 115,
+  SWFDEC_KEY_F5 = 116,
+  SWFDEC_KEY_F6 = 117,
+  SWFDEC_KEY_F7 = 118,
+  SWFDEC_KEY_F8 = 119,
+  SWFDEC_KEY_F9 = 120,
+  SWFDEC_KEY_F10 = 121,
+  SWFDEC_KEY_F11 = 122,
+  SWFDEC_KEY_F12 = 123,
+  SWFDEC_KEY_F13 = 124,
+  SWFDEC_KEY_F14 = 125,
+  SWFDEC_KEY_F15 = 126,
+  SWFDEC_KEY_NUM_LOCK = 144,
+  SWFDEC_KEY_SCROLL_LOCK = 145,
+  SWFDEC_KEY_SEMICOLON = 186,
+  SWFDEC_KEY_EQUAL = 187,
+  SWFDEC_KEY_COMMA = 188,
+  SWFDEC_KEY_MINUS = 189,
+  SWFDEC_KEY_DOT = 190,
+  SWFDEC_KEY_SLASH = 191,
+  SWFDEC_KEY_GRAVE = 192,
+  SWFDEC_KEY_LEFT_BRACKET = 219,
+  SWFDEC_KEY_BACKSLASH = 220,
+  SWFDEC_KEY_RIGHT_BRACKET = 221,
+  SWFDEC_KEY_APOSTROPHE = 222,
+} SwfdecKey;
+</pre>
+<p>
+Lists all known key codes in Swfdec and their meanings on an English 
+keyboard. Note that key codes in Flash represent virtual key codes as used
+in Microsoft Windows.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-KEY-LEFT-MOUSE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_LEFT_MOUSE</code></span></p></td>
+<td> the left mouse button
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-RIGHT-MOUSE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_RIGHT_MOUSE</code></span></p></td>
+<td> the left mouse button
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-MIDDLE-MOUSE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_MIDDLE_MOUSE</code></span></p></td>
+<td> the middle mouse button
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-BACKSPACE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_BACKSPACE</code></span></p></td>
+<td> the backspace key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-TAB:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_TAB</code></span></p></td>
+<td> the tab key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-CLEAR:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_CLEAR</code></span></p></td>
+<td> the clear key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-ENTER:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_ENTER</code></span></p></td>
+<td> the enter key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-SHIFT:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_SHIFT</code></span></p></td>
+<td> the shift key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-CONTROL:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_CONTROL</code></span></p></td>
+<td> the control key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-ALT:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_ALT</code></span></p></td>
+<td> the alt key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-CAPS-LOCK:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_CAPS_LOCK</code></span></p></td>
+<td> the caps lock key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-ESCAPE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_ESCAPE</code></span></p></td>
+<td> the escape key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-SPACE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_SPACE</code></span></p></td>
+<td> the space key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-PAGE-UP:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_PAGE_UP</code></span></p></td>
+<td> the page up key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-PAGE-DOWN:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_PAGE_DOWN</code></span></p></td>
+<td> the page down key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-END:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_END</code></span></p></td>
+<td> the end key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-HOME:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_HOME</code></span></p></td>
+<td> the home key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-LEFT:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_LEFT</code></span></p></td>
+<td> the left key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-UP:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_UP</code></span></p></td>
+<td> the up key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-RIGHT:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_RIGHT</code></span></p></td>
+<td> the right key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-DOWN:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_DOWN</code></span></p></td>
+<td> the down key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-INSERT:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_INSERT</code></span></p></td>
+<td> the insert key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-DELETE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_DELETE</code></span></p></td>
+<td> the delete key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-HELP:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_HELP</code></span></p></td>
+<td> the help key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-0:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_0</code></span></p></td>
+<td> the 0 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-1:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_1</code></span></p></td>
+<td> the 1 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-2:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_2</code></span></p></td>
+<td> the 2 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-3:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_3</code></span></p></td>
+<td> the 3 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-4:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_4</code></span></p></td>
+<td> the 4 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-5:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_5</code></span></p></td>
+<td> the 5 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-6:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_6</code></span></p></td>
+<td> the 6 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-7:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_7</code></span></p></td>
+<td> the 7 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-8:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_8</code></span></p></td>
+<td> the 8 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-9:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_9</code></span></p></td>
+<td> the 9 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-A:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_A</code></span></p></td>
+<td> the ! key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-B:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_B</code></span></p></td>
+<td> the B key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-C:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_C</code></span></p></td>
+<td> the C key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-D:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_D</code></span></p></td>
+<td> the D key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-E:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_E</code></span></p></td>
+<td> the E key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F</code></span></p></td>
+<td> the F key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-G:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_G</code></span></p></td>
+<td> the G key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-H:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_H</code></span></p></td>
+<td> the H key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-I:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_I</code></span></p></td>
+<td> the I key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-J:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_J</code></span></p></td>
+<td> the J key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-K:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_K</code></span></p></td>
+<td> the K key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-L:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_L</code></span></p></td>
+<td> the L key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-M:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_M</code></span></p></td>
+<td> the M key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-N:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_N</code></span></p></td>
+<td> the N key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-O:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_O</code></span></p></td>
+<td> the O key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-P:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_P</code></span></p></td>
+<td> the P key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-Q:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_Q</code></span></p></td>
+<td> the Q key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-R:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_R</code></span></p></td>
+<td> the R key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-S:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_S</code></span></p></td>
+<td> the S key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-T:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_T</code></span></p></td>
+<td> the T key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-U:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_U</code></span></p></td>
+<td> the U key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-V:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_V</code></span></p></td>
+<td> the V key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-W:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_W</code></span></p></td>
+<td> the W key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-X:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_X</code></span></p></td>
+<td> the X key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-Y:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_Y</code></span></p></td>
+<td> the Y key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-Z:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_Z</code></span></p></td>
+<td> the Z key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-0:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_0</code></span></p></td>
+<td> the 0 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-1:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_1</code></span></p></td>
+<td> the 1 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-2:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_2</code></span></p></td>
+<td> the 2 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-3:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_3</code></span></p></td>
+<td> the 3 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-4:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_4</code></span></p></td>
+<td> the 4 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-5:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_5</code></span></p></td>
+<td> the 5 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-6:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_6</code></span></p></td>
+<td> the 6 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-7:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_7</code></span></p></td>
+<td> the 7 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-8:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_8</code></span></p></td>
+<td> the 8 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-9:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_9</code></span></p></td>
+<td> the 9 key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-MULTIPLY:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_MULTIPLY</code></span></p></td>
+<td> the multiply key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-ADD:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_ADD</code></span></p></td>
+<td> the add key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-SUBTRACT:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_SUBTRACT</code></span></p></td>
+<td> the subtract key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-DECIMAL:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_DECIMAL</code></span></p></td>
+<td> the decimal key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUMPAD-DIVIDE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUMPAD_DIVIDE</code></span></p></td>
+<td> the divide key on the numeric keypad
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F1:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F1</code></span></p></td>
+<td> the F1 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F2:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F2</code></span></p></td>
+<td> the F2 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F3:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F3</code></span></p></td>
+<td> the F3 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F4:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F4</code></span></p></td>
+<td> the F4 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F5:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F5</code></span></p></td>
+<td> the F5 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F6:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F6</code></span></p></td>
+<td> the F6 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F7:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F7</code></span></p></td>
+<td> the F7 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F8:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F8</code></span></p></td>
+<td> the F8 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F9:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F9</code></span></p></td>
+<td> the F9 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F10:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F10</code></span></p></td>
+<td> the F10 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F11:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F11</code></span></p></td>
+<td> the F11 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F12:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F12</code></span></p></td>
+<td> the F12 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F13:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F13</code></span></p></td>
+<td> the F13 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F14:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F14</code></span></p></td>
+<td> the F14 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-F15:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_F15</code></span></p></td>
+<td> the F15 key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-NUM-LOCK:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_NUM_LOCK</code></span></p></td>
+<td> the num lock key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-SCROLL-LOCK:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_SCROLL_LOCK</code></span></p></td>
+<td> the scroll lock key
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-SEMICOLON:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_SEMICOLON</code></span></p></td>
+<td> the semicolon key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-EQUAL:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_EQUAL</code></span></p></td>
+<td> the equal key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-COMMA:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_COMMA</code></span></p></td>
+<td> the comma key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-MINUS:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_MINUS</code></span></p></td>
+<td> the minus key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-DOT:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_DOT</code></span></p></td>
+<td> the dot key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-SLASH:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_SLASH</code></span></p></td>
+<td> the slash key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-GRAVE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_GRAVE</code></span></p></td>
+<td> the grave key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-LEFT-BRACKET:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_LEFT_BRACKET</code></span></p></td>
+<td> the left bracket key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-BACKSLASH:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_BACKSLASH</code></span></p></td>
+<td> the backslash key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-RIGHT-BRACKET:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_RIGHT_BRACKET</code></span></p></td>
+<td> the right bracket key (on English keyboards)
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-KEY-APOSTROPHE:CAPS"></a><span class="term"><code class="literal">SWFDEC_KEY_APOSTROPHE</code></span></p></td>
+<td> the apostrophe key (on English keyboards)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecMouseCursor"></a><h3>enum SwfdecMouseCursor</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_MOUSE_CURSOR_NORMAL,
+  SWFDEC_MOUSE_CURSOR_NONE,
+  SWFDEC_MOUSE_CURSOR_TEXT,
+  SWFDEC_MOUSE_CURSOR_CLICK
+} SwfdecMouseCursor;
+</pre>
+<p>
+This enumeration describes the possible types for the SwfdecPlayer::mouse-cursor
+property.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-MOUSE-CURSOR-NORMAL:CAPS"></a><span class="term"><code class="literal">SWFDEC_MOUSE_CURSOR_NORMAL</code></span></p></td>
+<td> a normal mouse cursor
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-MOUSE-CURSOR-NONE:CAPS"></a><span class="term"><code class="literal">SWFDEC_MOUSE_CURSOR_NONE</code></span></p></td>
+<td> no mouse image
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-MOUSE-CURSOR-TEXT:CAPS"></a><span class="term"><code class="literal">SWFDEC_MOUSE_CURSOR_TEXT</code></span></p></td>
+<td> a mouse cursor suitable for text editing
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-MOUSE-CURSOR-CLICK:CAPS"></a><span class="term"><code class="literal">SWFDEC_MOUSE_CURSOR_CLICK</code></span></p></td>
+<td> a mouse cursor for clicking a hyperlink or a 
+                            button
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecScaleMode"></a><h3>enum SwfdecScaleMode</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_SCALE_SHOW_ALL,
+  SWFDEC_SCALE_NO_BORDER,
+  SWFDEC_SCALE_EXACT_FIT,
+  SWFDEC_SCALE_NONE
+} SwfdecScaleMode;
+</pre>
+<p>
+Describes how the movie should be scaled if the given size doesn't equal the
+movie's size.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-SCALE-SHOW-ALL:CAPS"></a><span class="term"><code class="literal">SWFDEC_SCALE_SHOW_ALL</code></span></p></td>
+<td> Show the whole content as large as possible
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-SCALE-NO-BORDER:CAPS"></a><span class="term"><code class="literal">SWFDEC_SCALE_NO_BORDER</code></span></p></td>
+<td> Fill the whole area, possibly cropping parts
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-SCALE-EXACT-FIT:CAPS"></a><span class="term"><code class="literal">SWFDEC_SCALE_EXACT_FIT</code></span></p></td>
+<td> Fill the whole area, don't keep aspect ratio
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-SCALE-NONE:CAPS"></a><span class="term"><code class="literal">SWFDEC_SCALE_NONE</code></span></p></td>
+<td> Do not scale the movie at all
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

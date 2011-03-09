@@ -1,0 +1,103 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecSystem
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecSystem ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG SwfdecSystem:color-mode ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:debugger ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:dpi ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:language ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:manufacturer ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:os ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:os-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:pixel-aspect-ratio ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:player-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:screen-height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:screen-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:server-manufacturer ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:utc-offset ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecSystem:version ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION swfdec_system_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

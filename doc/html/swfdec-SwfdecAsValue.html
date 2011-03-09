@@ -1,0 +1,823 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecAsValue</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch04.html" title="Actionscript interpreter">
+<link rel="prev" href="swfdec-Internals.html" title="Internals and garbage collection">
+<link rel="next" href="SwfdecAsContext.html" title="SwfdecAsContext">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="swfdec-Internals.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecAsContext.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-SwfdecAsValue.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-SwfdecAsValue.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-SwfdecAsValue"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-SwfdecAsValue.top_of_page"></a>SwfdecAsValue</span></h2>
+<p>SwfdecAsValue — exchanging values with the Actionscript engine</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-SwfdecAsValue.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+enum                <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValueType" title="enum SwfdecAsValueType">SwfdecAsValueType</a>;
+                    <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a>;
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-UNDEFINED:CAPS" title="SWFDEC_AS_VALUE_SET_UNDEFINED()">SWFDEC_AS_VALUE_SET_UNDEFINED</a>       (val)
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-BOOLEAN:CAPS" title="SWFDEC_AS_VALUE_GET_BOOLEAN()">SWFDEC_AS_VALUE_GET_BOOLEAN</a>         (val)
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-boolean" title="swfdec_as_value_to_boolean ()">swfdec_as_value_to_boolean</a>          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-BOOLEAN:CAPS" title="SWFDEC_AS_VALUE_SET_BOOLEAN()">SWFDEC_AS_VALUE_SET_BOOLEAN</a>         (val,b)
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-NUMBER:CAPS" title="SWFDEC_AS_VALUE_GET_NUMBER()">SWFDEC_AS_VALUE_GET_NUMBER</a>          (val)
+double              <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-number" title="swfdec_as_value_to_number ()">swfdec_as_value_to_number</a>           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+int                 <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-integer" title="swfdec_as_value_to_integer ()">swfdec_as_value_to_integer</a>          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-INT:CAPS" title="SWFDEC_AS_VALUE_SET_INT()">SWFDEC_AS_VALUE_SET_INT</a>             (val,d)
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-NUMBER:CAPS" title="SWFDEC_AS_VALUE_SET_NUMBER()">SWFDEC_AS_VALUE_SET_NUMBER</a>          (val,d)
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-STRING:CAPS" title="SWFDEC_AS_VALUE_GET_STRING()">SWFDEC_AS_VALUE_GET_STRING</a>          (val)
+const char*         <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-string" title="swfdec_as_value_to_string ()">swfdec_as_value_to_string</a>           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-STRING:CAPS" title="SWFDEC_AS_VALUE_SET_STRING()">SWFDEC_AS_VALUE_SET_STRING</a>          (val,s)
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-NULL:CAPS" title="SWFDEC_AS_VALUE_SET_NULL()">SWFDEC_AS_VALUE_SET_NULL</a>            (val)
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-OBJECT:CAPS" title="SWFDEC_AS_VALUE_GET_OBJECT()">SWFDEC_AS_VALUE_GET_OBJECT</a>          (val)
+<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-object" title="swfdec_as_value_to_object ()">swfdec_as_value_to_object</a>           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+#define             <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-OBJECT:CAPS" title="SWFDEC_AS_VALUE_SET_OBJECT()">SWFDEC_AS_VALUE_SET_OBJECT</a>          (val,o)
+void                <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-primitive" title="swfdec_as_value_to_primitive ()">swfdec_as_value_to_primitive</a>        (<a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+char*               <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-debug" title="swfdec_as_value_to_debug ()">swfdec_as_value_to_debug</a>            (const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+int                 <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-double-to-integer" title="swfdec_as_double_to_integer ()">swfdec_as_double_to_integer</a>         (double d);
+const char*         <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-double-to-string" title="swfdec_as_double_to_string ()">swfdec_as_double_to_string</a>          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         double d);
+const char*         <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-integer-to-string" title="swfdec_as_integer_to_string ()">swfdec_as_integer_to_string</a>         (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         int i);
+const char*         <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-str-concat" title="swfdec_as_str_concat ()">swfdec_as_str_concat</a>                (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *cx,
+                                                         const char *s1,
+                                                         const char *s2);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecAsValue.description"></a><h2>Description</h2>
+<p>
+This section describes how values are handled inside the Actionscript 
+engine. Since Actionscript is a dynamically typed language, the variable type 
+has to be carried with every value. <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> accomplishes that. Swfdec
+allows two possible ways of accessing these values: The common method is to
+use the provided functions to explicitly convert the values to a given type
+with a function such as <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-string" title="swfdec_as_value_to_string ()"><code class="function">swfdec_as_value_to_string()</code></a>. This is convenient, 
+but can be very slow as it can call back into the Actionscript engine when
+converting various objects. So it can be unsuitable in some cases.
+A different possibiltiy is accessing the values directly using the accessor
+macros. You must check the type before doing so though. For setting values,
+there only exist macros, since type conversion is not necessary.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecAsValue.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsValueType"></a><h3>enum SwfdecAsValueType</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_AS_TYPE_UNDEFINED = 0,
+  SWFDEC_AS_TYPE_BOOLEAN,
+  SWFDEC_AS_TYPE_INT, /* unimplemented, but reserved if someone wants it */
+  SWFDEC_AS_TYPE_NUMBER,
+  SWFDEC_AS_TYPE_STRING,
+  SWFDEC_AS_TYPE_NULL,
+  SWFDEC_AS_TYPE_OBJECT
+} SwfdecAsValueType;
+</pre>
+<p>
+These are the possible values the Swfdec Actionscript engine knows about.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-AS-TYPE-UNDEFINED:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_TYPE_UNDEFINED</code></span></p></td>
+<td> the special undefined value
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-TYPE-BOOLEAN:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_TYPE_BOOLEAN</code></span></p></td>
+<td> a boolean value - true or false
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-TYPE-INT:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_TYPE_INT</code></span></p></td>
+<td> reserved value for integers. Should the need arise for
+                     performance enhancements - especially on embedded 
+                     devices - it might be useful to implement this type.
+                     For now, this type will never appear in Swfdec. Using 
+                     it will cause Swfdec to crash.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-TYPE-NUMBER:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_TYPE_NUMBER</code></span></p></td>
+<td> a double value - also used for integer numbers
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-TYPE-STRING:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_TYPE_STRING</code></span></p></td>
+<td> a string. Strings are garbage-collected and unique.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-TYPE-NULL:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_TYPE_NULL</code></span></p></td>
+<td> the spaecial null value
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-TYPE-OBJECT:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_TYPE_OBJECT</code></span></p></td>
+<td> an object - must be of type <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsValue"></a><h3>SwfdecAsValue</h3>
+<pre class="programlisting">typedef struct {
+  SwfdecAsValueType	type;
+} SwfdecAsValue;
+</pre>
+<p>
+This is the type used to present an opaque value in the Actionscript 
+engine. See <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValueType" title="enum SwfdecAsValueType"><span class="type">SwfdecAsValueType</span></a> for possible types. It's similar in 
+spirit to <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a>. The value held is garbage-collected. Apart from the type 
+member, use the provided macros to access this structure.
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>If you memset a SwfdecAsValue to 0, it is a valid undefined value.</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValueType" title="enum SwfdecAsValueType">SwfdecAsValueType</a> <em class="structfield"><code>type</code></em>;</span></p></td>
+<td> the type of this value.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-SET-UNDEFINED:CAPS"></a><h3>SWFDEC_AS_VALUE_SET_UNDEFINED()</h3>
+<pre class="programlisting">#define SWFDEC_AS_VALUE_SET_UNDEFINED(val) (val)-&gt;type = SWFDEC_AS_TYPE_UNDEFINED
+</pre>
+<p>
+Sets <em class="parameter"><code>val</code></em> to the special undefined value. If you create a temporary value, 
+you can instead use code such as </p>
+<div class="informalexample"><pre class="programlisting"> SwfdecAsValue val = { 0, }; </pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to set as undefined
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-GET-BOOLEAN:CAPS"></a><h3>SWFDEC_AS_VALUE_GET_BOOLEAN()</h3>
+<pre class="programlisting">#define SWFDEC_AS_VALUE_GET_BOOLEAN(val) ((val)-&gt;value.boolean)
+</pre>
+<p>
+Gets the boolean associated with value. If you are not sure if the value is
+a boolean, use <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-boolean" title="swfdec_as_value_to_boolean ()"><code class="function">swfdec_as_value_to_boolean()</code></a> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to get, the value must reference a boolean
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-to-boolean"></a><h3>swfdec_as_value_to_boolean ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_value_to_boolean          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Converts the given value to a boolean according to Flash's rules. Note that
+these rules changed significantly for strings between Flash 6 and 7.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value to convert
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> either <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-SET-BOOLEAN:CAPS"></a><h3>SWFDEC_AS_VALUE_SET_BOOLEAN()</h3>
+<pre class="programlisting">#define             SWFDEC_AS_VALUE_SET_BOOLEAN(val,b)</pre>
+<p>
+Sets <em class="parameter"><code>val</code></em> to the specified boolean value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> boolean value to set, must be either <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-GET-NUMBER:CAPS"></a><h3>SWFDEC_AS_VALUE_GET_NUMBER()</h3>
+<pre class="programlisting">#define SWFDEC_AS_VALUE_GET_NUMBER(val) ((val)-&gt;value.number)
+</pre>
+<p>
+Gets the number associated with <em class="parameter"><code>val</code></em>. If you are not sure that the value is
+a valid number value, consider using <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-number" title="swfdec_as_value_to_number ()"><code class="function">swfdec_as_value_to_number()</code></a> or 
+<code class="function">swfdec_as_value_to_int()</code> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to get, the value must reference a number
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-to-number"></a><h3>swfdec_as_value_to_number ()</h3>
+<pre class="programlisting">double              swfdec_as_value_to_number           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Converts the value to a number according to Flash's conversion routines and
+the current Flash version. This conversion routine is similar, but not equal
+to ECMAScript. For objects, it can call back into the script engine by 
+calling the object's valueOf function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> used by context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a double value. It can be NaN or +-Infinity. It will not be -0.0.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-to-integer"></a><h3>swfdec_as_value_to_integer ()</h3>
+<pre class="programlisting">int                 swfdec_as_value_to_integer          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Converts the given value to an integer. This is done similar to the 
+conversion used by <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-number" title="swfdec_as_value_to_number ()"><code class="function">swfdec_as_value_to_number()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value to convert
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> An Integer that can be represented in 32 bits.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-SET-INT:CAPS"></a><h3>SWFDEC_AS_VALUE_SET_INT()</h3>
+<pre class="programlisting">#define SWFDEC_AS_VALUE_SET_INT(val,d) SWFDEC_AS_VALUE_SET_NUMBER(val,(int) (d))
+</pre>
+<p>
+Sets <em class="parameter"><code>val</code></em> to the given value. Currently this macro is equivalent to
+<a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-NUMBER:CAPS" title="SWFDEC_AS_VALUE_SET_NUMBER()"><code class="function">SWFDEC_AS_VALUE_SET_NUMBER()</code></a>, but this may change in future versions of
+Swfdec.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>d</code></em> :</span></p></td>
+<td> integer value to set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-SET-NUMBER:CAPS"></a><h3>SWFDEC_AS_VALUE_SET_NUMBER()</h3>
+<pre class="programlisting">#define             SWFDEC_AS_VALUE_SET_NUMBER(val,d)</pre>
+<p>
+Sets <em class="parameter"><code>val</code></em> to the given value. If you are sure the value is a valid
+integer value, use <a class="link" href="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-INT:CAPS" title="SWFDEC_AS_VALUE_SET_INT()"><code class="function">SWFDEC_AS_VALUE_SET_INT()</code></a> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>d</code></em> :</span></p></td>
+<td> double value to set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-GET-STRING:CAPS"></a><h3>SWFDEC_AS_VALUE_GET_STRING()</h3>
+<pre class="programlisting">#define SWFDEC_AS_VALUE_GET_STRING(val) ((val)-&gt;value.string)
+</pre>
+<p>
+Gets the string associated with <em class="parameter"><code>val</code></em>. If you are not sure that the value is
+a string value, consider using <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-string" title="swfdec_as_value_to_string ()"><code class="function">swfdec_as_value_to_string()</code></a> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to get, the value must reference a string
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-to-string"></a><h3>swfdec_as_value_to_string ()</h3>
+<pre class="programlisting">const char*         swfdec_as_value_to_string           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Converts <em class="parameter"><code>value</code></em> to a string according to the rules of Flash. This might 
+cause calling back into the script engine if the <em class="parameter"><code>value</code></em> is an object. In
+that case, the object's valueOf function is called. 
+</p>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>Never use this function for debugging purposes.</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value to be expressed as string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a garbage-collected string representing <em class="parameter"><code>value</code></em>. The value will 
+         never be <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-SET-STRING:CAPS"></a><h3>SWFDEC_AS_VALUE_SET_STRING()</h3>
+<pre class="programlisting">#define             SWFDEC_AS_VALUE_SET_STRING(val,s)</pre>
+<p>
+Sets <em class="parameter"><code>val</code></em> to the given string value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em> :</span></p></td>
+<td> garbage-collected string to use
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-SET-NULL:CAPS"></a><h3>SWFDEC_AS_VALUE_SET_NULL()</h3>
+<pre class="programlisting">#define SWFDEC_AS_VALUE_SET_NULL(val) (val)-&gt;type = SWFDEC_AS_TYPE_NULL
+</pre>
+<p>
+Sets <em class="parameter"><code>val</code></em> to the special null value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to set
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-GET-OBJECT:CAPS"></a><h3>SWFDEC_AS_VALUE_GET_OBJECT()</h3>
+<pre class="programlisting">#define             SWFDEC_AS_VALUE_GET_OBJECT(val)</pre>
+<p>
+Gets the object associated with <em class="parameter"><code>val</code></em>. If you are not sure that the value is
+an object value, consider using <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-object" title="swfdec_as_value_to_object ()"><code class="function">swfdec_as_value_to_object()</code></a> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to get, the value must reference an object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-to-object"></a><h3>swfdec_as_value_to_object ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     swfdec_as_value_to_object           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Converts a given value to its representation as an object. The object 
+representation for primitive types is a wrapper object of the corresponding 
+class (Number for numbers, String for strings, Boolean for bools). If the 
+value does not have an object representing it, such as undefined and null 
+values, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value to convert
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> object representing <em class="parameter"><code>value</code></em> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-VALUE-SET-OBJECT:CAPS"></a><h3>SWFDEC_AS_VALUE_SET_OBJECT()</h3>
+<pre class="programlisting">#define             SWFDEC_AS_VALUE_SET_OBJECT(val,o)</pre>
+<p>
+Sets <em class="parameter"><code>val</code></em> to the given object. The object must have been added to the 
+garbage collector via <code class="function">swfdec_as_object_add()</code> previously.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>val</code></em> :</span></p></td>
+<td> value to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>o</code></em> :</span></p></td>
+<td> garbage-collected <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a> to use
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-to-primitive"></a><h3>swfdec_as_value_to_primitive ()</h3>
+<pre class="programlisting">void                swfdec_as_value_to_primitive        (<a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Tries to convert the given <em class="parameter"><code>value</code></em> inline to its primitive value. Primitive 
+values are values that are not objects. If the value is an object, the 
+object's valueOf function is called. If the result of that function is still 
+an object, it is returned nonetheless.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value to convert
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-to-debug"></a><h3>swfdec_as_value_to_debug ()</h3>
+<pre class="programlisting">char*               swfdec_as_value_to_debug            (const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Converts the given <em class="parameter"><code>value</code></em> to a string in a safe way. It will not call into
+the scripting engine. Its intended use is for output in debuggers.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a newly allocated string. Free with <a
+href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-double-to-integer"></a><h3>swfdec_as_double_to_integer ()</h3>
+<pre class="programlisting">int                 swfdec_as_double_to_integer         (double d);</pre>
+<p>
+Converts the given double to an integer using the same rules as the Flash
+player.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>d</code></em> :</span></p></td>
+<td> any double
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an integer
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-double-to-string"></a><h3>swfdec_as_double_to_string ()</h3>
+<pre class="programlisting">const char*         swfdec_as_double_to_string          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         double d);</pre>
+<p>
+Converts <em class="parameter"><code>d</code></em> into a string using the same conversion algorithm as the 
+official Flash player.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>d</code></em> :</span></p></td>
+<td> a double
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a garbage-collected string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-integer-to-string"></a><h3>swfdec_as_integer_to_string ()</h3>
+<pre class="programlisting">const char*         swfdec_as_integer_to_string         (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         int i);</pre>
+<p>
+Converts <em class="parameter"><code>d</code></em> into a string using the same conversion algorithm as the 
+official Flash player.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
+<td> an integer that fits into 32 bits
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a garbage-collected string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-str-concat"></a><h3>swfdec_as_str_concat ()</h3>
+<pre class="programlisting">const char*         swfdec_as_str_concat                (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *cx,
+                                                         const char *s1,
+                                                         const char *s2);</pre>
+<p>
+Convenience function to concatenate two garbage-collected strings. This
+function is equivalent to <a
+href="/usr/share/gtk-doc/html/glib/glib-String-Utility-Functions.html#g-strconcat"
+><code class="function">g_strconcat()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cx</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s1</code></em> :</span></p></td>
+<td> first string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s2</code></em> :</span></p></td>
+<td> second string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new garbage-collected string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

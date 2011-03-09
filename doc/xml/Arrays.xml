@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-Arrays">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-Arrays.top_of_page">arrays</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>arrays</refname>
+<refpurpose>utility functions for treating objects as arrays</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-Arrays.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+<link linkend="SwfdecAsObject">SwfdecAsObject</link>*     <link linkend="swfdec-as-array-new">swfdec_as_array_new</link>                 (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+#define             <link linkend="swfdec-as-array-append">swfdec_as_array_append</link>              (array,n,values)
+<link linkend="void">void</link>                <link linkend="swfdec-as-array-append-with-flags">swfdec_as_array_append_with_flags</link>   (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="guint">guint</link> n,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *values,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);
+<link linkend="void">void</link>                <link linkend="swfdec-as-array-insert">swfdec_as_array_insert</link>              (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="void">void</link>                <link linkend="swfdec-as-array-insert-with-flags">swfdec_as_array_insert_with_flags</link>   (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);
+#define             <link linkend="swfdec-as-array-push">swfdec_as_array_push</link>                (array,value)
+#define             <link linkend="swfdec-as-array-push-with-flags">swfdec_as_array_push_with_flags</link>     (array,value,flags)
+<link linkend="gint32">gint32</link>              <link linkend="swfdec-as-array-get-length">swfdec_as_array_get_length</link>          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array);
+<link linkend="void">void</link>                <link linkend="swfdec-as-array-set-length">swfdec_as_array_set_length</link>          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> length);
+<link linkend="void">void</link>                <link linkend="swfdec-as-array-get-value">swfdec_as_array_get_value</link>           (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="void">void</link>                <link linkend="swfdec-as-array-set-value">swfdec_as_array_set_value</link>           (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="void">void</link>                <link linkend="swfdec-as-array-remove">swfdec_as_array_remove</link>              (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-Arrays.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The array object provides some convenience functions for creating and
+modifying arrays.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-Arrays.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="swfdec-as-array-new" role="function">
+<title>swfdec_as_array_new ()</title>
+<indexterm zone="swfdec-as-array-new"><primary>swfdec_as_array_new</primary></indexterm><programlisting><link linkend="SwfdecAsObject">SwfdecAsObject</link>*     swfdec_as_array_new                 (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Creates a new array.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new array
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-append" role="macro">
+<title>swfdec_as_array_append()</title>
+<indexterm zone="swfdec-as-array-append"><primary>swfdec_as_array_append</primary></indexterm><programlisting>#define             swfdec_as_array_append(array,n,values)</programlisting>
+<para>
+Appends the given <parameter>values</parameter> to the <parameter>array</parameter>. This is a macro that just calls
+<link linkend="swfdec-as-array-append-with-flags"><function>swfdec_as_array_append_with_flags()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n</parameter>&nbsp;:</term>
+<listitem><simpara> number of values to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>values</parameter>&nbsp;:</term>
+<listitem><simpara> the values to add
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-append-with-flags" role="function">
+<title>swfdec_as_array_append_with_flags ()</title>
+<indexterm zone="swfdec-as-array-append-with-flags"><primary>swfdec_as_array_append_with_flags</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_array_append_with_flags   (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="guint">guint</link> n,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *values,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);</programlisting>
+<para>
+Appends the given <parameter>values</parameter> to the <parameter>array</parameter> using the given <parameter>flags</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n</parameter>&nbsp;:</term>
+<listitem><simpara> number of values to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>values</parameter>&nbsp;:</term>
+<listitem><simpara> the values to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAsVariableFlag"><type>SwfdecAsVariableFlag</type></link> flags to use
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-insert" role="function">
+<title>swfdec_as_array_insert ()</title>
+<indexterm zone="swfdec-as-array-insert"><primary>swfdec_as_array_insert</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_array_insert              (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Inserts <parameter>value</parameter> to <parameter>array</parameter> at given index, making room for it by moving
+elements to bigger indexes if necessary. This is a macro that just calls
+<link linkend="swfdec-as-array-insert-with-flags"><function>swfdec_as_array_insert_with_flags()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>idx</parameter>&nbsp;:</term>
+<listitem><simpara> index to insert the value to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-insert-with-flags" role="function">
+<title>swfdec_as_array_insert_with_flags ()</title>
+<indexterm zone="swfdec-as-array-insert-with-flags"><primary>swfdec_as_array_insert_with_flags</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_array_insert_with_flags   (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);</programlisting>
+<para>
+Inserts <parameter>value</parameter> to <parameter>array</parameter> at given index using given <parameter>flags</parameter>, making room for
+it by moving elements to bigger indexes if necessary.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>idx</parameter>&nbsp;:</term>
+<listitem><simpara> index to insert the value to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAsVariableFlag"><type>SwfdecAsVariableFlag</type></link> flags to use
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-push" role="macro">
+<title>swfdec_as_array_push()</title>
+<indexterm zone="swfdec-as-array-push"><primary>swfdec_as_array_push</primary></indexterm><programlisting>#define             swfdec_as_array_push(array,value)</programlisting>
+<para>
+Adds the given <parameter>value</parameter> to the <parameter>array</parameter>. This is a macro that just calls
+<link linkend="swfdec-as-array-append-with-flags"><function>swfdec_as_array_append_with_flags()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value to add
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-push-with-flags" role="macro">
+<title>swfdec_as_array_push_with_flags()</title>
+<indexterm zone="swfdec-as-array-push-with-flags"><primary>swfdec_as_array_push_with_flags</primary></indexterm><programlisting>#define             swfdec_as_array_push_with_flags(array,value,flags)</programlisting>
+<para>
+Adds the given <parameter>value</parameter> to the <parameter>array</parameter> with the given <parameter>flags</parameter>. This is a macro
+that just calls <link linkend="swfdec-as-array-append-with-flags"><function>swfdec_as_array_append_with_flags()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAsVariableFlag"><type>SwfdecAsVariableFlag</type></link> flags to use
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-get-length" role="function">
+<title>swfdec_as_array_get_length ()</title>
+<indexterm zone="swfdec-as-array-get-length"><primary>swfdec_as_array_get_length</primary></indexterm><programlisting><link linkend="gint32">gint32</link>              swfdec_as_array_get_length          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array);</programlisting>
+<para>
+Gets the current length of the <parameter>array</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Current length of the <parameter>array</parameter>, always &gt;= 0
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-set-length" role="function">
+<title>swfdec_as_array_set_length ()</title>
+<indexterm zone="swfdec-as-array-set-length"><primary>swfdec_as_array_set_length</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_array_set_length          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> length);</programlisting>
+<para>
+Sets the length of the <parameter>array</parameter>. Values outside the new length will be
+removed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> the new length
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-get-value" role="function">
+<title>swfdec_as_array_get_value ()</title>
+<indexterm zone="swfdec-as-array-get-value"><primary>swfdec_as_array_get_value</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_array_get_value           (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Gets a value from given index, if the value doesn't exists an undefined
+value is set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>idx</parameter>&nbsp;:</term>
+<listitem><simpara> index of the value to get
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a pointer to <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> that will be set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-set-value" role="function">
+<title>swfdec_as_array_set_value ()</title>
+<indexterm zone="swfdec-as-array-set-value"><primary>swfdec_as_array_set_value</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_array_set_value           (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Sets a <parameter>value</parameter> to given index. The <parameter>array</parameter>'s length will be increased if
+necessary.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>idx</parameter>&nbsp;:</term>
+<listitem><simpara> index of the value to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a pointer to <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-array-remove" role="function">
+<title>swfdec_as_array_remove ()</title>
+<indexterm zone="swfdec-as-array-remove"><primary>swfdec_as_array_remove</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_array_remove              (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *array,
+                                                         <link linkend="gint32">gint32</link> idx);</programlisting>
+<para>
+Removes value at given index from the <parameter>array</parameter>, elements with higher indexes
+will be moved towards the start of the <parameter>array</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>array</parameter>&nbsp;:</term>
+<listitem><simpara> the array
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>idx</parameter>&nbsp;:</term>
+<listitem><simpara> index of the value to remove
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

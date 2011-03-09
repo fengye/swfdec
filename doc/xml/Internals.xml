@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-Internals">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-Internals.top_of_page">Internals and garbage collection</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Internals and garbage collection</refname>
+<refpurpose>understanding internals such as garbage collection</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-Internals.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+<link linkend="void">void</link>                <link linkend="swfdec-as-string-mark">swfdec_as_string_mark</link>               (const <link linkend="char">char</link> *string);
+<link linkend="void">void</link>                <link linkend="swfdec-as-value-mark">swfdec_as_value_mark</link>                (<link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-Internals.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This section deals with the internals of the Swfdec Actionscript engine. You
+should probably read this first when trying to write code with it. If you're
+just trying to use Swfdec for creating Flash content, you can probably skip
+this section.
+</para>
+<para>
+First, I'd like to note that the Swfdec script engine has to be modeled very 
+closely after the existing Flash players. So if there are some behaviours
+that seem stupid at first sight, it might very well be that it was chosen for
+a very particular reason. Now on to the features.
+</para>
+<para>
+The Swfdec script engine tries to imitate Actionscript as good as possible.
+Actionscript is similar to Javascript, but not equal. Depending on the 
+version of the script executed it might be more or less similar. An important
+example is that Flash in versions up to 6 did case-insensitive variable 
+lookups.
+</para>
+<para>
+The script engine starts its life when it is initialized via 
+<link linkend="swfdec-as-context-startup"><function>swfdec_as_context_startup()</function></link>. At that point, the basic objects are created.
+After this function has been called, you can start executing code. All code
+execution happens by creating a new <link linkend="SwfdecAsFrame"><type>SwfdecAsFrame</type></link> and then calling 
+<link linkend="swfdec-as-context-run"><function>swfdec_as_context_run()</function></link> to execute it. This function is the single entry 
+point for code execution. Convenience functions exist that make executing 
+code easy, most notably <link linkend="swfdec-as-object-run"><function>swfdec_as_object_run()</function></link> and 
+<link linkend="swfdec-as-object-call"><function>swfdec_as_object_call()</function></link>.
+</para>
+<para>
+It is also easily possible to extend the environment by adding new objects.
+In fact, without doing so, the environment is pretty bare as it just contains
+the basic Math, String, Number, Array, Date and Boolean objects. This is done
+by adding <link linkend="SwfdecAsNative"><type>SwfdecAsNative</type></link> functions to the environment. The easy way
+to do this is via <link linkend="swfdec-as-object-add-function"><function>swfdec_as_object_add_function()</function></link>.
+</para>
+<para>
+The Swfdec script engine is dynamically typed and knows about different types
+of values. See <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> for the different values. Memory management is
+done using a mark and sweep garbage collector. You can initiate a garbage 
+collection cycle by calling <link linkend="swfdec-as-context-gc"><function>swfdec_as_context_gc()</function></link> or 
+<link linkend="swfdec-as-context-maybe-gc"><function>swfdec_as_context_maybe_gc()</function></link>. You should do this regularly to avoid excessive
+memory use. The <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link> will then collect the objects and strings it
+is keeping track of. If you want to use an object or string in the script 
+engine, you'll have to add it first via <link linkend="swfdec-as-object-add"><function>swfdec_as_object_add()</function></link> or
+<link linkend="swfdec-as-context-get-string"><function>swfdec_as_context_get_string()</function></link> and <link linkend="swfdec-as-context-give-string"><function>swfdec_as_context_give_string()</function></link>, 
+respectively.
+</para>
+<para>
+Garbage-collected strings are special in Swfdec in that they are unique. This
+means the same string exists exactly once. Because of this you can do 
+equality comparisons using == instead of strcmp. It also means that if you 
+forget to add a string to the context before using it, your app will most 
+likely not work, since the string will not compare equal to any other string.
+</para>
+<para>
+When a garbage collection cycle happens, all reachable objects and strings 
+are marked and all unreachable ones are freed. This is done by calling the
+context class's mark function which will mark all reachable objects. This is
+usually called the "root set". For any reachable object, the object's mark
+function is called so that the object in turn can mark all objects it can 
+reach itself. Marking is done via functions described below.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-Internals.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="swfdec-as-string-mark" role="function">
+<title>swfdec_as_string_mark ()</title>
+<indexterm zone="swfdec-as-string-mark"><primary>swfdec_as_string_mark</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_string_mark               (const <link linkend="char">char</link> *string);</programlisting>
+<para>
+Mark <parameter>string</parameter> as being in use. Calling this function is only valid during
+the marking phase of garbage collection.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>string</parameter>&nbsp;:</term>
+<listitem><simpara> a garbage-collected string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-mark" role="function">
+<title>swfdec_as_value_mark ()</title>
+<indexterm zone="swfdec-as-value-mark"><primary>swfdec_as_value_mark</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_value_mark                (<link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Mark <parameter>value</parameter> as being in use. This is just a convenience function that calls
+the right marking function depending on the value's type. Calling this 
+function is only valid during the marking phase of garbage collection.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+<refsect1 id="swfdec-Internals.see-also">
+<title>See Also</title>
+<link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</refsect1>
+
+</refentry>

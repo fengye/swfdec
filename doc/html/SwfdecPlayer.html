@@ -1,0 +1,2412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecPlayer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch02.html" title="Swfdec library">
+<link rel="prev" href="swfdec-SwfdecURL.html" title="SwfdecURL">
+<link rel="next" href="SwfdecSystem.html" title="SwfdecSystem">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="swfdec-SwfdecURL.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecSystem.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecPlayer.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecPlayer.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecPlayer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecPlayer.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#SwfdecPlayer.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecPlayer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecPlayer.top_of_page"></a>SwfdecPlayer</span></h2>
+<p>SwfdecPlayer — main playback object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecPlayer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecPlayer.html#SwfdecPlayer-struct" title="SwfdecPlayer">SwfdecPlayer</a>;
+void                <a class="link" href="SwfdecPlayer.html#swfdec-init" title="swfdec_init ()">swfdec_init</a>                         (void);
+<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*       <a class="link" href="SwfdecPlayer.html#swfdec-player-new" title="swfdec_player_new ()">swfdec_player_new</a>                   (<a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger">SwfdecAsDebugger</a> *debugger);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-is-initialized" title="swfdec_player_is_initialized ()">swfdec_player_is_initialized</a>        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*    <a class="link" href="SwfdecPlayer.html#swfdec-player-get-url" title="swfdec_player_get_url ()">swfdec_player_get_url</a>               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-url" title="swfdec_player_set_url ()">swfdec_player_set_url</a>               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*    <a class="link" href="SwfdecPlayer.html#swfdec-player-get-base-url" title="swfdec_player_get_base_url ()">swfdec_player_get_base_url</a>          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-base-url" title="swfdec_player_set_base_url ()">swfdec_player_set_base_url</a>          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);
+const char*         <a class="link" href="SwfdecPlayer.html#swfdec-player-get-variables" title="swfdec_player_get_variables ()">swfdec_player_get_variables</a>         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-variables" title="swfdec_player_set_variables ()">swfdec_player_set_variables</a>         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         const char *variables);
+double              <a class="link" href="SwfdecPlayer.html#swfdec-player-get-rate" title="swfdec_player_get_rate ()">swfdec_player_get_rate</a>              (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-get-default-size" title="swfdec_player_get_default_size ()">swfdec_player_get_default_size</a>      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *height);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-get-size" title="swfdec_player_get_size ()">swfdec_player_get_size</a>              (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         int *width,
+                                                         int *height);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-size" title="swfdec_player_set_size ()">swfdec_player_set_size</a>              (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         int width,
+                                                         int height);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>               <a class="link" href="SwfdecPlayer.html#swfdec-player-get-next-event" title="swfdec_player_get_next_event ()">swfdec_player_get_next_event</a>        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="SwfdecPlayer.html#swfdec-player-get-background-color" title="swfdec_player_get_background_color ()">swfdec_player_get_background_color</a>  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode">SwfdecScaleMode</a>     <a class="link" href="SwfdecPlayer.html#swfdec-player-get-scale-mode" title="swfdec_player_get_scale_mode ()">swfdec_player_get_scale_mode</a>        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-scale-mode" title="swfdec_player_set_scale_mode ()">swfdec_player_set_scale_mode</a>        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode">SwfdecScaleMode</a> mode);
+<a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment">SwfdecAlignment</a>     <a class="link" href="SwfdecPlayer.html#swfdec-player-get-alignment" title="swfdec_player_get_alignment ()">swfdec_player_get_alignment</a>         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-alignment" title="swfdec_player_set_alignment ()">swfdec_player_set_alignment</a>         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment">SwfdecAlignment</a> align);
+<a class="link" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting">SwfdecPlayerScripting</a>* <a class="link" href="SwfdecPlayer.html#swfdec-player-get-scripting" title="swfdec_player_get_scripting ()">swfdec_player_get_scripting</a>      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-scripting" title="swfdec_player_set_scripting ()">swfdec_player_set_scripting</a>         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting">SwfdecPlayerScripting</a> *scripting);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-get-allow-fullscreen" title="swfdec_player_get_allow_fullscreen ()">swfdec_player_get_allow_fullscreen</a>  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-allow-fullscreen" title="swfdec_player_set_allow_fullscreen ()">swfdec_player_set_allow_fullscreen</a>  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> allow);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-get-fullscreen" title="swfdec_player_get_fullscreen ()">swfdec_player_get_fullscreen</a>        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*     <a class="link" href="SwfdecPlayer.html#swfdec-player-get-renderer" title="swfdec_player_get_renderer ()">swfdec_player_get_renderer</a>          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-renderer" title="swfdec_player_set_renderer ()">swfdec_player_set_renderer</a>          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a> *renderer);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-render" title="swfdec_player_render ()">swfdec_player_render</a>                (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *cr);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-render-with-renderer" title="swfdec_player_render_with_renderer ()">swfdec_player_render_with_renderer</a>  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *cr,
+                                                         <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a> *renderer);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              <a class="link" href="SwfdecPlayer.html#swfdec-player-advance" title="swfdec_player_advance ()">swfdec_player_advance</a>               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> msecs);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-mouse-move" title="swfdec_player_mouse_move ()">swfdec_player_mouse_move</a>            (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         double x,
+                                                         double y);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-mouse-press" title="swfdec_player_mouse_press ()">swfdec_player_mouse_press</a>           (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         double x,
+                                                         double y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> button);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-mouse-release" title="swfdec_player_mouse_release ()">swfdec_player_mouse_release</a>         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         double x,
+                                                         double y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> button);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-key-press" title="swfdec_player_key_press ()">swfdec_player_key_press</a>             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> keycode,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> character);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-key-release" title="swfdec_player_key_release ()">swfdec_player_key_release</a>           (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> keycode,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> character);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecPlayer.html#swfdec-player-get-focus" title="swfdec_player_get_focus ()">swfdec_player_get_focus</a>             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-focus" title="swfdec_player_set_focus ()">swfdec_player_set_focus</a>             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> focus);
+const char*         <a class="link" href="SwfdecPlayer.html#swfdec-player-get-selection" title="swfdec_player_get_selection ()">swfdec_player_get_selection</a>         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*        <a class="link" href="SwfdecPlayer.html#swfdec-player-get-audio" title="swfdec_player_get_audio ()">swfdec_player_get_audio</a>             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              <a class="link" href="SwfdecPlayer.html#swfdec-player-get-maximum-runtime" title="swfdec_player_get_maximum_runtime ()">swfdec_player_get_maximum_runtime</a>   (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+void                <a class="link" href="SwfdecPlayer.html#swfdec-player-set-maximum-runtime" title="swfdec_player_set_maximum_runtime ()">swfdec_player_set_maximum_runtime</a>   (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> msecs);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a>
+         +----SwfdecPlayer
+               +----<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayer.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--alignment" title='The "alignment" property'>alignment</a>"                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment">SwfdecAlignment</a>       : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--allow-fullscreen" title='The "allow-fullscreen" property'>allow-fullscreen</a>"         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--background-color" title='The "background-color" property'>background-color</a>"         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--base-url" title='The "base-url" property'>base-url</a>"                 <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*            : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--cache-size" title='The "cache-size" property'>cache-size</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--default-height" title='The "default-height" property'>default-height</a>"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--default-width" title='The "default-width" property'>default-width</a>"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--focus" title='The "focus" property'>focus</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--fullscreen" title='The "fullscreen" property'>fullscreen</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--height" title='The "height" property'>height</a>"                   <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--initialized" title='The "initialized" property'>initialized</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--loader-type" title='The "loader-type" property'>loader-type</a>"              <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>*                : Read / Write / Construct Only
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--max-runtime" title='The "max-runtime" property'>max-runtime</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--mouse-cursor" title='The "mouse-cursor" property'>mouse-cursor</a>"             <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecMouseCursor" title="enum SwfdecMouseCursor">SwfdecMouseCursor</a>     : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--next-event" title='The "next-event" property'>next-event</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>                 : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--rate" title='The "rate" property'>rate</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--renderer" title='The "renderer" property'>renderer</a>"                 <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*       : Read / Write / Construct
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--scale-mode" title='The "scale-mode" property'>scale-mode</a>"               <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode">SwfdecScaleMode</a>       : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--scripting" title='The "scripting" property'>scripting</a>"                <a class="link" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting">SwfdecPlayerScripting</a>*  : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--selection" title='The "selection" property'>selection</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--socket-type" title='The "socket-type" property'>socket-type</a>"              <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>*                : Read / Write / Construct Only
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--start-time" title='The "start-time" property'>start-time</a>"               SwfdecTimeVal*        : Write / Construct Only
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--system" title='The "system" property'>system</a>"                   <a class="link" href="SwfdecSystem.html" title="SwfdecSystem">SwfdecSystem</a>*         : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--url" title='The "url" property'>url</a>"                      <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*            : Read
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--variables" title='The "variables" property'>variables</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer--width" title='The "width" property'>width</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayer.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-advance" title='The "advance" signal'>advance</a>"                                        : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-audio-added" title='The "audio-added" signal'>audio-added</a>"                                    : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-audio-removed" title='The "audio-removed" signal'>audio-removed</a>"                                  : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-fscommand" title='The "fscommand" signal'>fscommand</a>"                                      : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-handle-key" title='The "handle-key" signal'>handle-key</a>"                                     : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-handle-mouse" title='The "handle-mouse" signal'>handle-mouse</a>"                                   : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-invalidate" title='The "invalidate" signal'>invalidate</a>"                                     : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-launch" title='The "launch" signal'>launch</a>"                                         : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-missing-plugins" title='The "missing-plugins" signal'>missing-plugins</a>"                                : Run Last
+  "<a class="link" href="SwfdecPlayer.html#SwfdecPlayer-query-size" title='The "query-size" signal'>query-size</a>"                                     : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayer.description"></a><h2>Description</h2>
+<p>
+A <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> is the main object used for playing back Flash files through
+Swfdec.
+</p>
+<p>
+A player interacts with the outside world in a multitude of ways. The most 
+important ones are described below.
+</p>
+<p>
+Input is handled via the 
+SwfdecLoader class. A 
+<a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a> is set on a new player using <code class="function">swfdec_player_set_loader()</code>.
+</p>
+<p>
+When the loader has provided enough data, you can start playing the file.
+This is done in steps by calling <a class="link" href="SwfdecPlayer.html#swfdec-player-advance" title="swfdec_player_advance ()"><code class="function">swfdec_player_advance()</code></a> - preferrably as 
+often as <a class="link" href="SwfdecPlayer.html#swfdec-player-get-next-event" title="swfdec_player_get_next_event ()"><code class="function">swfdec_player_get_next_event()</code></a> indicates. Or you can provide user input
+to the player by calling for example <code class="function">swfdec_player_handle_mouse()</code>.
+</p>
+<p>
+You can use <a class="link" href="SwfdecPlayer.html#swfdec-player-render" title="swfdec_player_render ()"><code class="function">swfdec_player_render()</code></a> to draw the current state of the player.
+After that, connect to the SwfdecPlayer:invalidate signal to be notified of
+changes.
+</p>
+<p>
+Audio output is handled via the 
+SwfdecAudio class. One 
+<a class="link" href="SwfdecAudio.html" title="SwfdecAudio"><span class="type">SwfdecAudio</span></a> object is created for every output using the 
+SwfdecPlayer::audio-added signal.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayer.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-struct"></a><h3>SwfdecPlayer</h3>
+<pre class="programlisting">typedef struct _SwfdecPlayer SwfdecPlayer;</pre>
+<p>
+This is the base object used for playing Flash files.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-init"></a><h3>swfdec_init ()</h3>
+<pre class="programlisting">void                swfdec_init                         (void);</pre>
+<p>
+Initializes the Swfdec library.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-new"></a><h3>swfdec_player_new ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*       swfdec_player_new                   (<a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger">SwfdecAsDebugger</a> *debugger);</pre>
+<p>
+Creates a new player. This function is supposed to be used for testing.
+Because of this, the created player will behave as predictable as possible.
+For example, it will generate the same random number sequence every time.
+The function calls <a class="link" href="SwfdecPlayer.html#swfdec-init" title="swfdec_init ()"><code class="function">swfdec_init()</code></a> for you if it wasn't called before.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>debugger</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> or a <a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger"><span class="type">SwfdecAsDebugger</span></a> to use for debugging this player.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new player
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-is-initialized"></a><h3>swfdec_player_is_initialized ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_is_initialized        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Determines if the <em class="parameter"><code>player</code></em> is initalized yet. An initialized player is able
+to provide basic values like width, height or rate. A player may not be 
+initialized if the loader it was started with does not reference a Flash
+resources or it did not provide enough data yet. If a player is initialized,
+it will never be uninitialized again.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if the basic values are known.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-url"></a><h3>swfdec_player_get_url ()</h3>
+<pre class="programlisting">const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*    swfdec_player_get_url               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the URL of the resource that is currently played back. If no URL has 
+been set on the <em class="parameter"><code>player</code></em> yet, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a> currently played back or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-url"></a><h3>swfdec_player_set_url ()</h3>
+<pre class="programlisting">void                swfdec_player_set_url               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Sets the <em class="parameter"><code>url</code></em> for the main data. This function may only be called once.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> the url for the initial reference in this player
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-base-url"></a><h3>swfdec_player_get_base_url ()</h3>
+<pre class="programlisting">const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*    swfdec_player_get_base_url          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the base URL that this player uses when resolving a relative URL. It is
+automatically set to the parent directory of the currently played back 
+resource, but can be changed using <a class="link" href="SwfdecPlayer.html#swfdec-player-set-base-url" title="swfdec_player_set_base_url ()"><code class="function">swfdec_player_set_base_url()</code></a>. When no
+resource has been set on the <em class="parameter"><code>player</code></em> yet, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the base <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a> for resolving relative links or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-base-url"></a><h3>swfdec_player_set_base_url ()</h3>
+<pre class="programlisting">void                swfdec_player_set_base_url          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a> *url);</pre>
+<p>
+Sets the URL that will be used for resolving realtive links inside the 
+<em class="parameter"><code>player</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to reset to defaults
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-variables"></a><h3>swfdec_player_get_variables ()</h3>
+<pre class="programlisting">const char*         swfdec_player_get_variables         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the initial variables for this player. See <a class="link" href="SwfdecPlayer.html#swfdec-player-set-variables" title="swfdec_player_set_variables ()"><code class="function">swfdec_player_set_variables()</code></a>
+for details about variables.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a string represetation of the current variables or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if none are
+         set on the <em class="parameter"><code>player</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-variables"></a><h3>swfdec_player_set_variables ()</h3>
+<pre class="programlisting">void                swfdec_player_set_variables         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         const char *variables);</pre>
+<p>
+Sets the loader for the main data. This function may only be called if 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-set-url" title="swfdec_player_set_url ()"><code class="function">swfdec_player_set_url()</code></a> has not been called yet.
+If the <em class="parameter"><code>variables</code></em> are set and validate, they will be set as properties on the 
+root movie.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variables</code></em> :</span></p></td>
+<td> a string that is checked to be in 'application/x-www-form-urlencoded'
+            syntax describing the arguments to set on the new player or NULL for
+            none.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-rate"></a><h3>swfdec_player_get_rate ()</h3>
+<pre class="programlisting">double              swfdec_player_get_rate              (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Queries the framerate of this movie. This number specifies the number
+of frames that are supposed to pass per second. It is a multiple of 1/256.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The framerate of this movie or 0 if it isn't known yet or the
+         movie doesn't have a framerate.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-default-size"></a><h3>swfdec_player_get_default_size ()</h3>
+<pre class="programlisting">void                swfdec_player_get_default_size      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *height);</pre>
+<p>
+If the default size of the movie is initialized, fills in <em class="parameter"><code>width</code></em> and <em class="parameter"><code>height</code></em> 
+with the size. Otherwise <em class="parameter"><code>width</code></em> and <em class="parameter"><code>height</code></em> are set to 0.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> integer to store the width in or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> integer to store the height in or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-size"></a><h3>swfdec_player_get_size ()</h3>
+<pre class="programlisting">void                swfdec_player_get_size              (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         int *width,
+                                                         int *height);</pre>
+<p>
+Gets the currently set image size. If the default width or height should be 
+used, the width or height respectively is set to -1.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> integer to store the width in or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> integer to store the height in or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-size"></a><h3>swfdec_player_set_size ()</h3>
+<pre class="programlisting">void                swfdec_player_set_size              (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         int width,
+                                                         int height);</pre>
+<p>
+Sets the image size to the given values. The image size is what the area that
+the <em class="parameter"><code>player</code></em> will render and advocate with scripts.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> desired width of the movie or -1 for default
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> desired height of the movie or -1 for default
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-next-event"></a><h3>swfdec_player_get_next_event ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>               swfdec_player_get_next_event        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Queries how long to the next event. This is the next time when you should 
+call <a class="link" href="SwfdecPlayer.html#swfdec-player-advance" title="swfdec_player_advance ()"><code class="function">swfdec_player_advance()</code></a> to forward to.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> ia <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> number of milliseconds until next event or -1 if no outstanding event
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-background-color"></a><h3>swfdec_player_get_background_color ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               swfdec_player_get_background_color  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the current suggested background color. The color will be an ARGB-color, 
+with the MSB being the alpha value. Note that Swfdec will not render the 
+background color itself, so if you want the background to not be translucent
+it is your job to clear the background using this color.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the background color as an ARGB value
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-scale-mode"></a><h3>swfdec_player_get_scale_mode ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode">SwfdecScaleMode</a>     swfdec_player_get_scale_mode        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the currrent mode used for scaling the movie. See <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode"><span class="type">SwfdecScaleMode</span></a> for 
+the different modes.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the current scale mode
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-scale-mode"></a><h3>swfdec_player_set_scale_mode ()</h3>
+<pre class="programlisting">void                swfdec_player_set_scale_mode        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode">SwfdecScaleMode</a> mode);</pre>
+<p>
+Sets the currrent mode used for scaling the movie. See <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode"><span class="type">SwfdecScaleMode</span></a> for 
+the different modes.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mode</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode"><span class="type">SwfdecScaleMode</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-alignment"></a><h3>swfdec_player_get_alignment ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment">SwfdecAlignment</a>     swfdec_player_get_alignment         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the alignment of the player. The alignment describes what point is used
+as the anchor for drawing the contents. See <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment"><span class="type">SwfdecAlignment</span></a> for possible 
+values.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the current alignment
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-alignment"></a><h3>swfdec_player_set_alignment ()</h3>
+<pre class="programlisting">void                swfdec_player_set_alignment         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment">SwfdecAlignment</a> align);</pre>
+<p>
+Sets the alignment to <em class="parameter"><code>align</code></em>. For details about alignment, see 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-get-alignment" title="swfdec_player_get_alignment ()"><code class="function">swfdec_player_get_alignment()</code></a> and <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment"><span class="type">SwfdecAlignment</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>align</code></em> :</span></p></td>
+<td> <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment"><span class="type">SwfdecAlignment</span></a> to set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-scripting"></a><h3>swfdec_player_get_scripting ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting">SwfdecPlayerScripting</a>* swfdec_player_get_scripting      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the current scripting implementation in use. If no implementation is in 
+use (the default), <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the current scripting implementation used or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if none
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-scripting"></a><h3>swfdec_player_set_scripting ()</h3>
+<pre class="programlisting">void                swfdec_player_set_scripting         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting">SwfdecPlayerScripting</a> *scripting);</pre>
+<p>
+Sets the implementation to use for external scripting in the given <em class="parameter"><code>player</code></em>.
+Note that this is different from the internal script engine. See the 
+<a class="link" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting"><span class="type">SwfdecPlayerScripting</span></a> paragraph for details about external scripting.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scripting</code></em> :</span></p></td>
+<td> the scripting implementation to use or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to disable scripting
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-allow-fullscreen"></a><h3>swfdec_player_get_allow_fullscreen ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_get_allow_fullscreen  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Checks if the player is allowed to go fullscreen. See 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-set-allow-fullscreen" title="swfdec_player_set_allow_fullscreen ()"><code class="function">swfdec_player_set_allow_fullscreen()</code></a> for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the player is allowed to go fullscreen
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-allow-fullscreen"></a><h3>swfdec_player_set_allow_fullscreen ()</h3>
+<pre class="programlisting">void                swfdec_player_set_allow_fullscreen  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> allow);</pre>
+<p>
+Sets if the player is allowed to go fullscreen. If a player is allowed to go
+fullscreen, it may set the SwfdecPlayer::fullscreen property to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>. 
+Players are not allowed to go fullscreen by default. Usually applications 
+only want to allow going fullscreen in response to mouse or keyboard events.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>allow</code></em> :</span></p></td>
+<td> if the player should be allowed to go fullscreen
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-fullscreen"></a><h3>swfdec_player_get_fullscreen ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_get_fullscreen        (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+CHecks if the player is in fullscreen mode currently. If the player is
+in fullscreen mode, it assumes it occupies the whole screen. A player will
+only ever go into fullscreen, if you have allowed it by calling 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-set-allow-fullscreen" title="swfdec_player_set_allow_fullscreen ()"><code class="function">swfdec_player_set_allow_fullscreen()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the player is in fullscreen mode currently
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-renderer"></a><h3>swfdec_player_get_renderer ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*     swfdec_player_get_renderer          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Gets the current renderer in use. See <a class="link" href="SwfdecPlayer.html#swfdec-player-set-renderer" title="swfdec_player_set_renderer ()"><code class="function">swfdec_player_set_renderer()</code></a> for 
+details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the current <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer"><span class="type">SwfdecRenderer</span></a> in use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-renderer"></a><h3>swfdec_player_set_renderer ()</h3>
+<pre class="programlisting">void                swfdec_player_set_renderer          (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a> *renderer);</pre>
+<p>
+Sets the renderer to be used by the <em class="parameter"><code>player</code></em>. Setting the correct renderer is 
+mostly relevant for TextField flash objects with native fonts, as the 
+renderer provides those. It can also be very relevant for performance 
+reasons. See the <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer"><span class="type">SwfdecRenderer</span></a> documentation for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>renderer</code></em> :</span></p></td>
+<td> the renderer to use
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-render"></a><h3>swfdec_player_render ()</h3>
+<pre class="programlisting">void                swfdec_player_render                (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *cr);</pre>
+<p>
+Renders the given area of the current frame to <em class="parameter"><code>cr</code></em>. This function just calls 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-render-with-renderer" title="swfdec_player_render_with_renderer ()"><code class="function">swfdec_player_render_with_renderer()</code></a> using the <em class="parameter"><code>player</code></em>'s renderer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cr</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+><span class="type">cairo_t</span></a> to render to
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-render-with-renderer"></a><h3>swfdec_player_render_with_renderer ()</h3>
+<pre class="programlisting">void                swfdec_player_render_with_renderer  (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *cr,
+                                                         <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a> *renderer);</pre>
+<p>
+Renders the given area of the current frame to <em class="parameter"><code>cr</code></em>. If you only want to 
+redraw parts of the player, like when responding to a 
+SwfdecPlayer:invalidate signal, set a clip on <em class="parameter"><code>cr</code></em> using <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-clip"
+><code class="function">cairo_clip()</code></a>:
+</p>
+<div class="informalexample"><pre class="programlisting">
+cairo_rectangle (cr, x, y, width, height);
+cairo_clip (cr);
+swfdec_player_render_with_renderer (player, cr, renderer);
+</pre></div>
+<p>
+Only redrawing parts of the player improves performance considerably.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cr</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+><span class="type">cairo_t</span></a> to render to
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>renderer</code></em> :</span></p></td>
+<td> Renderer to use for rendering
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-advance"></a><h3>swfdec_player_advance ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              swfdec_player_advance               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> msecs);</pre>
+<p>
+Advances <em class="parameter"><code>player</code></em> by <em class="parameter"><code>msecs</code></em> or at most one event, whatever happens first in
+the player's timeline. You should make sure to call this function as often 
+as <a class="link" href="SwfdecPlayer.html#swfdec-player-get-next-event" title="swfdec_player_get_next_event ()"><code class="function">swfdec_player_get_next_event()</code></a> indicates or your player will not appear 
+smooth.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> to advance
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> number of milliseconds to advance at maximum
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> actual number of milliseconds advanced.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-mouse-move"></a><h3>swfdec_player_mouse_move ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_mouse_move            (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         double x,
+                                                         double y);</pre>
+<p>
+Updates the current mouse position. If the mouse has left the area of <em class="parameter"><code>player</code></em>,
+you should pass values outside the movie size for <em class="parameter"><code>x</code></em> and <em class="parameter"><code>y</code></em>. You will 
+probably want to call <a class="link" href="SwfdecPlayer.html#swfdec-player-advance" title="swfdec_player_advance ()"><code class="function">swfdec_player_advance()</code></a> before to update the player to
+the correct time when calling this function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinate of mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordinate of mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the mouse event was handled. <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if the event should be
+    propagated further. A mouse event may not be handled if the user 
+    clicked on a translucent area.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-mouse-press"></a><h3>swfdec_player_mouse_press ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_mouse_press           (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         double x,
+                                                         double y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> button);</pre>
+<p>
+Tells the <em class="parameter"><code>player</code></em> that the mouse button <em class="parameter"><code>button</code></em> was pressed at the given
+coordinate.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinate of mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordinate of mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>button</code></em> :</span></p></td>
+<td> number of the button that was pressed. Swfdec supports up to 32
+         buttons.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the mouse event was handled. <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if the event should be
+    propagated further. A mouse event may not be handled if the user 
+    clicked on a translucent area.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-mouse-release"></a><h3>swfdec_player_mouse_release ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_mouse_release         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         double x,
+                                                         double y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> button);</pre>
+<p>
+Tells the <em class="parameter"><code>player</code></em> that the mouse button <em class="parameter"><code>button</code></em> was released at the given
+coordinate.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinate of mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordinate of mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>button</code></em> :</span></p></td>
+<td> number of the button that was released. Swfdec supports up to 32
+         buttons.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the mouse event was handled. <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if the event should be
+    propagated further. A mouse event may not be handled if the user 
+    clicked on a translucent area.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-key-press"></a><h3>swfdec_player_key_press ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_key_press             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> keycode,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> character);</pre>
+<p>
+Call this function to make the <em class="parameter"><code>player</code></em> react to a key press. A list of 
+defined key codes is defined by <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecKey" title="enum SwfdecKey"><span class="type">SwfdecKey</span></a>. You will likely need to 
+translate from your keyboard API to the Flash key codes.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>keycode</code></em> :</span></p></td>
+<td> the key that was pressed, must be smaller than 256.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>character</code></em> :</span></p></td>
+<td> UCS4 of the character that was inserted or 0 if none
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the key press was handled by the <em class="parameter"><code>player</code></em>, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if it
+         should be propagated further
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-key-release"></a><h3>swfdec_player_key_release ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_key_release           (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> keycode,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> character);</pre>
+<p>
+Call this function to make the <em class="parameter"><code>player</code></em> react to a key being released. See
+<a class="link" href="SwfdecPlayer.html#swfdec-player-key-press" title="swfdec_player_key_press ()"><code class="function">swfdec_player_key_press()</code></a> for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>keycode</code></em> :</span></p></td>
+<td> the key that was released
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>character</code></em> :</span></p></td>
+<td> UCS4 of the character that was inserted or 0 if none
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the key press was handled by the <em class="parameter"><code>player</code></em>, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if it
+         should be propagated further
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-focus"></a><h3>swfdec_player_get_focus ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_player_get_focus             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Checks if the <em class="parameter"><code>player</code></em> has keyboard focus. See <a class="link" href="SwfdecPlayer.html#swfdec-player-set-focus" title="swfdec_player_set_focus ()"><code class="function">swfdec_player_set_focus()</code></a> for
+details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the player has keyboard focus.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-focus"></a><h3>swfdec_player_set_focus ()</h3>
+<pre class="programlisting">void                swfdec_player_set_focus             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> focus);</pre>
+<p>
+Tells the <em class="parameter"><code>player</code></em> whether keyboard focus is inside it. The player will use 
+this information to draw focus indicators around objects. Note that this
+update will not happen immediately, but only the next time you call 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-advance" title="swfdec_player_advance ()"><code class="function">swfdec_player_advance()</code></a>. The player is focussed by default. So if you 
+integrate it into a widget system such, you likely want to unset this upon 
+creation of the player.
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>The player must be focussed to receive keyboard events.</p>
+</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>focus</code></em> :</span></p></td>
+<td> if the player is focussed
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-selection"></a><h3>swfdec_player_get_selection ()</h3>
+<pre class="programlisting">const char*         swfdec_player_get_selection         (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Retrieves the currently selected text of the player. If no text is currently
+selected, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the currently selected text or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-audio"></a><h3>swfdec_player_get_audio ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*        swfdec_player_get_audio             (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Returns a list of all currently active audio streams in <em class="parameter"><code>player</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"
+><span class="type">GList</span></a> of <a class="link" href="SwfdecAudio.html" title="SwfdecAudio"><span class="type">SwfdecAudio</span></a>. You must not modify or free this list.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-get-maximum-runtime"></a><h3>swfdec_player_get_maximum_runtime ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              swfdec_player_get_maximum_runtime   (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Queries the given <em class="parameter"><code>player</code></em> for how long scripts may run. see 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-set-maximum-runtime" title="swfdec_player_set_maximum_runtime ()"><code class="function">swfdec_player_set_maximum_runtime()</code></a> for a longer discussion of this value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the maximum time in milliseconds that scripts are allowed to run or
+         0 for infinite.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-player-set-maximum-runtime"></a><h3>swfdec_player_set_maximum_runtime ()</h3>
+<pre class="programlisting">void                swfdec_player_set_maximum_runtime   (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> msecs);</pre>
+<p>
+Sets the time that the player may use to let internal scripts run. If the 
+Flash file that is currently played back does not manage to complete its 
+scripts in the given time, it is aborted. You cannot continue the scripts at
+a later point in time. However, your application may become unresponsive and
+your users annoyed if they cannot interact with it for too long. To give a 
+reference point, the Adobe Flash player usually sets this value to 10 
+seconds. Note that this time determines the maximum time calling 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-advance" title="swfdec_player_advance ()"><code class="function">swfdec_player_advance()</code></a> may take, even if it is called with a large value.
+Also note that this setting is ignored when running inside a debugger.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> time in milliseconds that scripts are allowed to run or 0 for 
+        infinite
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayer.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--alignment"></a><h3>The <code class="literal">"alignment"</code> property</h3>
+<pre class="programlisting">  "alignment"                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAlignment" title="enum SwfdecAlignment">SwfdecAlignment</a>       : Read / Write</pre>
+<p>point of the screen to align the output to.</p>
+<p>Default value: SWFDEC_ALIGNMENT_CENTER</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--allow-fullscreen"></a><h3>The <code class="literal">"allow-fullscreen"</code> property</h3>
+<pre class="programlisting">  "allow-fullscreen"         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>if the player is allowed to change into fullscreen mode.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--background-color"></a><h3>The <code class="literal">"background-color"</code> property</h3>
+<pre class="programlisting">  "background-color"         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read</pre>
+<p>ARGB color used to draw the background.</p>
+<p>Default value: 4294967295</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--base-url"></a><h3>The <code class="literal">"base-url"</code> property</h3>
+<pre class="programlisting">  "base-url"                 <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*            : Read / Write</pre>
+<p>base URL for creating new resource or NULL if not set yet.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--cache-size"></a><h3>The <code class="literal">"cache-size"</code> property</h3>
+<pre class="programlisting">  "cache-size"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write</pre>
+<p>maximum cache size in bytes.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--default-height"></a><h3>The <code class="literal">"default-height"</code> property</h3>
+<pre class="programlisting">  "default-height"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read</pre>
+<p>default height of the movie.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--default-width"></a><h3>The <code class="literal">"default-width"</code> property</h3>
+<pre class="programlisting">  "default-width"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read</pre>
+<p>default width of the movie.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--focus"></a><h3>The <code class="literal">"focus"</code> property</h3>
+<pre class="programlisting">  "focus"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>TRUE if the player has keyboard focus.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--fullscreen"></a><h3>The <code class="literal">"fullscreen"</code> property</h3>
+<pre class="programlisting">  "fullscreen"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read</pre>
+<p>if the player is in fullscreen mode.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--height"></a><h3>The <code class="literal">"height"</code> property</h3>
+<pre class="programlisting">  "height"                   <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>current height of the movie.</p>
+<p>Allowed values: &gt;= -1</p>
+<p>Default value: -1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--initialized"></a><h3>The <code class="literal">"initialized"</code> property</h3>
+<pre class="programlisting">  "initialized"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read</pre>
+<p>TRUE when the player has initialized its basic values.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--loader-type"></a><h3>The <code class="literal">"loader-type"</code> property</h3>
+<pre class="programlisting">  "loader-type"              <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>*                : Read / Write / Construct Only</pre>
+<p>type to use for creating loaders.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--max-runtime"></a><h3>The <code class="literal">"max-runtime"</code> property</h3>
+<pre class="programlisting">  "max-runtime"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write</pre>
+<p>maximum time in msecs scripts may run in the player before aborting.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--mouse-cursor"></a><h3>The <code class="literal">"mouse-cursor"</code> property</h3>
+<pre class="programlisting">  "mouse-cursor"             <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecMouseCursor" title="enum SwfdecMouseCursor">SwfdecMouseCursor</a>     : Read</pre>
+<p>how the mouse pointer should be presented.</p>
+<p>Default value: SWFDEC_MOUSE_CURSOR_NONE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--next-event"></a><h3>The <code class="literal">"next-event"</code> property</h3>
+<pre class="programlisting">  "next-event"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>                 : Read</pre>
+<p>how many milliseconds until the next event or -1 when no event pending.</p>
+<p>Allowed values: &gt;= -1</p>
+<p>Default value: -1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--rate"></a><h3>The <code class="literal">"rate"</code> property</h3>
+<pre class="programlisting">  "rate"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read</pre>
+<p>rate in frames per second.</p>
+<p>Allowed values: [0,256]</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--renderer"></a><h3>The <code class="literal">"renderer"</code> property</h3>
+<pre class="programlisting">  "renderer"                 <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*       : Read / Write / Construct</pre>
+<p>the renderer used by this player.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--scale-mode"></a><h3>The <code class="literal">"scale-mode"</code> property</h3>
+<pre class="programlisting">  "scale-mode"               <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecScaleMode" title="enum SwfdecScaleMode">SwfdecScaleMode</a>       : Read / Write</pre>
+<p>method used to scale the movie.</p>
+<p>Default value: SWFDEC_SCALE_SHOW_ALL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--scripting"></a><h3>The <code class="literal">"scripting"</code> property</h3>
+<pre class="programlisting">  "scripting"                <a class="link" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting">SwfdecPlayerScripting</a>*  : Read / Write</pre>
+<p>external scripting implementation.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--selection"></a><h3>The <code class="literal">"selection"</code> property</h3>
+<pre class="programlisting">  "selection"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read</pre>
+<p>currently selected text.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--socket-type"></a><h3>The <code class="literal">"socket-type"</code> property</h3>
+<pre class="programlisting">  "socket-type"              <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>*                : Read / Write / Construct Only</pre>
+<p>type to use for creating sockets.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--start-time"></a><h3>The <code class="literal">"start-time"</code> property</h3>
+<pre class="programlisting">  "start-time"               SwfdecTimeVal*        : Write / Construct Only</pre>
+<p>time to use as the beginning time for this player.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--system"></a><h3>The <code class="literal">"system"</code> property</h3>
+<pre class="programlisting">  "system"                   <a class="link" href="SwfdecSystem.html" title="SwfdecSystem">SwfdecSystem</a>*         : Read / Write</pre>
+<p>object holding system information.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--url"></a><h3>The <code class="literal">"url"</code> property</h3>
+<pre class="programlisting">  "url"                      <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*            : Read</pre>
+<p>URL of resource currently played back or NULL if not set.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--variables"></a><h3>The <code class="literal">"variables"</code> property</h3>
+<pre class="programlisting">  "variables"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>variables to use when setting the URL.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer--width"></a><h3>The <code class="literal">"width"</code> property</h3>
+<pre class="programlisting">  "width"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>current width of the movie.</p>
+<p>Allowed values: &gt;= -1</p>
+<p>Default value: -1</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayer.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-advance"></a><h3>The <code class="literal">"advance"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>        msecs,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>         audio_samples,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)          : Run Last</pre>
+<p>
+Emitted whenever the player advances.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> the amount of milliseconds the player will advance
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audio_samples</code></em> :</span></p></td>
+<td> number of frames the audio is advanced (in 44100Hz steps)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-audio-added"></a><h3>The <code class="literal">"audio-added"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a class="link" href="SwfdecAudio.html" title="SwfdecAudio">SwfdecAudio</a>  *audio,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+Emitted whenever a new audio stream was added to <em class="parameter"><code>player</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audio</code></em> :</span></p></td>
+<td> the audio stream that was added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-audio-removed"></a><h3>The <code class="literal">"audio-removed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a class="link" href="SwfdecAudio.html" title="SwfdecAudio">SwfdecAudio</a>  *audio,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+Emitted whenever an audio stream was removed from <em class="parameter"><code>player</code></em>. The stream will 
+have been added with the SwfdecPlayer::audio-added signal previously.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audio</code></em> :</span></p></td>
+<td> the audio stream that was removed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-fscommand"></a><h3>The <code class="literal">"fscommand"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>        *command,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>        *parameter,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+This signal is emited whenever a Flash script command (also known as 
+fscommand) is encountered. This method is ued by the Flash file to
+communicate with the hosting environment. In web browsers it is used to 
+call Javascript functions. Standalone Flash players understand a limited 
+set of functions. They vary from player to player, but the most common are 
+listed here: </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>"quit": quits the player.</p></li>
+<li><p>"fullscreen": A boolean setting (parameter is "true" or 
+"false") that sets the player into fullscreen mode.</p></li>
+<li><p>"allowscale": A boolean setting that tells the player to
+not scale the Flash application.</p></li>
+<li><p>"showmenu": A boolean setting that tells the Flash player
+to not show its own entries in the right-click menu.</p></li>
+<li><p>"exec": Run an external executable. The parameter 
+specifies the path.</p></li>
+<li><p>"trapallkeys": A boolean setting that tells the Flash 
+player to pass all key events to the Flash application instead of using it
+for keyboard shortcuts or similar.</p></li>
+</ul></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>command</code></em> :</span></p></td>
+<td> the command to execute. This is a lower case string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parameter</code></em> :</span></p></td>
+<td> parameter to pass to the command. The parameter depends on the 
+            function.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-handle-key"></a><h3>The <code class="literal">"handle-key"</code> signal</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>         key,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>         pressed,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>      Returns,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+This signal is emitted whenever <em class="parameter"><code>player</code></em> should respond to a key event. If
+any of the handlers returns TRUE, <a class="link" href="SwfdecPlayer.html#swfdec-player-key-press" title="swfdec_player_key_press ()"><code class="function">swfdec_player_key_press()</code></a> or 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-key-release" title="swfdec_player_key_release ()"><code class="function">swfdec_player_key_release()</code></a> will return TRUE. Note that unlike many event 
+handlers in gtk, returning TRUE will not stop further event handlers from 
+being invoked. Use <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#g-signal-stop-emission"
+><code class="function">g_signal_stop_emission()</code></a> in that case.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecKey" title="enum SwfdecKey"><span class="type">SwfdecKey</span></a> that was pressed or released
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pressed</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the <em class="parameter"><code>key</code></em> was pressed or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if it was released
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if this handler handles the event. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-handle-mouse"></a><h3>The <code class="literal">"handle-mouse"</code> signal</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>       x,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>       y,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>          button,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+This signal is emitted whenever <em class="parameter"><code>player</code></em> should respond to a mouse event. If
+any of the handlers returns TRUE, <code class="function">swfdec_player_handle_mouse()</code> will return 
+TRUE. Note that unlike many event handlers in gtk, returning TRUE will not 
+stop further event handlers from being invoked. Use <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#g-signal-stop-emission"
+><code class="function">g_signal_stop_emission()</code></a>
+in that case.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> new x coordinate of the mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> new y coordinate of the mouse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>button</code></em> :</span></p></td>
+<td> 0 for a mouse move, a positive number if a button was pressed,
+         a negative number if a button was released
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if this handler handles the event. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-invalidate"></a><h3>The <code class="literal">"invalidate"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      rectangles,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>         n_rectangles,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)         : Run Last</pre>
+<p>
+This signal is emitted whenever graphical elements inside the player have 
+changed. It provides two ways to look at the changes: By looking at the
+<em class="parameter"><code>extents</code></em> parameter, it provides a simple way to get a single rectangle that
+encloses all changes. By looking at the <em class="parameter"><code>rectangles</code></em> array, you can get
+finer control over changes which is very useful if your rendering system 
+provides a way to handle regions.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangles</code></em> :</span></p></td>
+<td> a number of smaller rectangles for fine-grained control over 
+             changes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_rectangles</code></em> :</span></p></td>
+<td> number of rectangles in <em class="parameter"><code>rectangles</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-launch"></a><h3>The <code class="literal">"launch"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>        *url,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>        *target,
+                                                        <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *data,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>         header_count,
+                                                        <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Boxed-Types.html#GStrv"
+>GStrv</a>        *header_names,
+                                                        <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Boxed-Types.html#GStrv"
+>GStrv</a>        *header_values,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)          : Run Last</pre>
+<p>
+Emitted whenever the <em class="parameter"><code>player</code></em> encounters an URL that should be loaded into 
+a target the Flash player does not recognize. In most cases this happens 
+when the user clicks a link in an embedded Flash movie that should open a
+new web page.
+The effect of calling any swfdec functions on the emitting <em class="parameter"><code>player</code></em> is undefined.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> URL to open
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>target</code></em> :</span></p></td>
+<td> target to load the URL into
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> optional data to pass on with the request. Can be <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> indicating
+       no data should be passed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>header_count</code></em> :</span></p></td>
+<td> number of custom HTTP headers to be sent
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>header_names</code></em> :</span></p></td>
+<td> names of the custom HTTP headers. <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>header_values</code></em> :</span></p></td>
+<td> values of the custom HTTP headers. <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-missing-plugins"></a><h3>The <code class="literal">"missing-plugins"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Boxed-Types.html#GStrv"
+>GStrv</a>        *details,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+Emitted whenever a plugin is detected that GStreamer cannot currently 
+handle because it is missing plugins to do so. You should use 
+<a
+href="http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-base-libs/html/gst-plugins-base-libs-gstpbutilsinstallplugins.html#gst-install-plugins-async"
+><code class="function">gst_install_plugins_async()</code></a> to install those plugins.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> missing plugins
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
+<td> the details strings for all missing plugins
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayer-query-size"></a><h3>The <code class="literal">"query-size"</code> signal</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>      fullscreen,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      width,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      height,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)       : Run Last</pre>
+<p>
+This signals is emitted whenever the player is (un)fullscreened. In this 
+case it requests the new size the Flash file will be displayed in 
+immediately. If you want to provide values, connect to this signal. The
+values don't have to be exact, you can still call <a class="link" href="SwfdecPlayer.html#swfdec-player-set-size" title="swfdec_player_set_size ()"><code class="function">swfdec_player_set_size()</code></a>
+later on. However, it will look visually nicer if your values here are 
+correct. By default, the screen resolution values will be used for 
+fullscreen and the default size will be used otherwise.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> that resizes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fullscreen</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the player queries the fullscreen size, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> for 
+             the default size
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> pointer to an integer that takes the width to use
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> pointer to an integer that takes the height to use
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if this handler properly sets <em class="parameter"><code>width</code></em> and <em class="parameter"><code>height</code></em> and no 
+         other handlers should be invoked.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

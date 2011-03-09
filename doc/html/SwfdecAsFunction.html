@@ -1,0 +1,667 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecAsFunction</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch04.html" title="Actionscript interpreter">
+<link rel="prev" href="SwfdecAsArray.html" title="SwfdecAsArray">
+<link rel="next" href="swfdec-SwfdecAsFrame.html" title="SwfdecAsFrame">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecAsArray.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="swfdec-SwfdecAsFrame.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecAsFunction.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecAsFunction.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecAsFunction.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecAsFunction"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecAsFunction.top_of_page"></a>SwfdecAsFunction</span></h2>
+<p>SwfdecAsFunction — script objects that can be executed</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecAsFunction.synopsis"></a><h2>Synopsis</h2>
+<a name="SwfdecAsNativeFunction"></a><pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecAsFunction.html#SwfdecAsFunction-struct" title="SwfdecAsFunction">SwfdecAsFunction</a>;
+void                (<a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()">*SwfdecAsNative</a>)                   (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *thisp,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *retval);
+                    <a class="link" href="SwfdecAsFunction.html#SwfdecAsNativeFunction-struct" title="SwfdecAsNativeFunction">SwfdecAsNativeFunction</a>;
+#define             <a class="link" href="SwfdecAsFunction.html#swfdec-as-function-call" title="swfdec_as_function_call()">swfdec_as_function_call</a>             (function, thisp, n_args, args, return_value)
+void                <a class="link" href="SwfdecAsFunction.html#swfdec-as-function-call-full" title="swfdec_as_function_call_full ()">swfdec_as_function_call_full</a>        (<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *function,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *thisp,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> construct,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *super_reference,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_args,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *args,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *return_value);
+<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>*   <a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-new" title="swfdec_as_native_function_new ()">swfdec_as_native_function_new</a>       (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const char *name,
+                                                         <a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()">SwfdecAsNative</a> native,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *prototype);
+void                <a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-set-construct-type" title="swfdec_as_native_function_set_construct_type ()">swfdec_as_native_function_set_construct_type</a>
+                                                        (<a class="link" href="SwfdecAsFunction.html#SwfdecAsNativeFunction">SwfdecAsNativeFunction</a> *function,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> type);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-check" title="swfdec_as_native_function_check ()">swfdec_as_native_function_check</a>     (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *cx,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> type,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> *result,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         const char *args,
+                                                         ...);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-checkv" title="swfdec_as_native_function_checkv ()">swfdec_as_native_function_checkv</a>    (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *cx,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> type,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> *result,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         const char *args,
+                                                         va_list varargs);
+#define             <a class="link" href="SwfdecAsFunction.html#SWFDEC-AS-CHECK:CAPS" title="SWFDEC_AS_CHECK()">SWFDEC_AS_CHECK</a>                     (type,result,...)
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsFunction.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecGcObject
+         +----<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>
+               +----SwfdecAsFunction
+                     +----<a class="link" href="SwfdecAsFunction.html#SwfdecAsNativeFunction">SwfdecAsNativeFunction</a>
+</pre>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecGcObject
+         +----<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>
+               +----<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>
+                     +----SwfdecAsNativeFunction
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsFunction.description"></a><h2>Description</h2>
+<p>
+Functions is the basic object for executing code in the Swfdec script engine.
+There is multiple different variants of functions, such as script-created 
+ones and native functions.
+</p>
+<p>
+If you want to create your own functions, you should create native functions.
+The easiest way to do this is with <a class="link" href="SwfdecAsObject.html#swfdec-as-object-add-function" title="swfdec_as_object_add_function ()"><code class="function">swfdec_as_object_add_function()</code></a> or
+<a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-new" title="swfdec_as_native_function_new ()"><code class="function">swfdec_as_native_function_new()</code></a>.
+</p>
+<p>
+In Actionscript, every function can be used as a constructor. If you want to
+make a native function be used as a constructor for your own <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+subclass, have a look at <a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-set-construct-type" title="swfdec_as_native_function_set_construct_type ()"><code class="function">swfdec_as_native_function_set_construct_type()</code></a>.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsFunction.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsFunction-struct"></a><h3>SwfdecAsFunction</h3>
+<pre class="programlisting">typedef struct _SwfdecAsFunction SwfdecAsFunction;</pre>
+<p>
+This is the base executable object in Swfdec. It is an abstract object. If 
+you want to create functions yourself, use <a class="link" href="SwfdecAsFunction.html#SwfdecAsNativeFunction"><span class="type">SwfdecAsNativeFunction</span></a>.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsNative"></a><h3>SwfdecAsNative ()</h3>
+<pre class="programlisting">void                (*SwfdecAsNative)                   (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *thisp,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *retval);</pre>
+<p>
+This is the prototype for all native functions.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>thisp</code></em> :</span></p></td>
+<td> the this object. <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>Can be <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.</div>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argc</code></em> :</span></p></td>
+<td> number of arguments passed to this function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argv</code></em> :</span></p></td>
+<td> the <em class="parameter"><code>argc</code></em> arguments passed to this function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>retval</code></em> :</span></p></td>
+<td> set to the return value. Initialized to undefined by default
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsNativeFunction-struct"></a><h3>SwfdecAsNativeFunction</h3>
+<pre class="programlisting">typedef struct _SwfdecAsNativeFunction SwfdecAsNativeFunction;</pre>
+<p>
+This is the object type for native functions.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-function-call"></a><h3>swfdec_as_function_call()</h3>
+<pre class="programlisting">#define             swfdec_as_function_call(function, thisp, n_args, args, return_value)</pre>
+<p>
+Calls the given function. This is a macro that resolves to 
+<a class="link" href="SwfdecAsFunction.html#swfdec-as-function-call-full" title="swfdec_as_function_call_full ()"><code class="function">swfdec_as_function_call_full()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>function</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction"><span class="type">SwfdecAsFunction</span></a> to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>thisp</code></em> :</span></p></td>
+<td> this argument to use for the call or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for none
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_args</code></em> :</span></p></td>
+<td> number of arguments to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em> :</span></p></td>
+<td> the arguments to pass or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to read the last <em class="parameter"><code>n_args</code></em> stack elements.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>return_value</code></em> :</span></p></td>
+<td> pointer for return value or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to push the return value to 
+               the stack
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-function-call-full"></a><h3>swfdec_as_function_call_full ()</h3>
+<pre class="programlisting">void                swfdec_as_function_call_full        (<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *function,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *thisp,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> construct,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *super_reference,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_args,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *args,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *return_value);</pre>
+<p>
+Calls the given function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>function</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction"><span class="type">SwfdecAsFunction</span></a> to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>thisp</code></em> :</span></p></td>
+<td> this argument to use for the call or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for none
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>construct</code></em> :</span></p></td>
+<td> call this function as a constructor. This is only relevant for 
+            native functions.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>super_reference</code></em> :</span></p></td>
+<td> The object to be referenced by the super object in this 
+                  function call or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to use the default.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_args</code></em> :</span></p></td>
+<td> number of arguments to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em> :</span></p></td>
+<td> the arguments to pass or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to read the last <em class="parameter"><code>n_args</code></em> stack elements.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>return_value</code></em> :</span></p></td>
+<td> pointer for return value or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to push the return value to 
+               the stack
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-native-function-new"></a><h3>swfdec_as_native_function_new ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>*   swfdec_as_native_function_new       (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const char *name,
+                                                         <a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()">SwfdecAsNative</a> native,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *prototype);</pre>
+<p>
+Creates a new native function, that will execute <em class="parameter"><code>native</code></em> when called. You 
+might want to use <a class="link" href="SwfdecAsObject.html#swfdec-as-object-add-function" title="swfdec_as_object_add_function ()"><code class="function">swfdec_as_object_add_function()</code></a> instead of this function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> name of the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>native</code></em> :</span></p></td>
+<td> function to call when executed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prototype</code></em> :</span></p></td>
+<td> The object to be used as "prototype" property for the created 
+            function or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for none.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction"><span class="type">SwfdecAsFunction</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-native-function-set-construct-type"></a><h3>swfdec_as_native_function_set_construct_type ()</h3>
+<pre class="programlisting">void                swfdec_as_native_function_set_construct_type
+                                                        (<a class="link" href="SwfdecAsFunction.html#SwfdecAsNativeFunction">SwfdecAsNativeFunction</a> *function,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> type);</pre>
+<p>
+Sets the <em class="parameter"><code>type</code></em> to be used when using <em class="parameter"><code>function</code></em> as a constructor. If this is
+not set, using <em class="parameter"><code>function</code></em> as a constructor will create a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>function</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsFunction.html#SwfdecAsNativeFunction"><span class="type">SwfdecAsNativeFunction</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+><span class="type">GType</span></a> used when constructing an object with <em class="parameter"><code>function</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-native-function-check"></a><h3>swfdec_as_native_function_check ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_native_function_check     (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *cx,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> type,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> *result,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         const char *args,
+                                                         ...);</pre>
+<p>
+This function is a convenience function to validate and convert arguments to 
+a native function while avoiding common pitfalls. You typically want to call
+it at the beginning of every native function you write. Or you can use the 
+<a class="link" href="SwfdecAsFunction.html#SWFDEC-AS-CHECK:CAPS" title="SWFDEC_AS_CHECK()"><code class="function">SWFDEC_AS_CHECK()</code></a> macro instead which calls this function.
+The <em class="parameter"><code>cx</code></em>, <em class="parameter"><code>object</code></em>, <em class="parameter"><code>argc</code></em> and <em class="parameter"><code>argv</code></em> paramters should be passed verbatim from 
+the function call to your native function. If <em class="parameter"><code>type</code></em> is not 0, <em class="parameter"><code>object</code></em> is then
+checked to be of that type and cast to <em class="parameter"><code>result</code></em>. After that the <em class="parameter"><code>args</code></em> string 
+is used to convert the arguments. Every character in <em class="parameter"><code>args</code></em> describes the 
+conversion of one argument. For that argument, you have to pass a pointer 
+that takes the value. For the conversion, the default conversion functions 
+like <a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-string" title="swfdec_as_value_to_string ()"><code class="function">swfdec_as_value_to_string()</code></a> are used. If not enough arguments are 
+available, the function stops converting and returns <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. The following 
+conversion characters are allowed:</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>"b": convert to boolean. Requires a <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+><code class="literal">gboolean</code></a> pointer
+                </p></li>
+<li><p>"i": convert to integer. Requires an <code class="literal">integer</code> pointer
+                </p></li>
+<li><p>"n": convert to number. Requires a <code class="literal">double</code> pointer
+                </p></li>
+<li><p>"o": convert to object. Requires a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a> pointer.
+                If the conversion fails, this function immediately returns
+                <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>.</p></li>
+<li><p>"O": convert to object or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. Requires a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+                pointer.</p></li>
+<li><p>"s": convert to garbage-collected string. Requires a const 
+                <code class="literal">char</code> pointer</p></li>
+<li><p>"v": copy the value. The given argument must be a pointer 
+                to a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a></p></li>
+<li><p>"|": optional arguments follow. Optional arguments will be
+	   initialized to the empty value for their type. This 
+	   conversion character is only allowed once in the conversion 
+	   string.</p></li>
+</ul></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cx</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> this object passed to the native function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> expected type of <em class="parameter"><code>object</code></em> or 0 for any
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> pointer to variable taking cast result of <em class="parameter"><code>object</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argc</code></em> :</span></p></td>
+<td> count of arguments passed to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argv</code></em> :</span></p></td>
+<td> arguments passed to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em> :</span></p></td>
+<td> argument conversion string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> pointers to variables taking converted arguments
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the conversion succeeded, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-native-function-checkv"></a><h3>swfdec_as_native_function_checkv ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_native_function_checkv    (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *cx,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> type,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> *result,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         const char *args,
+                                                         va_list varargs);</pre>
+<p>
+This is the valist version of <a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-check" title="swfdec_as_native_function_check ()"><code class="function">swfdec_as_native_function_check()</code></a>. See that
+function for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cx</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> this object passed to the native function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> expected type of <em class="parameter"><code>object</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> pointer to variable taking cast result of <em class="parameter"><code>object</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argc</code></em> :</span></p></td>
+<td> count of arguments passed to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argv</code></em> :</span></p></td>
+<td> arguments passed to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em> :</span></p></td>
+<td> argument conversion string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>varargs</code></em> :</span></p></td>
+<td> pointers to variables taking converted arguments
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the conversion succeeded, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-AS-CHECK:CAPS"></a><h3>SWFDEC_AS_CHECK()</h3>
+<pre class="programlisting">#define             SWFDEC_AS_CHECK(type,result,...)</pre>
+<p>
+This is a shortcut macro for calling <a class="link" href="SwfdecAsFunction.html#swfdec-as-native-function-check" title="swfdec_as_native_function_check ()"><code class="function">swfdec_as_native_function_check()</code></a> at
+the beginning of a native function. See that function for details.
+It requires the native function parameters to have the default name. So your
+function must be declared like this:
+</p>
+<div class="informalexample"><pre class="programlisting">static void
+my_function (SwfdecAsContext *cx, SwfdecAsObject *object,
+    guint argc, SwfdecAsValue *argv, SwfdecAsValue *rval);</pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> required type of this object or 0 for ignoring
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> converted this object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> conversion string and pointers taking converted values
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

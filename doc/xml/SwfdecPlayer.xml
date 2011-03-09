@@ -1,0 +1,1350 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecPlayer">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecPlayer.top_of_page">SwfdecPlayer</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecPlayer</refname>
+<refpurpose>main playback object</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecPlayer.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecPlayer-struct">SwfdecPlayer</link>;
+<link linkend="void">void</link>                <link linkend="swfdec-init">swfdec_init</link>                         (void);
+<link linkend="SwfdecPlayer">SwfdecPlayer</link>*       <link linkend="swfdec-player-new">swfdec_player_new</link>                   (<link linkend="SwfdecAsDebugger">SwfdecAsDebugger</link> *debugger);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-is-initialized">swfdec_player_is_initialized</link>        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+const <link linkend="SwfdecURL">SwfdecURL</link>*    <link linkend="swfdec-player-get-url">swfdec_player_get_url</link>               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-url">swfdec_player_set_url</link>               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+const <link linkend="SwfdecURL">SwfdecURL</link>*    <link linkend="swfdec-player-get-base-url">swfdec_player_get_base_url</link>          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-base-url">swfdec_player_set_base_url</link>          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         const <link linkend="SwfdecURL">SwfdecURL</link> *url);
+const <link linkend="char">char</link>*         <link linkend="swfdec-player-get-variables">swfdec_player_get_variables</link>         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-variables">swfdec_player_set_variables</link>         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         const <link linkend="char">char</link> *variables);
+<link linkend="double">double</link>              <link linkend="swfdec-player-get-rate">swfdec_player_get_rate</link>              (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-get-default-size">swfdec_player_get_default_size</link>      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="guint">guint</link> *width,
+                                                         <link linkend="guint">guint</link> *height);
+<link linkend="void">void</link>                <link linkend="swfdec-player-get-size">swfdec_player_get_size</link>              (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="int">int</link> *width,
+                                                         <link linkend="int">int</link> *height);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-size">swfdec_player_set_size</link>              (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="int">int</link> width,
+                                                         <link linkend="int">int</link> height);
+<link linkend="glong">glong</link>               <link linkend="swfdec-player-get-next-event">swfdec_player_get_next_event</link>        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="guint">guint</link>               <link linkend="swfdec-player-get-background-color">swfdec_player_get_background_color</link>  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="SwfdecScaleMode">SwfdecScaleMode</link>     <link linkend="swfdec-player-get-scale-mode">swfdec_player_get_scale_mode</link>        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-scale-mode">swfdec_player_set_scale_mode</link>        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecScaleMode">SwfdecScaleMode</link> mode);
+<link linkend="SwfdecAlignment">SwfdecAlignment</link>     <link linkend="swfdec-player-get-alignment">swfdec_player_get_alignment</link>         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-alignment">swfdec_player_set_alignment</link>         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecAlignment">SwfdecAlignment</link> align);
+<link linkend="SwfdecPlayerScripting">SwfdecPlayerScripting</link>* <link linkend="swfdec-player-get-scripting">swfdec_player_get_scripting</link>      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-scripting">swfdec_player_set_scripting</link>         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecPlayerScripting">SwfdecPlayerScripting</link> *scripting);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-get-allow-fullscreen">swfdec_player_get_allow_fullscreen</link>  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-allow-fullscreen">swfdec_player_set_allow_fullscreen</link>  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gboolean">gboolean</link> allow);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-get-fullscreen">swfdec_player_get_fullscreen</link>        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="SwfdecRenderer">SwfdecRenderer</link>*     <link linkend="swfdec-player-get-renderer">swfdec_player_get_renderer</link>          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-renderer">swfdec_player_set_renderer</link>          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecRenderer">SwfdecRenderer</link> *renderer);
+<link linkend="void">void</link>                <link linkend="swfdec-player-render">swfdec_player_render</link>                (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="cairo-t">cairo_t</link> *cr);
+<link linkend="void">void</link>                <link linkend="swfdec-player-render-with-renderer">swfdec_player_render_with_renderer</link>  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="cairo-t">cairo_t</link> *cr,
+                                                         <link linkend="SwfdecRenderer">SwfdecRenderer</link> *renderer);
+<link linkend="gulong">gulong</link>              <link linkend="swfdec-player-advance">swfdec_player_advance</link>               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gulong">gulong</link> msecs);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-mouse-move">swfdec_player_mouse_move</link>            (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-mouse-press">swfdec_player_mouse_press</link>           (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="guint">guint</link> button);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-mouse-release">swfdec_player_mouse_release</link>         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="guint">guint</link> button);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-key-press">swfdec_player_key_press</link>             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="guint">guint</link> keycode,
+                                                         <link linkend="guint">guint</link> character);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-key-release">swfdec_player_key_release</link>           (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="guint">guint</link> keycode,
+                                                         <link linkend="guint">guint</link> character);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-player-get-focus">swfdec_player_get_focus</link>             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-focus">swfdec_player_set_focus</link>             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gboolean">gboolean</link> focus);
+const <link linkend="char">char</link>*         <link linkend="swfdec-player-get-selection">swfdec_player_get_selection</link>         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+const <link linkend="GList">GList</link>*        <link linkend="swfdec-player-get-audio">swfdec_player_get_audio</link>             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="gulong">gulong</link>              <link linkend="swfdec-player-get-maximum-runtime">swfdec_player_get_maximum_runtime</link>   (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="void">void</link>                <link linkend="swfdec-player-set-maximum-runtime">swfdec_player_set_maximum_runtime</link>   (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gulong">gulong</link> msecs);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecPlayer.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecAsContext">SwfdecAsContext</link>
+         +----SwfdecPlayer
+               +----<link linkend="SwfdecGtkPlayer">SwfdecGtkPlayer</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="SwfdecPlayer.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecPlayer--alignment">alignment</link>&quot;                <link linkend="SwfdecAlignment">SwfdecAlignment</link>       : Read / Write
+  &quot;<link linkend="SwfdecPlayer--allow-fullscreen">allow-fullscreen</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="SwfdecPlayer--background-color">background-color</link>&quot;         <link linkend="guint">guint</link>                 : Read
+  &quot;<link linkend="SwfdecPlayer--base-url">base-url</link>&quot;                 <link linkend="SwfdecURL">SwfdecURL</link>*            : Read / Write
+  &quot;<link linkend="SwfdecPlayer--cache-size">cache-size</link>&quot;               <link linkend="gulong">gulong</link>                : Read / Write
+  &quot;<link linkend="SwfdecPlayer--default-height">default-height</link>&quot;           <link linkend="guint">guint</link>                 : Read
+  &quot;<link linkend="SwfdecPlayer--default-width">default-width</link>&quot;            <link linkend="guint">guint</link>                 : Read
+  &quot;<link linkend="SwfdecPlayer--focus">focus</link>&quot;                    <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="SwfdecPlayer--fullscreen">fullscreen</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="SwfdecPlayer--height">height</link>&quot;                   <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="SwfdecPlayer--initialized">initialized</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="SwfdecPlayer--loader-type">loader-type</link>&quot;              <link linkend="GType">GType</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="SwfdecPlayer--max-runtime">max-runtime</link>&quot;              <link linkend="gulong">gulong</link>                : Read / Write
+  &quot;<link linkend="SwfdecPlayer--mouse-cursor">mouse-cursor</link>&quot;             <link linkend="SwfdecMouseCursor">SwfdecMouseCursor</link>     : Read
+  &quot;<link linkend="SwfdecPlayer--next-event">next-event</link>&quot;               <link linkend="glong">glong</link>                 : Read
+  &quot;<link linkend="SwfdecPlayer--rate">rate</link>&quot;                     <link linkend="gdouble">gdouble</link>               : Read
+  &quot;<link linkend="SwfdecPlayer--renderer">renderer</link>&quot;                 <link linkend="SwfdecRenderer">SwfdecRenderer</link>*       : Read / Write / Construct
+  &quot;<link linkend="SwfdecPlayer--scale-mode">scale-mode</link>&quot;               <link linkend="SwfdecScaleMode">SwfdecScaleMode</link>       : Read / Write
+  &quot;<link linkend="SwfdecPlayer--scripting">scripting</link>&quot;                <link linkend="SwfdecPlayerScripting">SwfdecPlayerScripting</link>*  : Read / Write
+  &quot;<link linkend="SwfdecPlayer--selection">selection</link>&quot;                <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="SwfdecPlayer--socket-type">socket-type</link>&quot;              <link linkend="GType">GType</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="SwfdecPlayer--start-time">start-time</link>&quot;               <link linkend="SwfdecTimeVal">SwfdecTimeVal</link>*        : Write / Construct Only
+  &quot;<link linkend="SwfdecPlayer--system">system</link>&quot;                   <link linkend="SwfdecSystem">SwfdecSystem</link>*         : Read / Write
+  &quot;<link linkend="SwfdecPlayer--url">url</link>&quot;                      <link linkend="SwfdecURL">SwfdecURL</link>*            : Read
+  &quot;<link linkend="SwfdecPlayer--variables">variables</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="SwfdecPlayer--width">width</link>&quot;                    <link linkend="gint">gint</link>                  : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="SwfdecPlayer.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="SwfdecPlayer-advance">advance</link>&quot;                                        : Run Last
+  &quot;<link linkend="SwfdecPlayer-audio-added">audio-added</link>&quot;                                    : Run Last
+  &quot;<link linkend="SwfdecPlayer-audio-removed">audio-removed</link>&quot;                                  : Run Last
+  &quot;<link linkend="SwfdecPlayer-fscommand">fscommand</link>&quot;                                      : Run Last
+  &quot;<link linkend="SwfdecPlayer-handle-key">handle-key</link>&quot;                                     : Run Last
+  &quot;<link linkend="SwfdecPlayer-handle-mouse">handle-mouse</link>&quot;                                   : Run Last
+  &quot;<link linkend="SwfdecPlayer-invalidate">invalidate</link>&quot;                                     : Run Last
+  &quot;<link linkend="SwfdecPlayer-launch">launch</link>&quot;                                         : Run Last
+  &quot;<link linkend="SwfdecPlayer-missing-plugins">missing-plugins</link>&quot;                                : Run Last
+  &quot;<link linkend="SwfdecPlayer-query-size">query-size</link>&quot;                                     : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="SwfdecPlayer.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> is the main object used for playing back Flash files through
+Swfdec.
+</para>
+<para>
+A player interacts with the outside world in a multitude of ways. The most 
+important ones are described below.
+</para>
+<para>
+Input is handled via the 
+<link linkend="swfdec-SwfdecLoader">SwfdecLoader</link> class. A 
+<link linkend="SwfdecLoader"><type>SwfdecLoader</type></link> is set on a new player using <link linkend="swfdec-player-set-loader"><function>swfdec_player_set_loader()</function></link>.
+</para>
+<para>
+When the loader has provided enough data, you can start playing the file.
+This is done in steps by calling <link linkend="swfdec-player-advance"><function>swfdec_player_advance()</function></link> - preferrably as 
+often as <link linkend="swfdec-player-get-next-event"><function>swfdec_player_get_next_event()</function></link> indicates. Or you can provide user input
+to the player by calling for example <link linkend="swfdec-player-handle-mouse"><function>swfdec_player_handle_mouse()</function></link>.
+</para>
+<para>
+You can use <link linkend="swfdec-player-render"><function>swfdec_player_render()</function></link> to draw the current state of the player.
+After that, connect to the SwfdecPlayer:invalidate signal to be notified of
+changes.
+</para>
+<para>
+Audio output is handled via the 
+<link linkend="swfdec-SwfdecAudio">SwfdecAudio</link> class. One 
+<link linkend="SwfdecAudio"><type>SwfdecAudio</type></link> object is created for every output using the 
+SwfdecPlayer::audio-added signal.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecPlayer.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecPlayer-struct" role="struct">
+<title>SwfdecPlayer</title>
+<indexterm zone="SwfdecPlayer-struct"><primary>SwfdecPlayer</primary></indexterm><programlisting>typedef struct _SwfdecPlayer SwfdecPlayer;</programlisting>
+<para>
+This is the base object used for playing Flash files.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-init" role="function">
+<title>swfdec_init ()</title>
+<indexterm zone="swfdec-init"><primary>swfdec_init</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_init                         (void);</programlisting>
+<para>
+Initializes the Swfdec library.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-player-new" role="function">
+<title>swfdec_player_new ()</title>
+<indexterm zone="swfdec-player-new"><primary>swfdec_player_new</primary></indexterm><programlisting><link linkend="SwfdecPlayer">SwfdecPlayer</link>*       swfdec_player_new                   (<link linkend="SwfdecAsDebugger">SwfdecAsDebugger</link> *debugger);</programlisting>
+<para>
+Creates a new player. This function is supposed to be used for testing.
+Because of this, the created player will behave as predictable as possible.
+For example, it will generate the same random number sequence every time.
+The function calls <link linkend="swfdec-init"><function>swfdec_init()</function></link> for you if it wasn't called before.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>debugger</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> or a <link linkend="SwfdecAsDebugger"><type>SwfdecAsDebugger</type></link> to use for debugging this player.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The new player
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-is-initialized" role="function">
+<title>swfdec_player_is_initialized ()</title>
+<indexterm zone="swfdec-player-is-initialized"><primary>swfdec_player_is_initialized</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_is_initialized        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Determines if the <parameter>player</parameter> is initalized yet. An initialized player is able
+to provide basic values like width, height or rate. A player may not be 
+initialized if the loader it was started with does not reference a Flash
+resources or it did not provide enough data yet. If a player is initialized,
+it will never be uninitialized again.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if the basic values are known.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-url" role="function">
+<title>swfdec_player_get_url ()</title>
+<indexterm zone="swfdec-player-get-url"><primary>swfdec_player_get_url</primary></indexterm><programlisting>const <link linkend="SwfdecURL">SwfdecURL</link>*    swfdec_player_get_url               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the URL of the resource that is currently played back. If no URL has 
+been set on the <parameter>player</parameter> yet, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the <link linkend="SwfdecURL"><type>SwfdecURL</type></link> currently played back or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-url" role="function">
+<title>swfdec_player_set_url ()</title>
+<indexterm zone="swfdec-player-set-url"><primary>swfdec_player_set_url</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_url               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Sets the <parameter>url</parameter> for the main data. This function may only be called once.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> the url for the initial reference in this player
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-base-url" role="function">
+<title>swfdec_player_get_base_url ()</title>
+<indexterm zone="swfdec-player-get-base-url"><primary>swfdec_player_get_base_url</primary></indexterm><programlisting>const <link linkend="SwfdecURL">SwfdecURL</link>*    swfdec_player_get_base_url          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the base URL that this player uses when resolving a relative URL. It is
+automatically set to the parent directory of the currently played back 
+resource, but can be changed using <link linkend="swfdec-player-set-base-url"><function>swfdec_player_set_base_url()</function></link>. When no
+resource has been set on the <parameter>player</parameter> yet, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the base <link linkend="SwfdecURL"><type>SwfdecURL</type></link> for resolving relative links or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-base-url" role="function">
+<title>swfdec_player_set_base_url ()</title>
+<indexterm zone="swfdec-player-set-base-url"><primary>swfdec_player_set_base_url</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_base_url          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         const <link linkend="SwfdecURL">SwfdecURL</link> *url);</programlisting>
+<para>
+Sets the URL that will be used for resolving realtive links inside the 
+<parameter>player</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecURL"><type>SwfdecURL</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to reset to defaults
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-variables" role="function">
+<title>swfdec_player_get_variables ()</title>
+<indexterm zone="swfdec-player-get-variables"><primary>swfdec_player_get_variables</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_player_get_variables         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the initial variables for this player. See <link linkend="swfdec-player-set-variables"><function>swfdec_player_set_variables()</function></link>
+for details about variables.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a string represetation of the current variables or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if none are
+         set on the <parameter>player</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-variables" role="function">
+<title>swfdec_player_set_variables ()</title>
+<indexterm zone="swfdec-player-set-variables"><primary>swfdec_player_set_variables</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_variables         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         const <link linkend="char">char</link> *variables);</programlisting>
+<para>
+Sets the loader for the main data. This function may only be called if 
+<link linkend="swfdec-player-set-url"><function>swfdec_player_set_url()</function></link> has not been called yet.
+If the <parameter>variables</parameter> are set and validate, they will be set as properties on the 
+root movie.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variables</parameter>&nbsp;:</term>
+<listitem><simpara> a string that is checked to be in 'application/x-www-form-urlencoded'
+            syntax describing the arguments to set on the new player or NULL for
+            none.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-rate" role="function">
+<title>swfdec_player_get_rate ()</title>
+<indexterm zone="swfdec-player-get-rate"><primary>swfdec_player_get_rate</primary></indexterm><programlisting><link linkend="double">double</link>              swfdec_player_get_rate              (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Queries the framerate of this movie. This number specifies the number
+of frames that are supposed to pass per second. It is a multiple of 1/256.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The framerate of this movie or 0 if it isn't known yet or the
+         movie doesn't have a framerate.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-default-size" role="function">
+<title>swfdec_player_get_default_size ()</title>
+<indexterm zone="swfdec-player-get-default-size"><primary>swfdec_player_get_default_size</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_get_default_size      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="guint">guint</link> *width,
+                                                         <link linkend="guint">guint</link> *height);</programlisting>
+<para>
+If the default size of the movie is initialized, fills in <parameter>width</parameter> and <parameter>height</parameter> 
+with the size. Otherwise <parameter>width</parameter> and <parameter>height</parameter> are set to 0.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> integer to store the width in or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> integer to store the height in or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-size" role="function">
+<title>swfdec_player_get_size ()</title>
+<indexterm zone="swfdec-player-get-size"><primary>swfdec_player_get_size</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_get_size              (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="int">int</link> *width,
+                                                         <link linkend="int">int</link> *height);</programlisting>
+<para>
+Gets the currently set image size. If the default width or height should be 
+used, the width or height respectively is set to -1.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> integer to store the width in or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> integer to store the height in or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-size" role="function">
+<title>swfdec_player_set_size ()</title>
+<indexterm zone="swfdec-player-set-size"><primary>swfdec_player_set_size</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_size              (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="int">int</link> width,
+                                                         <link linkend="int">int</link> height);</programlisting>
+<para>
+Sets the image size to the given values. The image size is what the area that
+the <parameter>player</parameter> will render and advocate with scripts.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> desired width of the movie or -1 for default
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> desired height of the movie or -1 for default
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-next-event" role="function">
+<title>swfdec_player_get_next_event ()</title>
+<indexterm zone="swfdec-player-get-next-event"><primary>swfdec_player_get_next_event</primary></indexterm><programlisting><link linkend="glong">glong</link>               swfdec_player_get_next_event        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Queries how long to the next event. This is the next time when you should 
+call <link linkend="swfdec-player-advance"><function>swfdec_player_advance()</function></link> to forward to.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> ia <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> number of milliseconds until next event or -1 if no outstanding event
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-background-color" role="function">
+<title>swfdec_player_get_background_color ()</title>
+<indexterm zone="swfdec-player-get-background-color"><primary>swfdec_player_get_background_color</primary></indexterm><programlisting><link linkend="guint">guint</link>               swfdec_player_get_background_color  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the current suggested background color. The color will be an ARGB-color, 
+with the MSB being the alpha value. Note that Swfdec will not render the 
+background color itself, so if you want the background to not be translucent
+it is your job to clear the background using this color.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the background color as an ARGB value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-scale-mode" role="function">
+<title>swfdec_player_get_scale_mode ()</title>
+<indexterm zone="swfdec-player-get-scale-mode"><primary>swfdec_player_get_scale_mode</primary></indexterm><programlisting><link linkend="SwfdecScaleMode">SwfdecScaleMode</link>     swfdec_player_get_scale_mode        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the currrent mode used for scaling the movie. See <link linkend="SwfdecScaleMode"><type>SwfdecScaleMode</type></link> for 
+the different modes.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the current scale mode
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-scale-mode" role="function">
+<title>swfdec_player_set_scale_mode ()</title>
+<indexterm zone="swfdec-player-set-scale-mode"><primary>swfdec_player_set_scale_mode</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_scale_mode        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecScaleMode">SwfdecScaleMode</link> mode);</programlisting>
+<para>
+Sets the currrent mode used for scaling the movie. See <link linkend="SwfdecScaleMode"><type>SwfdecScaleMode</type></link> for 
+the different modes.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mode</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecScaleMode"><type>SwfdecScaleMode</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-alignment" role="function">
+<title>swfdec_player_get_alignment ()</title>
+<indexterm zone="swfdec-player-get-alignment"><primary>swfdec_player_get_alignment</primary></indexterm><programlisting><link linkend="SwfdecAlignment">SwfdecAlignment</link>     swfdec_player_get_alignment         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the alignment of the player. The alignment describes what point is used
+as the anchor for drawing the contents. See <link linkend="SwfdecAlignment"><type>SwfdecAlignment</type></link> for possible 
+values.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the current alignment
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-alignment" role="function">
+<title>swfdec_player_set_alignment ()</title>
+<indexterm zone="swfdec-player-set-alignment"><primary>swfdec_player_set_alignment</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_alignment         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecAlignment">SwfdecAlignment</link> align);</programlisting>
+<para>
+Sets the alignment to <parameter>align</parameter>. For details about alignment, see 
+<link linkend="swfdec-player-get-alignment"><function>swfdec_player_get_alignment()</function></link> and <link linkend="SwfdecAlignment"><type>SwfdecAlignment</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>align</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="SwfdecAlignment"><type>SwfdecAlignment</type></link> to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-scripting" role="function">
+<title>swfdec_player_get_scripting ()</title>
+<indexterm zone="swfdec-player-get-scripting"><primary>swfdec_player_get_scripting</primary></indexterm><programlisting><link linkend="SwfdecPlayerScripting">SwfdecPlayerScripting</link>* swfdec_player_get_scripting      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the current scripting implementation in use. If no implementation is in 
+use (the default), <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the current scripting implementation used or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if none
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-scripting" role="function">
+<title>swfdec_player_set_scripting ()</title>
+<indexterm zone="swfdec-player-set-scripting"><primary>swfdec_player_set_scripting</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_scripting         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecPlayerScripting">SwfdecPlayerScripting</link> *scripting);</programlisting>
+<para>
+Sets the implementation to use for external scripting in the given <parameter>player</parameter>.
+Note that this is different from the internal script engine. See the 
+<link linkend="SwfdecPlayerScripting"><type>SwfdecPlayerScripting</type></link> paragraph for details about external scripting.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scripting</parameter>&nbsp;:</term>
+<listitem><simpara> the scripting implementation to use or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to disable scripting
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-allow-fullscreen" role="function">
+<title>swfdec_player_get_allow_fullscreen ()</title>
+<indexterm zone="swfdec-player-get-allow-fullscreen"><primary>swfdec_player_get_allow_fullscreen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_get_allow_fullscreen  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Checks if the player is allowed to go fullscreen. See 
+<link linkend="swfdec-player-set-allow-fullscreen"><function>swfdec_player_set_allow_fullscreen()</function></link> for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the player
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the player is allowed to go fullscreen
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-allow-fullscreen" role="function">
+<title>swfdec_player_set_allow_fullscreen ()</title>
+<indexterm zone="swfdec-player-set-allow-fullscreen"><primary>swfdec_player_set_allow_fullscreen</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_allow_fullscreen  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gboolean">gboolean</link> allow);</programlisting>
+<para>
+Sets if the player is allowed to go fullscreen. If a player is allowed to go
+fullscreen, it may set the SwfdecPlayer::fullscreen property to <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>. 
+Players are not allowed to go fullscreen by default. Usually applications 
+only want to allow going fullscreen in response to mouse or keyboard events.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the player
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>allow</parameter>&nbsp;:</term>
+<listitem><simpara> if the player should be allowed to go fullscreen
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-fullscreen" role="function">
+<title>swfdec_player_get_fullscreen ()</title>
+<indexterm zone="swfdec-player-get-fullscreen"><primary>swfdec_player_get_fullscreen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_get_fullscreen        (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+CHecks if the player is in fullscreen mode currently. If the player is
+in fullscreen mode, it assumes it occupies the whole screen. A player will
+only ever go into fullscreen, if you have allowed it by calling 
+<link linkend="swfdec-player-set-allow-fullscreen"><function>swfdec_player_set_allow_fullscreen()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the player
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the player is in fullscreen mode currently
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-renderer" role="function">
+<title>swfdec_player_get_renderer ()</title>
+<indexterm zone="swfdec-player-get-renderer"><primary>swfdec_player_get_renderer</primary></indexterm><programlisting><link linkend="SwfdecRenderer">SwfdecRenderer</link>*     swfdec_player_get_renderer          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Gets the current renderer in use. See <link linkend="swfdec-player-set-renderer"><function>swfdec_player_set_renderer()</function></link> for 
+details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a player
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the current <link linkend="SwfdecRenderer"><type>SwfdecRenderer</type></link> in use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-renderer" role="function">
+<title>swfdec_player_set_renderer ()</title>
+<indexterm zone="swfdec-player-set-renderer"><primary>swfdec_player_set_renderer</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_renderer          (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="SwfdecRenderer">SwfdecRenderer</link> *renderer);</programlisting>
+<para>
+Sets the renderer to be used by the <parameter>player</parameter>. Setting the correct renderer is 
+mostly relevant for TextField flash objects with native fonts, as the 
+renderer provides those. It can also be very relevant for performance 
+reasons. See the <link linkend="SwfdecRenderer"><type>SwfdecRenderer</type></link> documentation for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a player
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>renderer</parameter>&nbsp;:</term>
+<listitem><simpara> the renderer to use
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-render" role="function">
+<title>swfdec_player_render ()</title>
+<indexterm zone="swfdec-player-render"><primary>swfdec_player_render</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_render                (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="cairo-t">cairo_t</link> *cr);</programlisting>
+<para>
+Renders the given area of the current frame to <parameter>cr</parameter>. This function just calls 
+<link linkend="swfdec-player-render-with-renderer"><function>swfdec_player_render_with_renderer()</function></link> using the <parameter>player</parameter>'s renderer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cr</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="cairo-t"><type>cairo_t</type></link> to render to
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-render-with-renderer" role="function">
+<title>swfdec_player_render_with_renderer ()</title>
+<indexterm zone="swfdec-player-render-with-renderer"><primary>swfdec_player_render_with_renderer</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_render_with_renderer  (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="cairo-t">cairo_t</link> *cr,
+                                                         <link linkend="SwfdecRenderer">SwfdecRenderer</link> *renderer);</programlisting>
+<para>
+Renders the given area of the current frame to <parameter>cr</parameter>. If you only want to 
+redraw parts of the player, like when responding to a 
+SwfdecPlayer:invalidate signal, set a clip on <parameter>cr</parameter> using <link linkend="cairo-clip"><function>cairo_clip()</function></link>:
+<informalexample><programlisting>
+cairo_rectangle (cr, x, y, width, height);
+cairo_clip (cr);
+swfdec_player_render_with_renderer (player, cr, renderer);
+</programlisting></informalexample>
+Only redrawing parts of the player improves performance considerably.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cr</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="cairo-t"><type>cairo_t</type></link> to render to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>renderer</parameter>&nbsp;:</term>
+<listitem><simpara> Renderer to use for rendering
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-advance" role="function">
+<title>swfdec_player_advance ()</title>
+<indexterm zone="swfdec-player-advance"><primary>swfdec_player_advance</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              swfdec_player_advance               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gulong">gulong</link> msecs);</programlisting>
+<para>
+Advances <parameter>player</parameter> by <parameter>msecs</parameter> or at most one event, whatever happens first in
+the player's timeline. You should make sure to call this function as often 
+as <link linkend="swfdec-player-get-next-event"><function>swfdec_player_get_next_event()</function></link> indicates or your player will not appear 
+smooth.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> to advance
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> number of milliseconds to advance at maximum
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> actual number of milliseconds advanced.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-mouse-move" role="function">
+<title>swfdec_player_mouse_move ()</title>
+<indexterm zone="swfdec-player-mouse-move"><primary>swfdec_player_mouse_move</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_mouse_move            (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y);</programlisting>
+<para>
+Updates the current mouse position. If the mouse has left the area of <parameter>player</parameter>,
+you should pass values outside the movie size for <parameter>x</parameter> and <parameter>y</parameter>. You will 
+probably want to call <link linkend="swfdec-player-advance"><function>swfdec_player_advance()</function></link> before to update the player to
+the correct time when calling this function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> x coordinate of mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> y coordinate of mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the mouse event was handled. <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if the event should be
+    propagated further. A mouse event may not be handled if the user 
+    clicked on a translucent area.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-mouse-press" role="function">
+<title>swfdec_player_mouse_press ()</title>
+<indexterm zone="swfdec-player-mouse-press"><primary>swfdec_player_mouse_press</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_mouse_press           (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="guint">guint</link> button);</programlisting>
+<para>
+Tells the <parameter>player</parameter> that the mouse button <parameter>button</parameter> was pressed at the given
+coordinate.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> x coordinate of mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> y coordinate of mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>button</parameter>&nbsp;:</term>
+<listitem><simpara> number of the button that was pressed. Swfdec supports up to 32
+         buttons.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the mouse event was handled. <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if the event should be
+    propagated further. A mouse event may not be handled if the user 
+    clicked on a translucent area.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-mouse-release" role="function">
+<title>swfdec_player_mouse_release ()</title>
+<indexterm zone="swfdec-player-mouse-release"><primary>swfdec_player_mouse_release</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_mouse_release         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="guint">guint</link> button);</programlisting>
+<para>
+Tells the <parameter>player</parameter> that the mouse button <parameter>button</parameter> was released at the given
+coordinate.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> x coordinate of mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> y coordinate of mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>button</parameter>&nbsp;:</term>
+<listitem><simpara> number of the button that was released. Swfdec supports up to 32
+         buttons.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the mouse event was handled. <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if the event should be
+    propagated further. A mouse event may not be handled if the user 
+    clicked on a translucent area.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-key-press" role="function">
+<title>swfdec_player_key_press ()</title>
+<indexterm zone="swfdec-player-key-press"><primary>swfdec_player_key_press</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_key_press             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="guint">guint</link> keycode,
+                                                         <link linkend="guint">guint</link> character);</programlisting>
+<para>
+Call this function to make the <parameter>player</parameter> react to a key press. A list of 
+defined key codes is defined by <link linkend="SwfdecKey"><type>SwfdecKey</type></link>. You will likely need to 
+translate from your keyboard API to the Flash key codes.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>keycode</parameter>&nbsp;:</term>
+<listitem><simpara> the key that was pressed, must be smaller than 256.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>character</parameter>&nbsp;:</term>
+<listitem><simpara> UCS4 of the character that was inserted or 0 if none
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the key press was handled by the <parameter>player</parameter>, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if it
+         should be propagated further
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-key-release" role="function">
+<title>swfdec_player_key_release ()</title>
+<indexterm zone="swfdec-player-key-release"><primary>swfdec_player_key_release</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_key_release           (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="guint">guint</link> keycode,
+                                                         <link linkend="guint">guint</link> character);</programlisting>
+<para>
+Call this function to make the <parameter>player</parameter> react to a key being released. See
+<link linkend="swfdec-player-key-press"><function>swfdec_player_key_press()</function></link> for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>keycode</parameter>&nbsp;:</term>
+<listitem><simpara> the key that was released
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>character</parameter>&nbsp;:</term>
+<listitem><simpara> UCS4 of the character that was inserted or 0 if none
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the key press was handled by the <parameter>player</parameter>, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if it
+         should be propagated further
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-focus" role="function">
+<title>swfdec_player_get_focus ()</title>
+<indexterm zone="swfdec-player-get-focus"><primary>swfdec_player_get_focus</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_player_get_focus             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Checks if the <parameter>player</parameter> has keyboard focus. See <link linkend="swfdec-player-set-focus"><function>swfdec_player_set_focus()</function></link> for
+details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the player has keyboard focus.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-focus" role="function">
+<title>swfdec_player_set_focus ()</title>
+<indexterm zone="swfdec-player-set-focus"><primary>swfdec_player_set_focus</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_focus             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gboolean">gboolean</link> focus);</programlisting>
+<para>
+Tells the <parameter>player</parameter> whether keyboard focus is inside it. The player will use 
+this information to draw focus indicators around objects. Note that this
+update will not happen immediately, but only the next time you call 
+<link linkend="swfdec-player-advance"><function>swfdec_player_advance()</function></link>. The player is focussed by default. So if you 
+integrate it into a widget system such, you likely want to unset this upon 
+creation of the player.
+<note><para>The player must be focussed to receive keyboard events.</para>
+</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the player
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>focus</parameter>&nbsp;:</term>
+<listitem><simpara> if the player is focussed
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-selection" role="function">
+<title>swfdec_player_get_selection ()</title>
+<indexterm zone="swfdec-player-get-selection"><primary>swfdec_player_get_selection</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_player_get_selection         (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Retrieves the currently selected text of the player. If no text is currently
+selected, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the player
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the currently selected text or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-audio" role="function">
+<title>swfdec_player_get_audio ()</title>
+<indexterm zone="swfdec-player-get-audio"><primary>swfdec_player_get_audio</primary></indexterm><programlisting>const <link linkend="GList">GList</link>*        swfdec_player_get_audio             (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Returns a list of all currently active audio streams in <parameter>player</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="GList"><type>GList</type></link> of <link linkend="SwfdecAudio"><type>SwfdecAudio</type></link>. You must not modify or free this list.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-get-maximum-runtime" role="function">
+<title>swfdec_player_get_maximum_runtime ()</title>
+<indexterm zone="swfdec-player-get-maximum-runtime"><primary>swfdec_player_get_maximum_runtime</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              swfdec_player_get_maximum_runtime   (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Queries the given <parameter>player</parameter> for how long scripts may run. see 
+<link linkend="swfdec-player-set-maximum-runtime"><function>swfdec_player_set_maximum_runtime()</function></link> for a longer discussion of this value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the maximum time in milliseconds that scripts are allowed to run or
+         0 for infinite.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-player-set-maximum-runtime" role="function">
+<title>swfdec_player_set_maximum_runtime ()</title>
+<indexterm zone="swfdec-player-set-maximum-runtime"><primary>swfdec_player_set_maximum_runtime</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_player_set_maximum_runtime   (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                         <link linkend="gulong">gulong</link> msecs);</programlisting>
+<para>
+Sets the time that the player may use to let internal scripts run. If the 
+Flash file that is currently played back does not manage to complete its 
+scripts in the given time, it is aborted. You cannot continue the scripts at
+a later point in time. However, your application may become unresponsive and
+your users annoyed if they cannot interact with it for too long. To give a 
+reference point, the Adobe Flash player usually sets this value to 10 
+seconds. Note that this time determines the maximum time calling 
+<link linkend="swfdec-player-advance"><function>swfdec_player_advance()</function></link> may take, even if it is called with a large value.
+Also note that this setting is ignored when running inside a debugger.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> time in milliseconds that scripts are allowed to run or 0 for 
+        infinite
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecPlayer.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecPlayer--alignment"><title>The <literal>&quot;alignment&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--alignment"><primary>SwfdecPlayer:alignment</primary></indexterm><programlisting>  &quot;alignment&quot;                <link linkend="SwfdecAlignment">SwfdecAlignment</link>       : Read / Write</programlisting>
+<para>point of the screen to align the output to.</para><para>Default value: SWFDEC_ALIGNMENT_CENTER</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--allow-fullscreen"><title>The <literal>&quot;allow-fullscreen&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--allow-fullscreen"><primary>SwfdecPlayer:allow-fullscreen</primary></indexterm><programlisting>  &quot;allow-fullscreen&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>if the player is allowed to change into fullscreen mode.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--background-color"><title>The <literal>&quot;background-color&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--background-color"><primary>SwfdecPlayer:background-color</primary></indexterm><programlisting>  &quot;background-color&quot;         <link linkend="guint">guint</link>                 : Read</programlisting>
+<para>ARGB color used to draw the background.</para><para>Default value: 4294967295</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--base-url"><title>The <literal>&quot;base-url&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--base-url"><primary>SwfdecPlayer:base-url</primary></indexterm><programlisting>  &quot;base-url&quot;                 <link linkend="SwfdecURL">SwfdecURL</link>*            : Read / Write</programlisting>
+<para>base URL for creating new resource or NULL if not set yet.</para></refsect2>
+<refsect2 id="SwfdecPlayer--cache-size"><title>The <literal>&quot;cache-size&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--cache-size"><primary>SwfdecPlayer:cache-size</primary></indexterm><programlisting>  &quot;cache-size&quot;               <link linkend="gulong">gulong</link>                : Read / Write</programlisting>
+<para>maximum cache size in bytes.</para></refsect2>
+<refsect2 id="SwfdecPlayer--default-height"><title>The <literal>&quot;default-height&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--default-height"><primary>SwfdecPlayer:default-height</primary></indexterm><programlisting>  &quot;default-height&quot;           <link linkend="guint">guint</link>                 : Read</programlisting>
+<para>default height of the movie.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--default-width"><title>The <literal>&quot;default-width&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--default-width"><primary>SwfdecPlayer:default-width</primary></indexterm><programlisting>  &quot;default-width&quot;            <link linkend="guint">guint</link>                 : Read</programlisting>
+<para>default width of the movie.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--focus"><title>The <literal>&quot;focus&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--focus"><primary>SwfdecPlayer:focus</primary></indexterm><programlisting>  &quot;focus&quot;                    <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>TRUE if the player has keyboard focus.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--fullscreen"><title>The <literal>&quot;fullscreen&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--fullscreen"><primary>SwfdecPlayer:fullscreen</primary></indexterm><programlisting>  &quot;fullscreen&quot;               <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>if the player is in fullscreen mode.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--height"><title>The <literal>&quot;height&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--height"><primary>SwfdecPlayer:height</primary></indexterm><programlisting>  &quot;height&quot;                   <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>current height of the movie.</para><para>Allowed values: &gt;= -1</para>
+<para>Default value: -1</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--initialized"><title>The <literal>&quot;initialized&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--initialized"><primary>SwfdecPlayer:initialized</primary></indexterm><programlisting>  &quot;initialized&quot;              <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>TRUE when the player has initialized its basic values.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--loader-type"><title>The <literal>&quot;loader-type&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--loader-type"><primary>SwfdecPlayer:loader-type</primary></indexterm><programlisting>  &quot;loader-type&quot;              <link linkend="GType">GType</link>*                : Read / Write / Construct Only</programlisting>
+<para>type to use for creating loaders.</para></refsect2>
+<refsect2 id="SwfdecPlayer--max-runtime"><title>The <literal>&quot;max-runtime&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--max-runtime"><primary>SwfdecPlayer:max-runtime</primary></indexterm><programlisting>  &quot;max-runtime&quot;              <link linkend="gulong">gulong</link>                : Read / Write</programlisting>
+<para>maximum time in msecs scripts may run in the player before aborting.</para></refsect2>
+<refsect2 id="SwfdecPlayer--mouse-cursor"><title>The <literal>&quot;mouse-cursor&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--mouse-cursor"><primary>SwfdecPlayer:mouse-cursor</primary></indexterm><programlisting>  &quot;mouse-cursor&quot;             <link linkend="SwfdecMouseCursor">SwfdecMouseCursor</link>     : Read</programlisting>
+<para>how the mouse pointer should be presented.</para><para>Default value: SWFDEC_MOUSE_CURSOR_NONE</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--next-event"><title>The <literal>&quot;next-event&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--next-event"><primary>SwfdecPlayer:next-event</primary></indexterm><programlisting>  &quot;next-event&quot;               <link linkend="glong">glong</link>                 : Read</programlisting>
+<para>how many milliseconds until the next event or -1 when no event pending.</para><para>Allowed values: &gt;= -1</para>
+<para>Default value: -1</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--rate"><title>The <literal>&quot;rate&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--rate"><primary>SwfdecPlayer:rate</primary></indexterm><programlisting>  &quot;rate&quot;                     <link linkend="gdouble">gdouble</link>               : Read</programlisting>
+<para>rate in frames per second.</para><para>Allowed values: [0,256]</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--renderer"><title>The <literal>&quot;renderer&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--renderer"><primary>SwfdecPlayer:renderer</primary></indexterm><programlisting>  &quot;renderer&quot;                 <link linkend="SwfdecRenderer">SwfdecRenderer</link>*       : Read / Write / Construct</programlisting>
+<para>the renderer used by this player.</para></refsect2>
+<refsect2 id="SwfdecPlayer--scale-mode"><title>The <literal>&quot;scale-mode&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--scale-mode"><primary>SwfdecPlayer:scale-mode</primary></indexterm><programlisting>  &quot;scale-mode&quot;               <link linkend="SwfdecScaleMode">SwfdecScaleMode</link>       : Read / Write</programlisting>
+<para>method used to scale the movie.</para><para>Default value: SWFDEC_SCALE_SHOW_ALL</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--scripting"><title>The <literal>&quot;scripting&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--scripting"><primary>SwfdecPlayer:scripting</primary></indexterm><programlisting>  &quot;scripting&quot;                <link linkend="SwfdecPlayerScripting">SwfdecPlayerScripting</link>*  : Read / Write</programlisting>
+<para>external scripting implementation.</para></refsect2>
+<refsect2 id="SwfdecPlayer--selection"><title>The <literal>&quot;selection&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--selection"><primary>SwfdecPlayer:selection</primary></indexterm><programlisting>  &quot;selection&quot;                <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>currently selected text.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--socket-type"><title>The <literal>&quot;socket-type&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--socket-type"><primary>SwfdecPlayer:socket-type</primary></indexterm><programlisting>  &quot;socket-type&quot;              <link linkend="GType">GType</link>*                : Read / Write / Construct Only</programlisting>
+<para>type to use for creating sockets.</para></refsect2>
+<refsect2 id="SwfdecPlayer--start-time"><title>The <literal>&quot;start-time&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--start-time"><primary>SwfdecPlayer:start-time</primary></indexterm><programlisting>  &quot;start-time&quot;               <link linkend="SwfdecTimeVal">SwfdecTimeVal</link>*        : Write / Construct Only</programlisting>
+<para>time to use as the beginning time for this player.</para></refsect2>
+<refsect2 id="SwfdecPlayer--system"><title>The <literal>&quot;system&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--system"><primary>SwfdecPlayer:system</primary></indexterm><programlisting>  &quot;system&quot;                   <link linkend="SwfdecSystem">SwfdecSystem</link>*         : Read / Write</programlisting>
+<para>object holding system information.</para></refsect2>
+<refsect2 id="SwfdecPlayer--url"><title>The <literal>&quot;url&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--url"><primary>SwfdecPlayer:url</primary></indexterm><programlisting>  &quot;url&quot;                      <link linkend="SwfdecURL">SwfdecURL</link>*            : Read</programlisting>
+<para>URL of resource currently played back or NULL if not set.</para></refsect2>
+<refsect2 id="SwfdecPlayer--variables"><title>The <literal>&quot;variables&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--variables"><primary>SwfdecPlayer:variables</primary></indexterm><programlisting>  &quot;variables&quot;                <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>variables to use when setting the URL.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="SwfdecPlayer--width"><title>The <literal>&quot;width&quot;</literal> property</title>
+<indexterm zone="SwfdecPlayer--width"><primary>SwfdecPlayer:width</primary></indexterm><programlisting>  &quot;width&quot;                    <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>current width of the movie.</para><para>Allowed values: &gt;= -1</para>
+<para>Default value: -1</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="SwfdecPlayer.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="SwfdecPlayer-advance"><title>The <literal>&quot;advance&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-advance"><primary>SwfdecPlayer::advance</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="gulong">gulong</link>        msecs,
+                                                        <link linkend="guint">guint</link>         audio_samples,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)          : Run Last</programlisting>
+<para>
+Emitted whenever the player advances.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> the amount of milliseconds the player will advance
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>audio_samples</parameter>&nbsp;:</term>
+<listitem><simpara> number of frames the audio is advanced (in 44100Hz steps)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-audio-added"><title>The <literal>&quot;audio-added&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-audio-added"><primary>SwfdecPlayer::audio-added</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="SwfdecAudio">SwfdecAudio</link>  *audio,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+Emitted whenever a new audio stream was added to <parameter>player</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>audio</parameter>&nbsp;:</term>
+<listitem><simpara> the audio stream that was added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-audio-removed"><title>The <literal>&quot;audio-removed&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-audio-removed"><primary>SwfdecPlayer::audio-removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="SwfdecAudio">SwfdecAudio</link>  *audio,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+Emitted whenever an audio stream was removed from <parameter>player</parameter>. The stream will 
+have been added with the SwfdecPlayer::audio-added signal previously.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>audio</parameter>&nbsp;:</term>
+<listitem><simpara> the audio stream that was removed
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-fscommand"><title>The <literal>&quot;fscommand&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-fscommand"><primary>SwfdecPlayer::fscommand</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="gchar">gchar</link>        *command,
+                                                        <link linkend="gchar">gchar</link>        *parameter,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+This signal is emited whenever a Flash script command (also known as 
+fscommand) is encountered. This method is ued by the Flash file to
+communicate with the hosting environment. In web browsers it is used to 
+call Javascript functions. Standalone Flash players understand a limited 
+set of functions. They vary from player to player, but the most common are 
+listed here: <itemizedlist>
+<listitem><para>"quit": quits the player.</para></listitem>
+<listitem><para>"fullscreen": A boolean setting (parameter is "true" or 
+"false") that sets the player into fullscreen mode.</para></listitem>
+<listitem><para>"allowscale": A boolean setting that tells the player to
+not scale the Flash application.</para></listitem>
+<listitem><para>"showmenu": A boolean setting that tells the Flash player
+to not show its own entries in the right-click menu.</para></listitem>
+<listitem><para>"exec": Run an external executable. The parameter 
+specifies the path.</para></listitem>
+<listitem><para>"trapallkeys": A boolean setting that tells the Flash 
+player to pass all key events to the Flash application instead of using it
+for keyboard shortcuts or similar.</para></listitem>
+</itemizedlist></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>command</parameter>&nbsp;:</term>
+<listitem><simpara> the command to execute. This is a lower case string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parameter</parameter>&nbsp;:</term>
+<listitem><simpara> parameter to pass to the command. The parameter depends on the 
+            function.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-handle-key"><title>The <literal>&quot;handle-key&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-handle-key"><primary>SwfdecPlayer::handle-key</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="guint">guint</link>         key,
+                                                        <link linkend="guint">guint</link>         pressed,
+                                                        <link linkend="gboolean">gboolean</link>      Returns,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted whenever <parameter>player</parameter> should respond to a key event. If
+any of the handlers returns TRUE, <link linkend="swfdec-player-key-press"><function>swfdec_player_key_press()</function></link> or 
+<link linkend="swfdec-player-key-release"><function>swfdec_player_key_release()</function></link> will return TRUE. Note that unlike many event 
+handlers in gtk, returning TRUE will not stop further event handlers from 
+being invoked. Use <link linkend="g-signal-stop-emission"><function>g_signal_stop_emission()</function></link> in that case.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="SwfdecKey"><type>SwfdecKey</type></link> that was pressed or released
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pressed</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the <parameter>key</parameter> was pressed or <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if it was released
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if this handler handles the event. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-handle-mouse"><title>The <literal>&quot;handle-mouse&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-handle-mouse"><primary>SwfdecPlayer::handle-mouse</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="gdouble">gdouble</link>       x,
+                                                        <link linkend="gdouble">gdouble</link>       y,
+                                                        <link linkend="gint">gint</link>          button,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted whenever <parameter>player</parameter> should respond to a mouse event. If
+any of the handlers returns TRUE, <link linkend="swfdec-player-handle-mouse"><function>swfdec_player_handle_mouse()</function></link> will return 
+TRUE. Note that unlike many event handlers in gtk, returning TRUE will not 
+stop further event handlers from being invoked. Use <link linkend="g-signal-stop-emission"><function>g_signal_stop_emission()</function></link>
+in that case.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> new x coordinate of the mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> new y coordinate of the mouse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>button</parameter>&nbsp;:</term>
+<listitem><simpara> 0 for a mouse move, a positive number if a button was pressed,
+         a negative number if a button was released
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if this handler handles the event. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-invalidate"><title>The <literal>&quot;invalidate&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-invalidate"><primary>SwfdecPlayer::invalidate</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="gpointer">gpointer</link>      rectangles,
+                                                        <link linkend="guint">guint</link>         n_rectangles,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)         : Run Last</programlisting>
+<para>
+This signal is emitted whenever graphical elements inside the player have 
+changed. It provides two ways to look at the changes: By looking at the
+<parameter>extents</parameter> parameter, it provides a simple way to get a single rectangle that
+encloses all changes. By looking at the <parameter>rectangles</parameter> array, you can get
+finer control over changes which is very useful if your rendering system 
+provides a way to handle regions.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rectangles</parameter>&nbsp;:</term>
+<listitem><simpara> a number of smaller rectangles for fine-grained control over 
+             changes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_rectangles</parameter>&nbsp;:</term>
+<listitem><simpara> number of rectangles in <parameter>rectangles</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-launch"><title>The <literal>&quot;launch&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-launch"><primary>SwfdecPlayer::launch</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="gchar">gchar</link>        *url,
+                                                        <link linkend="gchar">gchar</link>        *target,
+                                                        <link linkend="SwfdecBuffer">SwfdecBuffer</link> *data,
+                                                        <link linkend="guint">guint</link>         header_count,
+                                                        <link linkend="GStrv">GStrv</link>        *header_names,
+                                                        <link linkend="GStrv">GStrv</link>        *header_values,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)          : Run Last</programlisting>
+<para>
+Emitted whenever the <parameter>player</parameter> encounters an URL that should be loaded into 
+a target the Flash player does not recognize. In most cases this happens 
+when the user clicks a link in an embedded Flash movie that should open a
+new web page.
+The effect of calling any swfdec functions on the emitting <parameter>player</parameter> is undefined.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>url</parameter>&nbsp;:</term>
+<listitem><simpara> URL to open
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>target</parameter>&nbsp;:</term>
+<listitem><simpara> target to load the URL into
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> optional data to pass on with the request. Can be <link linkend="NULL:CAPS"><literal>NULL</literal></link> indicating
+       no data should be passed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>header_count</parameter>&nbsp;:</term>
+<listitem><simpara> number of custom HTTP headers to be sent
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>header_names</parameter>&nbsp;:</term>
+<listitem><simpara> names of the custom HTTP headers. <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>header_values</parameter>&nbsp;:</term>
+<listitem><simpara> values of the custom HTTP headers. <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-missing-plugins"><title>The <literal>&quot;missing-plugins&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-missing-plugins"><primary>SwfdecPlayer::missing-plugins</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="GStrv">GStrv</link>        *details,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+Emitted whenever a plugin is detected that GStreamer cannot currently 
+handle because it is missing plugins to do so. You should use 
+<link linkend="gst-install-plugins-async"><function>gst_install_plugins_async()</function></link> to install those plugins.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> missing plugins
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>details</parameter>&nbsp;:</term>
+<listitem><simpara> the details strings for all missing plugins
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecPlayer-query-size"><title>The <literal>&quot;query-size&quot;</literal> signal</title>
+<indexterm zone="SwfdecPlayer-query-size"><primary>SwfdecPlayer::query-size</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player,
+                                                        <link linkend="gboolean">gboolean</link>      fullscreen,
+                                                        <link linkend="gpointer">gpointer</link>      width,
+                                                        <link linkend="gpointer">gpointer</link>      height,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)       : Run Last</programlisting>
+<para>
+This signals is emitted whenever the player is (un)fullscreened. In this 
+case it requests the new size the Flash file will be displayed in 
+immediately. If you want to provide values, connect to this signal. The
+values don't have to be exact, you can still call <link linkend="swfdec-player-set-size"><function>swfdec_player_set_size()</function></link>
+later on. However, it will look visually nicer if your values here are 
+correct. By default, the screen resolution values will be used for 
+fullscreen and the default size will be used otherwise.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> that resizes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fullscreen</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the player queries the fullscreen size, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> for 
+             the default size
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an integer that takes the width to use
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an integer that takes the height to use
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if this handler properly sets <parameter>width</parameter> and <parameter>height</parameter> and no 
+         other handlers should be invoked.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

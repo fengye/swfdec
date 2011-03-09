@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Version Information</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch02.html" title="Swfdec library">
+<link rel="prev" href="SwfdecAudio.html" title="SwfdecAudio">
+<link rel="next" href="ch03.html" title="extending SwfdecPlayer">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecAudio.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="ch03.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-Version-Information.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-Version-Information.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-Version-Information"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-Version-Information.top_of_page"></a>Version Information</span></h2>
+<p>Version Information — Compile-time and run-time version checks</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-Version-Information.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+#define             <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-MAJOR:CAPS" title="SWFDEC_VERSION_MAJOR">SWFDEC_VERSION_MAJOR</a>
+#define             <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-MICRO:CAPS" title="SWFDEC_VERSION_MICRO">SWFDEC_VERSION_MICRO</a>
+#define             <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-MINOR:CAPS" title="SWFDEC_VERSION_MINOR">SWFDEC_VERSION_MINOR</a>
+#define             <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-ENCODE:CAPS" title="SWFDEC_VERSION_ENCODE()">SWFDEC_VERSION_ENCODE</a>               (major, minor, micro)
+#define             <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION:CAPS" title="SWFDEC_VERSION">SWFDEC_VERSION</a>
+#define             <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-STRING:CAPS" title="SWFDEC_VERSION_STRING">SWFDEC_VERSION_STRING</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="swfdec-Version-Information.html#swfdec-version" title="swfdec_version ()">swfdec_version</a>                      (void);
+const char*         <a class="link" href="swfdec-Version-Information.html#swfdec-version-string" title="swfdec_version_string ()">swfdec_version_string</a>               (void);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Version-Information.description"></a><h2>Description</h2>
+<p>
+Swfdec has a three-part version number scheme. In this scheme, we use
+even vs. odd numbers to distinguish fixed points in the software vs. 
+in-progress development, (such as from git instead of a tar file, or as a 
+"snapshot" tar file as opposed to a "release" tar file).
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+ _____ Major. Always 1, until we invent a new scheme.
+/  ___ Minor. Even/Odd = Release/Snapshot (tar files) or Branch/Head (git)
+| /  _ Micro. Even/Odd = Tar-file/git
+| | /
+1.0.0
+</pre></div>
+<p>
+</p>
+<p>
+Here are a few examples of versions that one might see.
+</p>
+<div class="informalexample"><pre class="programlisting">
+Releases
+--------
+ 1.0.0 - A major release
+ 1.0.2 - A subsequent maintenance release
+ 1.2.0 - Another major release
+
+Snapshots
+---------
+ 1.1.2 - A snapshot (working toward the 1.2.0 release)
+
+In-progress development (eg. from git)
+--------------------------------------
+ 1.0.1 - Development on a maintenance branch (toward 1.0.2 release)
+ 1.1.1 - Development on head (toward 1.1.2 snapshot and 1.2.0 release)
+ </pre></div>
+<p>
+</p>
+<p>
+</p>
+<div class="refsect2" lang="en">
+<a name="id2995139"></a><h3>Examining the version</h3>
+<p>
+Swfdec provides the ability to examine the version at either 
+compile-time or run-time and in both a human-readable form as well as an 
+encoded form suitable for direct comparison. Swfdec also provides the macro 
+<a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-ENCODE:CAPS" title="SWFDEC_VERSION_ENCODE()"><code class="function">SWFDEC_VERSION_ENCODE()</code></a> to perform the encoding.
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+Compile-time
+------------
+ SWFDEC_VERSION_STRING	Human-readable
+ SWFDEC_VERSION		Encoded, suitable for comparison
+
+Run-time
+--------
+ swfdec_version_string()	Human-readable
+ swfdec_version()		Encoded, suitable for comparison
+</pre></div>
+<p>
+ 
+For example, checking that the Swfdec version is greater than or equal
+to 1.0.0 could be achieved at compile-time or run-time as follows:
+</p>
+<div class="informalexample"><pre class="programlisting">
+#if CAIRO_VERSION &gt;= CAIRO_VERSION_ENCODE(1, 0, 0)
+printf ("Compiling with suitable cairo version: %s\n", %CAIRO_VERSION_STRING);
+#endif
+
+if (cairo_version() &gt;= CAIRO_VERSION_ENCODE(1, 0, 0))
+  printf ("Running with suitable cairo version: %s\n", cairo_version_string ());
+</pre></div>
+<p>
+</p>
+</div>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Version-Information.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-VERSION-MAJOR:CAPS"></a><h3>SWFDEC_VERSION_MAJOR</h3>
+<pre class="programlisting">#define             SWFDEC_VERSION_MAJOR</pre>
+<p>
+The major component of the version of Swfdec available at compile-time.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-VERSION-MICRO:CAPS"></a><h3>SWFDEC_VERSION_MICRO</h3>
+<pre class="programlisting">#define             SWFDEC_VERSION_MICRO</pre>
+<p>
+The micro component of the version of Swfdec available at compile-time.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-VERSION-MINOR:CAPS"></a><h3>SWFDEC_VERSION_MINOR</h3>
+<pre class="programlisting">#define             SWFDEC_VERSION_MINOR</pre>
+<p>
+The minor component of the version of Swfdec available at compile-time.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-VERSION-ENCODE:CAPS"></a><h3>SWFDEC_VERSION_ENCODE()</h3>
+<pre class="programlisting">#define             SWFDEC_VERSION_ENCODE(major, minor, micro)</pre>
+<p>
+This macro encodes the given Swfdec version into an integer. The numbers 
+returned by <em class="parameter"><code>SWFDEC_VERSION</code></em> and <a class="link" href="swfdec-Version-Information.html#swfdec-version" title="swfdec_version ()"><code class="function">swfdec_version()</code></a> are encoded using this 
+macro. Two encoded version numbers can be compared as integers. The 
+encoding ensures that later versions compare greater than earlier versions.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>major</code></em> :</span></p></td>
+<td> the major component of the version number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>minor</code></em> :</span></p></td>
+<td> the minor component of the version number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>micro</code></em> :</span></p></td>
+<td> the micro component of the version number 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-VERSION:CAPS"></a><h3>SWFDEC_VERSION</h3>
+<pre class="programlisting">#define             SWFDEC_VERSION</pre>
+<p>
+The version of Swfdec available at compile-time, encoded using 
+<a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-ENCODE:CAPS" title="SWFDEC_VERSION_ENCODE()"><code class="function">SWFDEC_VERSION_ENCODE()</code></a>.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-VERSION-STRING:CAPS"></a><h3>SWFDEC_VERSION_STRING</h3>
+<pre class="programlisting">#define             SWFDEC_VERSION_STRING</pre>
+<p>
+A human-readable string literal containing the version of Swfdec available 
+at compile-time, in the form of "X.Y.Z".</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-version"></a><h3>swfdec_version ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               swfdec_version                      (void);</pre>
+<p>
+Returns the version of the Swfdec library encoded in a single
+integer as per <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-ENCODE:CAPS" title="SWFDEC_VERSION_ENCODE()"><code class="literal">SWFDEC_VERSION_ENCODE</code></a>. The encoding ensures that
+later versions compare greater than earlier versions.
+</p>
+<p>
+A run-time comparison to check that Swfdec's version is greater than
+or equal to version X.Y.Z could be performed as follows:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+if (swfdec_version() &gt;= CAIRO_VERSION_ENCODE(X,Y,Z)) {...}
+</pre></div>
+<p>
+</p>
+<p>
+See also <a class="link" href="swfdec-Version-Information.html#swfdec-version-string" title="swfdec_version_string ()"><code class="function">swfdec_version_string()</code></a> as well as the compile-time
+equivalents <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION:CAPS" title="SWFDEC_VERSION"><code class="literal">SWFDEC_VERSION</code></a> and <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-STRING:CAPS" title="SWFDEC_VERSION_STRING"><code class="literal">SWFDEC_VERSION_STRING</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the encoded version.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-version-string"></a><h3>swfdec_version_string ()</h3>
+<pre class="programlisting">const char*         swfdec_version_string               (void);</pre>
+<p>
+Returns the version of the Swfdec library as a human-readable string
+of the form "X.Y.Z".
+</p>
+<p>
+See also <a class="link" href="swfdec-Version-Information.html#swfdec-version" title="swfdec_version ()"><code class="function">swfdec_version()</code></a> as well as the compile-time equivalents
+<a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION-STRING:CAPS" title="SWFDEC_VERSION_STRING"><code class="literal">SWFDEC_VERSION_STRING</code></a> and <a class="link" href="swfdec-Version-Information.html#SWFDEC-VERSION:CAPS" title="SWFDEC_VERSION"><code class="literal">SWFDEC_VERSION</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a string containing the version.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

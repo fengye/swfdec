@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-Version-Information">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-Version-Information.top_of_page">Version Information</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Version Information</refname>
+<refpurpose>Compile-time and run-time version checks</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-Version-Information.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+#define             <link linkend="SWFDEC-VERSION-MAJOR:CAPS">SWFDEC_VERSION_MAJOR</link>
+#define             <link linkend="SWFDEC-VERSION-MICRO:CAPS">SWFDEC_VERSION_MICRO</link>
+#define             <link linkend="SWFDEC-VERSION-MINOR:CAPS">SWFDEC_VERSION_MINOR</link>
+#define             <link linkend="SWFDEC-VERSION-ENCODE:CAPS">SWFDEC_VERSION_ENCODE</link>               (major, minor, micro)
+#define             <link linkend="SWFDEC-VERSION:CAPS">SWFDEC_VERSION</link>
+#define             <link linkend="SWFDEC-VERSION-STRING:CAPS">SWFDEC_VERSION_STRING</link>
+<link linkend="guint">guint</link>               <link linkend="swfdec-version">swfdec_version</link>                      (void);
+const <link linkend="char">char</link>*         <link linkend="swfdec-version-string">swfdec_version_string</link>               (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-Version-Information.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Swfdec has a three-part version number scheme. In this scheme, we use
+even vs. odd numbers to distinguish fixed points in the software vs. 
+in-progress development, (such as from git instead of a tar file, or as a 
+"snapshot" tar file as opposed to a "release" tar file).
+</para>
+<para>
+<informalexample><programlisting>
+ _____ Major. Always 1, until we invent a new scheme.
+/  ___ Minor. Even/Odd = Release/Snapshot (tar files) or Branch/Head (git)
+| /  _ Micro. Even/Odd = Tar-file/git
+| | /
+1.0.0
+</programlisting></informalexample>
+</para>
+<para>
+Here are a few examples of versions that one might see.
+<informalexample><programlisting>
+Releases
+--------
+ 1.0.0 - A major release
+ 1.0.2 - A subsequent maintenance release
+ 1.2.0 - Another major release
+
+Snapshots
+---------
+ 1.1.2 - A snapshot (working toward the 1.2.0 release)
+
+In-progress development (eg. from git)
+--------------------------------------
+ 1.0.1 - Development on a maintenance branch (toward 1.0.2 release)
+ 1.1.1 - Development on head (toward 1.1.2 snapshot and 1.2.0 release)
+ </programlisting></informalexample>
+</para>
+<para>
+<refsect2><title>Examining the version</title><para>
+Swfdec provides the ability to examine the version at either 
+compile-time or run-time and in both a human-readable form as well as an 
+encoded form suitable for direct comparison. Swfdec also provides the macro 
+<link linkend="SWFDEC-VERSION-ENCODE:CAPS"><function>SWFDEC_VERSION_ENCODE()</function></link> to perform the encoding.
+</para>
+<para>
+<informalexample><programlisting>
+Compile-time
+------------
+ SWFDEC_VERSION_STRING	Human-readable
+ SWFDEC_VERSION		Encoded, suitable for comparison
+
+Run-time
+--------
+ swfdec_version_string()	Human-readable
+ swfdec_version()		Encoded, suitable for comparison
+</programlisting></informalexample>
+ 
+For example, checking that the Swfdec version is greater than or equal
+to 1.0.0 could be achieved at compile-time or run-time as follows:
+<informalexample><programlisting>
+#if CAIRO_VERSION &gt;= CAIRO_VERSION_ENCODE(1, 0, 0)
+printf ("Compiling with suitable cairo version: %s\n", %CAIRO_VERSION_STRING);
+#endif
+
+if (cairo_version() &gt;= CAIRO_VERSION_ENCODE(1, 0, 0))
+  printf ("Running with suitable cairo version: %s\n", cairo_version_string ());
+</programlisting></informalexample>
+</para></refsect2></para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-Version-Information.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SWFDEC-VERSION-MAJOR:CAPS" role="macro">
+<title>SWFDEC_VERSION_MAJOR</title>
+<indexterm zone="SWFDEC-VERSION-MAJOR:CAPS"><primary>SWFDEC_VERSION_MAJOR</primary></indexterm><programlisting>#define             SWFDEC_VERSION_MAJOR</programlisting>
+<para>
+The major component of the version of Swfdec available at compile-time.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SWFDEC-VERSION-MICRO:CAPS" role="macro">
+<title>SWFDEC_VERSION_MICRO</title>
+<indexterm zone="SWFDEC-VERSION-MICRO:CAPS"><primary>SWFDEC_VERSION_MICRO</primary></indexterm><programlisting>#define             SWFDEC_VERSION_MICRO</programlisting>
+<para>
+The micro component of the version of Swfdec available at compile-time.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SWFDEC-VERSION-MINOR:CAPS" role="macro">
+<title>SWFDEC_VERSION_MINOR</title>
+<indexterm zone="SWFDEC-VERSION-MINOR:CAPS"><primary>SWFDEC_VERSION_MINOR</primary></indexterm><programlisting>#define             SWFDEC_VERSION_MINOR</programlisting>
+<para>
+The minor component of the version of Swfdec available at compile-time.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SWFDEC-VERSION-ENCODE:CAPS" role="macro">
+<title>SWFDEC_VERSION_ENCODE()</title>
+<indexterm zone="SWFDEC-VERSION-ENCODE:CAPS"><primary>SWFDEC_VERSION_ENCODE</primary></indexterm><programlisting>#define             SWFDEC_VERSION_ENCODE(major, minor, micro)</programlisting>
+<para>
+This macro encodes the given Swfdec version into an integer. The numbers 
+returned by <parameter>SWFDEC_VERSION</parameter> and <link linkend="swfdec-version"><function>swfdec_version()</function></link> are encoded using this 
+macro. Two encoded version numbers can be compared as integers. The 
+encoding ensures that later versions compare greater than earlier versions.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>major</parameter>&nbsp;:</term>
+<listitem><simpara> the major component of the version number
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>minor</parameter>&nbsp;:</term>
+<listitem><simpara> the minor component of the version number
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>micro</parameter>&nbsp;:</term>
+<listitem><simpara> the micro component of the version number 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-VERSION:CAPS" role="macro">
+<title>SWFDEC_VERSION</title>
+<indexterm zone="SWFDEC-VERSION:CAPS"><primary>SWFDEC_VERSION</primary></indexterm><programlisting>#define             SWFDEC_VERSION</programlisting>
+<para>
+The version of Swfdec available at compile-time, encoded using 
+<link linkend="SWFDEC-VERSION-ENCODE:CAPS"><function>SWFDEC_VERSION_ENCODE()</function></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SWFDEC-VERSION-STRING:CAPS" role="macro">
+<title>SWFDEC_VERSION_STRING</title>
+<indexterm zone="SWFDEC-VERSION-STRING:CAPS"><primary>SWFDEC_VERSION_STRING</primary></indexterm><programlisting>#define             SWFDEC_VERSION_STRING</programlisting>
+<para>
+A human-readable string literal containing the version of Swfdec available 
+at compile-time, in the form of "X.Y.Z".</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-version" role="function">
+<title>swfdec_version ()</title>
+<indexterm zone="swfdec-version"><primary>swfdec_version</primary></indexterm><programlisting><link linkend="guint">guint</link>               swfdec_version                      (void);</programlisting>
+<para>
+Returns the version of the Swfdec library encoded in a single
+integer as per <link linkend="SWFDEC-VERSION-ENCODE:CAPS"><literal>SWFDEC_VERSION_ENCODE</literal></link>. The encoding ensures that
+later versions compare greater than earlier versions.
+</para>
+<para>
+A run-time comparison to check that Swfdec's version is greater than
+or equal to version X.Y.Z could be performed as follows:
+</para>
+<para>
+<informalexample><programlisting>
+if (swfdec_version() &gt;= CAIRO_VERSION_ENCODE(X,Y,Z)) {...}
+</programlisting></informalexample>
+</para>
+<para>
+See also <link linkend="swfdec-version-string"><function>swfdec_version_string()</function></link> as well as the compile-time
+equivalents <link linkend="SWFDEC-VERSION:CAPS"><literal>SWFDEC_VERSION</literal></link> and <link linkend="SWFDEC-VERSION-STRING:CAPS"><literal>SWFDEC_VERSION_STRING</literal></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the encoded version.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-version-string" role="function">
+<title>swfdec_version_string ()</title>
+<indexterm zone="swfdec-version-string"><primary>swfdec_version_string</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_version_string               (void);</programlisting>
+<para>
+Returns the version of the Swfdec library as a human-readable string
+of the form "X.Y.Z".
+</para>
+<para>
+See also <link linkend="swfdec-version"><function>swfdec_version()</function></link> as well as the compile-time equivalents
+<link linkend="SWFDEC-VERSION-STRING:CAPS"><literal>SWFDEC_VERSION_STRING</literal></link> and <link linkend="SWFDEC-VERSION:CAPS"><literal>SWFDEC_VERSION</literal></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a string containing the version.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

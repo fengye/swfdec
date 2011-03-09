@@ -1,0 +1,722 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecAsObject">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecAsObject.top_of_page">SwfdecAsObject</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecAsObject</refname>
+<refpurpose>the base object type for scriptable objects</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecAsObject.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecAsObject-struct">SwfdecAsObject</link>;
+<link linkend="SwfdecAsObject">SwfdecAsObject</link>*     <link linkend="swfdec-as-object-new">swfdec_as_object_new</link>                (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+<link linkend="SwfdecAsObject">SwfdecAsObject</link>*     <link linkend="swfdec-as-object-new-empty">swfdec_as_object_new_empty</link>          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-create">swfdec_as_object_create</link>             (<link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *fun,
+                                                         <link linkend="guint">guint</link> n_args,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *args,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-set-constructor">swfdec_as_object_set_constructor</link>    (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *construct);
+enum                <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link>;
+#define             <link linkend="swfdec-as-object-get-variable">swfdec_as_object_get_variable</link>       (object, variable, value)
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-object-get-variable-and-flags">swfdec_as_object_get_variable_and_flags</link>
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="guint">guint</link> *flags,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> **pobject);
+#define             <link linkend="swfdec-as-object-set-variable">swfdec_as_object_set_variable</link>       (object, variable, value)
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-set-variable-and-flags">swfdec_as_object_set_variable_and_flags</link>
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="guint">guint</link> default_flags);
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-add-variable">swfdec_as_object_add_variable</link>       (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *get,
+                                                         <link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *set,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> default_flags);
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-set-variable-flags">swfdec_as_object_set_variable_flags</link> (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-unset-variable-flags">swfdec_as_object_unset_variable_flags</link>
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);
+<link linkend="SwfdecAsObject">SwfdecAsObject</link>*     <link linkend="swfdec-as-object-has-variable">swfdec_as_object_has_variable</link>       (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable);
+<link linkend="SwfdecAsDeleteReturn">SwfdecAsDeleteReturn</link> <link linkend="swfdec-as-object-delete-variable">swfdec_as_object_delete_variable</link>   (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable);
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-delete-all-variables">swfdec_as_object_delete_all_variables</link>
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object);
+<link linkend="gboolean">gboolean</link>            (<link linkend="SwfdecAsVariableForeach">*SwfdecAsVariableForeach</link>)          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="guint">guint</link> flags,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-object-foreach">swfdec_as_object_foreach</link>            (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="SwfdecAsVariableForeach">SwfdecAsVariableForeach</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="void">void</link>                <link linkend="swfdec-as-object-run">swfdec_as_object_run</link>                (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="SwfdecScript">SwfdecScript</link> *script);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-object-call">swfdec_as_object_call</link>               (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);
+<link linkend="SwfdecAsFunction">SwfdecAsFunction</link>*   <link linkend="swfdec-as-object-add-function">swfdec_as_object_add_function</link>       (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="SwfdecAsNative">SwfdecAsNative</link> native);
+<link linkend="SwfdecAsFunction">SwfdecAsFunction</link>*   <link linkend="swfdec-as-object-add-constructor">swfdec_as_object_add_constructor</link>    (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="GType">GType</link> construct_type,
+                                                         <link linkend="SwfdecAsNative">SwfdecAsNative</link> native,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *prototype);
+<link linkend="char">char</link>*               <link linkend="swfdec-as-object-get-debug">swfdec_as_object_get_debug</link>          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object);
+<link linkend="SwfdecAsObject">SwfdecAsObject</link>*     <link linkend="swfdec-as-object-resolve">swfdec_as_object_resolve</link>            (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecAsObject.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecGcObject">SwfdecGcObject</link>
+         +----SwfdecAsObject
+               +----<link linkend="SwfdecAsArray">SwfdecAsArray</link>
+               +----<link linkend="SwfdecAsFunction">SwfdecAsFunction</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="SwfdecAsObject.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This is the basic object type in Swfdec. Every object used by the script 
+engine must be a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>. It handles memory management and assigning
+variables to it. Almost all functions that are called on objects require that
+the objects have been added to the garbage collector previously. For 
+custom-created objects, you need to do this using <link linkend="swfdec-as-object-add"><function>swfdec_as_object_add()</function></link>, 
+built-in functions that create objects do this manually.
+</para>
+<para>
+Note that you cannot know the lifetime of a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>, since scripts 
+may assign it as a variable to other objects. So you should not assume to 
+know when an object gets removed.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecAsObject.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecAsObject-struct" role="struct">
+<title>SwfdecAsObject</title>
+<indexterm zone="SwfdecAsObject-struct"><primary>SwfdecAsObject</primary></indexterm><programlisting>typedef struct _SwfdecAsObject SwfdecAsObject;</programlisting>
+<para>
+Every object value inside the Swfdec script engine must be a SwfdecAsObject.
+If you want to add custom objects to your script engine, you need to create a
+subclass. The class provides a number of virtual functions that you can 
+override to achieve the desired behaviour.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-as-object-new" role="function">
+<title>swfdec_as_object_new ()</title>
+<indexterm zone="swfdec-as-object-new"><primary>swfdec_as_object_new</primary></indexterm><programlisting><link linkend="SwfdecAsObject">SwfdecAsObject</link>*     swfdec_as_object_new                (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Allocates a new Object. This does the same as the Actionscript code 
+"new <link linkend="Object"><function>Object()</function></link>".</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-new-empty" role="function">
+<title>swfdec_as_object_new_empty ()</title>
+<indexterm zone="swfdec-as-object-new-empty"><primary>swfdec_as_object_new_empty</primary></indexterm><programlisting><link linkend="SwfdecAsObject">SwfdecAsObject</link>*     swfdec_as_object_new_empty          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context);</programlisting>
+<para>
+Creates an empty object. The prototype and constructor properties of the
+returned object will not be set. You probably want to call 
+<link linkend="swfdec-as-object-set-constructor"><function>swfdec_as_object_set_constructor()</function></link> on the returned object yourself.
+You may want to use <link linkend="swfdec-as-object-new"><function>swfdec_as_object_new()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link> added to <parameter>context</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-create" role="function">
+<title>swfdec_as_object_create ()</title>
+<indexterm zone="swfdec-as-object-create"><primary>swfdec_as_object_create</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_create             (<link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *fun,
+                                                         <link linkend="guint">guint</link> n_args,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *args,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);</programlisting>
+<para>
+Creates a new object for the given constructor and runs the constructor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>fun</parameter>&nbsp;:</term>
+<listitem><simpara> constructor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_args</parameter>&nbsp;:</term>
+<listitem><simpara> number of arguments
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> arguments to pass to constructor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>return_value</parameter>&nbsp;:</term>
+<listitem><simpara> pointer for return value or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to push the return value to 
+               the stack
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-set-constructor" role="function">
+<title>swfdec_as_object_set_constructor ()</title>
+<indexterm zone="swfdec-as-object-set-constructor"><primary>swfdec_as_object_set_constructor</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_set_constructor    (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *construct);</programlisting>
+<para>
+Sets the constructor variables for <parameter>object</parameter>. Most objects get these 
+variables set automatically, but for objects you created yourself, you want
+to call this function. This is essentially the same as the following script
+code:
+<informalexample><programlisting> object.constructor = construct;
+object.__proto__ = construct.prototype; </programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>construct</parameter>&nbsp;:</term>
+<listitem><simpara> the constructor of <parameter>object</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecAsVariableFlag" role="enum">
+<title>enum SwfdecAsVariableFlag</title>
+<indexterm zone="SwfdecAsVariableFlag"><primary>SwfdecAsVariableFlag</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_AS_VARIABLE_HIDDEN = (1 &lt;&lt; 0),
+  SWFDEC_AS_VARIABLE_PERMANENT = (1 &lt;&lt; 1),
+  SWFDEC_AS_VARIABLE_CONSTANT = (1 &lt;&lt; 2),
+
+  SWFDEC_AS_VARIABLE_VERSION_6_UP = (1 &lt;&lt; 7),
+  SWFDEC_AS_VARIABLE_VERSION_NOT_6 = (1 &lt;&lt; 8),
+  SWFDEC_AS_VARIABLE_VERSION_7_UP = (1 &lt;&lt; 10),
+  SWFDEC_AS_VARIABLE_VERSION_8_UP = (1 &lt;&lt; 12),
+  SWFDEC_AS_VARIABLE_VERSION_9_UP = (1 &lt;&lt; 13),
+} SwfdecAsVariableFlag;
+</programlisting>
+<para>
+These flags are used to describe various properties of a variable inside
+Swfdec. You can manually set them with <link linkend="swfdec-as-object-set-variable-flags"><function>swfdec_as_object_set_variable_flags()</function></link>.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-AS-VARIABLE-HIDDEN:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_HIDDEN</literal></term>
+<listitem><simpara> Do not include variable in enumerations and
+                               <link linkend="swfdec-as-object-foreach"><function>swfdec_as_object_foreach()</function></link>.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-VARIABLE-PERMANENT:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_PERMANENT</literal></term>
+<listitem><simpara> Do not allow <link linkend="swfdec-as-object-delete-variable"><function>swfdec_as_object_delete_variable()</function></link>
+                               to delete this variable.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-VARIABLE-CONSTANT:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_CONSTANT</literal></term>
+<listitem><simpara> Do not allow changing the value with
+                              <link linkend="swfdec-as-object-set-variable"><function>swfdec_as_object_set_variable()</function></link>.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-VARIABLE-VERSION-6-UP:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_VERSION_6_UP</literal></term>
+<listitem><simpara> This symbol is only visible in version 6 
+                                  and above.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-VARIABLE-VERSION-NOT-6:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_VERSION_NOT_6</literal></term>
+<listitem><simpara> This symbols is visible in all versions 
+                                   but version 6.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-VARIABLE-VERSION-7-UP:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_VERSION_7_UP</literal></term>
+<listitem><simpara> This symbol is only visible in version 7 
+                                  and above.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-VARIABLE-VERSION-8-UP:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_VERSION_8_UP</literal></term>
+<listitem><simpara> This symbol is only visible in version 8 
+                                  and above.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-VARIABLE-VERSION-9-UP:CAPS" role="constant">
+<term><literal>SWFDEC_AS_VARIABLE_VERSION_9_UP</literal></term>
+<listitem><simpara> This symbol is only visible in version 9 
+                                  and above.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-get-variable" role="macro">
+<title>swfdec_as_object_get_variable()</title>
+<indexterm zone="swfdec-as-object-get-variable"><primary>swfdec_as_object_get_variable</primary></indexterm><programlisting>#define             swfdec_as_object_get_variable(object, variable, value)</programlisting>
+<para>
+Gets the value of the given <parameter>variable</parameter> on <parameter>object</parameter>. It walks the prototype 
+chain. This is a shortcut macro for 
+<link linkend="swfdec-as-object-get-variable-and-flags"><function>swfdec_as_object_get_variable_and_flags()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> a garbage-collected string containing the name of the variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> that takes the return value or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-get-variable-and-flags" role="function">
+<title>swfdec_as_object_get_variable_and_flags ()</title>
+<indexterm zone="swfdec-as-object-get-variable-and-flags"><primary>swfdec_as_object_get_variable_and_flags</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_object_get_variable_and_flags
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="guint">guint</link> *flags,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> **pobject);</programlisting>
+<para>
+Looks up <parameter>variable</parameter> on <parameter>object</parameter>. It also walks the object's prototype chain.
+If the variable exists, its value, flags and the real object containing the
+variable will be set and <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> will be returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> a garbage-collected string containing the name of the variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> that takes the return value or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to a guint taking the variable's flags or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pobject</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to set to the object that really holds the property or 
+          <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the variable exists, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-set-variable" role="macro">
+<title>swfdec_as_object_set_variable()</title>
+<indexterm zone="swfdec-as-object-set-variable"><primary>swfdec_as_object_set_variable</primary></indexterm><programlisting>#define             swfdec_as_object_set_variable(object, variable, value)</programlisting>
+<para>
+Sets a variable on <parameter>object</parameter>. It is not guaranteed that getting the variable
+after setting it results in the same value. This is a mcaro that calls 
+<link linkend="swfdec-as-object-set-variable-and-flags"><function>swfdec_as_object_set_variable_and_flags()</function></link></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected name of the variable to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to set the variable to
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-set-variable-and-flags" role="function">
+<title>swfdec_as_object_set_variable_and_flags ()</title>
+<indexterm zone="swfdec-as-object-set-variable-and-flags"><primary>swfdec_as_object_set_variable_and_flags</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_set_variable_and_flags
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="guint">guint</link> default_flags);</programlisting>
+<para>
+Sets a variable on <parameter>object</parameter>. It is not guaranteed that getting the variable
+after setting it results in the same value, because various mechanisms (like
+the Actionscript Object.addProperty function or constant variables) can 
+avoid this.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected name of the variable to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to set the variable to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>default_flags</parameter>&nbsp;:</term>
+<listitem><simpara> flags to use if creating the variable anew - the flags will
+                be ignored if the property already exists.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-add-variable" role="function">
+<title>swfdec_as_object_add_variable ()</title>
+<indexterm zone="swfdec-as-object-add-variable"><primary>swfdec_as_object_add_variable</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_add_variable       (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *get,
+                                                         <link linkend="SwfdecAsFunction">SwfdecAsFunction</link> *set,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> default_flags);</programlisting>
+<para>
+Adds a variable to <parameter>object</parameter> in the same way as the Actionscript code 
+"object.<link linkend="addProperty"><function>addProperty()</function></link>" would do. Accessing the variable will from now on be
+handled by calling the <parameter>get</parameter> or <parameter>set</parameter> functions. A previous value of the 
+variable or a previous call to this function will be overwritten.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> name of the variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>get</parameter>&nbsp;:</term>
+<listitem><simpara> getter function to call when reading the variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>set</parameter>&nbsp;:</term>
+<listitem><simpara> setter function to call when writing the variable or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if read-only
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>default_flags</parameter>&nbsp;:</term>
+<listitem><simpara> flags to use if creating the variable anew - the flags will
+                be ignored if the property already exists.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-set-variable-flags" role="function">
+<title>swfdec_as_object_set_variable_flags ()</title>
+<indexterm zone="swfdec-as-object-set-variable-flags"><primary>swfdec_as_object_set_variable_flags</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_set_variable_flags (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);</programlisting>
+<para>
+Sets the given flags for the given variable.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> the variable to modify
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> flags to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-unset-variable-flags" role="function">
+<title>swfdec_as_object_unset_variable_flags ()</title>
+<indexterm zone="swfdec-as-object-unset-variable-flags"><primary>swfdec_as_object_unset_variable_flags</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_unset_variable_flags
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsVariableFlag">SwfdecAsVariableFlag</link> flags);</programlisting>
+<para>
+Unsets the given flags for the given variable. The variable must exist in 
+<parameter>object</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> the variable to modify
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> flags to unset
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-has-variable" role="function">
+<title>swfdec_as_object_has_variable ()</title>
+<indexterm zone="swfdec-as-object-has-variable"><primary>swfdec_as_object_has_variable</primary></indexterm><programlisting><link linkend="SwfdecAsObject">SwfdecAsObject</link>*     swfdec_as_object_has_variable       (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable);</programlisting>
+<para>
+Checks if a user-set <parameter>variable</parameter> with the given name exists on <parameter>object</parameter>. This 
+function does not check variables that are available via an overwritten get 
+function of the object's class.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected variable name
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object in the prototype chain that contains <parameter>variable</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+         if the <parameter>object</parameter> does not contain this variable.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-delete-variable" role="function">
+<title>swfdec_as_object_delete_variable ()</title>
+<indexterm zone="swfdec-as-object-delete-variable"><primary>swfdec_as_object_delete_variable</primary></indexterm><programlisting><link linkend="SwfdecAsDeleteReturn">SwfdecAsDeleteReturn</link> swfdec_as_object_delete_variable   (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable);</programlisting>
+<para>
+Deletes the given variable if possible. If the variable is protected from 
+deletion, it will not be deleted.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected name of the variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See <link linkend="SwfdecAsDeleteReturn"><type>SwfdecAsDeleteReturn</type></link> for details of the return value.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-delete-all-variables" role="function">
+<title>swfdec_as_object_delete_all_variables ()</title>
+<indexterm zone="swfdec-as-object-delete-all-variables"><primary>swfdec_as_object_delete_all_variables</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_delete_all_variables
+                                                        (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object);</programlisting>
+<para>
+Deletes all user-set variables from the given object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecAsVariableForeach" role="function">
+<title>SwfdecAsVariableForeach ()</title>
+<indexterm zone="SwfdecAsVariableForeach"><primary>SwfdecAsVariableForeach</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*SwfdecAsVariableForeach)          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *variable,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value,
+                                                         <link linkend="guint">guint</link> flags,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Function prototype for the <link linkend="swfdec-as-object-foreach"><function>swfdec_as_object_foreach()</function></link> function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> The object this function is run on
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>variable</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected name of the current variables
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value of the current variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> Flags associated with the current variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> User data passed to <link linkend="swfdec-as-object-foreach"><function>swfdec_as_object_foreach()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> to continue running the foreach function, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> to stop
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-foreach" role="function">
+<title>swfdec_as_object_foreach ()</title>
+<indexterm zone="swfdec-as-object-foreach"><primary>swfdec_as_object_foreach</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_object_foreach            (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="SwfdecAsVariableForeach">SwfdecAsVariableForeach</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Calls <parameter>func</parameter> for every variable of <parameter>object</parameter> or until <parameter>func</parameter> returns <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>. The
+variables of <parameter>object</parameter> must not be modified by <parameter>func</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to <parameter>func</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>func</parameter> always returned <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-run" role="function">
+<title>swfdec_as_object_run ()</title>
+<indexterm zone="swfdec-as-object-run"><primary>swfdec_as_object_run</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_object_run                (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         <link linkend="SwfdecScript">SwfdecScript</link> *script);</programlisting>
+<para>
+Executes the given <parameter>script</parameter> with <parameter>object</parameter> as this pointer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> script to execute
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-call" role="function">
+<title>swfdec_as_object_call ()</title>
+<indexterm zone="swfdec-as-object-call"><primary>swfdec_as_object_call</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_object_call               (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);</programlisting>
+<para>
+Calls the function named <parameter>name</parameter> on the given object. This function is 
+essentially equal to the folloeing Actionscript code: 
+<informalexample><programlisting>
+@return_value = @object.@name (@argv[0], ..., @argv[argc-1]);
+</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected string naming the function to call. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argc</parameter>&nbsp;:</term>
+<listitem><simpara> number of arguments to provide to function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> arguments or <link linkend="NULL:CAPS"><literal>NULL</literal></link> when <parameter>argc</parameter> is 0
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>return_value</parameter>&nbsp;:</term>
+<listitem><simpara> location to take the return value of the call or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to 
+               ignore the return value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>object</parameter> had a function with the given name, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-add-function" role="function">
+<title>swfdec_as_object_add_function ()</title>
+<indexterm zone="swfdec-as-object-add-function"><primary>swfdec_as_object_add_function</primary></indexterm><programlisting><link linkend="SwfdecAsFunction">SwfdecAsFunction</link>*   swfdec_as_object_add_function       (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="SwfdecAsNative">SwfdecAsNative</link> native);</programlisting>
+<para>
+Adds <parameter>native</parameter> as a variable named <parameter>name</parameter> to <parameter>object</parameter>. The newly added variable
+will not be enumerated.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> name of the function. The string does not have to be 
+       garbage-collected.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>native</parameter>&nbsp;:</term>
+<listitem><simpara> a native function or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to just not do anything
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="SwfdecAsFunction"><type>SwfdecAsFunction</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-add-constructor" role="function">
+<title>swfdec_as_object_add_constructor ()</title>
+<indexterm zone="swfdec-as-object-add-constructor"><primary>swfdec_as_object_add_constructor</primary></indexterm><programlisting><link linkend="SwfdecAsFunction">SwfdecAsFunction</link>*   swfdec_as_object_add_constructor    (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="GType">GType</link> construct_type,
+                                                         <link linkend="SwfdecAsNative">SwfdecAsNative</link> native,
+                                                         <link linkend="SwfdecAsObject">SwfdecAsObject</link> *prototype);</programlisting>
+<para>
+Adds <parameter>native</parameter> as a constructor named <parameter>name</parameter> to <parameter>object</parameter>. The newly added variable
+will not be enumerated.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> name of the function. The string does not have to be 
+       garbage-collected.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>construct_type</parameter>&nbsp;:</term>
+<listitem><simpara> type used when using this function as a constructor. May 
+                 be 0 to use the default type.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>native</parameter>&nbsp;:</term>
+<listitem><simpara> a native function or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to just not do anything
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prototype</parameter>&nbsp;:</term>
+<listitem><simpara> An optional object to be set as the "prototype" property of the
+            new function. The prototype will be hidden and constant.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="SwfdecAsFunction"><type>SwfdecAsFunction</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-get-debug" role="function">
+<title>swfdec_as_object_get_debug ()</title>
+<indexterm zone="swfdec-as-object-get-debug"><primary>swfdec_as_object_get_debug</primary></indexterm><programlisting><link linkend="char">char</link>*               swfdec_as_object_get_debug          (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object);</programlisting>
+<para>
+Gets a representation string suitable for debugging. This function is 
+guaranteed to not modify the state of the script engine, unlike 
+<link linkend="swfdec-as-value-to-string"><function>swfdec_as_value_to_string()</function></link> for example.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly allocated string. Free it with <link linkend="g-free"><function>g_free()</function></link> after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-object-resolve" role="function">
+<title>swfdec_as_object_resolve ()</title>
+<indexterm zone="swfdec-as-object-resolve"><primary>swfdec_as_object_resolve</primary></indexterm><programlisting><link linkend="SwfdecAsObject">SwfdecAsObject</link>*     swfdec_as_object_resolve            (<link linkend="SwfdecAsObject">SwfdecAsObject</link> *object);</programlisting>
+<para>
+Resolves the object to its real object. Some internal objects should not be
+exposed to scripts, for example <link linkend="SwfdecAsFrame"><type>SwfdecAsFrame</type></link> objects. If an object you want
+to expose might be internal, call this function to resolve it to an object
+that is safe to expose.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a non-internal object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

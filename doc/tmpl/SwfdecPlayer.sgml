@@ -1,0 +1,627 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecPlayer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecPlayer ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL SwfdecPlayer::advance ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL SwfdecPlayer::audio-added ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL SwfdecPlayer::audio-removed ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL SwfdecPlayer::fscommand ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL SwfdecPlayer::handle-key ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Returns: 
+
+<!-- ##### SIGNAL SwfdecPlayer::handle-mouse ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Returns: 
+
+<!-- ##### SIGNAL SwfdecPlayer::invalidate ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL SwfdecPlayer::launch ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Param5: 
+@Param6: 
+@Param7: 
+
+<!-- ##### SIGNAL SwfdecPlayer::missing-plugins ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL SwfdecPlayer::query-size ##### -->
+<para>
+
+</para>
+
+@swfdecplayer: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Returns: 
+
+<!-- ##### ARG SwfdecPlayer:alignment ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:allow-fullscreen ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:background-color ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:base-url ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:cache-size ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:default-height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:default-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:focus ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:fullscreen ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:initialized ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:loader-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:max-runtime ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:mouse-cursor ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:next-event ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:rate ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:renderer ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:scale-mode ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:scripting ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:selection ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:socket-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:start-time ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:system ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:url ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:variables ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecPlayer:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION swfdec_init ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION swfdec_player_new ##### -->
+<para>
+
+</para>
+
+@debugger: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_is_initialized ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_url ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_url ##### -->
+<para>
+
+</para>
+
+@player: 
+@url: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_base_url ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_base_url ##### -->
+<para>
+
+</para>
+
+@player: 
+@url: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_variables ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_variables ##### -->
+<para>
+
+</para>
+
+@player: 
+@variables: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_rate ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_default_size ##### -->
+<para>
+
+</para>
+
+@player: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_size ##### -->
+<para>
+
+</para>
+
+@player: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_size ##### -->
+<para>
+
+</para>
+
+@player: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_next_event ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_background_color ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_scale_mode ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_scale_mode ##### -->
+<para>
+
+</para>
+
+@player: 
+@mode: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_alignment ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_alignment ##### -->
+<para>
+
+</para>
+
+@player: 
+@align: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_scripting ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_scripting ##### -->
+<para>
+
+</para>
+
+@player: 
+@scripting: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_allow_fullscreen ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_allow_fullscreen ##### -->
+<para>
+
+</para>
+
+@player: 
+@allow: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_fullscreen ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_renderer ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_renderer ##### -->
+<para>
+
+</para>
+
+@player: 
+@renderer: 
+
+
+<!-- ##### FUNCTION swfdec_player_render ##### -->
+<para>
+
+</para>
+
+@player: 
+@cr: 
+
+
+<!-- ##### FUNCTION swfdec_player_render_with_renderer ##### -->
+<para>
+
+</para>
+
+@player: 
+@cr: 
+@renderer: 
+
+
+<!-- ##### FUNCTION swfdec_player_advance ##### -->
+<para>
+
+</para>
+
+@player: 
+@msecs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_mouse_move ##### -->
+<para>
+
+</para>
+
+@player: 
+@x: 
+@y: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_mouse_press ##### -->
+<para>
+
+</para>
+
+@player: 
+@x: 
+@y: 
+@button: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_mouse_release ##### -->
+<para>
+
+</para>
+
+@player: 
+@x: 
+@y: 
+@button: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_key_press ##### -->
+<para>
+
+</para>
+
+@player: 
+@keycode: 
+@character: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_key_release ##### -->
+<para>
+
+</para>
+
+@player: 
+@keycode: 
+@character: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_focus ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_focus ##### -->
+<para>
+
+</para>
+
+@player: 
+@focus: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_selection ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_audio ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_get_maximum_runtime ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_player_set_maximum_runtime ##### -->
+<para>
+
+</para>
+
+@player: 
+@msecs: 
+
+

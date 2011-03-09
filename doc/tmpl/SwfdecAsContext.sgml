@@ -1,0 +1,189 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsContext
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecAsContext ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL SwfdecAsContext::trace ##### -->
+<para>
+
+</para>
+
+@swfdecascontext: the object which received the signal.
+@arg1: 
+
+<!-- ##### ARG SwfdecAsContext:aborted ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecAsContext:debugger ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecAsContext:memory-until-gc ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecAsContext:random-seed ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION swfdec_as_context_startup ##### -->
+<para>
+
+</para>
+
+@context: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_abort ##### -->
+<para>
+
+</para>
+
+@context: 
+@reason: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_is_aborted ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_get_string ##### -->
+<para>
+
+</para>
+
+@context: 
+@string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_give_string ##### -->
+<para>
+
+</para>
+
+@context: 
+@string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_use_mem ##### -->
+<para>
+
+</para>
+
+@context: 
+@bytes: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_try_use_mem ##### -->
+<para>
+
+</para>
+
+@context: 
+@bytes: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_unuse_mem ##### -->
+<para>
+
+</para>
+
+@context: 
+@bytes: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_gc ##### -->
+<para>
+
+</para>
+
+@context: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_maybe_gc ##### -->
+<para>
+
+</para>
+
+@context: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_throw ##### -->
+<para>
+
+</para>
+
+@context: 
+@value: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_catch ##### -->
+<para>
+
+</para>
+
+@context: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_get_time ##### -->
+<para>
+
+</para>
+
+@context: 
+@tv: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_get_frame ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_context_is_constructing ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+

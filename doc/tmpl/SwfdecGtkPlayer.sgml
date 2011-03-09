@@ -1,0 +1,140 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecGtkPlayer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecGtkPlayer ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG SwfdecGtkPlayer:audio-enabled ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecGtkPlayer:missing-plugins-window ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecGtkPlayer:playing ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecGtkPlayer:speed ##### -->
+<para>
+
+</para>
+
+<!-- ##### MACRO SWFDEC_GTK_PRIORITY_ITERATE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO SWFDEC_GTK_PRIORITY_REDRAW ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_new ##### -->
+<para>
+
+</para>
+
+@debugger: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_get_playing ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_set_playing ##### -->
+<para>
+
+</para>
+
+@player: 
+@playing: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_get_speed ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_set_speed ##### -->
+<para>
+
+</para>
+
+@player: 
+@speed: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_get_audio_enabled ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_set_audio_enabled ##### -->
+<para>
+
+</para>
+
+@player: 
+@enabled: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_get_missing_plugins_window ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_player_set_missing_plugins_window ##### -->
+<para>
+
+</para>
+
+@player: 
+@window: 
+
+

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-Gtk-extension-objects">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-Gtk-extension-objects.top_of_page">Gtk extensions</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Gtk extensions</refname>
+<refpurpose>extension objects for <parameter>SwfdecGtkPlayer</parameter></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-Gtk-extension-objects.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="SwfdecGtkLoader"/><anchor id="SwfdecGtkSocket"/>
+<synopsis>
+
+#include &lt;swfdec/swfdec-gtk.h&gt;
+
+                    <link linkend="SwfdecGtkLoader-struct">SwfdecGtkLoader</link>;
+                    <link linkend="SwfdecGtkSocket-struct">SwfdecGtkSocket</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="swfdec-Gtk-extension-objects.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecStream">SwfdecStream</link>
+         +----<link linkend="SwfdecLoader">SwfdecLoader</link>
+               +----<link linkend="SwfdecFileLoader">SwfdecFileLoader</link>
+                     +----SwfdecGtkLoader
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecStream">SwfdecStream</link>
+         +----<link linkend="SwfdecSocket">SwfdecSocket</link>
+               +----SwfdecGtkSocket
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-Gtk-extension-objects.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Swfdec-Gtk provides some objects that implement the various extensions
+provided by the <parameter>SwfdecPlayer</parameter> object. They are used by default in the 
+<link linkend="SwfdecGtkPlayer"><type>SwfdecGtkPlayer</type></link> object, but you can use them outside of it, too. 
+However, they require certain Gtk functionality, such as a running glib
+main loop.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-Gtk-extension-objects.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecGtkLoader-struct" role="struct">
+<title>SwfdecGtkLoader</title>
+<indexterm zone="SwfdecGtkLoader-struct"><primary>SwfdecGtkLoader</primary></indexterm><programlisting>typedef struct _SwfdecGtkLoader SwfdecGtkLoader;</programlisting>
+<para>
+<link linkend="SwfdecGtkLoader"><type>SwfdecGtkLoader</type></link> is a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link> that is intended as an easy way to be 
+access ressources that are not stored in files, such as HTTP. It is a 
+private object.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecGtkSocket-struct" role="struct">
+<title>SwfdecGtkSocket</title>
+<indexterm zone="SwfdecGtkSocket-struct"><primary>SwfdecGtkSocket</primary></indexterm><programlisting>typedef struct _SwfdecGtkSocket SwfdecGtkSocket;</programlisting>
+<para>
+This is the object used to represent a socket. It is completely private.</para>
+<para>
+
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

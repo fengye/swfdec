@@ -1,0 +1,70 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecGcObject
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecGcObject ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG SwfdecGcObject:context ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT SwfdecGcObjectClass ##### -->
+<para>
+
+</para>
+
+@mark: 
+
+<!-- ##### FUNCTION swfdec_gc_object_get_context ##### -->
+<para>
+
+</para>
+
+@object: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gc_object_mark ##### -->
+<para>
+
+</para>
+
+@object: 
+
+
+<!-- ##### FUNCTION swfdec_as_string_mark ##### -->
+<para>
+
+</para>
+
+@string: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_mark ##### -->
+<para>
+
+</para>
+
+@value: 
+
+

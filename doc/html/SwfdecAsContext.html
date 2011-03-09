@@ -1,0 +1,705 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecAsContext</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch04.html" title="Actionscript interpreter">
+<link rel="prev" href="swfdec-SwfdecAsValue.html" title="SwfdecAsValue">
+<link rel="next" href="SwfdecAsObject.html" title="SwfdecAsObject">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="swfdec-SwfdecAsValue.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecAsObject.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecAsContext.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecAsContext.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecAsContext.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecAsContext.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#SwfdecAsContext.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecAsContext"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecAsContext.top_of_page"></a>SwfdecAsContext</span></h2>
+<p>SwfdecAsContext — the main script engine context</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecAsContext.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecAsContext.html#SwfdecAsContext-struct" title="SwfdecAsContext">SwfdecAsContext</a>;
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-startup" title="swfdec_as_context_startup ()">swfdec_as_context_startup</a>           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-abort" title="swfdec_as_context_abort ()">swfdec_as_context_abort</a>             (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const char *reason);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsContext.html#swfdec-as-context-is-aborted" title="swfdec_as_context_is_aborted ()">swfdec_as_context_is_aborted</a>        (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+const char*         <a class="link" href="SwfdecAsContext.html#swfdec-as-context-get-string" title="swfdec_as_context_get_string ()">swfdec_as_context_get_string</a>        (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const char *string);
+const char*         <a class="link" href="SwfdecAsContext.html#swfdec-as-context-give-string" title="swfdec_as_context_give_string ()">swfdec_as_context_give_string</a>       (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         char *string);
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-use-mem" title="swfdec_as_context_use_mem ()">swfdec_as_context_use_mem</a>           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> bytes);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsContext.html#swfdec-as-context-try-use-mem" title="swfdec_as_context_try_use_mem ()">swfdec_as_context_try_use_mem</a>       (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> bytes);
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-unuse-mem" title="swfdec_as_context_unuse_mem ()">swfdec_as_context_unuse_mem</a>         (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> bytes);
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-gc" title="swfdec_as_context_gc ()">swfdec_as_context_gc</a>                (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-maybe-gc" title="swfdec_as_context_maybe_gc ()">swfdec_as_context_maybe_gc</a>          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-throw" title="swfdec_as_context_throw ()">swfdec_as_context_throw</a>             (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsContext.html#swfdec-as-context-catch" title="swfdec_as_context_catch ()">swfdec_as_context_catch</a>             (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+void                <a class="link" href="SwfdecAsContext.html#swfdec-as-context-get-time" title="swfdec_as_context_get_time ()">swfdec_as_context_get_time</a>          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"
+>GTimeVal</a> *tv);
+<a class="link" href="swfdec-SwfdecAsFrame.html#SwfdecAsFrame" title="SwfdecAsFrame">SwfdecAsFrame</a>*      <a class="link" href="SwfdecAsContext.html#swfdec-as-context-get-frame" title="swfdec_as_context_get_frame ()">swfdec_as_context_get_frame</a>         (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsContext.html#swfdec-as-context-is-constructing" title="swfdec_as_context_is_constructing ()">swfdec_as_context_is_constructing</a>   (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecAsContext
+         +----<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecAsContext.html#SwfdecAsContext--aborted" title='The "aborted" property'>aborted</a>"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read
+  "<a class="link" href="SwfdecAsContext.html#SwfdecAsContext--debugger" title='The "debugger" property'>debugger</a>"                 <a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger">SwfdecAsDebugger</a>*     : Read / Write / Construct Only
+  "<a class="link" href="SwfdecAsContext.html#SwfdecAsContext--memory-until-gc" title='The "memory-until-gc" property'>memory-until-gc</a>"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write / Construct
+  "<a class="link" href="SwfdecAsContext.html#SwfdecAsContext--random-seed" title='The "random-seed" property'>random-seed</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecAsContext.html#SwfdecAsContext-trace" title='The "trace" signal'>trace</a>"                                          : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.description"></a><h2>Description</h2>
+<p>
+A <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a> provides the main execution environment for Actionscript
+execution. It provides the objects typically available in ECMAScript and
+manages script execution, garbage collection etc. <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> is a
+subclass of the context that implements Flash specific objects on top of it.
+However, it is possible to use the context for completely different functions
+where a sandboxed scripting environment is needed. An example is the Swfdec 
+debugger.
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>The Actionscript engine is similar, but not equal to Javascript. It
+is not very different, but it is different.</div>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsContext-struct"></a><h3>SwfdecAsContext</h3>
+<pre class="programlisting">typedef struct _SwfdecAsContext SwfdecAsContext;</pre>
+<p>
+This is the main object ued to hold the state of a script engine. All members 
+are private and should not be accessed.
+</p>
+<p>
+Subclassing this structure to get scripting support in your own appliation is
+encouraged.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-startup"></a><h3>swfdec_as_context_startup ()</h3>
+<pre class="programlisting">void                swfdec_as_context_startup           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Starts up the context. This function must be called before any Actionscript
+is called on <em class="parameter"><code>context</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-abort"></a><h3>swfdec_as_context_abort ()</h3>
+<pre class="programlisting">void                swfdec_as_context_abort             (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const char *reason);</pre>
+<p>
+Aborts script execution in <em class="parameter"><code>context</code></em>. Call this functon if the script engine 
+encountered a fatal error and cannot continue. A possible reason for this is
+an out-of-memory condition.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>reason</code></em> :</span></p></td>
+<td> a string describing why execution was aborted
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-is-aborted"></a><h3>swfdec_as_context_is_aborted ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_context_is_aborted        (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Determines if the given context is aborted. An aborted context is not able
+to execute any scripts. Aborting can happen if the script engine detects bad 
+scripts that cause excessive memory usage, infinite loops or other problems.
+In that case the script engine aborts for safety reasons.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the player is aborted, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if it runs normally.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-get-string"></a><h3>swfdec_as_context_get_string ()</h3>
+<pre class="programlisting">const char*         swfdec_as_context_get_string        (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const char *string);</pre>
+<p>
+Gets the garbage-collected version of <em class="parameter"><code>string</code></em>. You need to call this function
+for every not garbage-collected string that you want to use in Swfdecs script
+interpreter.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td> a sting that is not garbage-collected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the garbage-collected version of <em class="parameter"><code>string</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-give-string"></a><h3>swfdec_as_context_give_string ()</h3>
+<pre class="programlisting">const char*         swfdec_as_context_give_string       (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         char *string);</pre>
+<p>
+Takes ownership of <em class="parameter"><code>string</code></em> and returns a refcounted version of the same 
+string. This function is the same as <a class="link" href="SwfdecAsContext.html#swfdec-as-context-get-string" title="swfdec_as_context_get_string ()"><code class="function">swfdec_as_context_get_string()</code></a>, but 
+takes ownership of <em class="parameter"><code>string</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td> string to make refcounted
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A refcounted string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-use-mem"></a><h3>swfdec_as_context_use_mem ()</h3>
+<pre class="programlisting">void                swfdec_as_context_use_mem           (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> bytes);</pre>
+<p>
+Registers <em class="parameter"><code>bytes</code></em> additional bytes as in use by the <em class="parameter"><code>context</code></em>. This function
+keeps track of the memory that script code consumes. If too much memory is
+in use, this function may decide to stop the script engine with an out of
+memory error.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bytes</code></em> :</span></p></td>
+<td> number of bytes to use
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-try-use-mem"></a><h3>swfdec_as_context_try_use_mem ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_context_try_use_mem       (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> bytes);</pre>
+<p>
+Tries to register <em class="parameter"><code>bytes</code></em> additional bytes as in use by the <em class="parameter"><code>context</code></em>. This
+function keeps track of the memory that script code consumes. The scripting
+engine won't be stopped, even if there wasn't enough memory left.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bytes</code></em> :</span></p></td>
+<td> number of bytes to use
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the memory could be allocated. <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> on OOM.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-unuse-mem"></a><h3>swfdec_as_context_unuse_mem ()</h3>
+<pre class="programlisting">void                swfdec_as_context_unuse_mem         (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> bytes);</pre>
+<p>
+Releases a number of bytes previously allocated using 
+<a class="link" href="SwfdecAsContext.html#swfdec-as-context-use-mem" title="swfdec_as_context_use_mem ()"><code class="function">swfdec_as_context_use_mem()</code></a>. See that function for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bytes</code></em> :</span></p></td>
+<td> number of bytes to release
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-gc"></a><h3>swfdec_as_context_gc ()</h3>
+<pre class="programlisting">void                swfdec_as_context_gc                (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Calls the Swfdec Gargbage collector and reclaims any unused memory. You 
+should call this function or <a class="link" href="SwfdecAsContext.html#swfdec-as-context-maybe-gc" title="swfdec_as_context_maybe_gc ()"><code class="function">swfdec_as_context_maybe_gc()</code></a> regularly.
+</p>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>Calling the GC during execution of code or initialization is not
+         allowed.</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-maybe-gc"></a><h3>swfdec_as_context_maybe_gc ()</h3>
+<pre class="programlisting">void                swfdec_as_context_maybe_gc          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Calls the garbage collector if necessary. It's a good idea to call this
+function regularly instead of <a class="link" href="SwfdecAsContext.html#swfdec-as-context-gc" title="swfdec_as_context_gc ()"><code class="function">swfdec_as_context_gc()</code></a> as it only does collect
+garage as needed. For example, <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> calls this function after every
+frame advancement.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-throw"></a><h3>swfdec_as_context_throw ()</h3>
+<pre class="programlisting">void                swfdec_as_context_throw             (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Throws a new exception in the <em class="parameter"><code>context</code></em> using the given <em class="parameter"><code>value</code></em>. This function
+can only be called if the <em class="parameter"><code>context</code></em> is not already throwing an exception.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> to be thrown
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-catch"></a><h3>swfdec_as_context_catch ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_context_catch             (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Removes the currently thrown exception from <em class="parameter"><code>context</code></em> and sets <em class="parameter"><code>value</code></em> to the
+thrown value</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> to be thrown
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if an exception was catched, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-get-time"></a><h3>swfdec_as_context_get_time ()</h3>
+<pre class="programlisting">void                swfdec_as_context_get_time          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"
+>GTimeVal</a> *tv);</pre>
+<p>
+This function queries the time to be used inside this context. By default,
+this is the same as <a
+href="/usr/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#g-get-current-time"
+><code class="function">g_get_current_time()</code></a>, but it may be overwriten to allow
+things such as slower or faster playback.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tv</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#GTimeVal"
+><span class="type">GTimeVal</span></a> to be set to the context's time
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-get-frame"></a><h3>swfdec_as_context_get_frame ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-SwfdecAsFrame.html#SwfdecAsFrame" title="SwfdecAsFrame">SwfdecAsFrame</a>*      swfdec_as_context_get_frame         (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+This is a debugging function. It gets the topmost stack frame that is 
+currently executing. If no function is executing, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> is returned. You can
+easily get a backtrace with code like this:
+</p>
+<div class="informalexample"><pre class="programlisting">for (frame = swfdec_as_context_get_frame (context); frame != NULL; 
+    frame = swfdec_as_frame_get_next (frame)) {
+  char *s = swfdec_as_object_get_debug (SWFDEC_AS_OBJECT (frame));
+  g_print ("%s\n", s);
+  g_free (s);
+}</pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the currently executing frame or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if none
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-context-is-constructing"></a><h3>swfdec_as_context_is_constructing ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_context_is_constructing   (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Determines if the contexxt is currently constructing. This information is
+used by various constructors to do different things when they are 
+constructing and when they are not. The Boolean, Number and String functions
+for example setup the newly constructed objects when constructing but only
+cast the provided argument when being called.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <span class="type">SwfdecAsConstruct</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the currently executing frame is a constructor
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsContext--aborted"></a><h3>The <code class="literal">"aborted"</code> property</h3>
+<pre class="programlisting">  "aborted"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read</pre>
+<p>set when the script engine aborts due to an error.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsContext--debugger"></a><h3>The <code class="literal">"debugger"</code> property</h3>
+<pre class="programlisting">  "debugger"                 <a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger">SwfdecAsDebugger</a>*     : Read / Write / Construct Only</pre>
+<p>debugger used in this player.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsContext--memory-until-gc"></a><h3>The <code class="literal">"memory-until-gc"</code> property</h3>
+<pre class="programlisting">  "memory-until-gc"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write / Construct</pre>
+<p>amount of bytes that need to be allocated before garbage collection triggers.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsContext--random-seed"></a><h3>The <code class="literal">"random-seed"</code> property</h3>
+<pre class="programlisting">  "random-seed"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Write</pre>
+<p>seed used for calculating random numbers.</p>
+<p>Default value: 0</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsContext-trace"></a><h3>The <code class="literal">"trace"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>           *text,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+Emits a debugging string while running. The effect of calling any swfdec 
+functions on the emitting <em class="parameter"><code>context</code></em> is undefined.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the debugging string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsContext.see-also"></a><h2>See Also</h2>
+SwfdecPlayer
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

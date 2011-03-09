@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecSocket">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecSocket.top_of_page">SwfdecSocket</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecSocket</refname>
+<refpurpose>object used for network connections</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecSocket.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecSocket-struct">SwfdecSocket</link>;
+                    <link linkend="SwfdecSocketClass">SwfdecSocketClass</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecSocket.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecStream">SwfdecStream</link>
+         +----SwfdecSocket
+               +----<link linkend="SwfdecGtkSocket">SwfdecGtkSocket</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="SwfdecSocket.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+SwfdecSockets are used to implement TCP streams. These are for example used 
+to implement RTMP support or the XMLSocket script class. Backends are 
+supposed to provide an implementation for this, as by default this class is
+unimplemented. However, swfdec-gtk or other convenience libraries provide
+a socket implementation by default. 
+</para>
+<para>
+The socket implementation used by a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> can be set with the 
+SwfdecPlayer:socket-type property.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecSocket.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecSocket-struct" role="struct">
+<title>SwfdecSocket</title>
+<indexterm zone="SwfdecSocket-struct"><primary>SwfdecSocket</primary></indexterm><programlisting>typedef struct _SwfdecSocket SwfdecSocket;</programlisting>
+<para>
+This is the base object used for providing input. It is abstract, create a 
+subclass to provide your own socket implementation. All members are 
+considered private.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecSocketClass" role="struct">
+<title>SwfdecSocketClass</title>
+<indexterm zone="SwfdecSocketClass"><primary>SwfdecSocketClass</primary></indexterm><programlisting>typedef struct {
+  void			(* connect)		(SwfdecSocket *	socket,
+						 SwfdecPlayer *	player,
+						 const char *	hostname,
+						 guint		port);
+
+  void			(* send)		(SwfdecSocket *	socket,
+						 SwfdecBuffer *	buffer);
+} SwfdecSocketClass;
+</programlisting>
+<para>
+This is the socket class. When you create a subclass, you need to implement 
+the functions listed above.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>connect</structfield>&nbsp;()</term>
+<listitem><simpara> Connect the given newly created socket to the given hostname and 
+          port. If you encounter an error, call <link linkend="swfdec-stream-error"><function>swfdec_stream_error()</function></link>, but 
+          still make sure the socket object does not break.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>send</structfield>&nbsp;()</term>
+<listitem><simpara> Called to send data down the given socket. This function will only be
+       called when the socket is open. You get passed a reference to the 
+       buffer, so it is your responsibility to call <link linkend="swfdec-buffer-unref"><function>swfdec_buffer_unref()</function></link> on
+       it when you are done with it.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecGcObject">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecGcObject.top_of_page">SwfdecGcObject</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecGcObject</refname>
+<refpurpose>the base object type for garbage-collected objects</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecGcObject.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecGcObject-struct">SwfdecGcObject</link>;
+                    <link linkend="SwfdecGcObjectClass">SwfdecGcObjectClass</link>;
+<link linkend="SwfdecAsContext">SwfdecAsContext</link>*    <link linkend="swfdec-gc-object-get-context">swfdec_gc_object_get_context</link>        (<link linkend="gpointer">gpointer</link> object);
+<link linkend="void">void</link>                <link linkend="swfdec-gc-object-mark">swfdec_gc_object_mark</link>               (<link linkend="gpointer">gpointer</link> object);
+<link linkend="void">void</link>                <link linkend="swfdec-as-string-mark">swfdec_as_string_mark</link>               (const <link linkend="char">char</link> *string);
+<link linkend="void">void</link>                <link linkend="swfdec-as-value-mark">swfdec_as_value_mark</link>                (<link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecGcObject.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----SwfdecGcObject
+         +----<link linkend="SwfdecAsObject">SwfdecAsObject</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="SwfdecGcObject.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecGcObject--context">context</link>&quot;                  <link linkend="SwfdecAsContext">SwfdecAsContext</link>*      : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="SwfdecGcObject.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This type is the basic garbage-collected object in Swfdec. It contains the
+simple facilities for required by the garbage collector. The initial 
+reference of this object will be owned by the context that created it and
+will be released automatically when no other object references it anymore
+in the garbage collection cycle.
+</para>
+<para>
+Note that you cannot know the lifetime of a <link linkend="SwfdecGcObject"><type>SwfdecGcObject</type></link>, since scripts 
+may assign it as a variable to other objects. So you should not assume to 
+know when an object gets removed.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecGcObject.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecGcObject-struct" role="struct">
+<title>SwfdecGcObject</title>
+<indexterm zone="SwfdecGcObject-struct"><primary>SwfdecGcObject</primary></indexterm><programlisting>typedef struct _SwfdecGcObject SwfdecGcObject;</programlisting>
+<para>
+If you want to add custom objects to the garbage collection lifecycle, you
+need to subclass this object as this object is abstract. Note that you have
+to provide a valid <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link> whenever you construct objects of this
+type.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecGcObjectClass" role="struct">
+<title>SwfdecGcObjectClass</title>
+<indexterm zone="SwfdecGcObjectClass"><primary>SwfdecGcObjectClass</primary></indexterm><programlisting>typedef struct {
+  /* mark everything that should survive during GC */
+  void			(* mark)			(SwfdecGcObject *	object);
+} SwfdecGcObjectClass;
+</programlisting>
+<para>
+This is the base class for garbage-collected objects.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>mark</structfield>&nbsp;()</term>
+<listitem><simpara> Called in the mark phase of garbage collection. Mark all the 
+       garbage-collected object you still use here using the marking 
+       functions such as <link linkend="swfdec-gc-object-mark"><function>swfdec_gc_object_mark()</function></link> or <link linkend="swfdec-as-string-mark"><function>swfdec_as_string_mark()</function></link>
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gc-object-get-context" role="function">
+<title>swfdec_gc_object_get_context ()</title>
+<indexterm zone="swfdec-gc-object-get-context"><primary>swfdec_gc_object_get_context</primary></indexterm><programlisting><link linkend="SwfdecAsContext">SwfdecAsContext</link>*    swfdec_gc_object_get_context        (<link linkend="gpointer">gpointer</link> object);</programlisting>
+<para>
+Gets the cotext that garbage-collects this object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGcObject"><type>SwfdecGcObject</type></link>. This function takes a gpointer argument only to
+         save you from having to cast it manually. For language bindings, 
+         please treat this argument as having the <link linkend="SwfdecGcObject"><type>SwfdecGcObject</type></link> type.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the context this object belongs to
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gc-object-mark" role="function">
+<title>swfdec_gc_object_mark ()</title>
+<indexterm zone="swfdec-gc-object-mark"><primary>swfdec_gc_object_mark</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_gc_object_mark               (<link linkend="gpointer">gpointer</link> object);</programlisting>
+<para>
+Mark <parameter>object</parameter> as being in use. Calling this function is only valid during
+the marking phase of garbage collection.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGcObject"><type>SwfdecGcObject</type></link>. This function takes a gpointer argument only to
+         save you from having to cast it manually. For language bindings, 
+         please treat this argument as having the <link linkend="SwfdecGcObject"><type>SwfdecGcObject</type></link> type.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-string-mark" role="function">
+<title>swfdec_as_string_mark ()</title>
+<indexterm zone="swfdec-as-string-mark"><primary>swfdec_as_string_mark</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_string_mark               (const <link linkend="char">char</link> *string);</programlisting>
+<para>
+Mark <parameter>string</parameter> as being in use. Calling this function is only valid during
+the marking phase of garbage collection.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>string</parameter>&nbsp;:</term>
+<listitem><simpara> a garbage-collected string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-mark" role="function">
+<title>swfdec_as_value_mark ()</title>
+<indexterm zone="swfdec-as-value-mark"><primary>swfdec_as_value_mark</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_value_mark                (<link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Mark <parameter>value</parameter> as being in use. This is just a convenience function that calls
+the right marking function depending on the value's type. Calling this 
+function is only valid during the marking phase of garbage collection.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecGcObject.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecGcObject--context"><title>The <literal>&quot;context&quot;</literal> property</title>
+<indexterm zone="SwfdecGcObject--context"><primary>SwfdecGcObject:context</primary></indexterm><programlisting>  &quot;context&quot;                  <link linkend="SwfdecAsContext">SwfdecAsContext</link>*      : Read / Write / Construct Only</programlisting>
+<para>context managing this object.</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

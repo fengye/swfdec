@@ -1,0 +1,112 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecLoader
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecLoader ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG SwfdecLoader:data-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecLoader:loaded ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecLoader:size ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecLoader:url ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT SwfdecFileLoader ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT SwfdecLoaderClass ##### -->
+<para>
+
+</para>
+
+@load: 
+
+<!-- ##### FUNCTION swfdec_loader_set_url ##### -->
+<para>
+
+</para>
+
+@loader: 
+@url: 
+
+
+<!-- ##### FUNCTION swfdec_loader_get_url ##### -->
+<para>
+
+</para>
+
+@loader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_loader_set_size ##### -->
+<para>
+
+</para>
+
+@loader: 
+@size: 
+
+
+<!-- ##### FUNCTION swfdec_loader_get_size ##### -->
+<para>
+
+</para>
+
+@loader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_loader_get_loaded ##### -->
+<para>
+
+</para>
+
+@loader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_loader_get_data_type ##### -->
+<para>
+
+</para>
+
+@loader: 
+@Returns: 
+
+

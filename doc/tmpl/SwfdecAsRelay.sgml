@@ -1,0 +1,53 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsRelay
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecAsRelay ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT SwfdecAsRelayClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_as_relay_call ##### -->
+<para>
+
+</para>
+
+@relay: 
+@name: 
+@argc: 
+@argv: 
+@return_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_relay_get_as_object ##### -->
+<para>
+
+</para>
+
+@relay: 
+@Returns: 
+
+

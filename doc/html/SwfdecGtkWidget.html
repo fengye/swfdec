@@ -1,0 +1,529 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecGtkWidget</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch01.html" title="Swfdec Gtk library">
+<link rel="prev" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">
+<link rel="next" href="swfdec-Gtk-extension-objects.html" title="Gtk extensions">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecGtkPlayer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="swfdec-Gtk-extension-objects.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecGtkWidget.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecGtkWidget.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecGtkWidget.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecGtkWidget.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#SwfdecGtkWidget.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecGtkWidget"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecGtkWidget.top_of_page"></a>SwfdecGtkWidget</span></h2>
+<p>SwfdecGtkWidget — a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a> for embedding SWF files</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecGtkWidget.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec-gtk.h&gt;
+
+                    <a class="link" href="SwfdecGtkWidget.html#SwfdecGtkWidget-struct" title="SwfdecGtkWidget">SwfdecGtkWidget</a>;
+<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a>*          <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-new" title="swfdec_gtk_widget_new ()">swfdec_gtk_widget_new</a>               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a>*          <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-new-fullscreen" title="swfdec_gtk_widget_new_fullscreen ()">swfdec_gtk_widget_new_fullscreen</a>    (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*       <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-get-player" title="swfdec_gtk_widget_get_player ()">swfdec_gtk_widget_get_player</a>        (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);
+void                <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-set-player" title="swfdec_gtk_widget_set_player ()">swfdec_gtk_widget_set_player</a>        (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget,
+                                                         <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-get-interactive" title="swfdec_gtk_widget_get_interactive ()">swfdec_gtk_widget_get_interactive</a>   (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);
+void                <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-set-interactive" title="swfdec_gtk_widget_set_interactive ()">swfdec_gtk_widget_set_interactive</a>   (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> interactive);
+<a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-type-t"
+>cairo_surface_type_t</a> <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-get-renderer" title="swfdec_gtk_widget_get_renderer ()">swfdec_gtk_widget_get_renderer</a>     (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-uses-renderer" title="swfdec_gtk_widget_uses_renderer ()">swfdec_gtk_widget_uses_renderer</a>     (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);
+void                <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-set-renderer" title="swfdec_gtk_widget_set_renderer ()">swfdec_gtk_widget_set_renderer</a>      (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-type-t"
+>cairo_surface_type_t</a> renderer);
+void                <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-unset-renderer" title="swfdec_gtk_widget_unset_renderer ()">swfdec_gtk_widget_unset_renderer</a>    (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-keycode-from-hardware-keycode" title="swfdec_gtk_keycode_from_hardware_keycode ()">swfdec_gtk_keycode_from_hardware_keycode</a>
+                                                        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> hardware_keycode);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkWidget.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a
+href="/usr/share/gtk-doc/html/gtk/GtkObject.html"
+>GtkObject</a>
+               +----<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a>
+                     +----SwfdecGtkWidget
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkWidget.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+SwfdecGtkWidget implements
+ AtkImplementorIface and  <a
+href="/usr/share/gtk-doc/html/gtk/gtk-gtkbuildable.html#GtkBuildable"
+>GtkBuildable</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkWidget.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecGtkWidget.html#SwfdecGtkWidget--fullscreen-mode" title='The "fullscreen-mode" property'>fullscreen-mode</a>"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Write / Construct Only
+  "<a class="link" href="SwfdecGtkWidget.html#SwfdecGtkWidget--interactive" title='The "interactive" property'>interactive</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="SwfdecGtkWidget.html#SwfdecGtkWidget--player" title='The "player" property'>player</a>"                   <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*         : Read / Write / Construct
+  "<a class="link" href="SwfdecGtkWidget.html#SwfdecGtkWidget--renderer" title='The "renderer" property'>renderer</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="SwfdecGtkWidget.html#SwfdecGtkWidget--renderer-set" title='The "renderer-set" property'>renderer-set</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkWidget.description"></a><h2>Description</h2>
+<p>
+This is a widget for playing Flash movies rendered with Swfdec in a Gtk 
+application. It supports a lot of advanced features, if you want to use
+them. If you don't want to use them and just want to embed a movie in 
+your application, <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-new" title="swfdec_gtk_widget_new ()"><code class="function">swfdec_gtk_widget_new()</code></a> will probably be the only 
+function you need.
+</p>
+<p>
+<em class="parameter"><code>see_also</code></em>: SwfdecGtkPlayer</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkWidget.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkWidget-struct"></a><h3>SwfdecGtkWidget</h3>
+<pre class="programlisting">typedef struct _SwfdecGtkWidget SwfdecGtkWidget;</pre>
+<p>
+The structure for the Swfdec Gtk widget contains no public fields.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-new"></a><h3>swfdec_gtk_widget_new ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a>*          swfdec_gtk_widget_new               (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Creates a new <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a> to display <em class="parameter"><code>player</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the new widget that displays <em class="parameter"><code>player</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-new-fullscreen"></a><h3>swfdec_gtk_widget_new_fullscreen ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a>*          swfdec_gtk_widget_new_fullscreen    (<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Creates a new <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a> to display <em class="parameter"><code>player</code></em> inside a fullscreen 
+window.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the new widget that displays <em class="parameter"><code>player</code></em> in fullscreen mode.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-get-player"></a><h3>swfdec_gtk_widget_get_player ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*       swfdec_gtk_widget_get_player        (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);</pre>
+<p>
+Gets the player that is currently played back in this <em class="parameter"><code>widget</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if none
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-set-player"></a><h3>swfdec_gtk_widget_set_player ()</h3>
+<pre class="programlisting">void                swfdec_gtk_widget_set_player        (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget,
+                                                         <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Sets the new player to display in <em class="parameter"><code>widget</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> to display or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for none
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-get-interactive"></a><h3>swfdec_gtk_widget_get_interactive ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_gtk_widget_get_interactive   (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);</pre>
+<p>
+Queries if the <em class="parameter"><code>widget</code></em> is currently interactive. See 
+<a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-set-interactive" title="swfdec_gtk_widget_set_interactive ()"><code class="function">swfdec_gtk_widget_set_interactive()</code></a> for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the widget is interactive, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-set-interactive"></a><h3>swfdec_gtk_widget_set_interactive ()</h3>
+<pre class="programlisting">void                swfdec_gtk_widget_set_interactive   (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> interactive);</pre>
+<p>
+Sets the widget to be interactive or not. An interactive widget processes 
+mouse and keyboard events, while a non-interactive widget does not care about
+user input. Widgets are interactive by default.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interactive</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> to make the widget interactive
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-get-renderer"></a><h3>swfdec_gtk_widget_get_renderer ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-type-t"
+>cairo_surface_type_t</a> swfdec_gtk_widget_get_renderer     (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);</pre>
+<p>
+Gets the intermediate renderer that is or would be in use by <em class="parameter"><code>widget</code></em>. Use
+<a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-uses-renderer" title="swfdec_gtk_widget_uses_renderer ()"><code class="function">swfdec_gtk_widget_uses_renderer()</code></a> to check if an intermediate renderer is in
+use. See <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-set-renderer" title="swfdec_gtk_widget_set_renderer ()"><code class="function">swfdec_gtk_widget_set_renderer()</code></a> for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the type of the intermediate renderer
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-uses-renderer"></a><h3>swfdec_gtk_widget_uses_renderer ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_gtk_widget_uses_renderer     (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);</pre>
+<p>
+Queries if an intermediate renderer set via <a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-set-renderer" title="swfdec_gtk_widget_set_renderer ()"><code class="function">swfdec_gtk_widget_set_renderer()</code></a>
+is currently in use.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if an intermediate renderer is used.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-set-renderer"></a><h3>swfdec_gtk_widget_set_renderer ()</h3>
+<pre class="programlisting">void                swfdec_gtk_widget_set_renderer      (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-type-t"
+>cairo_surface_type_t</a> renderer);</pre>
+<p>
+Tells <em class="parameter"><code>widget</code></em> to use an intermediate surface for rendering. This is
+useful for debugging or performance measurements inside swfdec and is 
+probably not interesting for anyone else.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>renderer</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-type-t"
+><span class="type">cairo_surface_type_t</span></a> for the intermediate renderer
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-widget-unset-renderer"></a><h3>swfdec_gtk_widget_unset_renderer ()</h3>
+<pre class="programlisting">void                swfdec_gtk_widget_unset_renderer    (<a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">SwfdecGtkWidget</a> *widget);</pre>
+<p>
+Unsets the use of an intermediate rendering surface. See 
+<a class="link" href="SwfdecGtkWidget.html#swfdec-gtk-widget-set-renderer" title="swfdec_gtk_widget_set_renderer ()"><code class="function">swfdec_gtk_widget_set_renderer()</code></a> for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget"><span class="type">SwfdecGtkWidget</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-keycode-from-hardware-keycode"></a><h3>swfdec_gtk_keycode_from_hardware_keycode ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               swfdec_gtk_keycode_from_hardware_keycode
+                                                        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> hardware_keycode);</pre>
+<p>
+Tries to transform an X hardware keycode to the corresponding <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecKey" title="enum SwfdecKey"><span class="type">SwfdecKey</span></a>.
+This is a utility function for cases where key events need to be transformed
+manually.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>hardware_keycode</code></em> :</span></p></td>
+<td> a hardware keycode sent from the X server
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the corresponding key code as used in Flash.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkWidget.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkWidget--fullscreen-mode"></a><h3>The <code class="literal">"fullscreen-mode"</code> property</h3>
+<pre class="programlisting">  "fullscreen-mode"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Write / Construct Only</pre>
+<p>special mode for fullscreen display.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkWidget--interactive"></a><h3>The <code class="literal">"interactive"</code> property</h3>
+<pre class="programlisting">  "interactive"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>if mouse events are processed.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkWidget--player"></a><h3>The <code class="literal">"player"</code> property</h3>
+<pre class="programlisting">  "player"                   <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*         : Read / Write / Construct</pre>
+<p>player that is displayed.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkWidget--renderer"></a><h3>The <code class="literal">"renderer"</code> property</h3>
+<pre class="programlisting">  "renderer"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>cairo_surface_type_t of intermediate renderer to use.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkWidget--renderer-set"></a><h3>The <code class="literal">"renderer-set"</code> property</h3>
+<pre class="programlisting">  "renderer-set"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>if an intermediate renderer should be used.</p>
+<p>Default value: TRUE</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

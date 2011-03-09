@@ -1,0 +1,148 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecGtkWidget
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecGtkWidget ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG SwfdecGtkWidget:fullscreen-mode ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecGtkWidget:interactive ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecGtkWidget:player ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecGtkWidget:renderer ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecGtkWidget:renderer-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION swfdec_gtk_widget_new ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_new_fullscreen ##### -->
+<para>
+
+</para>
+
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_get_player ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_set_player ##### -->
+<para>
+
+</para>
+
+@widget: 
+@player: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_get_interactive ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_set_interactive ##### -->
+<para>
+
+</para>
+
+@widget: 
+@interactive: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_get_renderer ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_uses_renderer ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_set_renderer ##### -->
+<para>
+
+</para>
+
+@widget: 
+@renderer: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_widget_unset_renderer ##### -->
+<para>
+
+</para>
+
+@widget: 
+
+
+<!-- ##### FUNCTION swfdec_gtk_keycode_from_hardware_keycode ##### -->
+<para>
+
+</para>
+
+@hardware_keycode: 
+@Returns: 
+
+

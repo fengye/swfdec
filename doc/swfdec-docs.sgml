@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
+  <bookinfo>
+    <title>Swfdec Reference Manual</title>
+  </bookinfo>
+
+  <chapter>
+    <title>Swfdec Gtk library</title>
+    <xi:include href="xml/SwfdecGtkPlayer.xml"/>
+    <xi:include href="xml/SwfdecGtkWidget.xml"/>
+    <xi:include href="xml/GtkExtensions.xml"/>
+  </chapter>
+  <chapter>
+    <title>Swfdec library</title>
+    <xi:include href="xml/Enumerations.xml"/>
+    <xi:include href="xml/SwfdecRectangle.xml"/>
+    <xi:include href="xml/SwfdecBuffer.xml"/>
+    <xi:include href="xml/SwfdecURL.xml"/>
+    <xi:include href="xml/SwfdecPlayer.xml"/>
+    <xi:include href="xml/SwfdecSystem.xml"/>
+    <xi:include href="xml/SwfdecAudio.xml"/>
+    <xi:include href="xml/Version.xml"/>
+  </chapter>
+  <chapter>
+    <title>extending SwfdecPlayer</title>
+    <xi:include href="xml/SwfdecPlayerScripting.xml"/>
+    <xi:include href="xml/SwfdecRenderer.xml"/>
+    <xi:include href="xml/SwfdecStream.xml"/>
+    <xi:include href="xml/SwfdecLoader.xml"/>
+    <xi:include href="xml/SwfdecSocket.xml"/>
+  </chapter>
+  <chapter>
+    <title>Actionscript interpreter</title>
+    <xi:include href="xml/Internals.xml"/>
+    <xi:include href="xml/SwfdecAsValue.xml"/>
+    <xi:include href="xml/SwfdecAsContext.xml"/>
+    <xi:include href="xml/SwfdecAsObject.xml"/>
+    <xi:include href="xml/SwfdecAsArray.xml"/>
+    <xi:include href="xml/SwfdecAsFunction.xml"/>
+    <xi:include href="xml/SwfdecAsFrame.xml"/>
+    <xi:include href="xml/SwfdecAsDebugger.xml"/>
+  </chapter>
+  <index />
+</book>

@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecStream</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="prev" href="SwfdecRenderer.html" title="SwfdecRenderer">
+<link rel="next" href="SwfdecLoader.html" title="SwfdecLoader">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecRenderer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecLoader.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecStream.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecStream.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecStream.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecStream.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecStream"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecStream.top_of_page"></a>SwfdecStream</span></h2>
+<p>SwfdecStream — object used for input</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecStream.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecStream.html#SwfdecStream-struct" title="SwfdecStream">SwfdecStream</a>;
+                    <a class="link" href="SwfdecStream.html#SwfdecStreamClass" title="SwfdecStreamClass">SwfdecStreamClass</a>;
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecStream.html#swfdec-stream-is-open" title="swfdec_stream_is_open ()">swfdec_stream_is_open</a>               (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecStream.html#swfdec-stream-is-complete" title="swfdec_stream_is_complete ()">swfdec_stream_is_complete</a>           (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);
+void                <a class="link" href="SwfdecStream.html#swfdec-stream-open" title="swfdec_stream_open ()">swfdec_stream_open</a>                  (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);
+void                <a class="link" href="SwfdecStream.html#swfdec-stream-push" title="swfdec_stream_push ()">swfdec_stream_push</a>                  (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream,
+                                                         <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);
+void                <a class="link" href="SwfdecStream.html#swfdec-stream-close" title="swfdec_stream_close ()">swfdec_stream_close</a>                 (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);
+void                <a class="link" href="SwfdecStream.html#swfdec-stream-error" title="swfdec_stream_error ()">swfdec_stream_error</a>                 (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream,
+                                                         const char *error,
+                                                         ...);
+void                <a class="link" href="SwfdecStream.html#swfdec-stream-errorv" title="swfdec_stream_errorv ()">swfdec_stream_errorv</a>                (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream,
+                                                         const char *error,
+                                                         va_list args);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecStream.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecStream
+         +----<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a>
+         +----<a class="link" href="SwfdecSocket.html" title="SwfdecSocket">SwfdecSocket</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecStream.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecStream.html#SwfdecStream--complete" title='The "complete" property'>complete</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read
+  "<a class="link" href="SwfdecStream.html#SwfdecStream--error" title='The "error" property'>error</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read
+  "<a class="link" href="SwfdecStream.html#SwfdecStream--open" title='The "open" property'>open</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecStream.description"></a><h2>Description</h2>
+<p>
+SwfdecStream is the base class used for communication inside Swfdec. If you
+are a UNIX developer, think of this class as the equivalent to a file 
+descriptor. <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a> and <a class="link" href="SwfdecSocket.html" title="SwfdecSocket"><span class="type">SwfdecSocket</span></a> are the subclasses supposed to
+be used for files or network sockets, respectively.
+</p>
+<p>
+This class provides the functions necessary to implement subclasses of 
+streams. None of the functions described in this section should be used by
+anything but subclass implementations. Consider them "protected".</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecStream.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecStream-struct"></a><h3>SwfdecStream</h3>
+<pre class="programlisting">typedef struct _SwfdecStream SwfdecStream;</pre>
+<p>
+This is the base object used for providing input. It is abstract, use a 
+subclass to provide your input. All members are considered private.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecStreamClass"></a><h3>SwfdecStreamClass</h3>
+<pre class="programlisting">typedef struct {
+  /* get a nice description string */
+  const char *		(* describe)		(SwfdecStream *		stream);
+  /* close the stream. */
+  void			(* close)		(SwfdecStream *		stream);
+} SwfdecStreamClass;
+</pre>
+<p>
+This is the base class used for providing input. You are supposed to create
+a subclass that fills in the function pointers mentioned above.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>describe</code></em> ()</span></p></td>
+<td> Provide a string describing your string. Default implementations
+      of this function exist for both the <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a> and 
+      <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a> subclasses. They return the URL for the stream.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>close</code></em> ()</span></p></td>
+<td> Called when Swfdec requests that the stream be closed. After this
+        function was called, Swfdec will consider the stream finished and
+        will not ever read data from it again.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-stream-is-open"></a><h3>swfdec_stream_is_open ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_stream_is_open               (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);</pre>
+<p>
+Checks if the given <em class="parameter"><code>stream</code></em> is currrently open. Some functions, for example
+<code class="function">swfdec_socket_send()</code>, require an open stream.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the stream is open, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-stream-is-complete"></a><h3>swfdec_stream_is_complete ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_stream_is_complete           (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);</pre>
+<p>
+Checks if all data has successfully been transmitted through the <em class="parameter"><code>stream</code></em> 
+and it has been closed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the stream is completed, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-stream-open"></a><h3>swfdec_stream_open ()</h3>
+<pre class="programlisting">void                swfdec_stream_open                  (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);</pre>
+<p>
+Call this function when your stream opened the resulting file. For HTTP this
+is when having received the headers. You must call this function before 
+<a class="link" href="SwfdecStream.html#swfdec-stream-push" title="swfdec_stream_push ()"><code class="function">swfdec_stream_push()</code></a> can be called.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-stream-push"></a><h3>swfdec_stream_push ()</h3>
+<pre class="programlisting">void                swfdec_stream_push                  (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream,
+                                                         <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer);</pre>
+<p>
+Makes the data in <em class="parameter"><code>buffer</code></em> available to <em class="parameter"><code>stream</code></em> and processes it. The <em class="parameter"><code>stream</code></em>
+must be open.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td> new data to make available. The stream takes the reference
+         to the buffer.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-stream-close"></a><h3>swfdec_stream_close ()</h3>
+<pre class="programlisting">void                swfdec_stream_close                 (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream);</pre>
+<p>
+Indicates to <em class="parameter"><code>stream</code></em> that no more data will follow. The stream must be open.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-stream-error"></a><h3>swfdec_stream_error ()</h3>
+<pre class="programlisting">void                swfdec_stream_error                 (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream,
+                                                         const char *error,
+                                                         ...);</pre>
+<p>
+Moves the stream in the error state if it wasn't before. A stream that is in
+the error state will not process any more data. Also, internal error 
+handling scripts may be executed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a printf-style string describing the error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> arguments for the <em class="parameter"><code>error</code></em> string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-stream-errorv"></a><h3>swfdec_stream_errorv ()</h3>
+<pre class="programlisting">void                swfdec_stream_errorv                (<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a> *stream,
+                                                         const char *error,
+                                                         va_list args);</pre>
+<p>
+This function is the va_list alternative to <a class="link" href="SwfdecStream.html#swfdec-stream-error" title="swfdec_stream_error ()"><code class="function">swfdec_stream_error()</code></a>. See that
+function for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecStream.html" title="SwfdecStream"><span class="type">SwfdecStream</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a printf-style error string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em> :</span></p></td>
+<td> arguments for <em class="parameter"><code>error</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecStream.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecStream--complete"></a><h3>The <code class="literal">"complete"</code> property</h3>
+<pre class="programlisting">  "complete"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read</pre>
+<p>TRUE when all data has been transmitted.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecStream--error"></a><h3>The <code class="literal">"error"</code> property</h3>
+<pre class="programlisting">  "error"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read</pre>
+<p>NULL when no error or string describing error.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecStream--open"></a><h3>The <code class="literal">"open"</code> property</h3>
+<pre class="programlisting">  "open"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read</pre>
+<p>TRUE while data is flowing.</p>
+<p>Default value: FALSE</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

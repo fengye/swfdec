@@ -1,0 +1,88 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecRectangle
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecRectangle ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@width: 
+@height: 
+
+<!-- ##### FUNCTION swfdec_rectangle_contains ##### -->
+<para>
+
+</para>
+
+@container: 
+@content: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_rectangle_contains_point ##### -->
+<para>
+
+</para>
+
+@rectangle: 
+@x: 
+@y: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_rectangle_init_empty ##### -->
+<para>
+
+</para>
+
+@rectangle: 
+
+
+<!-- ##### FUNCTION swfdec_rectangle_intersect ##### -->
+<para>
+
+</para>
+
+@dest: 
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_rectangle_is_empty ##### -->
+<para>
+
+</para>
+
+@rectangle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_rectangle_union ##### -->
+<para>
+
+</para>
+
+@dest: 
+@a: 
+@b: 
+
+

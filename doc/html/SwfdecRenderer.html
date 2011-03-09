@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecRenderer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="prev" href="SwfdecPlayerScripting.html" title="SwfdecPlayerScripting">
+<link rel="next" href="SwfdecStream.html" title="SwfdecStream">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecPlayerScripting.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecStream.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecRenderer.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecRenderer.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecRenderer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecRenderer.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecRenderer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecRenderer.top_of_page"></a>SwfdecRenderer</span></h2>
+<p>SwfdecRenderer — provide accelerated rendering and caching abilities</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecRenderer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecRenderer.html#SwfdecRenderer-struct" title="SwfdecRenderer">SwfdecRenderer</a>;
+                    <a class="link" href="SwfdecRenderer.html#SwfdecRendererClass" title="SwfdecRendererClass">SwfdecRendererClass</a>;
+<a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*     <a class="link" href="SwfdecRenderer.html#swfdec-renderer-new" title="swfdec_renderer_new ()">swfdec_renderer_new</a>                 (<a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-t"
+>cairo_surface_t</a> *surface);
+<a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*     <a class="link" href="SwfdecRenderer.html#swfdec-renderer-new-for-player" title="swfdec_renderer_new_for_player ()">swfdec_renderer_new_for_player</a>      (<a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-t"
+>cairo_surface_t</a> *surface,
+                                                         <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);
+<a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-t"
+>cairo_surface_t</a>*    <a class="link" href="SwfdecRenderer.html#swfdec-renderer-get-surface" title="swfdec_renderer_get_surface ()">swfdec_renderer_get_surface</a>         (<a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a> *renderer);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecRenderer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecRenderer
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecRenderer.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecRenderer.html#SwfdecRenderer--surface" title='The "surface" property'>surface</a>"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecRenderer.description"></a><h2>Description</h2>
+<p>
+The <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer"><span class="type">SwfdecRenderer</span></a> object is used internally to improve rendering done by
+Swfdec.
+</p>
+<p>
+The first thing a <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer"><span class="type">SwfdecRenderer</span></a> does is provide a way to cache data relevant
+to rendering. This means it will cache surfaces that are expensive to create
+(like decoded JPEG images) in a format most suitable to quick rendering.
+Therefore, it's a good idea to keep renderers around as long as any drawing 
+to the attached surface happens.
+</p>
+<p>
+The second thing a <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer"><span class="type">SwfdecRenderer</span></a> does is provide access to the surface 
+that is used for rendering, even when not in the process of rendering. This 
+is relevant for font backends, as different surfaces provide different 
+native fonts. See <code class="function">swfdec_player_set_default_backend()</code> for details about this.
+</p>
+<p>
+The third thing <a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer"><span class="type">SwfdecRenderer</span></a> does is provide a list of virtual functions 
+for critical operations that you can optimize using subclasses to provide 
+faster implementations. Note that a working default implementation is 
+provided, so you only need to override the functions you care about. 
+See <a class="link" href="SwfdecRenderer.html#SwfdecRendererClass" title="SwfdecRendererClass"><span class="type">SwfdecRendererClass</span></a> for details about these functions.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecRenderer.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecRenderer-struct"></a><h3>SwfdecRenderer</h3>
+<pre class="programlisting">typedef struct _SwfdecRenderer SwfdecRenderer;</pre>
+<p>
+The base renderer object. All its members are private.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecRendererClass"></a><h3>SwfdecRendererClass</h3>
+<pre class="programlisting">typedef struct {
+  cairo_surface_t *	(* create_similar)		(SwfdecRenderer *	renderer,
+							 cairo_surface_t *	surface);
+  cairo_surface_t *	(* create_for_data)		(SwfdecRenderer *	renderer,
+							 guint8 *		data,
+							 cairo_format_t		format,
+							 guint			width,
+							 guint			height,
+							 guint			rowstride);
+} SwfdecRendererClass;
+</pre>
+<p>
+The base class for the renderer. It contains some virtual functions that can
+be overridden in subclasses to accelerate certain time-critical Swfdec 
+functions. For example, a subclass could make use of special hardware 
+features on embedded devices.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>create_similar</code></em> ()</span></p></td>
+<td> This function imitates <a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-create-similar"
+><code class="function">cairo_surface_create_similar()</code></a>. It
+                 is supposed to create a surface with identical contents as
+                 the given surface, but tuned for usage with the given 
+                 renderer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>create_for_data</code></em> ()</span></p></td>
+<td> This function imitates <code class="function">cairo_surface_create_for_data()</code>. It
+                  creates a surface for the given data, tuned for the given 
+                  renderer. The function takes ownership of the passed in 
+                  data and is responsible for freeing it with <a
+href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a> when
+                  it no longer needs it.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-renderer-new"></a><h3>swfdec_renderer_new ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*     swfdec_renderer_new                 (<a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-t"
+>cairo_surface_t</a> *surface);</pre>
+<p>
+Creates a new renderer to be used with the given <em class="parameter"><code>surface</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>surface</code></em> :</span></p></td>
+<td> a cairo surface
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new renderer
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-renderer-new-for-player"></a><h3>swfdec_renderer_new_for_player ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a>*     swfdec_renderer_new_for_player      (<a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-t"
+>cairo_surface_t</a> *surface,
+                                                         <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a> *player);</pre>
+<p>
+Creates a renderer to be used with the given <em class="parameter"><code>surface</code></em> and <em class="parameter"><code>player</code></em>. The 
+renderer will use the same cache as the <em class="parameter"><code>player</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>surface</code></em> :</span></p></td>
+<td> a cairo surface
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> the player this renderer should be used with
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new renderer
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-renderer-get-surface"></a><h3>swfdec_renderer_get_surface ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/cairo/cairo-surface.html#cairo-surface-t"
+>cairo_surface_t</a>*    swfdec_renderer_get_surface         (<a class="link" href="SwfdecRenderer.html" title="SwfdecRenderer">SwfdecRenderer</a> *renderer);</pre>
+<p>
+Gets the surface that was used when creating this surface.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>renderer</code></em> :</span></p></td>
+<td> a renderer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the surface used by this renderer
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecRenderer.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecRenderer--surface"></a><h3>The <code class="literal">"surface"</code> property</h3>
+<pre class="programlisting">  "surface"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write / Construct Only</pre>
+<p>cairo surface in use by this renderer.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecAsDebugger</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch04.html" title="Actionscript interpreter">
+<link rel="prev" href="swfdec-SwfdecAsFrame.html" title="SwfdecAsFrame">
+<link rel="next" href="ix01.html" title="Index">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="swfdec-SwfdecAsFrame.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="ix01.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecAsDebugger.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecAsDebugger.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecAsDebugger.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecAsDebugger"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecAsDebugger.top_of_page"></a>SwfdecAsDebugger</span></h2>
+<p>SwfdecAsDebugger — the debugger object
+<em class="parameter"><code>see</code></em> also: SwfdecAsContext</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecAsDebugger.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecAsDebugger.html#SwfdecAsDebugger-struct" title="SwfdecAsDebugger">SwfdecAsDebugger</a>;
+                    <a class="link" href="SwfdecAsDebugger.html#SwfdecAsDebuggerClass" title="SwfdecAsDebuggerClass">SwfdecAsDebuggerClass</a>;
+
+                    <a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a>;
+<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a>*       <a class="link" href="SwfdecAsDebugger.html#swfdec-script-new" title="swfdec_script_new ()">swfdec_script_new</a>                   (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer,
+                                                         const char *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> version);
+<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a>*       <a class="link" href="SwfdecAsDebugger.html#swfdec-script-ref" title="swfdec_script_ref ()">swfdec_script_ref</a>                   (<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);
+void                <a class="link" href="SwfdecAsDebugger.html#swfdec-script-unref" title="swfdec_script_unref ()">swfdec_script_unref</a>                 (<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="SwfdecAsDebugger.html#swfdec-script-get-version" title="swfdec_script_get_version ()">swfdec_script_get_version</a>           (<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsDebugger.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecAsDebugger
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsDebugger.description"></a><h2>Description</h2>
+<p>
+The debugger object is a special object that can be set on a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+upon creation. If that is done, the debugger can then be used to inspect the 
+running Actionscript application.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsDebugger.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsDebugger-struct"></a><h3>SwfdecAsDebugger</h3>
+<pre class="programlisting">typedef struct _SwfdecAsDebugger SwfdecAsDebugger;</pre>
+<p>
+This is the type of the debugger object.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsDebuggerClass"></a><h3>SwfdecAsDebuggerClass</h3>
+<pre class="programlisting">typedef struct {
+  /* a new object was added to the GC */
+  void			(* add)		(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsObject *	object);
+  /* an object was removed from the GC */
+  void			(* remove)    	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsObject *	object);
+  /* called before executing a bytecode */
+  void			(* step)	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context);
+  /* called after adding a frame from the function stack */
+  void			(* enter_frame)	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsFrame *	frame);
+  /* called after removing a frame from the function stack */
+  void			(* leave_frame)	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsFrame *	frame,
+					 const SwfdecAsValue *	return_value);
+  /* called before setting a variable */
+  void			(* set_variable)(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsObject *	object,
+					 const char *		variable,
+					 const SwfdecAsValue *	value);
+} SwfdecAsDebuggerClass;
+</pre>
+<p>
+The class object for the debugger. You need to override these functions to 
+get useful functionality for the debugger.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>add</code></em> ()</span></p></td>
+<td> Called whenever an object is added to the garbage collection engine 
+      using <code class="function">swfdec_as_object_add()</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>remove</code></em> ()</span></p></td>
+<td> Called whenever an object is about to be collected by the garbage 
+         collector.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>step</code></em> ()</span></p></td>
+<td> This function is called everytime just before a bytecode is executed 
+       by the script engine. So it's very powerful, but can also slow down 
+       the script engine a lot.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>enter_frame</code></em> ()</span></p></td>
+<td> Called after a new <a class="link" href="swfdec-SwfdecAsFrame.html#SwfdecAsFrame" title="SwfdecAsFrame"><span class="type">SwfdecAsFrame</span></a> has been initialized and 
+              pushed to the top of the execution stack.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>leave_frame</code></em> ()</span></p></td>
+<td> Called just after a <a class="link" href="swfdec-SwfdecAsFrame.html#SwfdecAsFrame" title="SwfdecAsFrame"><span class="type">SwfdecAsFrame</span></a> has been removed from the
+	  execution stack. The return value has not been forwarded to
+	  the parent when this function is called.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>set_variable</code></em> ()</span></p></td>
+<td> Called whenever <a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-variable" title="swfdec_as_object_set_variable()"><code class="function">swfdec_as_object_set_variable()</code></a> is called, 
+               before actually setting the variable. This function is also
+               called when variables are set by internal code, not just when
+               interpreting scripts. It also doesn't matter if setting the 
+               variable will succeed. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecScript"></a><h3>SwfdecScript</h3>
+<pre class="programlisting">typedef struct _SwfdecScript SwfdecScript;</pre>
+<p>
+This is the object used for code to be executed by Swfdec. Scripts are 
+independant from the <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a> they are executed in, so you can 
+execute the same script in multiple contexts.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-script-new"></a><h3>swfdec_script_new ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a>*       swfdec_script_new                   (<a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer">SwfdecBuffer</a> *buffer,
+                                                         const char *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> version);</pre>
+<p>
+Creates a new script for the actionscript provided in <em class="parameter"><code>buffer</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td> the <a class="link" href="swfdec-SwfdecBuffer.html#SwfdecBuffer" title="SwfdecBuffer"><span class="type">SwfdecBuffer</span></a> containing the script. This function will take
+         ownership of the passed in buffer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> name of the script for debugging purposes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>version</code></em> :</span></p></td>
+<td> Actionscript version to use in this script
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript"><span class="type">SwfdecScript</span></a> for executing the script in <em class="parameter"><code>buffer</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-script-ref"></a><h3>swfdec_script_ref ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a>*       swfdec_script_ref                   (<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);</pre>
+<p>
+Increases the reference count of the given <em class="parameter"><code>script</code></em> by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a script
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The <em class="parameter"><code>script</code></em> given as an argument
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-script-unref"></a><h3>swfdec_script_unref ()</h3>
+<pre class="programlisting">void                swfdec_script_unref                 (<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);</pre>
+<p>
+Decreases the reference count of the given <em class="parameter"><code>script</code></em> by one. If the count 
+reaches zero, it will automatically be destroyed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a script
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-script-get-version"></a><h3>swfdec_script_get_version ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               swfdec_script_get_version           (<a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);</pre>
+<p>
+Queries the Flash version this script was compiled with. Different versions
+result in slightly different behavior in the script interpreter.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> the script
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The Flash version this script conforms to
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

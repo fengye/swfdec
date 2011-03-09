@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecAsRelay">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecAsRelay.top_of_page">SwfdecAsRelay</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecAsRelay</refname>
+<refpurpose>object for attaching to Actionscript objects</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecAsRelay.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecAsRelay-struct">SwfdecAsRelay</link>;
+                    <link linkend="SwfdecAsRelayClass">SwfdecAsRelayClass</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-relay-call">swfdec_as_relay_call</link>                (<link linkend="SwfdecAsRelay">SwfdecAsRelay</link> *relay,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);
+<link linkend="SwfdecAsObject">SwfdecAsObject</link>*     <link linkend="swfdec-as-relay-get-as-object">swfdec_as_relay_get_as_object</link>       (<link linkend="SwfdecAsRelay">SwfdecAsRelay</link> *relay);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecAsRelay.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="SwfdecGcObject">SwfdecGcObject</link>
+         +----SwfdecAsRelay
+               +----<link linkend="SwfdecAsFunction">SwfdecAsFunction</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="SwfdecAsRelay.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="SwfdecAsRelay"><type>SwfdecAsRelay</type></link> objects can be attached to a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link> using
+<link linkend="swfdec-as-object-relay"><function>swfdec_as_object_relay()</function></link>. You can then query an object for its relay in
+your own native function and use it there, for example by using 
+<link linkend="SWFDEC-AS-CHECK:CAPS"><function>SWFDEC_AS_CHECK()</function></link>.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecAsRelay.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecAsRelay-struct" role="struct">
+<title>SwfdecAsRelay</title>
+<indexterm zone="SwfdecAsRelay-struct"><primary>SwfdecAsRelay</primary></indexterm><programlisting>typedef struct _SwfdecAsRelay SwfdecAsRelay;</programlisting>
+<para>
+This object has no public members.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecAsRelayClass" role="struct">
+<title>SwfdecAsRelayClass</title>
+<indexterm zone="SwfdecAsRelayClass"><primary>SwfdecAsRelayClass</primary></indexterm><programlisting>typedef struct {
+} SwfdecAsRelayClass;
+</programlisting>
+<para>
+This is the base class for all objects that can be attached to a 
+<link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>. It has no virtual functions.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-as-relay-call" role="function">
+<title>swfdec_as_relay_call ()</title>
+<indexterm zone="swfdec-as-relay-call"><primary>swfdec_as_relay_call</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_relay_call                (<link linkend="SwfdecAsRelay">SwfdecAsRelay</link> *relay,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint">guint</link> argc,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *argv,
+                                                         <link linkend="SwfdecAsValue">SwfdecAsValue</link> *return_value);</programlisting>
+<para>
+Calls the function named <parameter>name</parameter> on the given object. This function is 
+essentially equal to the folloeing Actionscript code: 
+<informalexample><programlisting>
+@return_value = @object.@name (@argv[0], ..., @argv[argc-1]);
+</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>relay</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsRelay"><type>SwfdecAsRelay</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected string naming the function to call. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argc</parameter>&nbsp;:</term>
+<listitem><simpara> number of arguments to provide to function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> arguments or <link linkend="NULL:CAPS"><literal>NULL</literal></link> when <parameter>argc</parameter> is 0
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>return_value</parameter>&nbsp;:</term>
+<listitem><simpara> location to take the return value of the call or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to 
+               ignore the return value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>object</parameter> had a function with the given name, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-relay-get-as-object" role="function">
+<title>swfdec_as_relay_get_as_object ()</title>
+<indexterm zone="swfdec-as-relay-get-as-object"><primary>swfdec_as_relay_get_as_object</primary></indexterm><programlisting><link linkend="SwfdecAsObject">SwfdecAsObject</link>*     swfdec_as_relay_get_as_object       (<link linkend="SwfdecAsRelay">SwfdecAsRelay</link> *relay);</programlisting>
+<para>
+Gets the Actionscript object associated with this object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>relay</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsRelay"><type>SwfdecAsRelay</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link> associated with this relay.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

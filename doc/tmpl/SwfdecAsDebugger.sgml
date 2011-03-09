@@ -1,0 +1,80 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsDebugger
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecAsDebugger ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT SwfdecAsDebuggerClass ##### -->
+<para>
+
+</para>
+
+@add: 
+@remove: 
+@step: 
+@enter_frame: 
+@leave_frame: 
+@set_variable: 
+
+<!-- ##### STRUCT SwfdecScript ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_script_new ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@name: 
+@version: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_script_ref ##### -->
+<para>
+
+</para>
+
+@script: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_script_unref ##### -->
+<para>
+
+</para>
+
+@script: 
+
+
+<!-- ##### FUNCTION swfdec_script_get_version ##### -->
+<para>
+
+</para>
+
+@script: 
+@Returns: 
+
+

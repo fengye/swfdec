@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Internals and garbage collection</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch04.html" title="Actionscript interpreter">
+<link rel="prev" href="ch04.html" title="Actionscript interpreter">
+<link rel="next" href="swfdec-SwfdecAsValue.html" title="SwfdecAsValue">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch04.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="swfdec-SwfdecAsValue.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-Internals.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-Internals.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-Internals"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-Internals.top_of_page"></a>Internals and garbage collection</span></h2>
+<p>Internals and garbage collection — understanding internals such as garbage collection</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-Internals.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+void                <a class="link" href="swfdec-Internals.html#swfdec-as-string-mark" title="swfdec_as_string_mark ()">swfdec_as_string_mark</a>               (const char *string);
+void                <a class="link" href="swfdec-Internals.html#swfdec-as-value-mark" title="swfdec_as_value_mark ()">swfdec_as_value_mark</a>                (<a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Internals.description"></a><h2>Description</h2>
+<p>
+This section deals with the internals of the Swfdec Actionscript engine. You
+should probably read this first when trying to write code with it. If you're
+just trying to use Swfdec for creating Flash content, you can probably skip
+this section.
+</p>
+<p>
+First, I'd like to note that the Swfdec script engine has to be modeled very 
+closely after the existing Flash players. So if there are some behaviours
+that seem stupid at first sight, it might very well be that it was chosen for
+a very particular reason. Now on to the features.
+</p>
+<p>
+The Swfdec script engine tries to imitate Actionscript as good as possible.
+Actionscript is similar to Javascript, but not equal. Depending on the 
+version of the script executed it might be more or less similar. An important
+example is that Flash in versions up to 6 did case-insensitive variable 
+lookups.
+</p>
+<p>
+The script engine starts its life when it is initialized via 
+<a class="link" href="SwfdecAsContext.html#swfdec-as-context-startup" title="swfdec_as_context_startup ()"><code class="function">swfdec_as_context_startup()</code></a>. At that point, the basic objects are created.
+After this function has been called, you can start executing code. All code
+execution happens by creating a new <a class="link" href="swfdec-SwfdecAsFrame.html#SwfdecAsFrame" title="SwfdecAsFrame"><span class="type">SwfdecAsFrame</span></a> and then calling 
+<code class="function">swfdec_as_context_run()</code> to execute it. This function is the single entry 
+point for code execution. Convenience functions exist that make executing 
+code easy, most notably <a class="link" href="SwfdecAsObject.html#swfdec-as-object-run" title="swfdec_as_object_run ()"><code class="function">swfdec_as_object_run()</code></a> and 
+<a class="link" href="SwfdecAsObject.html#swfdec-as-object-call" title="swfdec_as_object_call ()"><code class="function">swfdec_as_object_call()</code></a>.
+</p>
+<p>
+It is also easily possible to extend the environment by adding new objects.
+In fact, without doing so, the environment is pretty bare as it just contains
+the basic Math, String, Number, Array, Date and Boolean objects. This is done
+by adding <a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()"><span class="type">SwfdecAsNative</span></a> functions to the environment. The easy way
+to do this is via <a class="link" href="SwfdecAsObject.html#swfdec-as-object-add-function" title="swfdec_as_object_add_function ()"><code class="function">swfdec_as_object_add_function()</code></a>.
+</p>
+<p>
+The Swfdec script engine is dynamically typed and knows about different types
+of values. See <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> for the different values. Memory management is
+done using a mark and sweep garbage collector. You can initiate a garbage 
+collection cycle by calling <a class="link" href="SwfdecAsContext.html#swfdec-as-context-gc" title="swfdec_as_context_gc ()"><code class="function">swfdec_as_context_gc()</code></a> or 
+<a class="link" href="SwfdecAsContext.html#swfdec-as-context-maybe-gc" title="swfdec_as_context_maybe_gc ()"><code class="function">swfdec_as_context_maybe_gc()</code></a>. You should do this regularly to avoid excessive
+memory use. The <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a> will then collect the objects and strings it
+is keeping track of. If you want to use an object or string in the script 
+engine, you'll have to add it first via <code class="function">swfdec_as_object_add()</code> or
+<a class="link" href="SwfdecAsContext.html#swfdec-as-context-get-string" title="swfdec_as_context_get_string ()"><code class="function">swfdec_as_context_get_string()</code></a> and <a class="link" href="SwfdecAsContext.html#swfdec-as-context-give-string" title="swfdec_as_context_give_string ()"><code class="function">swfdec_as_context_give_string()</code></a>, 
+respectively.
+</p>
+<p>
+Garbage-collected strings are special in Swfdec in that they are unique. This
+means the same string exists exactly once. Because of this you can do 
+equality comparisons using == instead of strcmp. It also means that if you 
+forget to add a string to the context before using it, your app will most 
+likely not work, since the string will not compare equal to any other string.
+</p>
+<p>
+When a garbage collection cycle happens, all reachable objects and strings 
+are marked and all unreachable ones are freed. This is done by calling the
+context class's mark function which will mark all reachable objects. This is
+usually called the "root set". For any reachable object, the object's mark
+function is called so that the object in turn can mark all objects it can 
+reach itself. Marking is done via functions described below.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Internals.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-string-mark"></a><h3>swfdec_as_string_mark ()</h3>
+<pre class="programlisting">void                swfdec_as_string_mark               (const char *string);</pre>
+<p>
+Mark <em class="parameter"><code>string</code></em> as being in use. Calling this function is only valid during
+the marking phase of garbage collection.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td> a garbage-collected string
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-value-mark"></a><h3>swfdec_as_value_mark ()</h3>
+<pre class="programlisting">void                swfdec_as_value_mark                (<a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value);</pre>
+<p>
+Mark <em class="parameter"><code>value</code></em> as being in use. This is just a convenience function that calls
+the right marking function depending on the value's type. Calling this 
+function is only valid during the marking phase of garbage collection.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Internals.see-also"></a><h2>See Also</h2>
+<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

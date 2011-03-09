@@ -1,0 +1,111 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecStream
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecStream ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG SwfdecStream:complete ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecStream:error ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG SwfdecStream:open ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT SwfdecStreamClass ##### -->
+<para>
+
+</para>
+
+@describe: 
+@close: 
+
+<!-- ##### FUNCTION swfdec_stream_is_open ##### -->
+<para>
+
+</para>
+
+@stream: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_stream_is_complete ##### -->
+<para>
+
+</para>
+
+@stream: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_stream_open ##### -->
+<para>
+
+</para>
+
+@stream: 
+
+
+<!-- ##### FUNCTION swfdec_stream_push ##### -->
+<para>
+
+</para>
+
+@stream: 
+@buffer: 
+
+
+<!-- ##### FUNCTION swfdec_stream_close ##### -->
+<para>
+
+</para>
+
+@stream: 
+
+
+<!-- ##### FUNCTION swfdec_stream_error ##### -->
+<para>
+
+</para>
+
+@stream: 
+@error: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION swfdec_stream_errorv ##### -->
+<para>
+
+</para>
+
+@stream: 
+@error: 
+@args: 
+
+

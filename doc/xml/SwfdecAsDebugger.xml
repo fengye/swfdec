@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecAsDebugger">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecAsDebugger.top_of_page">SwfdecAsDebugger</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecAsDebugger</refname>
+<refpurpose>the debugger object
+<parameter>see</parameter> also: SwfdecAsContext</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecAsDebugger.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecAsDebugger-struct">SwfdecAsDebugger</link>;
+                    <link linkend="SwfdecAsDebuggerClass">SwfdecAsDebuggerClass</link>;
+
+                    <link linkend="SwfdecScript">SwfdecScript</link>;
+<link linkend="SwfdecScript">SwfdecScript</link>*       <link linkend="swfdec-script-new">swfdec_script_new</link>                   (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint">guint</link> version);
+<link linkend="SwfdecScript">SwfdecScript</link>*       <link linkend="swfdec-script-ref">swfdec_script_ref</link>                   (<link linkend="SwfdecScript">SwfdecScript</link> *script);
+<link linkend="void">void</link>                <link linkend="swfdec-script-unref">swfdec_script_unref</link>                 (<link linkend="SwfdecScript">SwfdecScript</link> *script);
+<link linkend="guint">guint</link>               <link linkend="swfdec-script-get-version">swfdec_script_get_version</link>           (<link linkend="SwfdecScript">SwfdecScript</link> *script);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecAsDebugger.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----SwfdecAsDebugger
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="SwfdecAsDebugger.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The debugger object is a special object that can be set on a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+upon creation. If that is done, the debugger can then be used to inspect the 
+running Actionscript application.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecAsDebugger.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecAsDebugger-struct" role="struct">
+<title>SwfdecAsDebugger</title>
+<indexterm zone="SwfdecAsDebugger-struct"><primary>SwfdecAsDebugger</primary></indexterm><programlisting>typedef struct _SwfdecAsDebugger SwfdecAsDebugger;</programlisting>
+<para>
+This is the type of the debugger object.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecAsDebuggerClass" role="struct">
+<title>SwfdecAsDebuggerClass</title>
+<indexterm zone="SwfdecAsDebuggerClass"><primary>SwfdecAsDebuggerClass</primary></indexterm><programlisting>typedef struct {
+  /* a new object was added to the GC */
+  void			(* add)		(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsObject *	object);
+  /* an object was removed from the GC */
+  void			(* remove)    	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsObject *	object);
+  /* called before executing a bytecode */
+  void			(* step)	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context);
+  /* called after adding a frame from the function stack */
+  void			(* enter_frame)	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsFrame *	frame);
+  /* called after removing a frame from the function stack */
+  void			(* leave_frame)	(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsFrame *	frame,
+					 const SwfdecAsValue *	return_value);
+  /* called before setting a variable */
+  void			(* set_variable)(SwfdecAsDebugger *	debugger,
+					 SwfdecAsContext *	context,
+					 SwfdecAsObject *	object,
+					 const char *		variable,
+					 const SwfdecAsValue *	value);
+} SwfdecAsDebuggerClass;
+</programlisting>
+<para>
+The class object for the debugger. You need to override these functions to 
+get useful functionality for the debugger.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>add</structfield>&nbsp;()</term>
+<listitem><simpara> Called whenever an object is added to the garbage collection engine 
+      using <link linkend="swfdec-as-object-add"><function>swfdec_as_object_add()</function></link>
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>remove</structfield>&nbsp;()</term>
+<listitem><simpara> Called whenever an object is about to be collected by the garbage 
+         collector.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>step</structfield>&nbsp;()</term>
+<listitem><simpara> This function is called everytime just before a bytecode is executed 
+       by the script engine. So it's very powerful, but can also slow down 
+       the script engine a lot.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>enter_frame</structfield>&nbsp;()</term>
+<listitem><simpara> Called after a new <link linkend="SwfdecAsFrame"><type>SwfdecAsFrame</type></link> has been initialized and 
+              pushed to the top of the execution stack.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>leave_frame</structfield>&nbsp;()</term>
+<listitem><simpara> Called just after a <link linkend="SwfdecAsFrame"><type>SwfdecAsFrame</type></link> has been removed from the
+	  execution stack. The return value has not been forwarded to
+	  the parent when this function is called.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>set_variable</structfield>&nbsp;()</term>
+<listitem><simpara> Called whenever <link linkend="swfdec-as-object-set-variable"><function>swfdec_as_object_set_variable()</function></link> is called, 
+               before actually setting the variable. This function is also
+               called when variables are set by internal code, not just when
+               interpreting scripts. It also doesn't matter if setting the 
+               variable will succeed. 
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecScript" role="struct">
+<title>SwfdecScript</title>
+<indexterm zone="SwfdecScript"><primary>SwfdecScript</primary></indexterm><programlisting>typedef struct _SwfdecScript SwfdecScript;</programlisting>
+<para>
+This is the object used for code to be executed by Swfdec. Scripts are 
+independant from the <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link> they are executed in, so you can 
+execute the same script in multiple contexts.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-script-new" role="function">
+<title>swfdec_script_new ()</title>
+<indexterm zone="swfdec-script-new"><primary>swfdec_script_new</primary></indexterm><programlisting><link linkend="SwfdecScript">SwfdecScript</link>*       swfdec_script_new                   (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint">guint</link> version);</programlisting>
+<para>
+Creates a new script for the actionscript provided in <parameter>buffer</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> containing the script. This function will take
+         ownership of the passed in buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> name of the script for debugging purposes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>version</parameter>&nbsp;:</term>
+<listitem><simpara> Actionscript version to use in this script
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecScript"><type>SwfdecScript</type></link> for executing the script in <parameter>buffer</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-script-ref" role="function">
+<title>swfdec_script_ref ()</title>
+<indexterm zone="swfdec-script-ref"><primary>swfdec_script_ref</primary></indexterm><programlisting><link linkend="SwfdecScript">SwfdecScript</link>*       swfdec_script_ref                   (<link linkend="SwfdecScript">SwfdecScript</link> *script);</programlisting>
+<para>
+Increases the reference count of the given <parameter>script</parameter> by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a script
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The <parameter>script</parameter> given as an argument
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-script-unref" role="function">
+<title>swfdec_script_unref ()</title>
+<indexterm zone="swfdec-script-unref"><primary>swfdec_script_unref</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_script_unref                 (<link linkend="SwfdecScript">SwfdecScript</link> *script);</programlisting>
+<para>
+Decreases the reference count of the given <parameter>script</parameter> by one. If the count 
+reaches zero, it will automatically be destroyed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a script
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-script-get-version" role="function">
+<title>swfdec_script_get_version ()</title>
+<indexterm zone="swfdec-script-get-version"><primary>swfdec_script_get_version</primary></indexterm><programlisting><link linkend="guint">guint</link>               swfdec_script_get_version           (<link linkend="SwfdecScript">SwfdecScript</link> *script);</programlisting>
+<para>
+Queries the Flash version this script was compiled with. Different versions
+result in slightly different behavior in the script interpreter.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> the script
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The Flash version this script conforms to
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

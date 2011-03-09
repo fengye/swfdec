@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="Swfdec Reference Manual" link="index.html" author="" name="swfdec">
+  <chapters>
+    <sub name="Swfdec Gtk library" link="ch01.html">
+      <sub name="SwfdecGtkPlayer" link="SwfdecGtkPlayer.html"/>
+      <sub name="SwfdecGtkWidget" link="SwfdecGtkWidget.html"/>
+      <sub name="Gtk extensions" link="swfdec-Gtk-extension-objects.html"/>
+    </sub>
+    <sub name="Swfdec library" link="ch02.html">
+      <sub name="Enumerations" link="swfdec-Enumerations-and-Types.html"/>
+      <sub name="SwfdecRectangle" link="swfdec-SwfdecRectangle.html"/>
+      <sub name="SwfdecBuffer" link="swfdec-SwfdecBuffer.html"/>
+      <sub name="SwfdecURL" link="swfdec-SwfdecURL.html"/>
+      <sub name="SwfdecPlayer" link="SwfdecPlayer.html"/>
+      <sub name="SwfdecSystem" link="SwfdecSystem.html"/>
+      <sub name="SwfdecAudio" link="SwfdecAudio.html"/>
+      <sub name="Version Information" link="swfdec-Version-Information.html"/>
+    </sub>
+    <sub name="extending SwfdecPlayer" link="ch03.html">
+      <sub name="SwfdecPlayerScripting" link="SwfdecPlayerScripting.html"/>
+      <sub name="SwfdecRenderer" link="SwfdecRenderer.html"/>
+      <sub name="SwfdecStream" link="SwfdecStream.html"/>
+      <sub name="SwfdecLoader" link="SwfdecLoader.html"/>
+      <sub name="SwfdecSocket" link="SwfdecSocket.html"/>
+    </sub>
+    <sub name="Actionscript interpreter" link="ch04.html">
+      <sub name="Internals and garbage collection" link="swfdec-Internals.html"/>
+      <sub name="SwfdecAsValue" link="swfdec-SwfdecAsValue.html"/>
+      <sub name="SwfdecAsContext" link="SwfdecAsContext.html"/>
+      <sub name="SwfdecAsObject" link="SwfdecAsObject.html"/>
+      <sub name="SwfdecAsArray" link="SwfdecAsArray.html"/>
+      <sub name="SwfdecAsFunction" link="SwfdecAsFunction.html"/>
+      <sub name="SwfdecAsFrame" link="swfdec-SwfdecAsFrame.html"/>
+      <sub name="SwfdecAsDebugger" link="SwfdecAsDebugger.html"/>
+    </sub>
+    <sub name="" link="ix01.html"/>
+  </chapters>
+  <functions>
+    <function name="SwfdecGtkPlayer" link="SwfdecGtkPlayer.html#SwfdecGtkPlayer-struct"/>
+    <function name="SWFDEC_GTK_PRIORITY_ITERATE" link="SwfdecGtkPlayer.html#SWFDEC-GTK-PRIORITY-ITERATE:CAPS"/>
+    <function name="SWFDEC_GTK_PRIORITY_REDRAW" link="SwfdecGtkPlayer.html#SWFDEC-GTK-PRIORITY-REDRAW:CAPS"/>
+    <function name="swfdec_gtk_player_new ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-new"/>
+    <function name="swfdec_gtk_player_get_playing ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-get-playing"/>
+    <function name="swfdec_gtk_player_set_playing ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-set-playing"/>
+    <function name="swfdec_gtk_player_get_speed ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-get-speed"/>
+    <function name="swfdec_gtk_player_set_speed ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-set-speed"/>
+    <function name="swfdec_gtk_player_get_audio_enabled ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-get-audio-enabled"/>
+    <function name="swfdec_gtk_player_set_audio_enabled ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-set-audio-enabled"/>
+    <function name="swfdec_gtk_player_get_missing_plugins_window ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-get-missing-plugins-window"/>
+    <function name="swfdec_gtk_player_set_missing_plugins_window ()" link="SwfdecGtkPlayer.html#swfdec-gtk-player-set-missing-plugins-window"/>
+    <function name="The &quot;audio-enabled&quot; property" link="SwfdecGtkPlayer.html#SwfdecGtkPlayer--audio-enabled"/>
+    <function name="The &quot;missing-plugins-window&quot; property" link="SwfdecGtkPlayer.html#SwfdecGtkPlayer--missing-plugins-window"/>
+    <function name="The &quot;playing&quot; property" link="SwfdecGtkPlayer.html#SwfdecGtkPlayer--playing"/>
+    <function name="The &quot;speed&quot; property" link="SwfdecGtkPlayer.html#SwfdecGtkPlayer--speed"/>
+    <function name="SwfdecGtkWidget" link="SwfdecGtkWidget.html#SwfdecGtkWidget-struct"/>
+    <function name="swfdec_gtk_widget_new ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-new"/>
+    <function name="swfdec_gtk_widget_new_fullscreen ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-new-fullscreen"/>
+    <function name="swfdec_gtk_widget_get_player ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-get-player"/>
+    <function name="swfdec_gtk_widget_set_player ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-set-player"/>
+    <function name="swfdec_gtk_widget_get_interactive ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-get-interactive"/>
+    <function name="swfdec_gtk_widget_set_interactive ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-set-interactive"/>
+    <function name="swfdec_gtk_widget_get_renderer ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-get-renderer"/>
+    <function name="swfdec_gtk_widget_uses_renderer ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-uses-renderer"/>
+    <function name="swfdec_gtk_widget_set_renderer ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-set-renderer"/>
+    <function name="swfdec_gtk_widget_unset_renderer ()" link="SwfdecGtkWidget.html#swfdec-gtk-widget-unset-renderer"/>
+    <function name="swfdec_gtk_keycode_from_hardware_keycode ()" link="SwfdecGtkWidget.html#swfdec-gtk-keycode-from-hardware-keycode"/>
+    <function name="The &quot;fullscreen-mode&quot; property" link="SwfdecGtkWidget.html#SwfdecGtkWidget--fullscreen-mode"/>
+    <function name="The &quot;interactive&quot; property" link="SwfdecGtkWidget.html#SwfdecGtkWidget--interactive"/>
+    <function name="The &quot;player&quot; property" link="SwfdecGtkWidget.html#SwfdecGtkWidget--player"/>
+    <function name="The &quot;renderer&quot; property" link="SwfdecGtkWidget.html#SwfdecGtkWidget--renderer"/>
+    <function name="The &quot;renderer-set&quot; property" link="SwfdecGtkWidget.html#SwfdecGtkWidget--renderer-set"/>
+    <function name="SwfdecGtkLoader" link="swfdec-Gtk-extension-objects.html#SwfdecGtkLoader-struct"/>
+    <function name="SwfdecGtkSocket" link="swfdec-Gtk-extension-objects.html#SwfdecGtkSocket-struct"/>
+    <function name="SWFDEC_TYPE_TIME_VAL" link="swfdec-Enumerations-and-Types.html#SWFDEC-TYPE-TIME-VAL:CAPS"/>
+    <function name="enum SwfdecAsContextState" link="swfdec-Enumerations-and-Types.html#SwfdecAsContextState"/>
+    <function name="enum SwfdecAsDeleteReturn" link="swfdec-Enumerations-and-Types.html#SwfdecAsDeleteReturn"/>
+    <function name="enum SwfdecLoaderDataType" link="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType"/>
+    <function name="swfdec_loader_data_type_get_extension ()" link="swfdec-Enumerations-and-Types.html#swfdec-loader-data-type-get-extension"/>
+    <function name="enum SwfdecAlignment" link="swfdec-Enumerations-and-Types.html#SwfdecAlignment"/>
+    <function name="enum SwfdecKey" link="swfdec-Enumerations-and-Types.html#SwfdecKey"/>
+    <function name="enum SwfdecMouseCursor" link="swfdec-Enumerations-and-Types.html#SwfdecMouseCursor"/>
+    <function name="enum SwfdecScaleMode" link="swfdec-Enumerations-and-Types.html#SwfdecScaleMode"/>
+    <function name="SwfdecRectangle" link="swfdec-SwfdecRectangle.html#SwfdecRectangle"/>
+    <function name="swfdec_rectangle_contains ()" link="swfdec-SwfdecRectangle.html#swfdec-rectangle-contains"/>
+    <function name="swfdec_rectangle_contains_point ()" link="swfdec-SwfdecRectangle.html#swfdec-rectangle-contains-point"/>
+    <function name="swfdec_rectangle_init_empty ()" link="swfdec-SwfdecRectangle.html#swfdec-rectangle-init-empty"/>
+    <function name="swfdec_rectangle_intersect ()" link="swfdec-SwfdecRectangle.html#swfdec-rectangle-intersect"/>
+    <function name="swfdec_rectangle_is_empty ()" link="swfdec-SwfdecRectangle.html#swfdec-rectangle-is-empty"/>
+    <function name="swfdec_rectangle_union ()" link="swfdec-SwfdecRectangle.html#swfdec-rectangle-union"/>
+    <function name="SwfdecBuffer" link="swfdec-SwfdecBuffer.html#SwfdecBuffer"/>
+    <function name="SwfdecBufferQueue" link="swfdec-SwfdecBuffer.html#SwfdecBufferQueue"/>
+    <function name="SwfdecBufferFreeFunc ()" link="swfdec-SwfdecBuffer.html#SwfdecBufferFreeFunc"/>
+    <function name="swfdec_buffer_new ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-new"/>
+    <function name="swfdec_buffer_new0 ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-new0"/>
+    <function name="swfdec_buffer_new_full ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-new-full"/>
+    <function name="swfdec_buffer_new_static()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-new-static"/>
+    <function name="swfdec_buffer_new_for_data ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-new-for-data"/>
+    <function name="swfdec_buffer_new_subbuffer ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-new-subbuffer"/>
+    <function name="swfdec_buffer_new_from_file ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-new-from-file"/>
+    <function name="swfdec_buffer_ref ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-ref"/>
+    <function name="swfdec_buffer_unref ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-unref"/>
+    <function name="swfdec_buffer_get_super ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-get-super"/>
+    <function name="swfdec_buffer_queue_new ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-new"/>
+    <function name="swfdec_buffer_queue_clear ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-clear"/>
+    <function name="swfdec_buffer_queue_ref ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-ref"/>
+    <function name="swfdec_buffer_queue_unref ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-unref"/>
+    <function name="swfdec_buffer_queue_get_depth ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-get-depth"/>
+    <function name="swfdec_buffer_queue_get_offset ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-get-offset"/>
+    <function name="swfdec_buffer_queue_push ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-push"/>
+    <function name="swfdec_buffer_queue_pull ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-pull"/>
+    <function name="swfdec_buffer_queue_pull_buffer ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-pull-buffer"/>
+    <function name="swfdec_buffer_queue_peek ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-peek"/>
+    <function name="swfdec_buffer_queue_peek_buffer ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-peek-buffer"/>
+    <function name="swfdec_buffer_queue_flush ()" link="swfdec-SwfdecBuffer.html#swfdec-buffer-queue-flush"/>
+    <function name="SwfdecURL" link="swfdec-SwfdecURL.html#SwfdecURL"/>
+    <function name="swfdec_url_new ()" link="swfdec-SwfdecURL.html#swfdec-url-new"/>
+    <function name="swfdec_url_new_from_input ()" link="swfdec-SwfdecURL.html#swfdec-url-new-from-input"/>
+    <function name="swfdec_url_new_components ()" link="swfdec-SwfdecURL.html#swfdec-url-new-components"/>
+    <function name="swfdec_url_new_relative ()" link="swfdec-SwfdecURL.html#swfdec-url-new-relative"/>
+    <function name="swfdec_url_new_parent ()" link="swfdec-SwfdecURL.html#swfdec-url-new-parent"/>
+    <function name="swfdec_url_copy ()" link="swfdec-SwfdecURL.html#swfdec-url-copy"/>
+    <function name="swfdec_url_free ()" link="swfdec-SwfdecURL.html#swfdec-url-free"/>
+    <function name="swfdec_url_get_protocol ()" link="swfdec-SwfdecURL.html#swfdec-url-get-protocol"/>
+    <function name="swfdec_url_has_protocol ()" link="swfdec-SwfdecURL.html#swfdec-url-has-protocol"/>
+    <function name="swfdec_url_get_host ()" link="swfdec-SwfdecURL.html#swfdec-url-get-host"/>
+    <function name="swfdec_url_get_port ()" link="swfdec-SwfdecURL.html#swfdec-url-get-port"/>
+    <function name="swfdec_url_get_path ()" link="swfdec-SwfdecURL.html#swfdec-url-get-path"/>
+    <function name="swfdec_url_get_query ()" link="swfdec-SwfdecURL.html#swfdec-url-get-query"/>
+    <function name="swfdec_url_get_url ()" link="swfdec-SwfdecURL.html#swfdec-url-get-url"/>
+    <function name="swfdec_url_is_local ()" link="swfdec-SwfdecURL.html#swfdec-url-is-local"/>
+    <function name="swfdec_url_is_parent ()" link="swfdec-SwfdecURL.html#swfdec-url-is-parent"/>
+    <function name="swfdec_url_format_for_display ()" link="swfdec-SwfdecURL.html#swfdec-url-format-for-display"/>
+    <function name="swfdec_url_hash ()" link="swfdec-SwfdecURL.html#swfdec-url-hash"/>
+    <function name="swfdec_url_equal ()" link="swfdec-SwfdecURL.html#swfdec-url-equal"/>
+    <function name="swfdec_url_host_equal ()" link="swfdec-SwfdecURL.html#swfdec-url-host-equal"/>
+    <function name="swfdec_url_path_is_relative ()" link="swfdec-SwfdecURL.html#swfdec-url-path-is-relative"/>
+    <function name="SwfdecPlayer" link="SwfdecPlayer.html#SwfdecPlayer-struct"/>
+    <function name="swfdec_init ()" link="SwfdecPlayer.html#swfdec-init"/>
+    <function name="swfdec_player_new ()" link="SwfdecPlayer.html#swfdec-player-new"/>
+    <function name="swfdec_player_is_initialized ()" link="SwfdecPlayer.html#swfdec-player-is-initialized"/>
+    <function name="swfdec_player_get_url ()" link="SwfdecPlayer.html#swfdec-player-get-url"/>
+    <function name="swfdec_player_set_url ()" link="SwfdecPlayer.html#swfdec-player-set-url"/>
+    <function name="swfdec_player_get_base_url ()" link="SwfdecPlayer.html#swfdec-player-get-base-url"/>
+    <function name="swfdec_player_set_base_url ()" link="SwfdecPlayer.html#swfdec-player-set-base-url"/>
+    <function name="swfdec_player_get_variables ()" link="SwfdecPlayer.html#swfdec-player-get-variables"/>
+    <function name="swfdec_player_set_variables ()" link="SwfdecPlayer.html#swfdec-player-set-variables"/>
+    <function name="swfdec_player_get_rate ()" link="SwfdecPlayer.html#swfdec-player-get-rate"/>
+    <function name="swfdec_player_get_default_size ()" link="SwfdecPlayer.html#swfdec-player-get-default-size"/>
+    <function name="swfdec_player_get_size ()" link="SwfdecPlayer.html#swfdec-player-get-size"/>
+    <function name="swfdec_player_set_size ()" link="SwfdecPlayer.html#swfdec-player-set-size"/>
+    <function name="swfdec_player_get_next_event ()" link="SwfdecPlayer.html#swfdec-player-get-next-event"/>
+    <function name="swfdec_player_get_background_color ()" link="SwfdecPlayer.html#swfdec-player-get-background-color"/>
+    <function name="swfdec_player_get_scale_mode ()" link="SwfdecPlayer.html#swfdec-player-get-scale-mode"/>
+    <function name="swfdec_player_set_scale_mode ()" link="SwfdecPlayer.html#swfdec-player-set-scale-mode"/>
+    <function name="swfdec_player_get_alignment ()" link="SwfdecPlayer.html#swfdec-player-get-alignment"/>
+    <function name="swfdec_player_set_alignment ()" link="SwfdecPlayer.html#swfdec-player-set-alignment"/>
+    <function name="swfdec_player_get_scripting ()" link="SwfdecPlayer.html#swfdec-player-get-scripting"/>
+    <function name="swfdec_player_set_scripting ()" link="SwfdecPlayer.html#swfdec-player-set-scripting"/>
+    <function name="swfdec_player_get_allow_fullscreen ()" link="SwfdecPlayer.html#swfdec-player-get-allow-fullscreen"/>
+    <function name="swfdec_player_set_allow_fullscreen ()" link="SwfdecPlayer.html#swfdec-player-set-allow-fullscreen"/>
+    <function name="swfdec_player_get_fullscreen ()" link="SwfdecPlayer.html#swfdec-player-get-fullscreen"/>
+    <function name="swfdec_player_get_renderer ()" link="SwfdecPlayer.html#swfdec-player-get-renderer"/>
+    <function name="swfdec_player_set_renderer ()" link="SwfdecPlayer.html#swfdec-player-set-renderer"/>
+    <function name="swfdec_player_render ()" link="SwfdecPlayer.html#swfdec-player-render"/>
+    <function name="swfdec_player_render_with_renderer ()" link="SwfdecPlayer.html#swfdec-player-render-with-renderer"/>
+    <function name="swfdec_player_advance ()" link="SwfdecPlayer.html#swfdec-player-advance"/>
+    <function name="swfdec_player_mouse_move ()" link="SwfdecPlayer.html#swfdec-player-mouse-move"/>
+    <function name="swfdec_player_mouse_press ()" link="SwfdecPlayer.html#swfdec-player-mouse-press"/>
+    <function name="swfdec_player_mouse_release ()" link="SwfdecPlayer.html#swfdec-player-mouse-release"/>
+    <function name="swfdec_player_key_press ()" link="SwfdecPlayer.html#swfdec-player-key-press"/>
+    <function name="swfdec_player_key_release ()" link="SwfdecPlayer.html#swfdec-player-key-release"/>
+    <function name="swfdec_player_get_focus ()" link="SwfdecPlayer.html#swfdec-player-get-focus"/>
+    <function name="swfdec_player_set_focus ()" link="SwfdecPlayer.html#swfdec-player-set-focus"/>
+    <function name="swfdec_player_get_selection ()" link="SwfdecPlayer.html#swfdec-player-get-selection"/>
+    <function name="swfdec_player_get_audio ()" link="SwfdecPlayer.html#swfdec-player-get-audio"/>
+    <function name="swfdec_player_get_maximum_runtime ()" link="SwfdecPlayer.html#swfdec-player-get-maximum-runtime"/>
+    <function name="swfdec_player_set_maximum_runtime ()" link="SwfdecPlayer.html#swfdec-player-set-maximum-runtime"/>
+    <function name="The &quot;alignment&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--alignment"/>
+    <function name="The &quot;allow-fullscreen&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--allow-fullscreen"/>
+    <function name="The &quot;background-color&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--background-color"/>
+    <function name="The &quot;base-url&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--base-url"/>
+    <function name="The &quot;cache-size&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--cache-size"/>
+    <function name="The &quot;default-height&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--default-height"/>
+    <function name="The &quot;default-width&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--default-width"/>
+    <function name="The &quot;focus&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--focus"/>
+    <function name="The &quot;fullscreen&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--fullscreen"/>
+    <function name="The &quot;height&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--height"/>
+    <function name="The &quot;initialized&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--initialized"/>
+    <function name="The &quot;loader-type&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--loader-type"/>
+    <function name="The &quot;max-runtime&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--max-runtime"/>
+    <function name="The &quot;mouse-cursor&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--mouse-cursor"/>
+    <function name="The &quot;next-event&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--next-event"/>
+    <function name="The &quot;rate&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--rate"/>
+    <function name="The &quot;renderer&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--renderer"/>
+    <function name="The &quot;scale-mode&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--scale-mode"/>
+    <function name="The &quot;scripting&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--scripting"/>
+    <function name="The &quot;selection&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--selection"/>
+    <function name="The &quot;socket-type&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--socket-type"/>
+    <function name="The &quot;start-time&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--start-time"/>
+    <function name="The &quot;system&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--system"/>
+    <function name="The &quot;url&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--url"/>
+    <function name="The &quot;variables&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--variables"/>
+    <function name="The &quot;width&quot; property" link="SwfdecPlayer.html#SwfdecPlayer--width"/>
+    <function name="The &quot;advance&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-advance"/>
+    <function name="The &quot;audio-added&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-audio-added"/>
+    <function name="The &quot;audio-removed&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-audio-removed"/>
+    <function name="The &quot;fscommand&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-fscommand"/>
+    <function name="The &quot;handle-key&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-handle-key"/>
+    <function name="The &quot;handle-mouse&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-handle-mouse"/>
+    <function name="The &quot;invalidate&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-invalidate"/>
+    <function name="The &quot;launch&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-launch"/>
+    <function name="The &quot;missing-plugins&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-missing-plugins"/>
+    <function name="The &quot;query-size&quot; signal" link="SwfdecPlayer.html#SwfdecPlayer-query-size"/>
+    <function name="SwfdecSystem" link="SwfdecSystem.html#SwfdecSystem-struct"/>
+    <function name="swfdec_system_new ()" link="SwfdecSystem.html#swfdec-system-new"/>
+    <function name="The &quot;color-mode&quot; property" link="SwfdecSystem.html#SwfdecSystem--color-mode"/>
+    <function name="The &quot;debugger&quot; property" link="SwfdecSystem.html#SwfdecSystem--debugger"/>
+    <function name="The &quot;dpi&quot; property" link="SwfdecSystem.html#SwfdecSystem--dpi"/>
+    <function name="The &quot;language&quot; property" link="SwfdecSystem.html#SwfdecSystem--language"/>
+    <function name="The &quot;manufacturer&quot; property" link="SwfdecSystem.html#SwfdecSystem--manufacturer"/>
+    <function name="The &quot;os&quot; property" link="SwfdecSystem.html#SwfdecSystem--os"/>
+    <function name="The &quot;os-type&quot; property" link="SwfdecSystem.html#SwfdecSystem--os-type"/>
+    <function name="The &quot;pixel-aspect-ratio&quot; property" link="SwfdecSystem.html#SwfdecSystem--pixel-aspect-ratio"/>
+    <function name="The &quot;player-type&quot; property" link="SwfdecSystem.html#SwfdecSystem--player-type"/>
+    <function name="The &quot;screen-height&quot; property" link="SwfdecSystem.html#SwfdecSystem--screen-height"/>
+    <function name="The &quot;screen-width&quot; property" link="SwfdecSystem.html#SwfdecSystem--screen-width"/>
+    <function name="The &quot;server-manufacturer&quot; property" link="SwfdecSystem.html#SwfdecSystem--server-manufacturer"/>
+    <function name="The &quot;utc-offset&quot; property" link="SwfdecSystem.html#SwfdecSystem--utc-offset"/>
+    <function name="The &quot;version&quot; property" link="SwfdecSystem.html#SwfdecSystem--version"/>
+    <function name="SwfdecAudio" link="SwfdecAudio.html#SwfdecAudio-struct"/>
+    <function name="swfdec_audio_render ()" link="SwfdecAudio.html#swfdec-audio-render"/>
+    <function name="The &quot;changed&quot; signal" link="SwfdecAudio.html#SwfdecAudio-changed"/>
+    <function name="The &quot;new-data&quot; signal" link="SwfdecAudio.html#SwfdecAudio-new-data"/>
+    <function name="Examining the version" link="swfdec-Version-Information.html#id2995139"/>
+    <function name="SWFDEC_VERSION_MAJOR" link="swfdec-Version-Information.html#SWFDEC-VERSION-MAJOR:CAPS"/>
+    <function name="SWFDEC_VERSION_MICRO" link="swfdec-Version-Information.html#SWFDEC-VERSION-MICRO:CAPS"/>
+    <function name="SWFDEC_VERSION_MINOR" link="swfdec-Version-Information.html#SWFDEC-VERSION-MINOR:CAPS"/>
+    <function name="SWFDEC_VERSION_ENCODE()" link="swfdec-Version-Information.html#SWFDEC-VERSION-ENCODE:CAPS"/>
+    <function name="SWFDEC_VERSION" link="swfdec-Version-Information.html#SWFDEC-VERSION:CAPS"/>
+    <function name="SWFDEC_VERSION_STRING" link="swfdec-Version-Information.html#SWFDEC-VERSION-STRING:CAPS"/>
+    <function name="swfdec_version ()" link="swfdec-Version-Information.html#swfdec-version"/>
+    <function name="swfdec_version_string ()" link="swfdec-Version-Information.html#swfdec-version-string"/>
+    <function name="SwfdecPlayerScripting" link="SwfdecPlayerScripting.html#SwfdecPlayerScripting-struct"/>
+    <function name="SwfdecPlayerScriptingClass" link="SwfdecPlayerScripting.html#SwfdecPlayerScriptingClass"/>
+    <function name="SwfdecRenderer" link="SwfdecRenderer.html#SwfdecRenderer-struct"/>
+    <function name="SwfdecRendererClass" link="SwfdecRenderer.html#SwfdecRendererClass"/>
+    <function name="swfdec_renderer_new ()" link="SwfdecRenderer.html#swfdec-renderer-new"/>
+    <function name="swfdec_renderer_new_for_player ()" link="SwfdecRenderer.html#swfdec-renderer-new-for-player"/>
+    <function name="swfdec_renderer_get_surface ()" link="SwfdecRenderer.html#swfdec-renderer-get-surface"/>
+    <function name="The &quot;surface&quot; property" link="SwfdecRenderer.html#SwfdecRenderer--surface"/>
+    <function name="SwfdecStream" link="SwfdecStream.html#SwfdecStream-struct"/>
+    <function name="SwfdecStreamClass" link="SwfdecStream.html#SwfdecStreamClass"/>
+    <function name="swfdec_stream_is_open ()" link="SwfdecStream.html#swfdec-stream-is-open"/>
+    <function name="swfdec_stream_is_complete ()" link="SwfdecStream.html#swfdec-stream-is-complete"/>
+    <function name="swfdec_stream_open ()" link="SwfdecStream.html#swfdec-stream-open"/>
+    <function name="swfdec_stream_push ()" link="SwfdecStream.html#swfdec-stream-push"/>
+    <function name="swfdec_stream_close ()" link="SwfdecStream.html#swfdec-stream-close"/>
+    <function name="swfdec_stream_error ()" link="SwfdecStream.html#swfdec-stream-error"/>
+    <function name="swfdec_stream_errorv ()" link="SwfdecStream.html#swfdec-stream-errorv"/>
+    <function name="The &quot;complete&quot; property" link="SwfdecStream.html#SwfdecStream--complete"/>
+    <function name="The &quot;error&quot; property" link="SwfdecStream.html#SwfdecStream--error"/>
+    <function name="The &quot;open&quot; property" link="SwfdecStream.html#SwfdecStream--open"/>
+    <function name="SwfdecLoader" link="SwfdecLoader.html#SwfdecLoader-struct"/>
+    <function name="SwfdecFileLoader" link="SwfdecLoader.html#SwfdecFileLoader-struct"/>
+    <function name="SwfdecLoaderClass" link="SwfdecLoader.html#SwfdecLoaderClass"/>
+    <function name="swfdec_loader_set_url ()" link="SwfdecLoader.html#swfdec-loader-set-url"/>
+    <function name="swfdec_loader_get_url ()" link="SwfdecLoader.html#swfdec-loader-get-url"/>
+    <function name="swfdec_loader_set_size ()" link="SwfdecLoader.html#swfdec-loader-set-size"/>
+    <function name="swfdec_loader_get_size ()" link="SwfdecLoader.html#swfdec-loader-get-size"/>
+    <function name="swfdec_loader_get_loaded ()" link="SwfdecLoader.html#swfdec-loader-get-loaded"/>
+    <function name="swfdec_loader_get_data_type ()" link="SwfdecLoader.html#swfdec-loader-get-data-type"/>
+    <function name="The &quot;data-type&quot; property" link="SwfdecLoader.html#SwfdecLoader--data-type"/>
+    <function name="The &quot;loaded&quot; property" link="SwfdecLoader.html#SwfdecLoader--loaded"/>
+    <function name="The &quot;size&quot; property" link="SwfdecLoader.html#SwfdecLoader--size"/>
+    <function name="The &quot;url&quot; property" link="SwfdecLoader.html#SwfdecLoader--url"/>
+    <function name="SwfdecSocket" link="SwfdecSocket.html#SwfdecSocket-struct"/>
+    <function name="SwfdecSocketClass" link="SwfdecSocket.html#SwfdecSocketClass"/>
+    <function name="swfdec_as_string_mark ()" link="swfdec-Internals.html#swfdec-as-string-mark"/>
+    <function name="swfdec_as_value_mark ()" link="swfdec-Internals.html#swfdec-as-value-mark"/>
+    <function name="enum SwfdecAsValueType" link="swfdec-SwfdecAsValue.html#SwfdecAsValueType"/>
+    <function name="SwfdecAsValue" link="swfdec-SwfdecAsValue.html#SwfdecAsValue"/>
+    <function name="SWFDEC_AS_VALUE_SET_UNDEFINED()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-UNDEFINED:CAPS"/>
+    <function name="SWFDEC_AS_VALUE_GET_BOOLEAN()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-BOOLEAN:CAPS"/>
+    <function name="swfdec_as_value_to_boolean ()" link="swfdec-SwfdecAsValue.html#swfdec-as-value-to-boolean"/>
+    <function name="SWFDEC_AS_VALUE_SET_BOOLEAN()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-BOOLEAN:CAPS"/>
+    <function name="SWFDEC_AS_VALUE_GET_NUMBER()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-NUMBER:CAPS"/>
+    <function name="swfdec_as_value_to_number ()" link="swfdec-SwfdecAsValue.html#swfdec-as-value-to-number"/>
+    <function name="swfdec_as_value_to_integer ()" link="swfdec-SwfdecAsValue.html#swfdec-as-value-to-integer"/>
+    <function name="SWFDEC_AS_VALUE_SET_INT()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-INT:CAPS"/>
+    <function name="SWFDEC_AS_VALUE_SET_NUMBER()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-NUMBER:CAPS"/>
+    <function name="SWFDEC_AS_VALUE_GET_STRING()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-STRING:CAPS"/>
+    <function name="swfdec_as_value_to_string ()" link="swfdec-SwfdecAsValue.html#swfdec-as-value-to-string"/>
+    <function name="SWFDEC_AS_VALUE_SET_STRING()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-STRING:CAPS"/>
+    <function name="SWFDEC_AS_VALUE_SET_NULL()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-NULL:CAPS"/>
+    <function name="SWFDEC_AS_VALUE_GET_OBJECT()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-GET-OBJECT:CAPS"/>
+    <function name="swfdec_as_value_to_object ()" link="swfdec-SwfdecAsValue.html#swfdec-as-value-to-object"/>
+    <function name="SWFDEC_AS_VALUE_SET_OBJECT()" link="swfdec-SwfdecAsValue.html#SWFDEC-AS-VALUE-SET-OBJECT:CAPS"/>
+    <function name="swfdec_as_value_to_primitive ()" link="swfdec-SwfdecAsValue.html#swfdec-as-value-to-primitive"/>
+    <function name="swfdec_as_value_to_debug ()" link="swfdec-SwfdecAsValue.html#swfdec-as-value-to-debug"/>
+    <function name="swfdec_as_double_to_integer ()" link="swfdec-SwfdecAsValue.html#swfdec-as-double-to-integer"/>
+    <function name="swfdec_as_double_to_string ()" link="swfdec-SwfdecAsValue.html#swfdec-as-double-to-string"/>
+    <function name="swfdec_as_integer_to_string ()" link="swfdec-SwfdecAsValue.html#swfdec-as-integer-to-string"/>
+    <function name="swfdec_as_str_concat ()" link="swfdec-SwfdecAsValue.html#swfdec-as-str-concat"/>
+    <function name="SwfdecAsContext" link="SwfdecAsContext.html#SwfdecAsContext-struct"/>
+    <function name="swfdec_as_context_startup ()" link="SwfdecAsContext.html#swfdec-as-context-startup"/>
+    <function name="swfdec_as_context_abort ()" link="SwfdecAsContext.html#swfdec-as-context-abort"/>
+    <function name="swfdec_as_context_is_aborted ()" link="SwfdecAsContext.html#swfdec-as-context-is-aborted"/>
+    <function name="swfdec_as_context_get_string ()" link="SwfdecAsContext.html#swfdec-as-context-get-string"/>
+    <function name="swfdec_as_context_give_string ()" link="SwfdecAsContext.html#swfdec-as-context-give-string"/>
+    <function name="swfdec_as_context_use_mem ()" link="SwfdecAsContext.html#swfdec-as-context-use-mem"/>
+    <function name="swfdec_as_context_try_use_mem ()" link="SwfdecAsContext.html#swfdec-as-context-try-use-mem"/>
+    <function name="swfdec_as_context_unuse_mem ()" link="SwfdecAsContext.html#swfdec-as-context-unuse-mem"/>
+    <function name="swfdec_as_context_gc ()" link="SwfdecAsContext.html#swfdec-as-context-gc"/>
+    <function name="swfdec_as_context_maybe_gc ()" link="SwfdecAsContext.html#swfdec-as-context-maybe-gc"/>
+    <function name="swfdec_as_context_throw ()" link="SwfdecAsContext.html#swfdec-as-context-throw"/>
+    <function name="swfdec_as_context_catch ()" link="SwfdecAsContext.html#swfdec-as-context-catch"/>
+    <function name="swfdec_as_context_get_time ()" link="SwfdecAsContext.html#swfdec-as-context-get-time"/>
+    <function name="swfdec_as_context_get_frame ()" link="SwfdecAsContext.html#swfdec-as-context-get-frame"/>
+    <function name="swfdec_as_context_is_constructing ()" link="SwfdecAsContext.html#swfdec-as-context-is-constructing"/>
+    <function name="The &quot;aborted&quot; property" link="SwfdecAsContext.html#SwfdecAsContext--aborted"/>
+    <function name="The &quot;debugger&quot; property" link="SwfdecAsContext.html#SwfdecAsContext--debugger"/>
+    <function name="The &quot;memory-until-gc&quot; property" link="SwfdecAsContext.html#SwfdecAsContext--memory-until-gc"/>
+    <function name="The &quot;random-seed&quot; property" link="SwfdecAsContext.html#SwfdecAsContext--random-seed"/>
+    <function name="The &quot;trace&quot; signal" link="SwfdecAsContext.html#SwfdecAsContext-trace"/>
+    <function name="SwfdecAsObject" link="SwfdecAsObject.html#SwfdecAsObject-struct"/>
+    <function name="swfdec_as_object_new ()" link="SwfdecAsObject.html#swfdec-as-object-new"/>
+    <function name="swfdec_as_object_new_empty ()" link="SwfdecAsObject.html#swfdec-as-object-new-empty"/>
+    <function name="swfdec_as_object_create ()" link="SwfdecAsObject.html#swfdec-as-object-create"/>
+    <function name="swfdec_as_object_set_constructor ()" link="SwfdecAsObject.html#swfdec-as-object-set-constructor"/>
+    <function name="enum SwfdecAsVariableFlag" link="SwfdecAsObject.html#SwfdecAsVariableFlag"/>
+    <function name="swfdec_as_object_get_variable()" link="SwfdecAsObject.html#swfdec-as-object-get-variable"/>
+    <function name="swfdec_as_object_get_variable_and_flags ()" link="SwfdecAsObject.html#swfdec-as-object-get-variable-and-flags"/>
+    <function name="swfdec_as_object_set_variable()" link="SwfdecAsObject.html#swfdec-as-object-set-variable"/>
+    <function name="swfdec_as_object_set_variable_and_flags ()" link="SwfdecAsObject.html#swfdec-as-object-set-variable-and-flags"/>
+    <function name="swfdec_as_object_add_variable ()" link="SwfdecAsObject.html#swfdec-as-object-add-variable"/>
+    <function name="swfdec_as_object_set_variable_flags ()" link="SwfdecAsObject.html#swfdec-as-object-set-variable-flags"/>
+    <function name="swfdec_as_object_unset_variable_flags ()" link="SwfdecAsObject.html#swfdec-as-object-unset-variable-flags"/>
+    <function name="swfdec_as_object_has_variable ()" link="SwfdecAsObject.html#swfdec-as-object-has-variable"/>
+    <function name="swfdec_as_object_delete_variable ()" link="SwfdecAsObject.html#swfdec-as-object-delete-variable"/>
+    <function name="swfdec_as_object_delete_all_variables ()" link="SwfdecAsObject.html#swfdec-as-object-delete-all-variables"/>
+    <function name="SwfdecAsVariableForeach ()" link="SwfdecAsObject.html#SwfdecAsVariableForeach"/>
+    <function name="swfdec_as_object_foreach ()" link="SwfdecAsObject.html#swfdec-as-object-foreach"/>
+    <function name="swfdec_as_object_run ()" link="SwfdecAsObject.html#swfdec-as-object-run"/>
+    <function name="swfdec_as_object_call ()" link="SwfdecAsObject.html#swfdec-as-object-call"/>
+    <function name="swfdec_as_object_add_function ()" link="SwfdecAsObject.html#swfdec-as-object-add-function"/>
+    <function name="swfdec_as_object_add_constructor ()" link="SwfdecAsObject.html#swfdec-as-object-add-constructor"/>
+    <function name="swfdec_as_object_get_debug ()" link="SwfdecAsObject.html#swfdec-as-object-get-debug"/>
+    <function name="swfdec_as_object_resolve ()" link="SwfdecAsObject.html#swfdec-as-object-resolve"/>
+    <function name="SwfdecAsArray" link="SwfdecAsArray.html#SwfdecAsArray-struct"/>
+    <function name="swfdec_as_array_new ()" link="SwfdecAsArray.html#swfdec-as-array-new"/>
+    <function name="swfdec_as_array_append()" link="SwfdecAsArray.html#swfdec-as-array-append"/>
+    <function name="swfdec_as_array_append_with_flags ()" link="SwfdecAsArray.html#swfdec-as-array-append-with-flags"/>
+    <function name="swfdec_as_array_insert ()" link="SwfdecAsArray.html#swfdec-as-array-insert"/>
+    <function name="swfdec_as_array_insert_with_flags ()" link="SwfdecAsArray.html#swfdec-as-array-insert-with-flags"/>
+    <function name="swfdec_as_array_push()" link="SwfdecAsArray.html#swfdec-as-array-push"/>
+    <function name="swfdec_as_array_push_with_flags()" link="SwfdecAsArray.html#swfdec-as-array-push-with-flags"/>
+    <function name="swfdec_as_array_get_length ()" link="SwfdecAsArray.html#swfdec-as-array-get-length"/>
+    <function name="swfdec_as_array_set_length ()" link="SwfdecAsArray.html#swfdec-as-array-set-length"/>
+    <function name="swfdec_as_array_get_value ()" link="SwfdecAsArray.html#swfdec-as-array-get-value"/>
+    <function name="swfdec_as_array_set_value ()" link="SwfdecAsArray.html#swfdec-as-array-set-value"/>
+    <function name="swfdec_as_array_remove ()" link="SwfdecAsArray.html#swfdec-as-array-remove"/>
+    <function name="SwfdecAsFunction" link="SwfdecAsFunction.html#SwfdecAsFunction-struct"/>
+    <function name="SwfdecAsNative ()" link="SwfdecAsFunction.html#SwfdecAsNative"/>
+    <function name="SwfdecAsNativeFunction" link="SwfdecAsFunction.html#SwfdecAsNativeFunction-struct"/>
+    <function name="swfdec_as_function_call()" link="SwfdecAsFunction.html#swfdec-as-function-call"/>
+    <function name="swfdec_as_function_call_full ()" link="SwfdecAsFunction.html#swfdec-as-function-call-full"/>
+    <function name="swfdec_as_native_function_new ()" link="SwfdecAsFunction.html#swfdec-as-native-function-new"/>
+    <function name="swfdec_as_native_function_set_construct_type ()" link="SwfdecAsFunction.html#swfdec-as-native-function-set-construct-type"/>
+    <function name="swfdec_as_native_function_check ()" link="SwfdecAsFunction.html#swfdec-as-native-function-check"/>
+    <function name="swfdec_as_native_function_checkv ()" link="SwfdecAsFunction.html#swfdec-as-native-function-checkv"/>
+    <function name="SWFDEC_AS_CHECK()" link="SwfdecAsFunction.html#SWFDEC-AS-CHECK:CAPS"/>
+    <function name="SwfdecAsFrame" link="swfdec-SwfdecAsFrame.html#SwfdecAsFrame"/>
+    <function name="swfdec_as_frame_get_next ()" link="swfdec-SwfdecAsFrame.html#swfdec-as-frame-get-next"/>
+    <function name="swfdec_as_frame_get_script ()" link="swfdec-SwfdecAsFrame.html#swfdec-as-frame-get-script"/>
+    <function name="swfdec_as_frame_get_this ()" link="swfdec-SwfdecAsFrame.html#swfdec-as-frame-get-this"/>
+    <function name="SwfdecAsStackIterator" link="swfdec-SwfdecAsFrame.html#SwfdecAsStackIterator"/>
+    <function name="swfdec_as_stack_iterator_init ()" link="swfdec-SwfdecAsFrame.html#swfdec-as-stack-iterator-init"/>
+    <function name="swfdec_as_stack_iterator_init_arguments ()" link="swfdec-SwfdecAsFrame.html#swfdec-as-stack-iterator-init-arguments"/>
+    <function name="swfdec_as_stack_iterator_next ()" link="swfdec-SwfdecAsFrame.html#swfdec-as-stack-iterator-next"/>
+    <function name="SwfdecAsDebugger" link="SwfdecAsDebugger.html#SwfdecAsDebugger-struct"/>
+    <function name="SwfdecAsDebuggerClass" link="SwfdecAsDebugger.html#SwfdecAsDebuggerClass"/>
+    <function name="SwfdecScript" link="SwfdecAsDebugger.html#SwfdecScript"/>
+    <function name="swfdec_script_new ()" link="SwfdecAsDebugger.html#swfdec-script-new"/>
+    <function name="swfdec_script_ref ()" link="SwfdecAsDebugger.html#swfdec-script-ref"/>
+    <function name="swfdec_script_unref ()" link="SwfdecAsDebugger.html#swfdec-script-unref"/>
+    <function name="swfdec_script_get_version ()" link="SwfdecAsDebugger.html#swfdec-script-get-version"/>
+  </functions>
+</book>

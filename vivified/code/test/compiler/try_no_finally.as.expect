@@ -1,0 +1,15 @@
+asm {
+  pool "try", "e"
+  try has_catch "e" try_catch_0001 try_end_0002 try_end_0002
+  push pool 0
+  trace
+  jump try_end_0002
+
+try_catch_0001:
+  push pool 1
+  get_variable
+  trace
+
+try_end_0002:
+  end
+}

@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecAudio</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch02.html" title="Swfdec library">
+<link rel="prev" href="SwfdecSystem.html" title="SwfdecSystem">
+<link rel="next" href="swfdec-Version-Information.html" title="Version Information">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecSystem.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="swfdec-Version-Information.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecAudio.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecAudio.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecAudio.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecAudio.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecAudio"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecAudio.top_of_page"></a>SwfdecAudio</span></h2>
+<p>SwfdecAudio — object used for audio output</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecAudio.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecAudio.html#SwfdecAudio-struct" title="SwfdecAudio">SwfdecAudio</a>;
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a>               <a class="link" href="SwfdecAudio.html#swfdec-audio-render" title="swfdec_audio_render ()">swfdec_audio_render</a>                 (<a class="link" href="SwfdecAudio.html" title="SwfdecAudio">SwfdecAudio</a> *audio,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint16"
+>gint16</a> *dest,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> start_offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> n_samples);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAudio.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecAudio
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAudio.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecAudio.html#SwfdecAudio-changed" title='The "changed" signal'>changed</a>"                                        : Run Last
+  "<a class="link" href="SwfdecAudio.html#SwfdecAudio-new-data" title='The "new-data" signal'>new-data</a>"                                       : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAudio.description"></a><h2>Description</h2>
+<p>
+SwfdecAudio is the way audio output is provided by a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>. See
+its documentation on how to access <a class="link" href="SwfdecAudio.html" title="SwfdecAudio"><span class="type">SwfdecAudio</span></a> objects.
+</p>
+<p>
+An audio object gives access to one audio stream played inside a player.
+You are responsible for outputting this data, swfdec does not try to do this
+for you.
+</p>
+<p>
+Audio data is always provided in 16bit host-endian stereo. If the data was
+encoded into a different format originally, Swfdec will already have decoded 
+it. The data is always referenced relative to the player. Sample 0 
+references the first sample to be played at the current position. If the 
+player gets iterated, sample 0 changes. There is no way to access samples
+belonging to a previous state.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAudio.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAudio-struct"></a><h3>SwfdecAudio</h3>
+<pre class="programlisting">typedef struct _SwfdecAudio SwfdecAudio;</pre>
+<p>
+This object is used for audio output. It is an abstract class.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-audio-render"></a><h3>swfdec_audio_render ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a>               swfdec_audio_render                 (<a class="link" href="SwfdecAudio.html" title="SwfdecAudio">SwfdecAudio</a> *audio,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint16"
+>gint16</a> *dest,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> start_offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> n_samples);</pre>
+<p>
+Renders the samples from <em class="parameter"><code>audio</code></em> into the area pointed to by <em class="parameter"><code>dest</code></em>. Existing
+data in <em class="parameter"><code>dest</code></em> is overwritten.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audio</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAudio.html" title="SwfdecAudio"><span class="type">SwfdecAudio</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dest</code></em> :</span></p></td>
+<td> memory area to render to
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_offset</code></em> :</span></p></td>
+<td> offset in samples at which to start rendering. The offset is 
+	  calculated relative to the last iteration, so the value set 
+	  by <code class="function">swfdec_player_set_audio_advance()</code> is ignored.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_samples</code></em> :</span></p></td>
+<td> amount of samples to render.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The amount of samples actually rendered. Usually this number is 
+         equal to <em class="parameter"><code>n_samples</code></em>, but if you arrived at the end of stream or the
+         stream is still loading, this number may be lower. It indicates 
+         that no more samples are available.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAudio.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAudio-changed"></a><h3>The <code class="literal">"changed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecAudio.html" title="SwfdecAudio">SwfdecAudio</a> *audio,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run Last</pre>
+<p>
+This signal is emitted whenever the data of the <em class="parameter"><code>audio</code></em> changed and cached
+data should be rerendered. This happens for example when the volume of the
+audio is changed by the Flash file.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audio</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAudio.html" title="SwfdecAudio"><span class="type">SwfdecAudio</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAudio-new-data"></a><h3>The <code class="literal">"new-data"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="SwfdecAudio.html" title="SwfdecAudio">SwfdecAudio</a> *audio,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run Last</pre>
+<p>
+This signal is emitted whenever new data was loaded into <em class="parameter"><code>audio</code></em>. You want
+to listen to this signal when <a class="link" href="SwfdecAudio.html#swfdec-audio-render" title="swfdec_audio_render ()"><code class="function">swfdec_audio_render()</code></a> previously returned 
+less samples than you wanted to render.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audio</code></em> :</span></p></td>
+<td> the <a class="link" href="SwfdecAudio.html" title="SwfdecAudio"><span class="type">SwfdecAudio</span></a> affected
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAudio.see-also"></a><h2>See Also</h2>
+SwfdecPlayer
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

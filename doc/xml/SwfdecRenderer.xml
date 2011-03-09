@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecRenderer">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecRenderer.top_of_page">SwfdecRenderer</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecRenderer</refname>
+<refpurpose>provide accelerated rendering and caching abilities</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecRenderer.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecRenderer-struct">SwfdecRenderer</link>;
+                    <link linkend="SwfdecRendererClass">SwfdecRendererClass</link>;
+<link linkend="SwfdecRenderer">SwfdecRenderer</link>*     <link linkend="swfdec-renderer-new">swfdec_renderer_new</link>                 (<link linkend="cairo-surface-t">cairo_surface_t</link> *surface);
+<link linkend="SwfdecRenderer">SwfdecRenderer</link>*     <link linkend="swfdec-renderer-new-for-player">swfdec_renderer_new_for_player</link>      (<link linkend="cairo-surface-t">cairo_surface_t</link> *surface,
+                                                         <link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="cairo-surface-t">cairo_surface_t</link>*    <link linkend="swfdec-renderer-get-surface">swfdec_renderer_get_surface</link>         (<link linkend="SwfdecRenderer">SwfdecRenderer</link> *renderer);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecRenderer.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----SwfdecRenderer
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="SwfdecRenderer.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecRenderer--surface">surface</link>&quot;                  <link linkend="gpointer">gpointer</link>              : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="SwfdecRenderer.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The <link linkend="SwfdecRenderer"><type>SwfdecRenderer</type></link> object is used internally to improve rendering done by
+Swfdec.
+</para>
+<para>
+The first thing a <link linkend="SwfdecRenderer"><type>SwfdecRenderer</type></link> does is provide a way to cache data relevant
+to rendering. This means it will cache surfaces that are expensive to create
+(like decoded JPEG images) in a format most suitable to quick rendering.
+Therefore, it's a good idea to keep renderers around as long as any drawing 
+to the attached surface happens.
+</para>
+<para>
+The second thing a <link linkend="SwfdecRenderer"><type>SwfdecRenderer</type></link> does is provide access to the surface 
+that is used for rendering, even when not in the process of rendering. This 
+is relevant for font backends, as different surfaces provide different 
+native fonts. See <link linkend="swfdec-player-set-default-backend"><function>swfdec_player_set_default_backend()</function></link> for details about this.
+</para>
+<para>
+The third thing <link linkend="SwfdecRenderer"><type>SwfdecRenderer</type></link> does is provide a list of virtual functions 
+for critical operations that you can optimize using subclasses to provide 
+faster implementations. Note that a working default implementation is 
+provided, so you only need to override the functions you care about. 
+See <link linkend="SwfdecRendererClass"><type>SwfdecRendererClass</type></link> for details about these functions.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecRenderer.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecRenderer-struct" role="struct">
+<title>SwfdecRenderer</title>
+<indexterm zone="SwfdecRenderer-struct"><primary>SwfdecRenderer</primary></indexterm><programlisting>typedef struct _SwfdecRenderer SwfdecRenderer;</programlisting>
+<para>
+The base renderer object. All its members are private.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecRendererClass" role="struct">
+<title>SwfdecRendererClass</title>
+<indexterm zone="SwfdecRendererClass"><primary>SwfdecRendererClass</primary></indexterm><programlisting>typedef struct {
+  cairo_surface_t *	(* create_similar)		(SwfdecRenderer *	renderer,
+							 cairo_surface_t *	surface);
+  cairo_surface_t *	(* create_for_data)		(SwfdecRenderer *	renderer,
+							 guint8 *		data,
+							 cairo_format_t		format,
+							 guint			width,
+							 guint			height,
+							 guint			rowstride);
+} SwfdecRendererClass;
+</programlisting>
+<para>
+The base class for the renderer. It contains some virtual functions that can
+be overridden in subclasses to accelerate certain time-critical Swfdec 
+functions. For example, a subclass could make use of special hardware 
+features on embedded devices.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>create_similar</structfield>&nbsp;()</term>
+<listitem><simpara> This function imitates <link linkend="cairo-surface-create-similar"><function>cairo_surface_create_similar()</function></link>. It
+                 is supposed to create a surface with identical contents as
+                 the given surface, but tuned for usage with the given 
+                 renderer.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>create_for_data</structfield>&nbsp;()</term>
+<listitem><simpara> This function imitates <link linkend="cairo-surface-create-for-data"><function>cairo_surface_create_for_data()</function></link>. It
+                  creates a surface for the given data, tuned for the given 
+                  renderer. The function takes ownership of the passed in 
+                  data and is responsible for freeing it with <link linkend="g-free"><function>g_free()</function></link> when
+                  it no longer needs it.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-renderer-new" role="function">
+<title>swfdec_renderer_new ()</title>
+<indexterm zone="swfdec-renderer-new"><primary>swfdec_renderer_new</primary></indexterm><programlisting><link linkend="SwfdecRenderer">SwfdecRenderer</link>*     swfdec_renderer_new                 (<link linkend="cairo-surface-t">cairo_surface_t</link> *surface);</programlisting>
+<para>
+Creates a new renderer to be used with the given <parameter>surface</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>surface</parameter>&nbsp;:</term>
+<listitem><simpara> a cairo surface
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new renderer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-renderer-new-for-player" role="function">
+<title>swfdec_renderer_new_for_player ()</title>
+<indexterm zone="swfdec-renderer-new-for-player"><primary>swfdec_renderer_new_for_player</primary></indexterm><programlisting><link linkend="SwfdecRenderer">SwfdecRenderer</link>*     swfdec_renderer_new_for_player      (<link linkend="cairo-surface-t">cairo_surface_t</link> *surface,
+                                                         <link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Creates a renderer to be used with the given <parameter>surface</parameter> and <parameter>player</parameter>. The 
+renderer will use the same cache as the <parameter>player</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>surface</parameter>&nbsp;:</term>
+<listitem><simpara> a cairo surface
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the player this renderer should be used with
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new renderer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-renderer-get-surface" role="function">
+<title>swfdec_renderer_get_surface ()</title>
+<indexterm zone="swfdec-renderer-get-surface"><primary>swfdec_renderer_get_surface</primary></indexterm><programlisting><link linkend="cairo-surface-t">cairo_surface_t</link>*    swfdec_renderer_get_surface         (<link linkend="SwfdecRenderer">SwfdecRenderer</link> *renderer);</programlisting>
+<para>
+Gets the surface that was used when creating this surface.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>renderer</parameter>&nbsp;:</term>
+<listitem><simpara> a renderer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the surface used by this renderer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecRenderer.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecRenderer--surface"><title>The <literal>&quot;surface&quot;</literal> property</title>
+<indexterm zone="SwfdecRenderer--surface"><primary>SwfdecRenderer:surface</primary></indexterm><programlisting>  &quot;surface&quot;                  <link linkend="gpointer">gpointer</link>              : Read / Write / Construct Only</programlisting>
+<para>cairo surface in use by this renderer.</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

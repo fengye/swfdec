@@ -1,0 +1,87 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsFrame
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecAsFrame ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_as_frame_get_next ##### -->
+<para>
+
+</para>
+
+@frame: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_frame_get_script ##### -->
+<para>
+
+</para>
+
+@frame: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_frame_get_this ##### -->
+<para>
+
+</para>
+
+@frame: 
+@Returns: 
+
+
+<!-- ##### STRUCT SwfdecAsStackIterator ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_as_stack_iterator_init ##### -->
+<para>
+
+</para>
+
+@iter: 
+@frame: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_stack_iterator_init_arguments ##### -->
+<para>
+
+</para>
+
+@iter: 
+@frame: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_stack_iterator_next ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+

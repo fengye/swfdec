@@ -1,0 +1,132 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsFunction
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecAsFunction ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION SwfdecAsNative ##### -->
+<para>
+
+</para>
+
+@context: 
+@thisp: 
+@argc: 
+@argv: 
+@retval: 
+
+
+<!-- ##### STRUCT SwfdecAsNativeFunction ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO swfdec_as_function_call ##### -->
+<para>
+
+</para>
+
+@function: 
+@thisp: 
+@n_args: 
+@args: 
+@return_value: 
+
+
+<!-- ##### FUNCTION swfdec_as_function_call_full ##### -->
+<para>
+
+</para>
+
+@function: 
+@thisp: 
+@construct: 
+@super_reference: 
+@n_args: 
+@args: 
+@return_value: 
+
+
+<!-- ##### FUNCTION swfdec_as_native_function_new ##### -->
+<para>
+
+</para>
+
+@context: 
+@name: 
+@native: 
+@prototype: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_native_function_set_construct_type ##### -->
+<para>
+
+</para>
+
+@function: 
+@type: 
+
+
+<!-- ##### FUNCTION swfdec_as_native_function_check ##### -->
+<para>
+
+</para>
+
+@cx: 
+@object: 
+@type: 
+@result: 
+@argc: 
+@argv: 
+@args: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_native_function_checkv ##### -->
+<para>
+
+</para>
+
+@cx: 
+@object: 
+@type: 
+@result: 
+@argc: 
+@argv: 
+@args: 
+@varargs: 
+@Returns: 
+
+
+<!-- ##### MACRO SWFDEC_AS_CHECK ##### -->
+<para>
+
+</para>
+
+@type: 
+@result: 
+@...: 
+
+

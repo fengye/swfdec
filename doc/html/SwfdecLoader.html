@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecLoader</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="prev" href="SwfdecStream.html" title="SwfdecStream">
+<link rel="next" href="SwfdecSocket.html" title="SwfdecSocket">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecStream.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecSocket.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecLoader.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecLoader.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecLoader.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecLoader.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecLoader"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecLoader.top_of_page"></a>SwfdecLoader</span></h2>
+<p>SwfdecLoader — object used for input</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecLoader.synopsis"></a><h2>Synopsis</h2>
+<a name="SwfdecFileLoader"></a><pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecLoader.html#SwfdecLoader-struct" title="SwfdecLoader">SwfdecLoader</a>;
+                    <a class="link" href="SwfdecLoader.html#SwfdecFileLoader-struct" title="SwfdecFileLoader">SwfdecFileLoader</a>;
+                    <a class="link" href="SwfdecLoader.html#SwfdecLoaderClass" title="SwfdecLoaderClass">SwfdecLoaderClass</a>;
+void                <a class="link" href="SwfdecLoader.html#swfdec-loader-set-url" title="swfdec_loader_set_url ()">swfdec_loader_set_url</a>               (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader,
+                                                         const char *url);
+const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*    <a class="link" href="SwfdecLoader.html#swfdec-loader-get-url" title="swfdec_loader_get_url ()">swfdec_loader_get_url</a>               (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);
+void                <a class="link" href="SwfdecLoader.html#swfdec-loader-set-size" title="swfdec_loader_set_size ()">swfdec_loader_set_size</a>              (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> size);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>               <a class="link" href="SwfdecLoader.html#swfdec-loader-get-size" title="swfdec_loader_get_size ()">swfdec_loader_get_size</a>              (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              <a class="link" href="SwfdecLoader.html#swfdec-loader-get-loaded" title="swfdec_loader_get_loaded ()">swfdec_loader_get_loaded</a>            (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);
+<a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType">SwfdecLoaderDataType</a> <a class="link" href="SwfdecLoader.html#swfdec-loader-get-data-type" title="swfdec_loader_get_data_type ()">swfdec_loader_get_data_type</a>        (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecLoader.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a>
+         +----SwfdecLoader
+               +----<a class="link" href="SwfdecLoader.html#SwfdecFileLoader">SwfdecFileLoader</a>
+</pre>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a>
+         +----<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a>
+               +----SwfdecFileLoader
+                     +----<a class="link" href="swfdec-Gtk-extension-objects.html#SwfdecGtkLoader">SwfdecGtkLoader</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecLoader.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecLoader.html#SwfdecLoader--data-type" title='The "data-type" property'>data-type</a>"                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType">SwfdecLoaderDataType</a>  : Read
+  "<a class="link" href="SwfdecLoader.html#SwfdecLoader--loaded" title='The "loaded" property'>loaded</a>"                   <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write
+  "<a class="link" href="SwfdecLoader.html#SwfdecLoader--size" title='The "size" property'>size</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>                 : Read / Write
+  "<a class="link" href="SwfdecLoader.html#SwfdecLoader--url" title='The "url" property'>url</a>"                      <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*            : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecLoader.description"></a><h2>Description</h2>
+<p>
+SwfdecLoader is the base class used for reading input. Since developers 
+normally need to adapt input to the needs of their application, this class 
+is provided to be adapted to their needs. It is used both for HTTP and
+RTMP access.
+</p>
+<p>
+Since Flash files can load new resources while operating, a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>
+can be instructed to load another resource.
+</p>
+<p>
+For convenience, a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a> for file access is provided by Swfdec.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecLoader.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecLoader-struct"></a><h3>SwfdecLoader</h3>
+<pre class="programlisting">typedef struct _SwfdecLoader SwfdecLoader;</pre>
+<p>
+This is the base object used for providing input. It is abstract, use a 
+subclass to provide your input.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecFileLoader-struct"></a><h3>SwfdecFileLoader</h3>
+<pre class="programlisting">typedef struct _SwfdecFileLoader SwfdecFileLoader;</pre>
+<p>
+This is a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a> that can load content from files. This symbol is
+exported so you can subclass your own loaders from it and have automatic
+file access.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecLoaderClass"></a><h3>SwfdecLoaderClass</h3>
+<pre class="programlisting">typedef struct {
+  void			(* load)	(SwfdecLoader *			loader, 
+					 SwfdecPlayer *			player,
+					 const char *			url,
+					 SwfdecBuffer *			buffer,
+					 guint				n_headers,
+					 const char **			header_names,
+					 const char **			header_values);
+} SwfdecLoaderClass;
+</pre>
+<p>
+This is the base class used for input. If you create a subclass, you are 
+supposed to set the function pointers listed above.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="structfield"><code>load</code></em> ()</span></p></td>
+<td> initialize a new loader based on a parent loader object. The new 
+       loader will already have its URL set.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-loader-set-url"></a><h3>swfdec_loader_set_url ()</h3>
+<pre class="programlisting">void                swfdec_loader_set_url               (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader,
+                                                         const char *url);</pre>
+<p>
+Updates the url of the given <em class="parameter"><code>loader</code></em> to point to the new <em class="parameter"><code>url</code></em>. This is useful
+whe encountering HTTP redirects, as the loader is supposed to reference the
+final URL after all rdirections.
+This function may only be called once and must have been called before 
+calling <a class="link" href="SwfdecStream.html#swfdec-stream-open" title="swfdec_stream_open ()"><code class="function">swfdec_stream_open()</code></a> on <em class="parameter"><code>loader</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td> the loader to update
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>url</code></em> :</span></p></td>
+<td> string specifying the new URL. The url must be a valid absolute URL.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-loader-get-url"></a><h3>swfdec_loader_get_url ()</h3>
+<pre class="programlisting">const <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*    swfdec_loader_get_url               (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);</pre>
+<p>
+Gets the url this loader is handling. This is mostly useful for writing 
+subclasses of <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL"><span class="type">SwfdecURL</span></a> describing <em class="parameter"><code>loader</code></em> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if the <em class="parameter"><code>url</code></em> is not known 
+         yet.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-loader-set-size"></a><h3>swfdec_loader_set_size ()</h3>
+<pre class="programlisting">void                swfdec_loader_set_size              (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> size);</pre>
+<p>
+Sets the size of bytes in this loader. This function may only be called once.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> the amount of bytes in this loader
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-loader-get-size"></a><h3>swfdec_loader_get_size ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>               swfdec_loader_get_size              (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);</pre>
+<p>
+Queries the amount of bytes inside <em class="parameter"><code>loader</code></em>. If the size is unknown, -1 is 
+returned. Otherwise the number is greater or equal to 0.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the total number of bytes for this loader or -1 if unknown
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-loader-get-loaded"></a><h3>swfdec_loader_get_loaded ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              swfdec_loader_get_loaded            (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);</pre>
+<p>
+Gets the amount of bytes that have already been pushed into <em class="parameter"><code>loader</code></em> and are
+available to Swfdec.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Amount of bytes in <em class="parameter"><code>loader</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-loader-get-data-type"></a><h3>swfdec_loader_get_data_type ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType">SwfdecLoaderDataType</a> swfdec_loader_get_data_type        (<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a> *loader);</pre>
+<p>
+Queries the type of data this loader provides. The type is determined 
+automatically by Swfdec.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the type this data was identified to be in or 
+         <a class="link" href="swfdec-Enumerations-and-Types.html#SWFDEC-LOADER-DATA-UNKNOWN:CAPS"><span class="type">SWFDEC_LOADER_DATA_UNKNOWN</span></a> if not identified
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecLoader.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecLoader--data-type"></a><h3>The <code class="literal">"data-type"</code> property</h3>
+<pre class="programlisting">  "data-type"                <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecLoaderDataType" title="enum SwfdecLoaderDataType">SwfdecLoaderDataType</a>  : Read</pre>
+<p>the data's type as identified by Swfdec.</p>
+<p>Default value: SWFDEC_LOADER_DATA_UNKNOWN</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecLoader--loaded"></a><h3>The <code class="literal">"loaded"</code> property</h3>
+<pre class="programlisting">  "loaded"                   <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write</pre>
+<p>bytes already loaded.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecLoader--size"></a><h3>The <code class="literal">"size"</code> property</h3>
+<pre class="programlisting">  "size"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#glong"
+>glong</a>                 : Read / Write</pre>
+<p>amount of bytes in loader.</p>
+<p>Allowed values: &gt;= -1</p>
+<p>Default value: -1</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecLoader--url"></a><h3>The <code class="literal">"url"</code> property</h3>
+<pre class="programlisting">  "url"                      <a class="link" href="swfdec-SwfdecURL.html#SwfdecURL" title="SwfdecURL">SwfdecURL</a>*            : Read</pre>
+<p>URL for this file.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

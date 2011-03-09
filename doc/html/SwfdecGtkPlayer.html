@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecGtkPlayer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch01.html" title="Swfdec Gtk library">
+<link rel="prev" href="ch01.html" title="Swfdec Gtk library">
+<link rel="next" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecGtkWidget.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecGtkPlayer.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecGtkPlayer.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecGtkPlayer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#SwfdecGtkPlayer.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecGtkPlayer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecGtkPlayer.top_of_page"></a>SwfdecGtkPlayer</span></h2>
+<p>SwfdecGtkPlayer — an improved <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a></p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecGtkPlayer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec-gtk.h&gt;
+
+                    <a class="link" href="SwfdecGtkPlayer.html#SwfdecGtkPlayer-struct" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a>;
+#define             <a class="link" href="SwfdecGtkPlayer.html#SWFDEC-GTK-PRIORITY-ITERATE:CAPS" title="SWFDEC_GTK_PRIORITY_ITERATE">SWFDEC_GTK_PRIORITY_ITERATE</a>
+#define             <a class="link" href="SwfdecGtkPlayer.html#SWFDEC-GTK-PRIORITY-REDRAW:CAPS" title="SWFDEC_GTK_PRIORITY_REDRAW">SWFDEC_GTK_PRIORITY_REDRAW</a>
+<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*       <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-new" title="swfdec_gtk_player_new ()">swfdec_gtk_player_new</a>               (<a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger">SwfdecAsDebugger</a> *debugger);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-get-playing" title="swfdec_gtk_player_get_playing ()">swfdec_gtk_player_get_playing</a>       (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);
+void                <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-set-playing" title="swfdec_gtk_player_set_playing ()">swfdec_gtk_player_set_playing</a>       (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> playing);
+double              <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-get-speed" title="swfdec_gtk_player_get_speed ()">swfdec_gtk_player_get_speed</a>         (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);
+void                <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-set-speed" title="swfdec_gtk_player_set_speed ()">swfdec_gtk_player_set_speed</a>         (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         double speed);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-get-audio-enabled" title="swfdec_gtk_player_get_audio_enabled ()">swfdec_gtk_player_get_audio_enabled</a> (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);
+void                <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-set-audio-enabled" title="swfdec_gtk_player_set_audio_enabled ()">swfdec_gtk_player_set_audio_enabled</a> (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> enabled);
+<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+>GdkWindow</a>*          <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-get-missing-plugins-window" title="swfdec_gtk_player_get_missing_plugins_window ()">swfdec_gtk_player_get_missing_plugins_window</a>
+                                                        (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);
+void                <a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-set-missing-plugins-window" title="swfdec_gtk_player_set_missing_plugins_window ()">swfdec_gtk_player_set_missing_plugins_window</a>
+                                                        (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+>GdkWindow</a> *window);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkPlayer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a>
+         +----<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>
+               +----SwfdecGtkPlayer
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkPlayer.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="SwfdecGtkPlayer.html#SwfdecGtkPlayer--audio-enabled" title='The "audio-enabled" property'>audio-enabled</a>"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="SwfdecGtkPlayer.html#SwfdecGtkPlayer--missing-plugins-window" title='The "missing-plugins-window" property'>missing-plugins-window</a>"   <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+>GdkWindow</a>*            : Read / Write
+  "<a class="link" href="SwfdecGtkPlayer.html#SwfdecGtkPlayer--playing" title='The "playing" property'>playing</a>"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="SwfdecGtkPlayer.html#SwfdecGtkPlayer--speed" title='The "speed" property'>speed</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkPlayer.description"></a><h2>Description</h2>
+<p>
+The <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a> adds common functionality to the rather barebones 
+<a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> class, such as automatic playback and audio handling. Note 
+that by default, the player will be paused, so you need to call 
+<a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-set-playing" title="swfdec_gtk_player_set_playing ()"><code class="function">swfdec_gtk_player_set_playing()</code></a> on the new player.
+</p>
+<p>
+<em class="parameter"><code>see_also</code></em>: SwfdecPlayer</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkPlayer.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkPlayer-struct"></a><h3>SwfdecGtkPlayer</h3>
+<pre class="programlisting">typedef struct _SwfdecGtkPlayer SwfdecGtkPlayer;</pre>
+<p>
+The structure for the Swfdec Gtk player contains no public fields.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-GTK-PRIORITY-ITERATE:CAPS"></a><h3>SWFDEC_GTK_PRIORITY_ITERATE</h3>
+<pre class="programlisting">#define SWFDEC_GTK_PRIORITY_ITERATE (GDK_PRIORITY_REDRAW + 10)
+</pre>
+<p>
+The priority used for advancing a player that is playing.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SWFDEC-GTK-PRIORITY-REDRAW:CAPS"></a><h3>SWFDEC_GTK_PRIORITY_REDRAW</h3>
+<pre class="programlisting">#define SWFDEC_GTK_PRIORITY_REDRAW  (GDK_PRIORITY_REDRAW + 20)
+</pre>
+<p>
+The priority used for scheduling repaint operations resulting from advancing
+a player.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-new"></a><h3>swfdec_gtk_player_new ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer">SwfdecPlayer</a>*       swfdec_gtk_player_new               (<a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger">SwfdecAsDebugger</a> *debugger);</pre>
+<p>
+Creates a new Swfdec Gtk player.
+This function calls <a class="link" href="SwfdecPlayer.html#swfdec-init" title="swfdec_init ()"><code class="function">swfdec_init()</code></a> for you if it wasn't called before.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>debugger</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> or a <a class="link" href="SwfdecAsDebugger.html" title="SwfdecAsDebugger"><span class="type">SwfdecAsDebugger</span></a> to debug this player
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new player
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-get-playing"></a><h3>swfdec_gtk_player_get_playing ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_gtk_player_get_playing       (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);</pre>
+<p>
+Queries if the player is playing.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the player is playing
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-set-playing"></a><h3>swfdec_gtk_player_set_playing ()</h3>
+<pre class="programlisting">void                swfdec_gtk_player_set_playing       (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> playing);</pre>
+<p>
+Sets if <em class="parameter"><code>player</code></em> should be playing or not. If the player is playing, a timer 
+will be attached to the default main loop that periodically calls 
+<a class="link" href="SwfdecPlayer.html#swfdec-player-advance" title="swfdec_player_advance ()"><code class="function">swfdec_player_advance()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>playing</code></em> :</span></p></td>
+<td> if the player should play or not
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-get-speed"></a><h3>swfdec_gtk_player_get_speed ()</h3>
+<pre class="programlisting">double              swfdec_gtk_player_get_speed         (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);</pre>
+<p>
+Queries the current playback speed. If the player is currently paused, it
+will report the speed that it would use if playing.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the current playback speed.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-set-speed"></a><h3>swfdec_gtk_player_set_speed ()</h3>
+<pre class="programlisting">void                swfdec_gtk_player_set_speed         (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         double speed);</pre>
+<p>
+Sets the new playback speed. 1.0 means the default speed, bigger values
+make playback happen faster. Audio will only play back if the speed is 
+1.0. Note that if the player is not playing when calling this function,
+it will not automatically start.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>speed</code></em> :</span></p></td>
+<td> the new playback speed
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-get-audio-enabled"></a><h3>swfdec_gtk_player_get_audio_enabled ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_gtk_player_get_audio_enabled (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);</pre>
+<p>
+Queries if audio playback for <em class="parameter"><code>player</code></em> is enabled or not.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if audio playback is enabled
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-set-audio-enabled"></a><h3>swfdec_gtk_player_set_audio_enabled ()</h3>
+<pre class="programlisting">void                swfdec_gtk_player_set_audio_enabled (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> enabled);</pre>
+<p>
+Enables or disables automatic audio playback.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>enabled</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> to enable audio
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-get-missing-plugins-window"></a><h3>swfdec_gtk_player_get_missing_plugins_window ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+>GdkWindow</a>*          swfdec_gtk_player_get_missing_plugins_window
+                                                        (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player);</pre>
+<p>
+Gets the window used for automatic codec install. See 
+<a class="link" href="SwfdecGtkPlayer.html#swfdec-gtk-player-set-missing-plugins-window" title="swfdec_gtk_player_set_missing_plugins_window ()"><code class="function">swfdec_gtk_player_set_missing_plugins_window()</code></a> for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+><span class="type">GdkWindow</span></a> used as parent for showing missing plugin dialogs or
+         <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if automatic codec install is disabled.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-gtk-player-set-missing-plugins-window"></a><h3>swfdec_gtk_player_set_missing_plugins_window ()</h3>
+<pre class="programlisting">void                swfdec_gtk_player_set_missing_plugins_window
+                                                        (<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer">SwfdecGtkPlayer</a> *player,
+                                                         <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+>GdkWindow</a> *window);</pre>
+<p>
+Sets a given <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+><span class="type">GdkWindow</span></a> to be used as the reference window when popping up
+automatic codec install dialogs. Automatic codec install happens when Swfdec
+cannot find a GStreamer plugin to play back a given media file. The player
+will automaticcaly pause when this happens to allow the plugin install to 
+finish and will resume playback after the codec install has completed.
+You can use <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to disable this feature. It is disable by default.
+Note that this function takes a <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+><span class="type">GdkWindow</span></a>, not a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWindow.html"
+><span class="type">GtkWindow</span></a>, as its 
+argument. This makes it slightly more inconvenient to use, as you need to 
+call <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html#gtk-widget-show"
+><code class="function">gtk_widget_show()</code></a> on your <a
+href="/usr/share/gtk-doc/html/gtk/GtkWindow.html"
+><span class="type">GtkWindow</span></a> before having access to its 
+<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+><span class="type">GdkWindow</span></a>, but it allows automatic plugin installatio even when your 
+application does not have a window. You can use <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#gdk-get-default-root-window"
+><code class="function">gdk_get_default_root_window()</code></a>
+to obtain a default window in that case.
+For details about automatic codec install, see the GStreamer documentation,
+in particular the function <a
+href="http://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-base-libs/html/gst-plugins-base-libs-gstpbutilsinstallplugins.html#gst-install-plugins-async"
+><code class="function">gst_install_plugins_async()</code></a>. If Swfdec was 
+compiled without GStreamer support, this function will have no effect.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>player</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>window</code></em> :</span></p></td>
+<td> the window to use for popping up codec install dialogs or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecGtkPlayer.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkPlayer--audio-enabled"></a><h3>The <code class="literal">"audio-enabled"</code> property</h3>
+<pre class="programlisting">  "audio-enabled"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>TRUE if automatic audio handling is enabled.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkPlayer--missing-plugins-window"></a><h3>The <code class="literal">"missing-plugins-window"</code> property</h3>
+<pre class="programlisting">  "missing-plugins-window"   <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Windows.html#GdkWindow"
+>GdkWindow</a>*            : Read / Write</pre>
+<p>window on which to do autmatic missing plugins installation.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkPlayer--playing"></a><h3>The <code class="literal">"playing"</code> property</h3>
+<pre class="programlisting">  "playing"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>TRUE if the player is playing (d'oh).</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkPlayer--speed"></a><h3>The <code class="literal">"speed"</code> property</h3>
+<pre class="programlisting">  "speed"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>desired playback speed.</p>
+<p>Allowed values: &gt;= G_MINDOUBLE</p>
+<p>Default value: 1</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

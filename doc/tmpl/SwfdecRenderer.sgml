@@ -1,0 +1,66 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecRenderer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecRenderer ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG SwfdecRenderer:surface ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT SwfdecRendererClass ##### -->
+<para>
+
+</para>
+
+@create_similar: 
+@create_for_data: 
+
+<!-- ##### FUNCTION swfdec_renderer_new ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_renderer_new_for_player ##### -->
+<para>
+
+</para>
+
+@surface: 
+@player: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_renderer_get_surface ##### -->
+<para>
+
+</para>
+
+@renderer: 
+@Returns: 
+
+

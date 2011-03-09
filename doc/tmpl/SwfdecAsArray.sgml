@@ -1,0 +1,142 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsArray
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecAsArray ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_as_array_new ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### MACRO swfdec_as_array_append ##### -->
+<para>
+
+</para>
+
+@array: 
+@n: 
+@values: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_append_with_flags ##### -->
+<para>
+
+</para>
+
+@array: 
+@n: 
+@values: 
+@flags: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_insert ##### -->
+<para>
+
+</para>
+
+@array: 
+@idx: 
+@value: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_insert_with_flags ##### -->
+<para>
+
+</para>
+
+@array: 
+@idx: 
+@value: 
+@flags: 
+
+
+<!-- ##### MACRO swfdec_as_array_push ##### -->
+<para>
+
+</para>
+
+@array: 
+@value: 
+
+
+<!-- ##### MACRO swfdec_as_array_push_with_flags ##### -->
+<para>
+
+</para>
+
+@array: 
+@value: 
+@flags: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_get_length ##### -->
+<para>
+
+</para>
+
+@array: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_set_length ##### -->
+<para>
+
+</para>
+
+@array: 
+@length: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_get_value ##### -->
+<para>
+
+</para>
+
+@array: 
+@idx: 
+@value: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_set_value ##### -->
+<para>
+
+</para>
+
+@array: 
+@idx: 
+@value: 
+
+
+<!-- ##### FUNCTION swfdec_as_array_remove ##### -->
+<para>
+
+</para>
+
+@array: 
+@idx: 
+
+

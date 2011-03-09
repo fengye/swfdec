@@ -1,0 +1,240 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsValue
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM SwfdecAsValueType ##### -->
+<para>
+
+</para>
+
+@SWFDEC_AS_TYPE_UNDEFINED: 
+@SWFDEC_AS_TYPE_BOOLEAN: 
+@SWFDEC_AS_TYPE_INT: 
+@SWFDEC_AS_TYPE_NUMBER: 
+@SWFDEC_AS_TYPE_STRING: 
+@SWFDEC_AS_TYPE_NULL: 
+@SWFDEC_AS_TYPE_OBJECT: 
+
+<!-- ##### STRUCT SwfdecAsValue ##### -->
+<para>
+
+</para>
+
+@type: 
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_SET_UNDEFINED ##### -->
+<para>
+
+</para>
+
+@val: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_GET_BOOLEAN ##### -->
+<para>
+
+</para>
+
+@val: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_to_boolean ##### -->
+<para>
+
+</para>
+
+@context: 
+@value: 
+@Returns: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_SET_BOOLEAN ##### -->
+<para>
+
+</para>
+
+@val: 
+@b: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_GET_NUMBER ##### -->
+<para>
+
+</para>
+
+@val: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_to_number ##### -->
+<para>
+
+</para>
+
+@context: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_to_integer ##### -->
+<para>
+
+</para>
+
+@context: 
+@value: 
+@Returns: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_SET_INT ##### -->
+<para>
+
+</para>
+
+@val: 
+@d: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_SET_NUMBER ##### -->
+<para>
+
+</para>
+
+@val: 
+@d: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_GET_STRING ##### -->
+<para>
+
+</para>
+
+@val: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_to_string ##### -->
+<para>
+
+</para>
+
+@context: 
+@value: 
+@Returns: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_SET_STRING ##### -->
+<para>
+
+</para>
+
+@val: 
+@s: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_SET_NULL ##### -->
+<para>
+
+</para>
+
+@val: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_GET_OBJECT ##### -->
+<para>
+
+</para>
+
+@val: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_to_object ##### -->
+<para>
+
+</para>
+
+@context: 
+@value: 
+@Returns: 
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_SET_OBJECT ##### -->
+<para>
+
+</para>
+
+@val: 
+@o: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_to_primitive ##### -->
+<para>
+
+</para>
+
+@value: 
+
+
+<!-- ##### FUNCTION swfdec_as_value_to_debug ##### -->
+<para>
+
+</para>
+
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_double_to_integer ##### -->
+<para>
+
+</para>
+
+@d: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_double_to_string ##### -->
+<para>
+
+</para>
+
+@context: 
+@d: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_integer_to_string ##### -->
+<para>
+
+</para>
+
+@context: 
+@i: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_str_concat ##### -->
+<para>
+
+</para>
+
+@cx: 
+@s1: 
+@s2: 
+@Returns: 
+
+

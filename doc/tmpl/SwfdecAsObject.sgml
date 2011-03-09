@@ -1,0 +1,269 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecAsObject
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecAsObject ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_as_object_new ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_new_empty ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_create ##### -->
+<para>
+
+</para>
+
+@fun: 
+@n_args: 
+@args: 
+@return_value: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_set_constructor ##### -->
+<para>
+
+</para>
+
+@object: 
+@construct: 
+
+
+<!-- ##### ENUM SwfdecAsVariableFlag ##### -->
+<para>
+
+</para>
+
+@SWFDEC_AS_VARIABLE_HIDDEN: 
+@SWFDEC_AS_VARIABLE_PERMANENT: 
+@SWFDEC_AS_VARIABLE_CONSTANT: 
+@SWFDEC_AS_VARIABLE_VERSION_6_UP: 
+@SWFDEC_AS_VARIABLE_VERSION_NOT_6: 
+@SWFDEC_AS_VARIABLE_VERSION_7_UP: 
+@SWFDEC_AS_VARIABLE_VERSION_8_UP: 
+@SWFDEC_AS_VARIABLE_VERSION_9_UP: 
+
+<!-- ##### MACRO swfdec_as_object_get_variable ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@value: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_get_variable_and_flags ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@value: 
+@flags: 
+@pobject: 
+@Returns: 
+
+
+<!-- ##### MACRO swfdec_as_object_set_variable ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@value: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_set_variable_and_flags ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@value: 
+@default_flags: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_add_variable ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@get: 
+@set: 
+@default_flags: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_set_variable_flags ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@flags: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_unset_variable_flags ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@flags: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_has_variable ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_delete_variable ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_delete_all_variables ##### -->
+<para>
+
+</para>
+
+@object: 
+
+
+<!-- ##### USER_FUNCTION SwfdecAsVariableForeach ##### -->
+<para>
+
+</para>
+
+@object: 
+@variable: 
+@value: 
+@flags: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_foreach ##### -->
+<para>
+
+</para>
+
+@object: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_run ##### -->
+<para>
+
+</para>
+
+@object: 
+@script: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_call ##### -->
+<para>
+
+</para>
+
+@object: 
+@name: 
+@argc: 
+@argv: 
+@return_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_add_function ##### -->
+<para>
+
+</para>
+
+@object: 
+@name: 
+@native: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_add_constructor ##### -->
+<para>
+
+</para>
+
+@object: 
+@name: 
+@construct_type: 
+@native: 
+@prototype: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_get_debug ##### -->
+<para>
+
+</para>
+
+@object: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_as_object_resolve ##### -->
+<para>
+
+</para>
+
+@object: 
+@Returns: 
+
+

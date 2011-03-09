@@ -1,0 +1,319 @@
+
+ 0.8.4 ("H264")
+
+Another stable release.
+- support H264, so all Youtube videos play again
+- fix various portability issues for ARM
+- fix rare crash with gotoAndPlay() function
+- fix rare crasher with setTarget() function
+- fix crashes in BitmapData.copyPixels()
+- zero memory before rendering in PulseAudio backend
+- improve Cairo check in testsuite
+
+ 0.8.2 ("Gametrailers")
+
+Here's the first stable release.
+- fix crash when reading invalid JPEG images
+- fix invalid memory accesses
+- fix deadlock when sound stream had no data
+- fix regression where some files weren't loaded.
+- lots of memory leaks plugged
+- various build fixes/improvements
+
+ 0.8.0 ("Slide")
+
+And here is our 6monthly stable release again:
+- rework ActionScript function calls to improve performance
+- increase Flash version Swfdec reports to 9.0.999.0
+- implement flash.geom.Matrix
+- implement various native functions
+- add API to query Swfdec's version
+- lots of correctness fixes
+- lots of bugfixes
+
+ 0.7.4 ("Diablo")
+
+Yay, we returned to monthly releases! Here it goes:
+- rework rendering API to rely on Cairo's clipping instead
+- remove unused and broken swfdec_as_context_eval() API
+- Swfdec does no longer ship an icon
+- Transform and ColorTransform implemented
+- BitmapData partially implemented
+- simplify internal memory handling APIs
+- start porting the Gnash testsuite to Swfdec
+- lots of small performance bug fixes
+
+ 0.7.2 ("Rock You")
+
+Here is - roughly 3 months too late - the first development release of the 
+Swfdec 0.7 series:
+- lots of conformance fixes that make lots of Flash files work
+- new (de)compiler framework in vivified debugger
+- fullscreen support
+- handle focus properly
+- lots of TextField fixes (including onScroller and onChanged events)
+- TextFields can now receive keyboard input
+- extend SwfdecAudio API to allow partially loaded streams and volume changes
+- the Sound object is now fully supported
+- rework loading of external resources to be more compatible
+- significant speedups to the Actionscript interpreter
+- noticable speedups to rendering infrastructure and new API that allows
+  custom speedups
+- removed unmaintained ffmpeg, mad and OSS support
+- lots of bug fixes
+
+ 0.6.8 ("Mario Rush")
+
+And another bugfix release.
+- fix a crash when decoding 1x1 JPEG images
+- fix a crash in XMLSocket.send
+- fix crashes when FLV decoding was aborted
+- fix a crash in exception handling code
+- fix some infinite loops with prototype loops
+- fix crasher when handling broken dates
+- fix crashers with native constructors found in testing
+- compatibility fixes: compile with gold linker, make includes work from C++
+
+ 0.6.6 ("Faith Fighter")
+
+Here's another bugfix release.
+- fix a crash for palettized images
+- fix a crash for oversized images
+- make ALSA devices work that don't support mmap
+- compile fix for ARM
+
+ 0.6.4 ("College Humor")
+
+This is a security release. Please update as soon as possible.
+- fix a security problem that allowed remote Flash files to read local files.
+- fix a rare crash in TextField.replaceText
+- fix a rare crash during cleanup
+
+ 0.6.2 ("Badger Badger Badger")
+
+This is the first bugfix release in the stable release series. It contains 
+mostly compilation fixes. No new features were added.
+
+ 0.6.0 ("Fedora TV")
+
+Here is the first API/ABI-stable release of Swfdec. Enjoy!
+- support missing plugin installation. GStreamer requirement bumped to 0.10.17
+- lots of improvements to testsuite. It uses plugins now so multiple Flash 
+  players can be tested.
+- XMLSocket now works
+- rework buffer API
+- lots of bug- and conformance fixes
+
+ 0.5.90 ("rutube")
+
+This is a preparation for the upcoming 0.6 release to go in time with the Gnome 
+2.22 release.
+- rename "libswfdec(-gtk)" dir to "swfdec(-gtk)"
+- update libsoup requirement to 2.4
+- rework input API - now has SwfdecStream, SwfdecLoader and SwfdecSocket classes
+- new and improved testsuite
+- completely overhaul security subsystem, invalid access denies should be a 
+  thing of the past
+- implement flash.geom.Point and flash.geom.Rectangle
+- implement internal parts of ExternalInterface object
+- plug various memory leaks
+- fix lots of internal bugs
+- various portability fixes for embedded and OpenBSD
+
+ 0.5.5 ("cps")
+
+In time for Gnome's 2.21.4 release, here's a new Swfdec release. Features:
+- rework the input handling subsystem. All objects (including sliders) can now 
+  receive mouse events.
+- stub all script functions and properties from Flash 8
+- implement loading cross-domain policy files
+- implement MovieClip.beginGradientFill (Yes, that function is big enough for 
+  its own entry)
+- various fixes to clipping
+- Swfdec should compile and work fine on ARM architectures now
+- lots of bug fixes and small features additions
+- support reading text files in various formats
+
+ 0.5.4 ("2 advanced")
+
+Features left and right make this release. Unfortunately a lot of reorganization
+was necessary. In particular this release contains:
+- Swfdec supports FutureSplash movies now
+- rewrite GStreamer audio and video back ends. They work perfectly now and are
+  the default and only enabled back ends. Other back ends are still available
+  via configure switches.
+- support for the TextField object. This makes YouTube show the time correctly.
+- support for ActionScript exception handling and inheritance actions Cast,
+  Implements, InstanceOf, Try and Throw.
+- support for the MovieClipLoader object and loadMovie functions. This allows
+  Flash movies to load other Flash movies.
+- support for loading JPEG and PNG images.
+- add an initial and incomplete implementation of the Flash security framework
+- Swfdec has a logo now
+- make the player automatically abort when scripts get stuck
+- add PulseAudio sound output back end, it can be disabled via configure switch
+- cross-compilation should now work without issues.
+- lots of small improvements
+
+ 0.5.3 ("Tennis")
+
+Lots of new built-in objects and code cleanup are the highlights of yet another
+Swfdec release. And a little less condensed:
+- rework of what APIs call into the script engine. This greatly simplifies using
+  libswfdec in applications.
+- rework invalidation handling. Less parts of the screen need to be redrawn on 
+  changes, but the SwfdecPlayer::invalidate signal changed.
+- support the built-in Date, XML, Sound, System.capabilities and TextFormat
+  objects plus MovieClip drawing functions
+- add initial support for blend modes and filters (full support is expected with
+  Cairo 1.6)
+- clean up initialization, video engine, sound engine and shape parsing code. 
+  All the code should now be more robust, easier to read and have less broken 
+  corner cases. And Swfdec supports VP6 alpha video now.
+- lots of old Flash files that use Flash 4-style paths to lookup values should 
+  work correctly now.
+- a huge list of bugfixes and little features, see the git log for details.
+
+ 0.5.2 ("Kittencannon")
+
+This release saw a lot of internal cleanups and only little new features. But
+even that made a lot of files work and work better. Here's some detail:
+- add initial support for Keyboard events. This makes quite some games work.
+- add NetStream.close() functionality. This makes Youtube fullscreen work.
+- export more API for debugging, like SwfdecScript and SwfdecAsDebugger.
+- add new Vivified internal debugger that makes use of those.
+- Swfdec can parse Flash 8 Buttons now.
+- Swfdec should now set and handle all property flags correctly.
+- implement LoadVars object
+- make lots of native functions more correct for weird situations.
+- various bugfixes, including some very visible ones. This should improve
+  playback for some Flash files a lot.
+
+ 0.5.1 ("Heeeeelium")
+
+Features! This release got some. And they even give you the long awaited 
+embedded Youtube support. At the cost of lots of API changes, but who cares?
+- rewrite SwfdecLoader. Add SwfdecURL support structure in the process.
+- implement AsBroadcaster actionscript object.
+- implement Stage actionscript object. Movies can now do the scaling themselves.
+- change the HTTP in swfdec-gtk from gnome-vfs to libsoup
+- add an OSS backend for non-ALSA operating systems.
+- various fixes to super and DefineFunction2 flags.
+
+ 0.5.0 ("Meet Plan Party!")
+
+Here's the long overdue update. Lots of backend stuff was rewritten. The only
+thing that is missing now is more features. Expect them in the next releases.
+- New and more correct script interpreter engine. The engine is even exported 
+  for your coding pleasure.
+- New instance placement handling algorithm. This one seems to produce much
+  better correctness results than the old one.
+- More ActionScript bytecodes are supported, in particular CloneSprite and
+  RemoveSprite
+- improve String reading in earlier Flash versions (Flash <=5 is Latin1, not 
+  UTF8)
+- implement some more Actionscript functions (most important is probably
+  createEmptyMovieClip ())
+- lots of bugfixes
+
+ 0.4.5 ("Death of the Desktop")
+
+This is strictly a bugfix release. Have fun.
+- fix linking issues on Solaris/BSD.
+- fix various crashers.
+
+ 0.4.4 ("Birthday Cards")
+
+This is a stability release. The number of new supported Flash features
+is limited.
+- add initial support for some tags from Flash 8 (in particular 
+  DefineShape4 and PlaceObject3)
+- audio and video can now be decoded with GStreamer
+- add new API in the form of libswfdec-gtk for people that want to 
+  include Swfdec in their applications
+- improve the JPEG decoding code (less crashy, more JPEGs decoded)
+- throw zzuf (http://sam.zoy.org/zzuf/) at Swfdec and fix exposed
+  issues
+- various fixes that make writing bindings simpler
+- lots of bugs fixed, including: 10551, 10629
+
+ 0.4.3 ("Your tube")
+
+This release can play Youtube video. While this alone is enough for a 
+release, this was needed to make it possible:
+- add lots of new features to the script interpreter, in particular 
+  support for inheritance and the Object.registerClass function.
+- rework the streaming and implement the NetStream, NetConnection and
+  XML script objects partially
+- support passing variables to movies
+- improvements to the JPEG decoder
+- improvements to the debugging framework and the debugger
+- support some more Flash 8 tags (in particular DefineFont3)
+
+ 0.4.2 ("Two completely different numbers")
+
+The main change for this release is changing script execution from 
+compiling to SpiderMonkey bytecode to executiong it manually. This made
+it far easier and a lot more stable to run scripts. Other changes:
+- Implement color transformations on images.
+- Support some more ActionScript codes.
+- Added swfdec_loader_get_filename() function to exported API.
+- Allow compiling tests and tools without ALSA support
+- Lots of bugfixes.
+- Lots of new tests and debugging tools.
+
+ 0.4.1 ("Dragostea din tei")
+
+This release introduces video features. Quite a bit of internal 
+restructuring was necessary to achieve this. The API has been changed 
+from 0.4.0. Changes:
+- swfdec_player_iterate has been replaced by swfdec_player_advance
+- some functions (like swfdec_player_set_audio_advance) have been 
+  completely removed. The same effect can be achieved by using 
+  swfdec_player_advance.
+- Add support for video playback. This does not include scripting 
+  video.
+- Add native FLV support to swfdec.
+- Fix the caching layer. So SWF files with lots of images no longer 
+  crash swfdec.
+- Lots of bugfixes.
+
+ 0.4.0 ("festivally plump")
+
+This is the result of 3 months of refactoring, testing stuff and 
+generally playing around with swfdec. I'll try to list the big 
+changes:
+- rip out support for outdated libart
+- rip out included glib
+- rework the object system to have a lot more objects
+- split objects into "live" (SwfdecMovie, SwfdfecAudio), "static"
+  (SwfdecCharacter) and Javascript (JSObjects)
+- compile Flash Actionscript codes into SpiderMonkey bytecode
+- add testsuite
+- reverse engineer script execution order
+- reverse engineer seeking in sprite movies
+- implement lots of other Actionscript functions
+- documentation for public API
+- removal of all plugins (the Mozilla plugin exists as a seperate 
+  package now)
+- new small test application (not installed)
+- slightly bigger script debugging application (not installed)
+
+ 0.3.6 ("5.11d")
+
+This is less of a release and more of a "toss a bunch of code into
+the air".  You're not going to like this release, really.  So don't
+bother compiling it.  Don't even bother downloading it.  It really
+just differently buggy than the last release.  Certain parts may
+feel more solid, like the mozilla plugin, but the entire experience
+will probably just be slower and less featureful.  I already know
+there are problems, don't bother reporting them, since it will
+simply remind me of how crappy this release is.  The only redeeming
+factor of this release is that it doesn't crash.  Ever.  Well,
+except for the bugs.  Backtraces and media files welcome.  You
+could even use the handy new pop-up menu in the Mozilla plugin to
+report a bug, except that I don't have the website backend running
+yet.
+
+
+

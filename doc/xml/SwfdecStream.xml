@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecStream">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecStream.top_of_page">SwfdecStream</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecStream</refname>
+<refpurpose>object used for input</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecStream.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecStream-struct">SwfdecStream</link>;
+                    <link linkend="SwfdecStreamClass">SwfdecStreamClass</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-stream-is-open">swfdec_stream_is_open</link>               (<link linkend="SwfdecStream">SwfdecStream</link> *stream);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-stream-is-complete">swfdec_stream_is_complete</link>           (<link linkend="SwfdecStream">SwfdecStream</link> *stream);
+<link linkend="void">void</link>                <link linkend="swfdec-stream-open">swfdec_stream_open</link>                  (<link linkend="SwfdecStream">SwfdecStream</link> *stream);
+<link linkend="void">void</link>                <link linkend="swfdec-stream-push">swfdec_stream_push</link>                  (<link linkend="SwfdecStream">SwfdecStream</link> *stream,
+                                                         <link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);
+<link linkend="void">void</link>                <link linkend="swfdec-stream-close">swfdec_stream_close</link>                 (<link linkend="SwfdecStream">SwfdecStream</link> *stream);
+<link linkend="void">void</link>                <link linkend="swfdec-stream-error">swfdec_stream_error</link>                 (<link linkend="SwfdecStream">SwfdecStream</link> *stream,
+                                                         const <link linkend="char">char</link> *error,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="swfdec-stream-errorv">swfdec_stream_errorv</link>                (<link linkend="SwfdecStream">SwfdecStream</link> *stream,
+                                                         const <link linkend="char">char</link> *error,
+                                                         <link linkend="va-list">va_list</link> args);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecStream.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----SwfdecStream
+         +----<link linkend="SwfdecLoader">SwfdecLoader</link>
+         +----<link linkend="SwfdecSocket">SwfdecSocket</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="SwfdecStream.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecStream--complete">complete</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="SwfdecStream--error">error</link>&quot;                    <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="SwfdecStream--open">open</link>&quot;                     <link linkend="gboolean">gboolean</link>              : Read
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="SwfdecStream.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+SwfdecStream is the base class used for communication inside Swfdec. If you
+are a UNIX developer, think of this class as the equivalent to a file 
+descriptor. <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link> and <link linkend="SwfdecSocket"><type>SwfdecSocket</type></link> are the subclasses supposed to
+be used for files or network sockets, respectively.
+</para>
+<para>
+This class provides the functions necessary to implement subclasses of 
+streams. None of the functions described in this section should be used by
+anything but subclass implementations. Consider them "protected".</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecStream.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecStream-struct" role="struct">
+<title>SwfdecStream</title>
+<indexterm zone="SwfdecStream-struct"><primary>SwfdecStream</primary></indexterm><programlisting>typedef struct _SwfdecStream SwfdecStream;</programlisting>
+<para>
+This is the base object used for providing input. It is abstract, use a 
+subclass to provide your input. All members are considered private.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecStreamClass" role="struct">
+<title>SwfdecStreamClass</title>
+<indexterm zone="SwfdecStreamClass"><primary>SwfdecStreamClass</primary></indexterm><programlisting>typedef struct {
+  /* get a nice description string */
+  const char *		(* describe)		(SwfdecStream *		stream);
+  /* close the stream. */
+  void			(* close)		(SwfdecStream *		stream);
+} SwfdecStreamClass;
+</programlisting>
+<para>
+This is the base class used for providing input. You are supposed to create
+a subclass that fills in the function pointers mentioned above.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>describe</structfield>&nbsp;()</term>
+<listitem><simpara> Provide a string describing your string. Default implementations
+      of this function exist for both the <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link> and 
+      <link linkend="SwfdecStream"><type>SwfdecStream</type></link> subclasses. They return the URL for the stream.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>close</structfield>&nbsp;()</term>
+<listitem><simpara> Called when Swfdec requests that the stream be closed. After this
+        function was called, Swfdec will consider the stream finished and
+        will not ever read data from it again.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-stream-is-open" role="function">
+<title>swfdec_stream_is_open ()</title>
+<indexterm zone="swfdec-stream-is-open"><primary>swfdec_stream_is_open</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_stream_is_open               (<link linkend="SwfdecStream">SwfdecStream</link> *stream);</programlisting>
+<para>
+Checks if the given <parameter>stream</parameter> is currrently open. Some functions, for example
+<link linkend="swfdec-socket-send"><function>swfdec_socket_send()</function></link>, require an open stream.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecStream"><type>SwfdecStream</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the stream is open, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-stream-is-complete" role="function">
+<title>swfdec_stream_is_complete ()</title>
+<indexterm zone="swfdec-stream-is-complete"><primary>swfdec_stream_is_complete</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_stream_is_complete           (<link linkend="SwfdecStream">SwfdecStream</link> *stream);</programlisting>
+<para>
+Checks if all data has successfully been transmitted through the <parameter>stream</parameter> 
+and it has been closed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecStream"><type>SwfdecStream</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the stream is completed, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-stream-open" role="function">
+<title>swfdec_stream_open ()</title>
+<indexterm zone="swfdec-stream-open"><primary>swfdec_stream_open</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_stream_open                  (<link linkend="SwfdecStream">SwfdecStream</link> *stream);</programlisting>
+<para>
+Call this function when your stream opened the resulting file. For HTTP this
+is when having received the headers. You must call this function before 
+<link linkend="swfdec-stream-push"><function>swfdec_stream_push()</function></link> can be called.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecStream"><type>SwfdecStream</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-stream-push" role="function">
+<title>swfdec_stream_push ()</title>
+<indexterm zone="swfdec-stream-push"><primary>swfdec_stream_push</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_stream_push                  (<link linkend="SwfdecStream">SwfdecStream</link> *stream,
+                                                         <link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);</programlisting>
+<para>
+Makes the data in <parameter>buffer</parameter> available to <parameter>stream</parameter> and processes it. The <parameter>stream</parameter>
+must be open.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecStream"><type>SwfdecStream</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> new data to make available. The stream takes the reference
+         to the buffer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-stream-close" role="function">
+<title>swfdec_stream_close ()</title>
+<indexterm zone="swfdec-stream-close"><primary>swfdec_stream_close</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_stream_close                 (<link linkend="SwfdecStream">SwfdecStream</link> *stream);</programlisting>
+<para>
+Indicates to <parameter>stream</parameter> that no more data will follow. The stream must be open.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecStream"><type>SwfdecStream</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-stream-error" role="function">
+<title>swfdec_stream_error ()</title>
+<indexterm zone="swfdec-stream-error"><primary>swfdec_stream_error</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_stream_error                 (<link linkend="SwfdecStream">SwfdecStream</link> *stream,
+                                                         const <link linkend="char">char</link> *error,
+                                                         ...);</programlisting>
+<para>
+Moves the stream in the error state if it wasn't before. A stream that is in
+the error state will not process any more data. Also, internal error 
+handling scripts may be executed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecStream"><type>SwfdecStream</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> a printf-style string describing the error
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> arguments for the <parameter>error</parameter> string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-stream-errorv" role="function">
+<title>swfdec_stream_errorv ()</title>
+<indexterm zone="swfdec-stream-errorv"><primary>swfdec_stream_errorv</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_stream_errorv                (<link linkend="SwfdecStream">SwfdecStream</link> *stream,
+                                                         const <link linkend="char">char</link> *error,
+                                                         <link linkend="va-list">va_list</link> args);</programlisting>
+<para>
+This function is the va_list alternative to <link linkend="swfdec-stream-error"><function>swfdec_stream_error()</function></link>. See that
+function for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stream</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecStream"><type>SwfdecStream</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> a printf-style error string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> arguments for <parameter>error</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecStream.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecStream--complete"><title>The <literal>&quot;complete&quot;</literal> property</title>
+<indexterm zone="SwfdecStream--complete"><primary>SwfdecStream:complete</primary></indexterm><programlisting>  &quot;complete&quot;                 <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>TRUE when all data has been transmitted.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="SwfdecStream--error"><title>The <literal>&quot;error&quot;</literal> property</title>
+<indexterm zone="SwfdecStream--error"><primary>SwfdecStream:error</primary></indexterm><programlisting>  &quot;error&quot;                    <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>NULL when no error or string describing error.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="SwfdecStream--open"><title>The <literal>&quot;open&quot;</literal> property</title>
+<indexterm zone="SwfdecStream--open"><primary>SwfdecStream:open</primary></indexterm><programlisting>  &quot;open&quot;                     <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>TRUE while data is flowing.</para><para>Default value: FALSE</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

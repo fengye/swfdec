@@ -1,0 +1,519 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-SwfdecBuffer">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-SwfdecBuffer.top_of_page">SwfdecBuffer</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecBuffer</refname>
+<refpurpose>memory region handling</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-SwfdecBuffer.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecBuffer">SwfdecBuffer</link>;
+                    <link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link>;
+<link linkend="void">void</link>                (<link linkend="SwfdecBufferFreeFunc">*SwfdecBufferFreeFunc</link>)             (<link linkend="gpointer">gpointer</link> *priv,
+                                                         unsigned <link linkend="char">char</link> *data);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-new">swfdec_buffer_new</link>                   (<link linkend="gsize">gsize</link> size);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-new0">swfdec_buffer_new0</link>                  (<link linkend="gsize">gsize</link> size);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-new-full">swfdec_buffer_new_full</link>              (unsigned <link linkend="char">char</link> *data,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="SwfdecBufferFreeFunc">SwfdecBufferFreeFunc</link> free_func,
+                                                         <link linkend="gpointer">gpointer</link> priv);
+#define             <link linkend="swfdec-buffer-new-static">swfdec_buffer_new_static</link>            (data, size)
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-new-for-data">swfdec_buffer_new_for_data</link>          (unsigned <link linkend="char">char</link> *data,
+                                                         <link linkend="gsize">gsize</link> size);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-new-subbuffer">swfdec_buffer_new_subbuffer</link>         (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> offset,
+                                                         <link linkend="gsize">gsize</link> length);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-new-from-file">swfdec_buffer_new_from_file</link>         (const <link linkend="char">char</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-ref">swfdec_buffer_ref</link>                   (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);
+<link linkend="void">void</link>                <link linkend="swfdec-buffer-unref">swfdec_buffer_unref</link>                 (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-get-super">swfdec_buffer_get_super</link>             (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);
+<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link>*  <link linkend="swfdec-buffer-queue-new">swfdec_buffer_queue_new</link>             (void);
+<link linkend="void">void</link>                <link linkend="swfdec-buffer-queue-clear">swfdec_buffer_queue_clear</link>           (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);
+<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link>*  <link linkend="swfdec-buffer-queue-ref">swfdec_buffer_queue_ref</link>             (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);
+<link linkend="void">void</link>                <link linkend="swfdec-buffer-queue-unref">swfdec_buffer_queue_unref</link>           (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);
+<link linkend="gsize">gsize</link>               <link linkend="swfdec-buffer-queue-get-depth">swfdec_buffer_queue_get_depth</link>       (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);
+<link linkend="gsize">gsize</link>               <link linkend="swfdec-buffer-queue-get-offset">swfdec_buffer_queue_get_offset</link>      (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);
+<link linkend="void">void</link>                <link linkend="swfdec-buffer-queue-push">swfdec_buffer_queue_push</link>            (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-queue-pull">swfdec_buffer_queue_pull</link>            (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="gsize">gsize</link> length);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-queue-pull-buffer">swfdec_buffer_queue_pull_buffer</link>     (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-queue-peek">swfdec_buffer_queue_peek</link>            (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="gsize">gsize</link> length);
+<link linkend="SwfdecBuffer">SwfdecBuffer</link>*       <link linkend="swfdec-buffer-queue-peek-buffer">swfdec_buffer_queue_peek_buffer</link>     (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);
+<link linkend="void">void</link>                <link linkend="swfdec-buffer-queue-flush">swfdec_buffer_queue_flush</link>           (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="gsize">gsize</link> n_bytes);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-SwfdecBuffer.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This section describes how memory is to be handled when interacting with the 
+Swfdec library. Memory regions are refcounted and passed using a 
+<link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link>. If large memory segments need to be handled that may span
+multiple buffers, Swfdec uses a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-SwfdecBuffer.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecBuffer" role="struct">
+<title>SwfdecBuffer</title>
+<indexterm zone="SwfdecBuffer"><primary>SwfdecBuffer</primary></indexterm><programlisting>typedef struct {
+  unsigned char *	data;		/* memory region (consider as read only) */
+  gsize			length;		/* length of the memory region pointer do by @data */
+} SwfdecBuffer;
+</programlisting>
+<para>
+To allow for easy sharing of memory regions, <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> was created. 
+Every buffer refers to a memory region and its size and takes care of 
+freeing that region when the buffer is no longer needed. They are 
+reference countedto make it easy to refer to the same region from various
+independant parts of your code. Buffers also support some advanced 
+functionalities like extracting parts of the buffer using 
+<link linkend="swfdec-buffer-new-subbuffer"><function>swfdec_buffer_new_subbuffer()</function></link> or using mmapped files with 
+<link linkend="swfdec-buffer-new-from-file"><function>swfdec_buffer_new_from_file()</function></link> without the need for a different API.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term>unsigned&nbsp;<link linkend="char">char</link>&nbsp;*<structfield>data</structfield>;</term>
+<listitem><simpara> the data. read-only
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gsize">gsize</link>&nbsp;<structfield>length</structfield>;</term>
+<listitem><simpara> number of bytes in <parameter>data</parameter>. read-only
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecBufferQueue" role="struct">
+<title>SwfdecBufferQueue</title>
+<indexterm zone="SwfdecBufferQueue"><primary>SwfdecBufferQueue</primary></indexterm><programlisting>typedef struct {
+} SwfdecBufferQueue;
+</programlisting>
+<para>
+A <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link> is a queue of continuous buffers that allows reading
+its data in chunks of pre-defined sizes. It is used to transform a data 
+stream that was provided by buffers of random sizes to buffers of the right
+size.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecBufferFreeFunc" role="function">
+<title>SwfdecBufferFreeFunc ()</title>
+<indexterm zone="SwfdecBufferFreeFunc"><primary>SwfdecBufferFreeFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*SwfdecBufferFreeFunc)             (<link linkend="gpointer">gpointer</link> *priv,
+                                                         unsigned <link linkend="char">char</link> *data);</programlisting>
+<para>
+This is the function prototype for the function that is called for freeing
+the memory pointed to by a buffer. See <link linkend="swfdec-buffer-new"><function>swfdec_buffer_new()</function></link> for an example.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>priv</parameter>&nbsp;:</term>
+<listitem><simpara> The private data registered for passing to this function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> The data to free
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-new" role="function">
+<title>swfdec_buffer_new ()</title>
+<indexterm zone="swfdec-buffer-new"><primary>swfdec_buffer_new</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_new                   (<link linkend="gsize">gsize</link> size);</programlisting>
+<para>
+Creates a new buffer and allocates new memory of <parameter>size</parameter> bytes to be used with 
+the buffer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> amount of bytes to allocate
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> with buffer->data pointing to new data
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-new0" role="function">
+<title>swfdec_buffer_new0 ()</title>
+<indexterm zone="swfdec-buffer-new0"><primary>swfdec_buffer_new0</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_new0                  (<link linkend="gsize">gsize</link> size);</programlisting>
+<para>
+Createsa new buffer just like <link linkend="swfdec-buffer-new"><function>swfdec_buffer_new()</function></link>, but ensures 
+that the returned data gets initialized to be 0.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> amount of bytes to allocate
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> with buffer->data pointing to new data
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-new-full" role="function">
+<title>swfdec_buffer_new_full ()</title>
+<indexterm zone="swfdec-buffer-new-full"><primary>swfdec_buffer_new_full</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_new_full              (unsigned <link linkend="char">char</link> *data,
+                                                         <link linkend="gsize">gsize</link> size,
+                                                         <link linkend="SwfdecBufferFreeFunc">SwfdecBufferFreeFunc</link> free_func,
+                                                         <link linkend="gpointer">gpointer</link> priv);</programlisting>
+<para>
+Creates a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> for managing <parameter>data</parameter>. The provided <parameter>free_func</parameter>
+will be called when the returned buffer is not referenced anymore, the 
+provided data needs to stay valid until that point.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> memory region to reference
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> size of the provided memory region
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>free_func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call for freeing the <parameter>data</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>priv</parameter>&nbsp;:</term>
+<listitem><simpara> private data to bass to <parameter>free_func</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> pointing to <parameter>data</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-new-static" role="macro">
+<title>swfdec_buffer_new_static()</title>
+<indexterm zone="swfdec-buffer-new-static"><primary>swfdec_buffer_new_static</primary></indexterm><programlisting>#define             swfdec_buffer_new_static(data, size)</programlisting>
+<para>
+Creates a buffer for static data.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> static data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> size of <parameter>data</parameter> in bytes
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-new-for-data" role="function">
+<title>swfdec_buffer_new_for_data ()</title>
+<indexterm zone="swfdec-buffer-new-for-data"><primary>swfdec_buffer_new_for_data</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_new_for_data          (unsigned <link linkend="char">char</link> *data,
+                                                         <link linkend="gsize">gsize</link> size);</programlisting>
+<para>
+Takes ownership of <parameter>data</parameter> and creates a new buffer managing it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> memory region allocated with <link linkend="g-malloc"><function>g_malloc()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> size of <parameter>data</parameter> in bytes
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> pointing to <parameter>data</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-new-subbuffer" role="function">
+<title>swfdec_buffer_new_subbuffer ()</title>
+<indexterm zone="swfdec-buffer-new-subbuffer"><primary>swfdec_buffer_new_subbuffer</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_new_subbuffer         (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer,
+                                                         <link linkend="gsize">gsize</link> offset,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+Creates a <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> for managing a partial section of the memory pointed
+to by <parameter>buffer</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> managing the region of memory
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offset</parameter>&nbsp;:</term>
+<listitem><simpara> starting offset into data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> amount of bytes to manage
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> managing the indicated region.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-new-from-file" role="function">
+<title>swfdec_buffer_new_from_file ()</title>
+<indexterm zone="swfdec-buffer-new-from-file"><primary>swfdec_buffer_new_from_file</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_new_from_file         (const <link linkend="char">char</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Creates a buffer containing the contents of the given file. If loading the
+file fails, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned and <parameter>error</parameter> is set. The error can be
+any of the errors that are valid for <link linkend="g-file-get-contents"><function>g_file_get_contents()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> file to read, in filename encoding
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="GError"><type>GError</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> on failure
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-ref" role="function">
+<title>swfdec_buffer_ref ()</title>
+<indexterm zone="swfdec-buffer-ref"><primary>swfdec_buffer_ref</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_ref                   (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);</programlisting>
+<para>
+increases the reference count of <parameter>buffer</parameter> by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The passed in <parameter>buffer</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-unref" role="function">
+<title>swfdec_buffer_unref ()</title>
+<indexterm zone="swfdec-buffer-unref"><primary>swfdec_buffer_unref</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_buffer_unref                 (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);</programlisting>
+<para>
+Decreases the reference count of <parameter>buffer</parameter> by one. If no reference to this
+buffer exists anymore, the buffer and the memory it manages are freed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-get-super" role="function">
+<title>swfdec_buffer_get_super ()</title>
+<indexterm zone="swfdec-buffer-get-super"><primary>swfdec_buffer_get_super</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_get_super             (<link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);</programlisting>
+<para>
+Returns the largest buffer that contains the memory pointed to by <parameter>buffer</parameter>.
+This will either be the passed <parameter>buffer</parameter> itself, or if the buffer was created
+via <link linkend="swfdec-buffer-new-subbuffer"><function>swfdec_buffer_new_subbuffer()</function></link>, the buffer used for that.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The largest <parameter>buffer</parameter> available that contains the memory pointed to 
+         by <parameter>buffer</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-new" role="function">
+<title>swfdec_buffer_queue_new ()</title>
+<indexterm zone="swfdec-buffer-queue-new"><primary>swfdec_buffer_queue_new</primary></indexterm><programlisting><link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link>*  swfdec_buffer_queue_new             (void);</programlisting>
+<para>
+Creates a new empty buffer queue.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new buffer queue. Use <link linkend="swfdec-buffer-queue-unref"><function>swfdec_buffer_queue_unref()</function></link> to free it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-clear" role="function">
+<title>swfdec_buffer_queue_clear ()</title>
+<indexterm zone="swfdec-buffer-queue-clear"><primary>swfdec_buffer_queue_clear</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_buffer_queue_clear           (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);</programlisting>
+<para>
+Resets <parameter>queue</parameter> into to initial state. All buffers it contains will be 
+released and the offset will be reset to 0.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-ref" role="function">
+<title>swfdec_buffer_queue_ref ()</title>
+<indexterm zone="swfdec-buffer-queue-ref"><primary>swfdec_buffer_queue_ref</primary></indexterm><programlisting><link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link>*  swfdec_buffer_queue_ref             (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);</programlisting>
+<para>
+increases the reference count of <parameter>queue</parameter> by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The passed in <parameter>queue</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-unref" role="function">
+<title>swfdec_buffer_queue_unref ()</title>
+<indexterm zone="swfdec-buffer-queue-unref"><primary>swfdec_buffer_queue_unref</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_buffer_queue_unref           (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);</programlisting>
+<para>
+Decreases the reference count of <parameter>queue</parameter> by one. If no reference 
+to this buffer exists anymore, the buffer and the memory 
+it manages are freed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-get-depth" role="function">
+<title>swfdec_buffer_queue_get_depth ()</title>
+<indexterm zone="swfdec-buffer-queue-get-depth"><primary>swfdec_buffer_queue_get_depth</primary></indexterm><programlisting><link linkend="gsize">gsize</link>               swfdec_buffer_queue_get_depth       (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);</programlisting>
+<para>
+Returns the number of bytes currently in <parameter>queue</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> amount of bytes in <parameter>queue</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-get-offset" role="function">
+<title>swfdec_buffer_queue_get_offset ()</title>
+<indexterm zone="swfdec-buffer-queue-get-offset"><primary>swfdec_buffer_queue_get_offset</primary></indexterm><programlisting><link linkend="gsize">gsize</link>               swfdec_buffer_queue_get_offset      (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);</programlisting>
+<para>
+Queries the amount of bytes that has already been pulled out of
+<parameter>queue</parameter> using functions like <link linkend="swfdec-buffer-queue-pull"><function>swfdec_buffer_queue_pull()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of bytes that were already pulled from this queue.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-push" role="function">
+<title>swfdec_buffer_queue_push ()</title>
+<indexterm zone="swfdec-buffer-queue-push"><primary>swfdec_buffer_queue_push</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_buffer_queue_push            (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="SwfdecBuffer">SwfdecBuffer</link> *buffer);</programlisting>
+<para>
+Appends the given <parameter>buffer</parameter> to the buffers already in <parameter>queue</parameter>. This function
+will take ownership of the given <parameter>buffer</parameter>. Use <link linkend="swfdec-buffer-ref"><function>swfdec_buffer_ref()</function></link> before
+calling this function to keep a reference.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> to append to <parameter>queue</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-pull" role="function">
+<title>swfdec_buffer_queue_pull ()</title>
+<indexterm zone="swfdec-buffer-queue-pull"><primary>swfdec_buffer_queue_pull</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_queue_pull            (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+If enough data is still available in <parameter>queue</parameter>, the first <parameter>length</parameter> bytes are 
+put into a new buffer and that buffer is returned. The <parameter>length</parameter> bytes are
+removed from the head of the queue. If not enough data is available, <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> amount of bytes to pull
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-pull-buffer" role="function">
+<title>swfdec_buffer_queue_pull_buffer ()</title>
+<indexterm zone="swfdec-buffer-queue-pull-buffer"><primary>swfdec_buffer_queue_pull_buffer</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_queue_pull_buffer     (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);</programlisting>
+<para>
+Pulls the first buffer out of <parameter>queue</parameter> and returns it. This function is 
+equivalent to calling <link linkend="swfdec-buffer-queue-pull"><function>swfdec_buffer_queue_pull()</function></link> with the size of the
+first buffer in it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The first buffer in <parameter>queue</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if <parameter>queue</parameter> is empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-peek" role="function">
+<title>swfdec_buffer_queue_peek ()</title>
+<indexterm zone="swfdec-buffer-queue-peek"><primary>swfdec_buffer_queue_peek</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_queue_peek            (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+Creates a new buffer with the first <parameter>length</parameter> bytes from <parameter>queue</parameter>, but unlike 
+<link linkend="swfdec-buffer-queue-pull"><function>swfdec_buffer_queue_pull()</function></link>, does not remove them from <parameter>queue</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link> to read from
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> amount of bytes to peek
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> NULL if the requested amount of data wasn't available or a new 
+         readonly <link linkend="SwfdecBuffer"><type>SwfdecBuffer</type></link>. Use <link linkend="swfdec-buffer-unref"><function>swfdec_buffer_unref()</function></link> after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-peek-buffer" role="function">
+<title>swfdec_buffer_queue_peek_buffer ()</title>
+<indexterm zone="swfdec-buffer-queue-peek-buffer"><primary>swfdec_buffer_queue_peek_buffer</primary></indexterm><programlisting><link linkend="SwfdecBuffer">SwfdecBuffer</link>*       swfdec_buffer_queue_peek_buffer     (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue);</programlisting>
+<para>
+Gets the first buffer out of <parameter>queue</parameter> and returns it. This function is 
+equivalent to calling <link linkend="swfdec-buffer-queue-peek"><function>swfdec_buffer_queue_peek()</function></link> with the size of the
+first buffer in it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The first buffer in <parameter>queue</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if <parameter>queue</parameter> is empty. Use 
+         <link linkend="swfdec-buffer-unref"><function>swfdec_buffer_unref()</function></link> after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-buffer-queue-flush" role="function">
+<title>swfdec_buffer_queue_flush ()</title>
+<indexterm zone="swfdec-buffer-queue-flush"><primary>swfdec_buffer_queue_flush</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_buffer_queue_flush           (<link linkend="SwfdecBufferQueue">SwfdecBufferQueue</link> *queue,
+                                                         <link linkend="gsize">gsize</link> n_bytes);</programlisting>
+<para>
+Removes the first <parameter>n_bytes</parameter> bytes from the queue.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>queue</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecBufferQueue"><type>SwfdecBufferQueue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_bytes</parameter>&nbsp;:</term>
+<listitem><simpara> amount of bytes to flush from the queue
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

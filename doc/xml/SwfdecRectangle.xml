@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-SwfdecRectangle">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-SwfdecRectangle.top_of_page">SwfdecRectangle</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecRectangle</refname>
+<refpurpose>handling regions on the screen</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-SwfdecRectangle.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecRectangle">SwfdecRectangle</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-rectangle-contains">swfdec_rectangle_contains</link>           (const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *container,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *content);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-rectangle-contains-point">swfdec_rectangle_contains_point</link>     (const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *rectangle,
+                                                         <link linkend="int">int</link> x,
+                                                         <link linkend="int">int</link> y);
+<link linkend="void">void</link>                <link linkend="swfdec-rectangle-init-empty">swfdec_rectangle_init_empty</link>         (<link linkend="SwfdecRectangle">SwfdecRectangle</link> *rectangle);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-rectangle-intersect">swfdec_rectangle_intersect</link>          (<link linkend="SwfdecRectangle">SwfdecRectangle</link> *dest,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *a,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *b);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-rectangle-is-empty">swfdec_rectangle_is_empty</link>           (const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *rectangle);
+<link linkend="void">void</link>                <link linkend="swfdec-rectangle-union">swfdec_rectangle_union</link>              (<link linkend="SwfdecRectangle">SwfdecRectangle</link> *dest,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *a,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *b);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-SwfdecRectangle.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This section describes how regions are handled in Swfdec. Regions are
+important when tracking which parts of the screen have been invalidated and 
+need to be repainted. See SwfdecPlayer::invalidate for an example.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-SwfdecRectangle.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecRectangle" role="struct">
+<title>SwfdecRectangle</title>
+<indexterm zone="SwfdecRectangle"><primary>SwfdecRectangle</primary></indexterm><programlisting>typedef struct {
+  int		x;			/* x coordinate of top-left point */
+  int		y;			/* y coordinate of top left point */
+  int		width;			/* width of rectangle or 0 for empty */
+  int		height;			/* height of rectangle or 0 for empty */
+} SwfdecRectangle;
+</programlisting>
+<para>
+This structure represents a rectangular region. It is identical to the
+<link linkend="GdkRectangle"><type>GdkRectangle</type></link> structure, so you can cast freely between them. The only 
+difference is that Gdk does not allow empty rectangles, while Swfdec does.
+You can use <link linkend="swfdec-rectangle-is-empty"><function>swfdec_rectangle_is_empty()</function></link> to check for this.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="int">int</link>&nbsp;<structfield>x</structfield>;</term>
+<listitem><simpara> x coordinate of top-left point
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="int">int</link>&nbsp;<structfield>y</structfield>;</term>
+<listitem><simpara> y coordinate of top-left point
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="int">int</link>&nbsp;<structfield>width</structfield>;</term>
+<listitem><simpara> width of rectangle or 0 for empty
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="int">int</link>&nbsp;<structfield>height</structfield>;</term>
+<listitem><simpara> height of rectangle or 0 for empty
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-rectangle-contains" role="function">
+<title>swfdec_rectangle_contains ()</title>
+<indexterm zone="swfdec-rectangle-contains"><primary>swfdec_rectangle_contains</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_rectangle_contains           (const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *container,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *content);</programlisting>
+<para>
+Checks if <parameter>container</parameter> contains the whole rectangle <parameter>content</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> the supposedly bigger rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>content</parameter>&nbsp;:</term>
+<listitem><simpara> the supposedly smaller rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>container</parameter> contains <parameter>content</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-rectangle-contains-point" role="function">
+<title>swfdec_rectangle_contains_point ()</title>
+<indexterm zone="swfdec-rectangle-contains-point"><primary>swfdec_rectangle_contains_point</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_rectangle_contains_point     (const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *rectangle,
+                                                         <link linkend="int">int</link> x,
+                                                         <link linkend="int">int</link> y);</programlisting>
+<para>
+Checks if the given point is inside the given rectangle.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> a rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> x coordinate of point to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> y coordinate of point to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the point is inside the rectangle
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-rectangle-init-empty" role="function">
+<title>swfdec_rectangle_init_empty ()</title>
+<indexterm zone="swfdec-rectangle-init-empty"><primary>swfdec_rectangle_init_empty</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_rectangle_init_empty         (<link linkend="SwfdecRectangle">SwfdecRectangle</link> *rectangle);</programlisting>
+<para>
+Initializes the rectangle as empty.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> rectangle to initialize
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-rectangle-intersect" role="function">
+<title>swfdec_rectangle_intersect ()</title>
+<indexterm zone="swfdec-rectangle-intersect"><primary>swfdec_rectangle_intersect</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_rectangle_intersect          (<link linkend="SwfdecRectangle">SwfdecRectangle</link> *dest,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *a,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *b);</programlisting>
+<para>
+Intersects the rectangles <parameter>a</parameter> and <parameter>b</parameter> and puts the result into <parameter>dest</parameter>. It is
+allowed if <parameter>dest</parameter> is the same as <parameter>a</parameter> or <parameter>b</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dest</parameter>&nbsp;:</term>
+<listitem><simpara> the rectangle to take the result or <link linkend="NULL:CAPS"><literal>NULL</literal></link> 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> first rectangle to intersect
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> second rectangle to intersect
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the intersection is not empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-rectangle-is-empty" role="function">
+<title>swfdec_rectangle_is_empty ()</title>
+<indexterm zone="swfdec-rectangle-is-empty"><primary>swfdec_rectangle_is_empty</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_rectangle_is_empty           (const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *rectangle);</programlisting>
+<para>
+Checks if the given <parameter>rectangle</parameter> is empty.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> rectangle to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the rectangle is emtpy
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-rectangle-union" role="function">
+<title>swfdec_rectangle_union ()</title>
+<indexterm zone="swfdec-rectangle-union"><primary>swfdec_rectangle_union</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_rectangle_union              (<link linkend="SwfdecRectangle">SwfdecRectangle</link> *dest,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *a,
+                                                         const <link linkend="SwfdecRectangle">SwfdecRectangle</link> *b);</programlisting>
+<para>
+Computes the smallest rectangle that contains both <parameter>a</parameter> and <parameter>b</parameter> and puts it in 
+<parameter>dest</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dest</parameter>&nbsp;:</term>
+<listitem><simpara> destination to take the union
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> first rectangle to union
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> second rectangle to union
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

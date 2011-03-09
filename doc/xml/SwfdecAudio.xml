@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecAudio">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecAudio.top_of_page">SwfdecAudio</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecAudio</refname>
+<refpurpose>object used for audio output</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecAudio.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <link linkend="SwfdecAudio-struct">SwfdecAudio</link>;
+<link linkend="gsize">gsize</link>               <link linkend="swfdec-audio-render">swfdec_audio_render</link>                 (<link linkend="SwfdecAudio">SwfdecAudio</link> *audio,
+                                                         <link linkend="gint16">gint16</link> *dest,
+                                                         <link linkend="gsize">gsize</link> start_offset,
+                                                         <link linkend="gsize">gsize</link> n_samples);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecAudio.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----SwfdecAudio
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+<refsect1 id="SwfdecAudio.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="SwfdecAudio-changed">changed</link>&quot;                                        : Run Last
+  &quot;<link linkend="SwfdecAudio-new-data">new-data</link>&quot;                                       : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="SwfdecAudio.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+SwfdecAudio is the way audio output is provided by a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>. See
+its documentation on how to access <link linkend="SwfdecAudio"><type>SwfdecAudio</type></link> objects.
+</para>
+<para>
+An audio object gives access to one audio stream played inside a player.
+You are responsible for outputting this data, swfdec does not try to do this
+for you.
+</para>
+<para>
+Audio data is always provided in 16bit host-endian stereo. If the data was
+encoded into a different format originally, Swfdec will already have decoded 
+it. The data is always referenced relative to the player. Sample 0 
+references the first sample to be played at the current position. If the 
+player gets iterated, sample 0 changes. There is no way to access samples
+belonging to a previous state.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecAudio.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecAudio-struct" role="struct">
+<title>SwfdecAudio</title>
+<indexterm zone="SwfdecAudio-struct"><primary>SwfdecAudio</primary></indexterm><programlisting>typedef struct _SwfdecAudio SwfdecAudio;</programlisting>
+<para>
+This object is used for audio output. It is an abstract class.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-audio-render" role="function">
+<title>swfdec_audio_render ()</title>
+<indexterm zone="swfdec-audio-render"><primary>swfdec_audio_render</primary></indexterm><programlisting><link linkend="gsize">gsize</link>               swfdec_audio_render                 (<link linkend="SwfdecAudio">SwfdecAudio</link> *audio,
+                                                         <link linkend="gint16">gint16</link> *dest,
+                                                         <link linkend="gsize">gsize</link> start_offset,
+                                                         <link linkend="gsize">gsize</link> n_samples);</programlisting>
+<para>
+Renders the samples from <parameter>audio</parameter> into the area pointed to by <parameter>dest</parameter>. Existing
+data in <parameter>dest</parameter> is overwritten.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>audio</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAudio"><type>SwfdecAudio</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dest</parameter>&nbsp;:</term>
+<listitem><simpara> memory area to render to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>start_offset</parameter>&nbsp;:</term>
+<listitem><simpara> offset in samples at which to start rendering. The offset is 
+	  calculated relative to the last iteration, so the value set 
+	  by <link linkend="swfdec-player-set-audio-advance"><function>swfdec_player_set_audio_advance()</function></link> is ignored.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_samples</parameter>&nbsp;:</term>
+<listitem><simpara> amount of samples to render.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The amount of samples actually rendered. Usually this number is 
+         equal to <parameter>n_samples</parameter>, but if you arrived at the end of stream or the
+         stream is still loading, this number may be lower. It indicates 
+         that no more samples are available.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+<refsect1 id="SwfdecAudio.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="SwfdecAudio-changed"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+<indexterm zone="SwfdecAudio-changed"><primary>SwfdecAudio::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecAudio">SwfdecAudio</link> *audio,
+                                                        <link linkend="gpointer">gpointer</link>     user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted whenever the data of the <parameter>audio</parameter> changed and cached
+data should be rerendered. This happens for example when the volume of the
+audio is changed by the Flash file.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>audio</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAudio"><type>SwfdecAudio</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="SwfdecAudio-new-data"><title>The <literal>&quot;new-data&quot;</literal> signal</title>
+<indexterm zone="SwfdecAudio-new-data"><primary>SwfdecAudio::new-data</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="SwfdecAudio">SwfdecAudio</link> *audio,
+                                                        <link linkend="gpointer">gpointer</link>     user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted whenever new data was loaded into <parameter>audio</parameter>. You want
+to listen to this signal when <link linkend="swfdec-audio-render"><function>swfdec_audio_render()</function></link> previously returned 
+less samples than you wanted to render.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>audio</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecAudio"><type>SwfdecAudio</type></link> affected
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+<refsect1 id="SwfdecAudio.see-also">
+<title>See Also</title>
+SwfdecPlayer
+</refsect1>
+
+</refentry>

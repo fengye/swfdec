@@ -1,0 +1,547 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-SwfdecAsValue">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-SwfdecAsValue.top_of_page">SwfdecAsValue</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecAsValue</refname>
+<refpurpose>exchanging values with the Actionscript engine</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-SwfdecAsValue.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+enum                <link linkend="SwfdecAsValueType">SwfdecAsValueType</link>;
+                    <link linkend="SwfdecAsValue">SwfdecAsValue</link>;
+#define             <link linkend="SWFDEC-AS-VALUE-SET-UNDEFINED:CAPS">SWFDEC_AS_VALUE_SET_UNDEFINED</link>       (val)
+#define             <link linkend="SWFDEC-AS-VALUE-GET-BOOLEAN:CAPS">SWFDEC_AS_VALUE_GET_BOOLEAN</link>         (val)
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-as-value-to-boolean">swfdec_as_value_to_boolean</link>          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+#define             <link linkend="SWFDEC-AS-VALUE-SET-BOOLEAN:CAPS">SWFDEC_AS_VALUE_SET_BOOLEAN</link>         (val,b)
+#define             <link linkend="SWFDEC-AS-VALUE-GET-NUMBER:CAPS">SWFDEC_AS_VALUE_GET_NUMBER</link>          (val)
+<link linkend="double">double</link>              <link linkend="swfdec-as-value-to-number">swfdec_as_value_to_number</link>           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="int">int</link>                 <link linkend="swfdec-as-value-to-integer">swfdec_as_value_to_integer</link>          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+#define             <link linkend="SWFDEC-AS-VALUE-SET-INT:CAPS">SWFDEC_AS_VALUE_SET_INT</link>             (val,d)
+#define             <link linkend="SWFDEC-AS-VALUE-SET-NUMBER:CAPS">SWFDEC_AS_VALUE_SET_NUMBER</link>          (val,d)
+#define             <link linkend="SWFDEC-AS-VALUE-GET-STRING:CAPS">SWFDEC_AS_VALUE_GET_STRING</link>          (val)
+const <link linkend="char">char</link>*         <link linkend="swfdec-as-value-to-string">swfdec_as_value_to_string</link>           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+#define             <link linkend="SWFDEC-AS-VALUE-SET-STRING:CAPS">SWFDEC_AS_VALUE_SET_STRING</link>          (val,s)
+#define             <link linkend="SWFDEC-AS-VALUE-SET-NULL:CAPS">SWFDEC_AS_VALUE_SET_NULL</link>            (val)
+#define             <link linkend="SWFDEC-AS-VALUE-GET-OBJECT:CAPS">SWFDEC_AS_VALUE_GET_OBJECT</link>          (val)
+<link linkend="SwfdecAsObject">SwfdecAsObject</link>*     <link linkend="swfdec-as-value-to-object">swfdec_as_value_to_object</link>           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+#define             <link linkend="SWFDEC-AS-VALUE-SET-OBJECT:CAPS">SWFDEC_AS_VALUE_SET_OBJECT</link>          (val,o)
+<link linkend="void">void</link>                <link linkend="swfdec-as-value-to-primitive">swfdec_as_value_to_primitive</link>        (<link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="char">char</link>*               <link linkend="swfdec-as-value-to-debug">swfdec_as_value_to_debug</link>            (const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);
+<link linkend="int">int</link>                 <link linkend="swfdec-as-double-to-integer">swfdec_as_double_to_integer</link>         (<link linkend="double">double</link> d);
+const <link linkend="char">char</link>*         <link linkend="swfdec-as-double-to-string">swfdec_as_double_to_string</link>          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="double">double</link> d);
+const <link linkend="char">char</link>*         <link linkend="swfdec-as-integer-to-string">swfdec_as_integer_to_string</link>         (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="int">int</link> i);
+const <link linkend="char">char</link>*         <link linkend="swfdec-as-str-concat">swfdec_as_str_concat</link>                (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *cx,
+                                                         const <link linkend="char">char</link> *s1,
+                                                         const <link linkend="char">char</link> *s2);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-SwfdecAsValue.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This section describes how values are handled inside the Actionscript 
+engine. Since Actionscript is a dynamically typed language, the variable type 
+has to be carried with every value. <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> accomplishes that. Swfdec
+allows two possible ways of accessing these values: The common method is to
+use the provided functions to explicitly convert the values to a given type
+with a function such as <link linkend="swfdec-as-value-to-string"><function>swfdec_as_value_to_string()</function></link>. This is convenient, 
+but can be very slow as it can call back into the Actionscript engine when
+converting various objects. So it can be unsuitable in some cases.
+A different possibiltiy is accessing the values directly using the accessor
+macros. You must check the type before doing so though. For setting values,
+there only exist macros, since type conversion is not necessary.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-SwfdecAsValue.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecAsValueType" role="enum">
+<title>enum SwfdecAsValueType</title>
+<indexterm zone="SwfdecAsValueType"><primary>SwfdecAsValueType</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_AS_TYPE_UNDEFINED = 0,
+  SWFDEC_AS_TYPE_BOOLEAN,
+  SWFDEC_AS_TYPE_INT, /* unimplemented, but reserved if someone wants it */
+  SWFDEC_AS_TYPE_NUMBER,
+  SWFDEC_AS_TYPE_STRING,
+  SWFDEC_AS_TYPE_NULL,
+  SWFDEC_AS_TYPE_OBJECT
+} SwfdecAsValueType;
+</programlisting>
+<para>
+These are the possible values the Swfdec Actionscript engine knows about.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-AS-TYPE-UNDEFINED:CAPS" role="constant">
+<term><literal>SWFDEC_AS_TYPE_UNDEFINED</literal></term>
+<listitem><simpara> the special undefined value
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-TYPE-BOOLEAN:CAPS" role="constant">
+<term><literal>SWFDEC_AS_TYPE_BOOLEAN</literal></term>
+<listitem><simpara> a boolean value - true or false
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-TYPE-INT:CAPS" role="constant">
+<term><literal>SWFDEC_AS_TYPE_INT</literal></term>
+<listitem><simpara> reserved value for integers. Should the need arise for
+                     performance enhancements - especially on embedded 
+                     devices - it might be useful to implement this type.
+                     For now, this type will never appear in Swfdec. Using 
+                     it will cause Swfdec to crash.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-TYPE-NUMBER:CAPS" role="constant">
+<term><literal>SWFDEC_AS_TYPE_NUMBER</literal></term>
+<listitem><simpara> a double value - also used for integer numbers
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-TYPE-STRING:CAPS" role="constant">
+<term><literal>SWFDEC_AS_TYPE_STRING</literal></term>
+<listitem><simpara> a string. Strings are garbage-collected and unique.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-TYPE-NULL:CAPS" role="constant">
+<term><literal>SWFDEC_AS_TYPE_NULL</literal></term>
+<listitem><simpara> the spaecial null value
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-TYPE-OBJECT:CAPS" role="constant">
+<term><literal>SWFDEC_AS_TYPE_OBJECT</literal></term>
+<listitem><simpara> an object - must be of type <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecAsValue" role="struct">
+<title>SwfdecAsValue</title>
+<indexterm zone="SwfdecAsValue"><primary>SwfdecAsValue</primary></indexterm><programlisting>typedef struct {
+  SwfdecAsValueType	type;
+} SwfdecAsValue;
+</programlisting>
+<para>
+This is the type used to present an opaque value in the Actionscript 
+engine. See <link linkend="SwfdecAsValueType"><type>SwfdecAsValueType</type></link> for possible types. It's similar in 
+spirit to <link linkend="GValue"><type>GValue</type></link>. The value held is garbage-collected. Apart from the type 
+member, use the provided macros to access this structure.
+<note>If you memset a SwfdecAsValue to 0, it is a valid undefined value.</note></para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="SwfdecAsValueType">SwfdecAsValueType</link>&nbsp;<structfield>type</structfield>;</term>
+<listitem><simpara> the type of this value.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-SET-UNDEFINED:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_SET_UNDEFINED()</title>
+<indexterm zone="SWFDEC-AS-VALUE-SET-UNDEFINED:CAPS"><primary>SWFDEC_AS_VALUE_SET_UNDEFINED</primary></indexterm><programlisting>#define SWFDEC_AS_VALUE_SET_UNDEFINED(val) (val)-&gt;type = SWFDEC_AS_TYPE_UNDEFINED
+</programlisting>
+<para>
+Sets <parameter>val</parameter> to the special undefined value. If you create a temporary value, 
+you can instead use code such as <informalexample><programlisting> SwfdecAsValue val = { 0, }; </programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to set as undefined
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-GET-BOOLEAN:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_GET_BOOLEAN()</title>
+<indexterm zone="SWFDEC-AS-VALUE-GET-BOOLEAN:CAPS"><primary>SWFDEC_AS_VALUE_GET_BOOLEAN</primary></indexterm><programlisting>#define SWFDEC_AS_VALUE_GET_BOOLEAN(val) ((val)-&gt;value.boolean)
+</programlisting>
+<para>
+Gets the boolean associated with value. If you are not sure if the value is
+a boolean, use <link linkend="swfdec-as-value-to-boolean"><function>swfdec_as_value_to_boolean()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to get, the value must reference a boolean
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-to-boolean" role="function">
+<title>swfdec_as_value_to_boolean ()</title>
+<indexterm zone="swfdec-as-value-to-boolean"><primary>swfdec_as_value_to_boolean</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_as_value_to_boolean          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Converts the given value to a boolean according to Flash's rules. Note that
+these rules changed significantly for strings between Flash 6 and 7.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to convert
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> either <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> or <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-SET-BOOLEAN:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_SET_BOOLEAN()</title>
+<indexterm zone="SWFDEC-AS-VALUE-SET-BOOLEAN:CAPS"><primary>SWFDEC_AS_VALUE_SET_BOOLEAN</primary></indexterm><programlisting>#define             SWFDEC_AS_VALUE_SET_BOOLEAN(val,b)</programlisting>
+<para>
+Sets <parameter>val</parameter> to the specified boolean value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> boolean value to set, must be either <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> or <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-GET-NUMBER:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_GET_NUMBER()</title>
+<indexterm zone="SWFDEC-AS-VALUE-GET-NUMBER:CAPS"><primary>SWFDEC_AS_VALUE_GET_NUMBER</primary></indexterm><programlisting>#define SWFDEC_AS_VALUE_GET_NUMBER(val) ((val)-&gt;value.number)
+</programlisting>
+<para>
+Gets the number associated with <parameter>val</parameter>. If you are not sure that the value is
+a valid number value, consider using <link linkend="swfdec-as-value-to-number"><function>swfdec_as_value_to_number()</function></link> or 
+<link linkend="swfdec-as-value-to-int"><function>swfdec_as_value_to_int()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to get, the value must reference a number
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-to-number" role="function">
+<title>swfdec_as_value_to_number ()</title>
+<indexterm zone="swfdec-as-value-to-number"><primary>swfdec_as_value_to_number</primary></indexterm><programlisting><link linkend="double">double</link>              swfdec_as_value_to_number           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Converts the value to a number according to Flash's conversion routines and
+the current Flash version. This conversion routine is similar, but not equal
+to ECMAScript. For objects, it can call back into the script engine by 
+calling the object's valueOf function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link> used by context
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a double value. It can be NaN or +-Infinity. It will not be -0.0.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-to-integer" role="function">
+<title>swfdec_as_value_to_integer ()</title>
+<indexterm zone="swfdec-as-value-to-integer"><primary>swfdec_as_value_to_integer</primary></indexterm><programlisting><link linkend="int">int</link>                 swfdec_as_value_to_integer          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Converts the given value to an integer. This is done similar to the 
+conversion used by <link linkend="swfdec-as-value-to-number"><function>swfdec_as_value_to_number()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to convert
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> An Integer that can be represented in 32 bits.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-SET-INT:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_SET_INT()</title>
+<indexterm zone="SWFDEC-AS-VALUE-SET-INT:CAPS"><primary>SWFDEC_AS_VALUE_SET_INT</primary></indexterm><programlisting>#define SWFDEC_AS_VALUE_SET_INT(val,d) SWFDEC_AS_VALUE_SET_NUMBER(val,(int) (d))
+</programlisting>
+<para>
+Sets <parameter>val</parameter> to the given value. Currently this macro is equivalent to
+<link linkend="SWFDEC-AS-VALUE-SET-NUMBER:CAPS"><function>SWFDEC_AS_VALUE_SET_NUMBER()</function></link>, but this may change in future versions of
+Swfdec.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>d</parameter>&nbsp;:</term>
+<listitem><simpara> integer value to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-SET-NUMBER:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_SET_NUMBER()</title>
+<indexterm zone="SWFDEC-AS-VALUE-SET-NUMBER:CAPS"><primary>SWFDEC_AS_VALUE_SET_NUMBER</primary></indexterm><programlisting>#define             SWFDEC_AS_VALUE_SET_NUMBER(val,d)</programlisting>
+<para>
+Sets <parameter>val</parameter> to the given value. If you are sure the value is a valid
+integer value, use <link linkend="SWFDEC-AS-VALUE-SET-INT:CAPS"><function>SWFDEC_AS_VALUE_SET_INT()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>d</parameter>&nbsp;:</term>
+<listitem><simpara> double value to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-GET-STRING:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_GET_STRING()</title>
+<indexterm zone="SWFDEC-AS-VALUE-GET-STRING:CAPS"><primary>SWFDEC_AS_VALUE_GET_STRING</primary></indexterm><programlisting>#define SWFDEC_AS_VALUE_GET_STRING(val) ((val)-&gt;value.string)
+</programlisting>
+<para>
+Gets the string associated with <parameter>val</parameter>. If you are not sure that the value is
+a string value, consider using <link linkend="swfdec-as-value-to-string"><function>swfdec_as_value_to_string()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to get, the value must reference a string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-to-string" role="function">
+<title>swfdec_as_value_to_string ()</title>
+<indexterm zone="swfdec-as-value-to-string"><primary>swfdec_as_value_to_string</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_as_value_to_string           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Converts <parameter>value</parameter> to a string according to the rules of Flash. This might 
+cause calling back into the script engine if the <parameter>value</parameter> is an object. In
+that case, the object's valueOf function is called. 
+<warning>Never use this function for debugging purposes.</warning></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to be expressed as string
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a garbage-collected string representing <parameter>value</parameter>. The value will 
+         never be <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-SET-STRING:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_SET_STRING()</title>
+<indexterm zone="SWFDEC-AS-VALUE-SET-STRING:CAPS"><primary>SWFDEC_AS_VALUE_SET_STRING</primary></indexterm><programlisting>#define             SWFDEC_AS_VALUE_SET_STRING(val,s)</programlisting>
+<para>
+Sets <parameter>val</parameter> to the given string value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected string to use
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-SET-NULL:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_SET_NULL()</title>
+<indexterm zone="SWFDEC-AS-VALUE-SET-NULL:CAPS"><primary>SWFDEC_AS_VALUE_SET_NULL</primary></indexterm><programlisting>#define SWFDEC_AS_VALUE_SET_NULL(val) (val)-&gt;type = SWFDEC_AS_TYPE_NULL
+</programlisting>
+<para>
+Sets <parameter>val</parameter> to the special null value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-GET-OBJECT:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_GET_OBJECT()</title>
+<indexterm zone="SWFDEC-AS-VALUE-GET-OBJECT:CAPS"><primary>SWFDEC_AS_VALUE_GET_OBJECT</primary></indexterm><programlisting>#define             SWFDEC_AS_VALUE_GET_OBJECT(val)</programlisting>
+<para>
+Gets the object associated with <parameter>val</parameter>. If you are not sure that the value is
+an object value, consider using <link linkend="swfdec-as-value-to-object"><function>swfdec_as_value_to_object()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to get, the value must reference an object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-to-object" role="function">
+<title>swfdec_as_value_to_object ()</title>
+<indexterm zone="swfdec-as-value-to-object"><primary>swfdec_as_value_to_object</primary></indexterm><programlisting><link linkend="SwfdecAsObject">SwfdecAsObject</link>*     swfdec_as_value_to_object           (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Converts a given value to its representation as an object. The object 
+representation for primitive types is a wrapper object of the corresponding 
+class (Number for numbers, String for strings, Boolean for bools). If the 
+value does not have an object representing it, such as undefined and null 
+values, <link linkend="NULL:CAPS"><literal>NULL</literal></link> is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to convert
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> object representing <parameter>value</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SWFDEC-AS-VALUE-SET-OBJECT:CAPS" role="macro">
+<title>SWFDEC_AS_VALUE_SET_OBJECT()</title>
+<indexterm zone="SWFDEC-AS-VALUE-SET-OBJECT:CAPS"><primary>SWFDEC_AS_VALUE_SET_OBJECT</primary></indexterm><programlisting>#define             SWFDEC_AS_VALUE_SET_OBJECT(val,o)</programlisting>
+<para>
+Sets <parameter>val</parameter> to the given object. The object must have been added to the 
+garbage collector via <link linkend="swfdec-as-object-add"><function>swfdec_as_object_add()</function></link> previously.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> value to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>o</parameter>&nbsp;:</term>
+<listitem><simpara> garbage-collected <link linkend="SwfdecAsObject"><type>SwfdecAsObject</type></link> to use
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-to-primitive" role="function">
+<title>swfdec_as_value_to_primitive ()</title>
+<indexterm zone="swfdec-as-value-to-primitive"><primary>swfdec_as_value_to_primitive</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_as_value_to_primitive        (<link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Tries to convert the given <parameter>value</parameter> inline to its primitive value. Primitive 
+values are values that are not objects. If the value is an object, the 
+object's valueOf function is called. If the result of that function is still 
+an object, it is returned nonetheless.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to convert
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-value-to-debug" role="function">
+<title>swfdec_as_value_to_debug ()</title>
+<indexterm zone="swfdec-as-value-to-debug"><primary>swfdec_as_value_to_debug</primary></indexterm><programlisting><link linkend="char">char</link>*               swfdec_as_value_to_debug            (const <link linkend="SwfdecAsValue">SwfdecAsValue</link> *value);</programlisting>
+<para>
+Converts the given <parameter>value</parameter> to a string in a safe way. It will not call into
+the scripting engine. Its intended use is for output in debuggers.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsValue"><type>SwfdecAsValue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a newly allocated string. Free with <link linkend="g-free"><function>g_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-double-to-integer" role="function">
+<title>swfdec_as_double_to_integer ()</title>
+<indexterm zone="swfdec-as-double-to-integer"><primary>swfdec_as_double_to_integer</primary></indexterm><programlisting><link linkend="int">int</link>                 swfdec_as_double_to_integer         (<link linkend="double">double</link> d);</programlisting>
+<para>
+Converts the given double to an integer using the same rules as the Flash
+player.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>d</parameter>&nbsp;:</term>
+<listitem><simpara> any double
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-double-to-string" role="function">
+<title>swfdec_as_double_to_string ()</title>
+<indexterm zone="swfdec-as-double-to-string"><primary>swfdec_as_double_to_string</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_as_double_to_string          (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="double">double</link> d);</programlisting>
+<para>
+Converts <parameter>d</parameter> into a string using the same conversion algorithm as the 
+official Flash player.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>d</parameter>&nbsp;:</term>
+<listitem><simpara> a double
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a garbage-collected string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-integer-to-string" role="function">
+<title>swfdec_as_integer_to_string ()</title>
+<indexterm zone="swfdec-as-integer-to-string"><primary>swfdec_as_integer_to_string</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_as_integer_to_string         (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *context,
+                                                         <link linkend="int">int</link> i);</programlisting>
+<para>
+Converts <parameter>d</parameter> into a string using the same conversion algorithm as the 
+official Flash player.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>i</parameter>&nbsp;:</term>
+<listitem><simpara> an integer that fits into 32 bits
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a garbage-collected string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-as-str-concat" role="function">
+<title>swfdec_as_str_concat ()</title>
+<indexterm zone="swfdec-as-str-concat"><primary>swfdec_as_str_concat</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_as_str_concat                (<link linkend="SwfdecAsContext">SwfdecAsContext</link> *cx,
+                                                         const <link linkend="char">char</link> *s1,
+                                                         const <link linkend="char">char</link> *s2);</programlisting>
+<para>
+Convenience function to concatenate two garbage-collected strings. This
+function is equivalent to <link linkend="g-strconcat"><function>g_strconcat()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>cx</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecAsContext"><type>SwfdecAsContext</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>s1</parameter>&nbsp;:</term>
+<listitem><simpara> first string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>s2</parameter>&nbsp;:</term>
+<listitem><simpara> second string
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new garbage-collected string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

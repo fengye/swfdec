@@ -1,0 +1,302 @@
+<!-- ##### SECTION ./tmpl/Arrays.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/Arrays.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/Arrays.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/Arrays.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/Arrays.sgml:Title ##### -->
+Arrays
+
+
+<!-- ##### SECTION ./tmpl/SwfdecAsRelay.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/SwfdecAsRelay.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/SwfdecAsRelay.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/SwfdecAsRelay.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/SwfdecAsRelay.sgml:Title ##### -->
+SwfdecAsRelay
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_FALSE ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_FROM_BOOLEAN ##### -->
+<para>
+
+</para>
+
+@b: 
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_FROM_OBJECT ##### -->
+<para>
+
+</para>
+
+@o: 
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_FROM_STRING ##### -->
+<para>
+
+</para>
+
+@s: 
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_GET_TYPE ##### -->
+<para>
+
+</para>
+
+@val: 
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_NULL ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_TRUE ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO SWFDEC_AS_VALUE_UNDEFINED ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT SwfdecAsRelay ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT SwfdecAsRelayClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM SwfdecLoaderRequest ##### -->
+<para>
+
+</para>
+
+@SWFDEC_LOADER_REQUEST_DEFAULT: 
+@SWFDEC_LOADER_REQUEST_GET: 
+@SWFDEC_LOADER_REQUEST_POST: 
+
+<!-- ##### ARG SwfdecStream:eof ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_as_context_eval ##### -->
+<para>
+
+</para>
+
+@context: 
+@obj: 
+@str: 
+@val: 
+
+<!-- ##### FUNCTION swfdec_as_context_eval_set ##### -->
+<para>
+
+</para>
+
+@context: 
+@obj: 
+@str: 
+@val: 
+
+<!-- ##### FUNCTION swfdec_as_context_run ##### -->
+<para>
+
+</para>
+
+@context: 
+
+<!-- ##### FUNCTION swfdec_as_frame_get_function_name ##### -->
+<para>
+
+</para>
+
+@frame: 
+@Returns: 
+
+<!-- ##### FUNCTION swfdec_as_native_function_set_object_type ##### -->
+<para>
+
+</para>
+
+@function: 
+@type: 
+
+<!-- ##### FUNCTION swfdec_as_object_add ##### -->
+<para>
+
+</para>
+
+@object: 
+@context: 
+@size: 
+
+<!-- ##### FUNCTION swfdec_as_object_mark ##### -->
+<para>
+
+</para>
+
+@object: 
+
+<!-- ##### FUNCTION swfdec_as_object_set_constructor_by_name ##### -->
+<para>
+
+</para>
+
+@object: 
+@name: 
+@Varargs: 
+@Returns: 
+
+<!-- ##### FUNCTION swfdec_as_object_set_constructor_by_namev ##### -->
+<para>
+
+</para>
+
+@object: 
+@name: 
+@args: 
+@Returns: 
+
+<!-- ##### FUNCTION swfdec_as_object_set_relay ##### -->
+<para>
+
+</para>
+
+@object: 
+@relay: 
+
+<!-- ##### FUNCTION swfdec_as_relay_call ##### -->
+<para>
+
+</para>
+
+@relay: 
+@name: 
+@argc: 
+@argv: 
+@return_value: 
+@Returns: 
+
+<!-- ##### FUNCTION swfdec_as_relay_get_as_object ##### -->
+<para>
+
+</para>
+
+@relay: 
+@Returns: 
+
+<!-- ##### MACRO swfdec_as_value_from_integer ##### -->
+<para>
+
+</para>
+
+@cx: 
+@i: 
+
+<!-- ##### FUNCTION swfdec_as_value_from_number ##### -->
+<para>
+
+</para>
+
+@context: 
+@number: 
+@Returns: 
+
+<!-- ##### FUNCTION swfdec_as_value_get_variable ##### -->
+<para>
+
+</para>
+
+@cx: 
+@value: 
+@name: 
+@ret: 
+
+<!-- ##### FUNCTION swfdec_buffer_new_and_alloc ##### -->
+<para>
+
+</para>
+
+@size: 
+@Returns: 
+
+<!-- ##### FUNCTION swfdec_buffer_new_and_alloc0 ##### -->
+<para>
+
+</para>
+
+@size: 
+@Returns: 
+
+<!-- ##### FUNCTION swfdec_player_render_audio ##### -->
+<para>
+
+</para>
+
+@player: 
+@dest: 
+@start_offset: 
+@n_samples: 
+
+<!-- ##### FUNCTION swfdec_player_set_background_color ##### -->
+<para>
+
+</para>
+
+@player: 
+@color: 
+
+<!-- ##### FUNCTION swfdec_stream_eof ##### -->
+<para>
+
+</para>
+
+@stream: 
+

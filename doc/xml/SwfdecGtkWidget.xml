@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="SwfdecGtkWidget">
+<refmeta>
+<refentrytitle role="top_of_page" id="SwfdecGtkWidget.top_of_page">SwfdecGtkWidget</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>SwfdecGtkWidget</refname>
+<refpurpose>a <link linkend="GtkWidget"><type>GtkWidget</type></link> for embedding SWF files</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="SwfdecGtkWidget.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec-gtk.h&gt;
+
+                    <link linkend="SwfdecGtkWidget-struct">SwfdecGtkWidget</link>;
+<link linkend="GtkWidget">GtkWidget</link>*          <link linkend="swfdec-gtk-widget-new">swfdec_gtk_widget_new</link>               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="GtkWidget">GtkWidget</link>*          <link linkend="swfdec-gtk-widget-new-fullscreen">swfdec_gtk_widget_new_fullscreen</link>    (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="SwfdecPlayer">SwfdecPlayer</link>*       <link linkend="swfdec-gtk-widget-get-player">swfdec_gtk_widget_get_player</link>        (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);
+<link linkend="void">void</link>                <link linkend="swfdec-gtk-widget-set-player">swfdec_gtk_widget_set_player</link>        (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget,
+                                                         <link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-gtk-widget-get-interactive">swfdec_gtk_widget_get_interactive</link>   (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);
+<link linkend="void">void</link>                <link linkend="swfdec-gtk-widget-set-interactive">swfdec_gtk_widget_set_interactive</link>   (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget,
+                                                         <link linkend="gboolean">gboolean</link> interactive);
+<link linkend="cairo-surface-type-t">cairo_surface_type_t</link> <link linkend="swfdec-gtk-widget-get-renderer">swfdec_gtk_widget_get_renderer</link>     (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);
+<link linkend="gboolean">gboolean</link>            <link linkend="swfdec-gtk-widget-uses-renderer">swfdec_gtk_widget_uses_renderer</link>     (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);
+<link linkend="void">void</link>                <link linkend="swfdec-gtk-widget-set-renderer">swfdec_gtk_widget_set_renderer</link>      (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget,
+                                                         <link linkend="cairo-surface-type-t">cairo_surface_type_t</link> renderer);
+<link linkend="void">void</link>                <link linkend="swfdec-gtk-widget-unset-renderer">swfdec_gtk_widget_unset_renderer</link>    (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);
+<link linkend="guint">guint</link>               <link linkend="swfdec-gtk-keycode-from-hardware-keycode">swfdec_gtk_keycode_from_hardware_keycode</link>
+                                                        (<link linkend="guint">guint</link> hardware_keycode);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="SwfdecGtkWidget.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----SwfdecGtkWidget
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="SwfdecGtkWidget.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+SwfdecGtkWidget implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+
+</refsect1>
+
+
+<refsect1 id="SwfdecGtkWidget.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="SwfdecGtkWidget--fullscreen-mode">fullscreen-mode</link>&quot;          <link linkend="gboolean">gboolean</link>              : Write / Construct Only
+  &quot;<link linkend="SwfdecGtkWidget--interactive">interactive</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="SwfdecGtkWidget--player">player</link>&quot;                   <link linkend="SwfdecPlayer">SwfdecPlayer</link>*         : Read / Write / Construct
+  &quot;<link linkend="SwfdecGtkWidget--renderer">renderer</link>&quot;                 <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="SwfdecGtkWidget--renderer-set">renderer-set</link>&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="SwfdecGtkWidget.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This is a widget for playing Flash movies rendered with Swfdec in a Gtk 
+application. It supports a lot of advanced features, if you want to use
+them. If you don't want to use them and just want to embed a movie in 
+your application, <link linkend="swfdec-gtk-widget-new"><function>swfdec_gtk_widget_new()</function></link> will probably be the only 
+function you need.
+</para>
+<para>
+<parameter>see_also</parameter>: SwfdecGtkPlayer</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="SwfdecGtkWidget.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SwfdecGtkWidget-struct" role="struct">
+<title>SwfdecGtkWidget</title>
+<indexterm zone="SwfdecGtkWidget-struct"><primary>SwfdecGtkWidget</primary></indexterm><programlisting>typedef struct _SwfdecGtkWidget SwfdecGtkWidget;</programlisting>
+<para>
+The structure for the Swfdec Gtk widget contains no public fields.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="swfdec-gtk-widget-new" role="function">
+<title>swfdec_gtk_widget_new ()</title>
+<indexterm zone="swfdec-gtk-widget-new"><primary>swfdec_gtk_widget_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link>*          swfdec_gtk_widget_new               (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Creates a new <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link> to display <parameter>player</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new widget that displays <parameter>player</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-new-fullscreen" role="function">
+<title>swfdec_gtk_widget_new_fullscreen ()</title>
+<indexterm zone="swfdec-gtk-widget-new-fullscreen"><primary>swfdec_gtk_widget_new_fullscreen</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link>*          swfdec_gtk_widget_new_fullscreen    (<link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Creates a new <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link> to display <parameter>player</parameter> inside a fullscreen 
+window.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new widget that displays <parameter>player</parameter> in fullscreen mode.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-get-player" role="function">
+<title>swfdec_gtk_widget_get_player ()</title>
+<indexterm zone="swfdec-gtk-widget-get-player"><primary>swfdec_gtk_widget_get_player</primary></indexterm><programlisting><link linkend="SwfdecPlayer">SwfdecPlayer</link>*       swfdec_gtk_widget_get_player        (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);</programlisting>
+<para>
+Gets the player that is currently played back in this <parameter>widget</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if none
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-set-player" role="function">
+<title>swfdec_gtk_widget_set_player ()</title>
+<indexterm zone="swfdec-gtk-widget-set-player"><primary>swfdec_gtk_widget_set_player</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_gtk_widget_set_player        (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget,
+                                                         <link linkend="SwfdecPlayer">SwfdecPlayer</link> *player);</programlisting>
+<para>
+Sets the new player to display in <parameter>widget</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>player</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="SwfdecPlayer"><type>SwfdecPlayer</type></link> to display or <link linkend="NULL:CAPS"><literal>NULL</literal></link> for none
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-get-interactive" role="function">
+<title>swfdec_gtk_widget_get_interactive ()</title>
+<indexterm zone="swfdec-gtk-widget-get-interactive"><primary>swfdec_gtk_widget_get_interactive</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_gtk_widget_get_interactive   (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);</programlisting>
+<para>
+Queries if the <parameter>widget</parameter> is currently interactive. See 
+<link linkend="swfdec-gtk-widget-set-interactive"><function>swfdec_gtk_widget_set_interactive()</function></link> for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the widget is interactive, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-set-interactive" role="function">
+<title>swfdec_gtk_widget_set_interactive ()</title>
+<indexterm zone="swfdec-gtk-widget-set-interactive"><primary>swfdec_gtk_widget_set_interactive</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_gtk_widget_set_interactive   (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget,
+                                                         <link linkend="gboolean">gboolean</link> interactive);</programlisting>
+<para>
+Sets the widget to be interactive or not. An interactive widget processes 
+mouse and keyboard events, while a non-interactive widget does not care about
+user input. Widgets are interactive by default.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>interactive</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> to make the widget interactive
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-get-renderer" role="function">
+<title>swfdec_gtk_widget_get_renderer ()</title>
+<indexterm zone="swfdec-gtk-widget-get-renderer"><primary>swfdec_gtk_widget_get_renderer</primary></indexterm><programlisting><link linkend="cairo-surface-type-t">cairo_surface_type_t</link> swfdec_gtk_widget_get_renderer     (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);</programlisting>
+<para>
+Gets the intermediate renderer that is or would be in use by <parameter>widget</parameter>. Use
+<link linkend="swfdec-gtk-widget-uses-renderer"><function>swfdec_gtk_widget_uses_renderer()</function></link> to check if an intermediate renderer is in
+use. See <link linkend="swfdec-gtk-widget-set-renderer"><function>swfdec_gtk_widget_set_renderer()</function></link> for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the type of the intermediate renderer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-uses-renderer" role="function">
+<title>swfdec_gtk_widget_uses_renderer ()</title>
+<indexterm zone="swfdec-gtk-widget-uses-renderer"><primary>swfdec_gtk_widget_uses_renderer</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            swfdec_gtk_widget_uses_renderer     (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);</programlisting>
+<para>
+Queries if an intermediate renderer set via <link linkend="swfdec-gtk-widget-set-renderer"><function>swfdec_gtk_widget_set_renderer()</function></link>
+is currently in use.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if an intermediate renderer is used.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-set-renderer" role="function">
+<title>swfdec_gtk_widget_set_renderer ()</title>
+<indexterm zone="swfdec-gtk-widget-set-renderer"><primary>swfdec_gtk_widget_set_renderer</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_gtk_widget_set_renderer      (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget,
+                                                         <link linkend="cairo-surface-type-t">cairo_surface_type_t</link> renderer);</programlisting>
+<para>
+Tells <parameter>widget</parameter> to use an intermediate surface for rendering. This is
+useful for debugging or performance measurements inside swfdec and is 
+probably not interesting for anyone else.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>renderer</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="cairo-surface-type-t"><type>cairo_surface_type_t</type></link> for the intermediate renderer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-widget-unset-renderer" role="function">
+<title>swfdec_gtk_widget_unset_renderer ()</title>
+<indexterm zone="swfdec-gtk-widget-unset-renderer"><primary>swfdec_gtk_widget_unset_renderer</primary></indexterm><programlisting><link linkend="void">void</link>                swfdec_gtk_widget_unset_renderer    (<link linkend="SwfdecGtkWidget">SwfdecGtkWidget</link> *widget);</programlisting>
+<para>
+Unsets the use of an intermediate rendering surface. See 
+<link linkend="swfdec-gtk-widget-set-renderer"><function>swfdec_gtk_widget_set_renderer()</function></link> for details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>widget</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecGtkWidget"><type>SwfdecGtkWidget</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-gtk-keycode-from-hardware-keycode" role="function">
+<title>swfdec_gtk_keycode_from_hardware_keycode ()</title>
+<indexterm zone="swfdec-gtk-keycode-from-hardware-keycode"><primary>swfdec_gtk_keycode_from_hardware_keycode</primary></indexterm><programlisting><link linkend="guint">guint</link>               swfdec_gtk_keycode_from_hardware_keycode
+                                                        (<link linkend="guint">guint</link> hardware_keycode);</programlisting>
+<para>
+Tries to transform an X hardware keycode to the corresponding <link linkend="SwfdecKey"><type>SwfdecKey</type></link>.
+This is a utility function for cases where key events need to be transformed
+manually.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hardware_keycode</parameter>&nbsp;:</term>
+<listitem><simpara> a hardware keycode sent from the X server
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the corresponding key code as used in Flash.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="SwfdecGtkWidget.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="SwfdecGtkWidget--fullscreen-mode"><title>The <literal>&quot;fullscreen-mode&quot;</literal> property</title>
+<indexterm zone="SwfdecGtkWidget--fullscreen-mode"><primary>SwfdecGtkWidget:fullscreen-mode</primary></indexterm><programlisting>  &quot;fullscreen-mode&quot;          <link linkend="gboolean">gboolean</link>              : Write / Construct Only</programlisting>
+<para>special mode for fullscreen display.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="SwfdecGtkWidget--interactive"><title>The <literal>&quot;interactive&quot;</literal> property</title>
+<indexterm zone="SwfdecGtkWidget--interactive"><primary>SwfdecGtkWidget:interactive</primary></indexterm><programlisting>  &quot;interactive&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>if mouse events are processed.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="SwfdecGtkWidget--player"><title>The <literal>&quot;player&quot;</literal> property</title>
+<indexterm zone="SwfdecGtkWidget--player"><primary>SwfdecGtkWidget:player</primary></indexterm><programlisting>  &quot;player&quot;                   <link linkend="SwfdecPlayer">SwfdecPlayer</link>*         : Read / Write / Construct</programlisting>
+<para>player that is displayed.</para></refsect2>
+<refsect2 id="SwfdecGtkWidget--renderer"><title>The <literal>&quot;renderer&quot;</literal> property</title>
+<indexterm zone="SwfdecGtkWidget--renderer"><primary>SwfdecGtkWidget:renderer</primary></indexterm><programlisting>  &quot;renderer&quot;                 <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>cairo_surface_type_t of intermediate renderer to use.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="SwfdecGtkWidget--renderer-set"><title>The <literal>&quot;renderer-set&quot;</literal> property</title>
+<indexterm zone="SwfdecGtkWidget--renderer-set"><primary>SwfdecGtkWidget:renderer-set</primary></indexterm><programlisting>  &quot;renderer-set&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>if an intermediate renderer should be used.</para><para>Default value: TRUE</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,1133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecAsObject</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch04.html" title="Actionscript interpreter">
+<link rel="prev" href="SwfdecAsContext.html" title="SwfdecAsContext">
+<link rel="next" href="SwfdecAsArray.html" title="SwfdecAsArray">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecAsContext.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecAsArray.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecAsObject.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecAsObject.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecAsObject.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecAsObject"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecAsObject.top_of_page"></a>SwfdecAsObject</span></h2>
+<p>SwfdecAsObject — the base object type for scriptable objects</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecAsObject.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecAsObject.html#SwfdecAsObject-struct" title="SwfdecAsObject">SwfdecAsObject</a>;
+<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     <a class="link" href="SwfdecAsObject.html#swfdec-as-object-new" title="swfdec_as_object_new ()">swfdec_as_object_new</a>                (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     <a class="link" href="SwfdecAsObject.html#swfdec-as-object-new-empty" title="swfdec_as_object_new_empty ()">swfdec_as_object_new_empty</a>          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-create" title="swfdec_as_object_create ()">swfdec_as_object_create</a>             (<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *fun,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_args,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *args,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *return_value);
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-constructor" title="swfdec_as_object_set_constructor ()">swfdec_as_object_set_constructor</a>    (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *construct);
+enum                <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a>;
+#define             <a class="link" href="SwfdecAsObject.html#swfdec-as-object-get-variable" title="swfdec_as_object_get_variable()">swfdec_as_object_get_variable</a>       (object, variable, value)
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsObject.html#swfdec-as-object-get-variable-and-flags" title="swfdec_as_object_get_variable_and_flags ()">swfdec_as_object_get_variable_and_flags</a>
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *flags,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> **pobject);
+#define             <a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-variable" title="swfdec_as_object_set_variable()">swfdec_as_object_set_variable</a>       (object, variable, value)
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-variable-and-flags" title="swfdec_as_object_set_variable_and_flags ()">swfdec_as_object_set_variable_and_flags</a>
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> default_flags);
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-add-variable" title="swfdec_as_object_add_variable ()">swfdec_as_object_add_variable</a>       (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *get,
+                                                         <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *set,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> default_flags);
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-variable-flags" title="swfdec_as_object_set_variable_flags ()">swfdec_as_object_set_variable_flags</a> (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-unset-variable-flags" title="swfdec_as_object_unset_variable_flags ()">swfdec_as_object_unset_variable_flags</a>
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);
+<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     <a class="link" href="SwfdecAsObject.html#swfdec-as-object-has-variable" title="swfdec_as_object_has_variable ()">swfdec_as_object_has_variable</a>       (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable);
+<a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAsDeleteReturn" title="enum SwfdecAsDeleteReturn">SwfdecAsDeleteReturn</a> <a class="link" href="SwfdecAsObject.html#swfdec-as-object-delete-variable" title="swfdec_as_object_delete_variable ()">swfdec_as_object_delete_variable</a>   (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable);
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-delete-all-variables" title="swfdec_as_object_delete_all_variables ()">swfdec_as_object_delete_all_variables</a>
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            (<a class="link" href="SwfdecAsObject.html#SwfdecAsVariableForeach" title="SwfdecAsVariableForeach ()">*SwfdecAsVariableForeach</a>)          (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsObject.html#swfdec-as-object-foreach" title="swfdec_as_object_foreach ()">swfdec_as_object_foreach</a>            (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableForeach" title="SwfdecAsVariableForeach ()">SwfdecAsVariableForeach</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+void                <a class="link" href="SwfdecAsObject.html#swfdec-as-object-run" title="swfdec_as_object_run ()">swfdec_as_object_run</a>                (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="SwfdecAsObject.html#swfdec-as-object-call" title="swfdec_as_object_call ()">swfdec_as_object_call</a>               (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *return_value);
+<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>*   <a class="link" href="SwfdecAsObject.html#swfdec-as-object-add-function" title="swfdec_as_object_add_function ()">swfdec_as_object_add_function</a>       (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *name,
+                                                         <a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()">SwfdecAsNative</a> native);
+<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>*   <a class="link" href="SwfdecAsObject.html#swfdec-as-object-add-constructor" title="swfdec_as_object_add_constructor ()">swfdec_as_object_add_constructor</a>    (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> construct_type,
+                                                         <a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()">SwfdecAsNative</a> native,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *prototype);
+char*               <a class="link" href="SwfdecAsObject.html#swfdec-as-object-get-debug" title="swfdec_as_object_get_debug ()">swfdec_as_object_get_debug</a>          (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object);
+<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     <a class="link" href="SwfdecAsObject.html#swfdec-as-object-resolve" title="swfdec_as_object_resolve ()">swfdec_as_object_resolve</a>            (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsObject.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecGcObject
+         +----SwfdecAsObject
+               +----<a class="link" href="SwfdecAsArray.html" title="SwfdecAsArray">SwfdecAsArray</a>
+               +----<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsObject.description"></a><h2>Description</h2>
+<p>
+This is the basic object type in Swfdec. Every object used by the script 
+engine must be a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>. It handles memory management and assigning
+variables to it. Almost all functions that are called on objects require that
+the objects have been added to the garbage collector previously. For 
+custom-created objects, you need to do this using <code class="function">swfdec_as_object_add()</code>, 
+built-in functions that create objects do this manually.
+</p>
+<p>
+Note that you cannot know the lifetime of a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>, since scripts 
+may assign it as a variable to other objects. So you should not assume to 
+know when an object gets removed.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecAsObject.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsObject-struct"></a><h3>SwfdecAsObject</h3>
+<pre class="programlisting">typedef struct _SwfdecAsObject SwfdecAsObject;</pre>
+<p>
+Every object value inside the Swfdec script engine must be a SwfdecAsObject.
+If you want to add custom objects to your script engine, you need to create a
+subclass. The class provides a number of virtual functions that you can 
+override to achieve the desired behaviour.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-new"></a><h3>swfdec_as_object_new ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     swfdec_as_object_new                (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Allocates a new Object. This does the same as the Actionscript code 
+"new <code class="function">Object()</code>".</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the new object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-new-empty"></a><h3>swfdec_as_object_new_empty ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     swfdec_as_object_new_empty          (<a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext">SwfdecAsContext</a> *context);</pre>
+<p>
+Creates an empty object. The prototype and constructor properties of the
+returned object will not be set. You probably want to call 
+<a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-constructor" title="swfdec_as_object_set_constructor ()"><code class="function">swfdec_as_object_set_constructor()</code></a> on the returned object yourself.
+You may want to use <a class="link" href="SwfdecAsObject.html#swfdec-as-object-new" title="swfdec_as_object_new ()"><code class="function">swfdec_as_object_new()</code></a> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsContext.html" title="SwfdecAsContext"><span class="type">SwfdecAsContext</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a> added to <em class="parameter"><code>context</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-create"></a><h3>swfdec_as_object_create ()</h3>
+<pre class="programlisting">void                swfdec_as_object_create             (<a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *fun,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_args,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *args,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *return_value);</pre>
+<p>
+Creates a new object for the given constructor and runs the constructor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fun</code></em> :</span></p></td>
+<td> constructor
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_args</code></em> :</span></p></td>
+<td> number of arguments
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em> :</span></p></td>
+<td> arguments to pass to constructor
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>return_value</code></em> :</span></p></td>
+<td> pointer for return value or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to push the return value to 
+               the stack
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-set-constructor"></a><h3>swfdec_as_object_set_constructor ()</h3>
+<pre class="programlisting">void                swfdec_as_object_set_constructor    (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *construct);</pre>
+<p>
+Sets the constructor variables for <em class="parameter"><code>object</code></em>. Most objects get these 
+variables set automatically, but for objects you created yourself, you want
+to call this function. This is essentially the same as the following script
+code:
+</p>
+<div class="informalexample"><pre class="programlisting"> object.constructor = construct;
+object.__proto__ = construct.prototype; </pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>construct</code></em> :</span></p></td>
+<td> the constructor of <em class="parameter"><code>object</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsVariableFlag"></a><h3>enum SwfdecAsVariableFlag</h3>
+<pre class="programlisting">typedef enum {
+  SWFDEC_AS_VARIABLE_HIDDEN = (1 &lt;&lt; 0),
+  SWFDEC_AS_VARIABLE_PERMANENT = (1 &lt;&lt; 1),
+  SWFDEC_AS_VARIABLE_CONSTANT = (1 &lt;&lt; 2),
+
+  SWFDEC_AS_VARIABLE_VERSION_6_UP = (1 &lt;&lt; 7),
+  SWFDEC_AS_VARIABLE_VERSION_NOT_6 = (1 &lt;&lt; 8),
+  SWFDEC_AS_VARIABLE_VERSION_7_UP = (1 &lt;&lt; 10),
+  SWFDEC_AS_VARIABLE_VERSION_8_UP = (1 &lt;&lt; 12),
+  SWFDEC_AS_VARIABLE_VERSION_9_UP = (1 &lt;&lt; 13),
+} SwfdecAsVariableFlag;
+</pre>
+<p>
+These flags are used to describe various properties of a variable inside
+Swfdec. You can manually set them with <a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-variable-flags" title="swfdec_as_object_set_variable_flags ()"><code class="function">swfdec_as_object_set_variable_flags()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-HIDDEN:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_HIDDEN</code></span></p></td>
+<td> Do not include variable in enumerations and
+                               <a class="link" href="SwfdecAsObject.html#swfdec-as-object-foreach" title="swfdec_as_object_foreach ()"><code class="function">swfdec_as_object_foreach()</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-PERMANENT:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_PERMANENT</code></span></p></td>
+<td> Do not allow <a class="link" href="SwfdecAsObject.html#swfdec-as-object-delete-variable" title="swfdec_as_object_delete_variable ()"><code class="function">swfdec_as_object_delete_variable()</code></a>
+                               to delete this variable.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-CONSTANT:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_CONSTANT</code></span></p></td>
+<td> Do not allow changing the value with
+                              <a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-variable" title="swfdec_as_object_set_variable()"><code class="function">swfdec_as_object_set_variable()</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-VERSION-6-UP:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_VERSION_6_UP</code></span></p></td>
+<td> This symbol is only visible in version 6 
+                                  and above.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-VERSION-NOT-6:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_VERSION_NOT_6</code></span></p></td>
+<td> This symbols is visible in all versions 
+                                   but version 6.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-VERSION-7-UP:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_VERSION_7_UP</code></span></p></td>
+<td> This symbol is only visible in version 7 
+                                  and above.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-VERSION-8-UP:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_VERSION_8_UP</code></span></p></td>
+<td> This symbol is only visible in version 8 
+                                  and above.
+</td>
+</tr>
+<tr>
+<td><p><a name="SWFDEC-AS-VARIABLE-VERSION-9-UP:CAPS"></a><span class="term"><code class="literal">SWFDEC_AS_VARIABLE_VERSION_9_UP</code></span></p></td>
+<td> This symbol is only visible in version 9 
+                                  and above.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-get-variable"></a><h3>swfdec_as_object_get_variable()</h3>
+<pre class="programlisting">#define             swfdec_as_object_get_variable(object, variable, value)</pre>
+<p>
+Gets the value of the given <em class="parameter"><code>variable</code></em> on <em class="parameter"><code>object</code></em>. It walks the prototype 
+chain. This is a shortcut macro for 
+<a class="link" href="SwfdecAsObject.html#swfdec-as-object-get-variable-and-flags" title="swfdec_as_object_get_variable_and_flags ()"><code class="function">swfdec_as_object_get_variable_and_flags()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> a garbage-collected string containing the name of the variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> pointer to a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> that takes the return value or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-get-variable-and-flags"></a><h3>swfdec_as_object_get_variable_and_flags ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_object_get_variable_and_flags
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *flags,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> **pobject);</pre>
+<p>
+Looks up <em class="parameter"><code>variable</code></em> on <em class="parameter"><code>object</code></em>. It also walks the object's prototype chain.
+If the variable exists, its value, flags and the real object containing the
+variable will be set and <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> will be returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> a garbage-collected string containing the name of the variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> pointer to a <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue"><span class="type">SwfdecAsValue</span></a> that takes the return value or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> pointer to a guint taking the variable's flags or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pobject</code></em> :</span></p></td>
+<td> pointer to set to the object that really holds the property or 
+          <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the variable exists, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-set-variable"></a><h3>swfdec_as_object_set_variable()</h3>
+<pre class="programlisting">#define             swfdec_as_object_set_variable(object, variable, value)</pre>
+<p>
+Sets a variable on <em class="parameter"><code>object</code></em>. It is not guaranteed that getting the variable
+after setting it results in the same value. This is a mcaro that calls 
+<a class="link" href="SwfdecAsObject.html#swfdec-as-object-set-variable-and-flags" title="swfdec_as_object_set_variable_and_flags ()"><code class="function">swfdec_as_object_set_variable_and_flags()</code></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> garbage-collected name of the variable to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value to set the variable to
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-set-variable-and-flags"></a><h3>swfdec_as_object_set_variable_and_flags ()</h3>
+<pre class="programlisting">void                swfdec_as_object_set_variable_and_flags
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         const <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> default_flags);</pre>
+<p>
+Sets a variable on <em class="parameter"><code>object</code></em>. It is not guaranteed that getting the variable
+after setting it results in the same value, because various mechanisms (like
+the Actionscript Object.addProperty function or constant variables) can 
+avoid this.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> garbage-collected name of the variable to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value to set the variable to
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>default_flags</code></em> :</span></p></td>
+<td> flags to use if creating the variable anew - the flags will
+                be ignored if the property already exists.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-add-variable"></a><h3>swfdec_as_object_add_variable ()</h3>
+<pre class="programlisting">void                swfdec_as_object_add_variable       (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *get,
+                                                         <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a> *set,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> default_flags);</pre>
+<p>
+Adds a variable to <em class="parameter"><code>object</code></em> in the same way as the Actionscript code 
+"object.<code class="function">addProperty()</code>" would do. Accessing the variable will from now on be
+handled by calling the <em class="parameter"><code>get</code></em> or <em class="parameter"><code>set</code></em> functions. A previous value of the 
+variable or a previous call to this function will be overwritten.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> name of the variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>get</code></em> :</span></p></td>
+<td> getter function to call when reading the variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>set</code></em> :</span></p></td>
+<td> setter function to call when writing the variable or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if read-only
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>default_flags</code></em> :</span></p></td>
+<td> flags to use if creating the variable anew - the flags will
+                be ignored if the property already exists.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-set-variable-flags"></a><h3>swfdec_as_object_set_variable_flags ()</h3>
+<pre class="programlisting">void                swfdec_as_object_set_variable_flags (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);</pre>
+<p>
+Sets the given flags for the given variable.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> the variable to modify
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> flags to set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-unset-variable-flags"></a><h3>swfdec_as_object_unset_variable_flags ()</h3>
+<pre class="programlisting">void                swfdec_as_object_unset_variable_flags
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableFlag" title="enum SwfdecAsVariableFlag">SwfdecAsVariableFlag</a> flags);</pre>
+<p>
+Unsets the given flags for the given variable. The variable must exist in 
+<em class="parameter"><code>object</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> the variable to modify
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> flags to unset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-has-variable"></a><h3>swfdec_as_object_has_variable ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     swfdec_as_object_has_variable       (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable);</pre>
+<p>
+Checks if a user-set <em class="parameter"><code>variable</code></em> with the given name exists on <em class="parameter"><code>object</code></em>. This 
+function does not check variables that are available via an overwritten get 
+function of the object's class.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> garbage-collected variable name
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the object in the prototype chain that contains <em class="parameter"><code>variable</code></em> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+         if the <em class="parameter"><code>object</code></em> does not contain this variable.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-delete-variable"></a><h3>swfdec_as_object_delete_variable ()</h3>
+<pre class="programlisting"><a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAsDeleteReturn" title="enum SwfdecAsDeleteReturn">SwfdecAsDeleteReturn</a> swfdec_as_object_delete_variable   (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable);</pre>
+<p>
+Deletes the given variable if possible. If the variable is protected from 
+deletion, it will not be deleted.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> garbage-collected name of the variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> See <a class="link" href="swfdec-Enumerations-and-Types.html#SwfdecAsDeleteReturn" title="enum SwfdecAsDeleteReturn"><span class="type">SwfdecAsDeleteReturn</span></a> for details of the return value.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-delete-all-variables"></a><h3>swfdec_as_object_delete_all_variables ()</h3>
+<pre class="programlisting">void                swfdec_as_object_delete_all_variables
+                                                        (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object);</pre>
+<p>
+Deletes all user-set variables from the given object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecAsVariableForeach"></a><h3>SwfdecAsVariableForeach ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            (*SwfdecAsVariableForeach)          (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *variable,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *value,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Function prototype for the <a class="link" href="SwfdecAsObject.html#swfdec-as-object-foreach" title="swfdec_as_object_foreach ()"><code class="function">swfdec_as_object_foreach()</code></a> function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> The object this function is run on
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>variable</code></em> :</span></p></td>
+<td> garbage-collected name of the current variables
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value of the current variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> Flags associated with the current variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> User data passed to <a class="link" href="SwfdecAsObject.html#swfdec-as-object-foreach" title="swfdec_as_object_foreach ()"><code class="function">swfdec_as_object_foreach()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> to continue running the foreach function, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> to stop
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-foreach"></a><h3>swfdec_as_object_foreach ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_object_foreach            (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a class="link" href="SwfdecAsObject.html#SwfdecAsVariableForeach" title="SwfdecAsVariableForeach ()">SwfdecAsVariableForeach</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Calls <em class="parameter"><code>func</code></em> for every variable of <em class="parameter"><code>object</code></em> or until <em class="parameter"><code>func</code></em> returns <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>. The
+variables of <em class="parameter"><code>object</code></em> must not be modified by <em class="parameter"><code>func</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to <em class="parameter"><code>func</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>func</code></em> always returned <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-run"></a><h3>swfdec_as_object_run ()</h3>
+<pre class="programlisting">void                swfdec_as_object_run                (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         <a class="link" href="SwfdecAsDebugger.html#SwfdecScript" title="SwfdecScript">SwfdecScript</a> *script);</pre>
+<p>
+Executes the given <em class="parameter"><code>script</code></em> with <em class="parameter"><code>object</code></em> as this pointer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> script to execute
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-call"></a><h3>swfdec_as_object_call ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_as_object_call               (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> argc,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *argv,
+                                                         <a class="link" href="swfdec-SwfdecAsValue.html#SwfdecAsValue" title="SwfdecAsValue">SwfdecAsValue</a> *return_value);</pre>
+<p>
+Calls the function named <em class="parameter"><code>name</code></em> on the given object. This function is 
+essentially equal to the folloeing Actionscript code: 
+</p>
+<div class="informalexample"><pre class="programlisting">
+@return_value = @object.@name (@argv[0], ..., @argv[argc-1]);
+</pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> garbage-collected string naming the function to call. 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argc</code></em> :</span></p></td>
+<td> number of arguments to provide to function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argv</code></em> :</span></p></td>
+<td> arguments or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> when <em class="parameter"><code>argc</code></em> is 0
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>return_value</code></em> :</span></p></td>
+<td> location to take the return value of the call or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to 
+               ignore the return value.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>object</code></em> had a function with the given name, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-add-function"></a><h3>swfdec_as_object_add_function ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>*   swfdec_as_object_add_function       (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *name,
+                                                         <a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()">SwfdecAsNative</a> native);</pre>
+<p>
+Adds <em class="parameter"><code>native</code></em> as a variable named <em class="parameter"><code>name</code></em> to <em class="parameter"><code>object</code></em>. The newly added variable
+will not be enumerated.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> name of the function. The string does not have to be 
+       garbage-collected.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>native</code></em> :</span></p></td>
+<td> a native function or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to just not do anything
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction"><span class="type">SwfdecAsFunction</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-add-constructor"></a><h3>swfdec_as_object_add_constructor ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction">SwfdecAsFunction</a>*   swfdec_as_object_add_constructor    (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object,
+                                                         const char *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> construct_type,
+                                                         <a class="link" href="SwfdecAsFunction.html#SwfdecAsNative" title="SwfdecAsNative ()">SwfdecAsNative</a> native,
+                                                         <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *prototype);</pre>
+<p>
+Adds <em class="parameter"><code>native</code></em> as a constructor named <em class="parameter"><code>name</code></em> to <em class="parameter"><code>object</code></em>. The newly added variable
+will not be enumerated.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> name of the function. The string does not have to be 
+       garbage-collected.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>construct_type</code></em> :</span></p></td>
+<td> type used when using this function as a constructor. May 
+                 be 0 to use the default type.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>native</code></em> :</span></p></td>
+<td> a native function or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to just not do anything
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prototype</code></em> :</span></p></td>
+<td> An optional object to be set as the "prototype" property of the
+            new function. The prototype will be hidden and constant.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="SwfdecAsFunction.html" title="SwfdecAsFunction"><span class="type">SwfdecAsFunction</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-get-debug"></a><h3>swfdec_as_object_get_debug ()</h3>
+<pre class="programlisting">char*               swfdec_as_object_get_debug          (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object);</pre>
+<p>
+Gets a representation string suitable for debugging. This function is 
+guaranteed to not modify the state of the script engine, unlike 
+<a class="link" href="swfdec-SwfdecAsValue.html#swfdec-as-value-to-string" title="swfdec_as_value_to_string ()"><code class="function">swfdec_as_value_to_string()</code></a> for example.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A newly allocated string. Free it with <a
+href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a> after use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-as-object-resolve"></a><h3>swfdec_as_object_resolve ()</h3>
+<pre class="programlisting"><a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a>*     swfdec_as_object_resolve            (<a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject">SwfdecAsObject</a> *object);</pre>
+<p>
+Resolves the object to its real object. Some internal objects should not be
+exposed to scripts, for example <a class="link" href="swfdec-SwfdecAsFrame.html#SwfdecAsFrame" title="SwfdecAsFrame"><span class="type">SwfdecAsFrame</span></a> objects. If an object you want
+to expose might be internal, call this function to resolve it to an object
+that is safe to expose.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> a <a class="link" href="SwfdecAsObject.html" title="SwfdecAsObject"><span class="type">SwfdecAsObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a non-internal object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

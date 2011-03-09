@@ -1,0 +1,80 @@
+<!-- ##### SECTION Title ##### -->
+Version Information
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO SWFDEC_VERSION_MAJOR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO SWFDEC_VERSION_MICRO ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO SWFDEC_VERSION_MINOR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO SWFDEC_VERSION_ENCODE ##### -->
+<para>
+
+</para>
+
+@major: 
+@minor: 
+@micro: 
+
+
+<!-- ##### MACRO SWFDEC_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO SWFDEC_VERSION_STRING ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION swfdec_version ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_version_string ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

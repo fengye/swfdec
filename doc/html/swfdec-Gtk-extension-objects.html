@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Gtk extensions</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch01.html" title="Swfdec Gtk library">
+<link rel="prev" href="SwfdecGtkWidget.html" title="SwfdecGtkWidget">
+<link rel="next" href="ch02.html" title="Swfdec library">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecGtkWidget.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="ch02.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-Gtk-extension-objects.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-Gtk-extension-objects.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#swfdec-Gtk-extension-objects.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-Gtk-extension-objects"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-Gtk-extension-objects.top_of_page"></a>Gtk extensions</span></h2>
+<p>Gtk extensions — extension objects for <em class="parameter"><code>SwfdecGtkPlayer</code></em></p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-Gtk-extension-objects.synopsis"></a><h2>Synopsis</h2>
+<a name="SwfdecGtkLoader"></a><a name="SwfdecGtkSocket"></a><pre class="synopsis">
+
+#include &lt;swfdec/swfdec-gtk.h&gt;
+
+                    <a class="link" href="swfdec-Gtk-extension-objects.html#SwfdecGtkLoader-struct" title="SwfdecGtkLoader">SwfdecGtkLoader</a>;
+                    <a class="link" href="swfdec-Gtk-extension-objects.html#SwfdecGtkSocket-struct" title="SwfdecGtkSocket">SwfdecGtkSocket</a>;
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Gtk-extension-objects.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a>
+         +----<a class="link" href="SwfdecLoader.html" title="SwfdecLoader">SwfdecLoader</a>
+               +----<a class="link" href="SwfdecLoader.html#SwfdecFileLoader">SwfdecFileLoader</a>
+                     +----SwfdecGtkLoader
+</pre>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a>
+         +----<a class="link" href="SwfdecSocket.html" title="SwfdecSocket">SwfdecSocket</a>
+               +----SwfdecGtkSocket
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Gtk-extension-objects.description"></a><h2>Description</h2>
+<p>
+Swfdec-Gtk provides some objects that implement the various extensions
+provided by the <em class="parameter"><code>SwfdecPlayer</code></em> object. They are used by default in the 
+<a class="link" href="SwfdecGtkPlayer.html" title="SwfdecGtkPlayer"><span class="type">SwfdecGtkPlayer</span></a> object, but you can use them outside of it, too. 
+However, they require certain Gtk functionality, such as a running glib
+main loop.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-Gtk-extension-objects.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkLoader-struct"></a><h3>SwfdecGtkLoader</h3>
+<pre class="programlisting">typedef struct _SwfdecGtkLoader SwfdecGtkLoader;</pre>
+<p>
+<a class="link" href="swfdec-Gtk-extension-objects.html#SwfdecGtkLoader"><span class="type">SwfdecGtkLoader</span></a> is a <a class="link" href="SwfdecLoader.html" title="SwfdecLoader"><span class="type">SwfdecLoader</span></a> that is intended as an easy way to be 
+access ressources that are not stored in files, such as HTTP. It is a 
+private object.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecGtkSocket-struct"></a><h3>SwfdecGtkSocket</h3>
+<pre class="programlisting">typedef struct _SwfdecGtkSocket SwfdecGtkSocket;</pre>
+<p>
+This is the object used to represent a socket. It is completely private.</p>
+<p>
+
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

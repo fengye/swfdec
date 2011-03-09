@@ -1,0 +1,5 @@
+asm {
+  play
+hello:
+  stop
+}

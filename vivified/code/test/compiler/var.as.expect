@@ -1,0 +1,8 @@
+asm {
+  pool "a", "b", "c"
+  push pool 2, undefined, pool 1, 1, pool 0
+  define_local2
+  define_local
+  define_local
+  end
+}

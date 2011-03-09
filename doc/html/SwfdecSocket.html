@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecSocket</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="prev" href="SwfdecLoader.html" title="SwfdecLoader">
+<link rel="next" href="ch04.html" title="Actionscript interpreter">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SwfdecLoader.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="ch04.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecSocket.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecSocket.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecSocket.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecSocket"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecSocket.top_of_page"></a>SwfdecSocket</span></h2>
+<p>SwfdecSocket — object used for network connections</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecSocket.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecSocket.html#SwfdecSocket-struct" title="SwfdecSocket">SwfdecSocket</a>;
+                    <a class="link" href="SwfdecSocket.html#SwfdecSocketClass" title="SwfdecSocketClass">SwfdecSocketClass</a>;
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecSocket.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="SwfdecStream.html" title="SwfdecStream">SwfdecStream</a>
+         +----SwfdecSocket
+               +----<a class="link" href="swfdec-Gtk-extension-objects.html#SwfdecGtkSocket">SwfdecGtkSocket</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecSocket.description"></a><h2>Description</h2>
+<p>
+SwfdecSockets are used to implement TCP streams. These are for example used 
+to implement RTMP support or the XMLSocket script class. Backends are 
+supposed to provide an implementation for this, as by default this class is
+unimplemented. However, swfdec-gtk or other convenience libraries provide
+a socket implementation by default. 
+</p>
+<p>
+The socket implementation used by a <a class="link" href="SwfdecPlayer.html" title="SwfdecPlayer"><span class="type">SwfdecPlayer</span></a> can be set with the 
+SwfdecPlayer:socket-type property.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecSocket.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecSocket-struct"></a><h3>SwfdecSocket</h3>
+<pre class="programlisting">typedef struct _SwfdecSocket SwfdecSocket;</pre>
+<p>
+This is the base object used for providing input. It is abstract, create a 
+subclass to provide your own socket implementation. All members are 
+considered private.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecSocketClass"></a><h3>SwfdecSocketClass</h3>
+<pre class="programlisting">typedef struct {
+  void			(* connect)		(SwfdecSocket *	socket,
+						 SwfdecPlayer *	player,
+						 const char *	hostname,
+						 guint		port);
+
+  void			(* send)		(SwfdecSocket *	socket,
+						 SwfdecBuffer *	buffer);
+} SwfdecSocketClass;
+</pre>
+<p>
+This is the socket class. When you create a subclass, you need to implement 
+the functions listed above.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>connect</code></em> ()</span></p></td>
+<td> Connect the given newly created socket to the given hostname and 
+          port. If you encounter an error, call <a class="link" href="SwfdecStream.html#swfdec-stream-error" title="swfdec_stream_error ()"><code class="function">swfdec_stream_error()</code></a>, but 
+          still make sure the socket object does not break.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>send</code></em> ()</span></p></td>
+<td> Called to send data down the given socket. This function will only be
+       called when the socket is open. You get passed a reference to the 
+       buffer, so it is your responsibility to call <a class="link" href="swfdec-SwfdecBuffer.html#swfdec-buffer-unref" title="swfdec_buffer_unref ()"><code class="function">swfdec_buffer_unref()</code></a> on
+       it when you are done with it.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

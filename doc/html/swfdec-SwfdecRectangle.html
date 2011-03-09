@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecRectangle</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch02.html" title="Swfdec library">
+<link rel="prev" href="swfdec-Enumerations-and-Types.html" title="Enumerations">
+<link rel="next" href="swfdec-SwfdecBuffer.html" title="SwfdecBuffer">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="swfdec-Enumerations-and-Types.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="swfdec-SwfdecBuffer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#swfdec-SwfdecRectangle.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#swfdec-SwfdecRectangle.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="swfdec-SwfdecRectangle"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="swfdec-SwfdecRectangle.top_of_page"></a>SwfdecRectangle</span></h2>
+<p>SwfdecRectangle — handling regions on the screen</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="swfdec-SwfdecRectangle.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a>;
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecRectangle.html#swfdec-rectangle-contains" title="swfdec_rectangle_contains ()">swfdec_rectangle_contains</a>           (const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *container,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *content);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecRectangle.html#swfdec-rectangle-contains-point" title="swfdec_rectangle_contains_point ()">swfdec_rectangle_contains_point</a>     (const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *rectangle,
+                                                         int x,
+                                                         int y);
+void                <a class="link" href="swfdec-SwfdecRectangle.html#swfdec-rectangle-init-empty" title="swfdec_rectangle_init_empty ()">swfdec_rectangle_init_empty</a>         (<a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *rectangle);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecRectangle.html#swfdec-rectangle-intersect" title="swfdec_rectangle_intersect ()">swfdec_rectangle_intersect</a>          (<a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *dest,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *a,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *b);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="swfdec-SwfdecRectangle.html#swfdec-rectangle-is-empty" title="swfdec_rectangle_is_empty ()">swfdec_rectangle_is_empty</a>           (const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *rectangle);
+void                <a class="link" href="swfdec-SwfdecRectangle.html#swfdec-rectangle-union" title="swfdec_rectangle_union ()">swfdec_rectangle_union</a>              (<a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *dest,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *a,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *b);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecRectangle.description"></a><h2>Description</h2>
+<p>
+This section describes how regions are handled in Swfdec. Regions are
+important when tracking which parts of the screen have been invalidated and 
+need to be repainted. See SwfdecPlayer::invalidate for an example.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="swfdec-SwfdecRectangle.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecRectangle"></a><h3>SwfdecRectangle</h3>
+<pre class="programlisting">typedef struct {
+  int		x;			/* x coordinate of top-left point */
+  int		y;			/* y coordinate of top left point */
+  int		width;			/* width of rectangle or 0 for empty */
+  int		height;			/* height of rectangle or 0 for empty */
+} SwfdecRectangle;
+</pre>
+<p>
+This structure represents a rectangular region. It is identical to the
+<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Points-Rectangles-and-Regions.html#GdkRectangle"
+><span class="type">GdkRectangle</span></a> structure, so you can cast freely between them. The only 
+difference is that Gdk does not allow empty rectangles, while Swfdec does.
+You can use <a class="link" href="swfdec-SwfdecRectangle.html#swfdec-rectangle-is-empty" title="swfdec_rectangle_is_empty ()"><code class="function">swfdec_rectangle_is_empty()</code></a> to check for this.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">int <em class="structfield"><code>x</code></em>;</span></p></td>
+<td> x coordinate of top-left point
+</td>
+</tr>
+<tr>
+<td><p><span class="term">int <em class="structfield"><code>y</code></em>;</span></p></td>
+<td> y coordinate of top-left point
+</td>
+</tr>
+<tr>
+<td><p><span class="term">int <em class="structfield"><code>width</code></em>;</span></p></td>
+<td> width of rectangle or 0 for empty
+</td>
+</tr>
+<tr>
+<td><p><span class="term">int <em class="structfield"><code>height</code></em>;</span></p></td>
+<td> height of rectangle or 0 for empty
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-rectangle-contains"></a><h3>swfdec_rectangle_contains ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_rectangle_contains           (const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *container,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *content);</pre>
+<p>
+Checks if <em class="parameter"><code>container</code></em> contains the whole rectangle <em class="parameter"><code>content</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> the supposedly bigger rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>content</code></em> :</span></p></td>
+<td> the supposedly smaller rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>container</code></em> contains <em class="parameter"><code>content</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-rectangle-contains-point"></a><h3>swfdec_rectangle_contains_point ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_rectangle_contains_point     (const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *rectangle,
+                                                         int x,
+                                                         int y);</pre>
+<p>
+Checks if the given point is inside the given rectangle.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> a rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinate of point to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordinate of point to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the point is inside the rectangle
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-rectangle-init-empty"></a><h3>swfdec_rectangle_init_empty ()</h3>
+<pre class="programlisting">void                swfdec_rectangle_init_empty         (<a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *rectangle);</pre>
+<p>
+Initializes the rectangle as empty.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> rectangle to initialize
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-rectangle-intersect"></a><h3>swfdec_rectangle_intersect ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_rectangle_intersect          (<a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *dest,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *a,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *b);</pre>
+<p>
+Intersects the rectangles <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> and puts the result into <em class="parameter"><code>dest</code></em>. It is
+allowed if <em class="parameter"><code>dest</code></em> is the same as <em class="parameter"><code>a</code></em> or <em class="parameter"><code>b</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dest</code></em> :</span></p></td>
+<td> the rectangle to take the result or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> first rectangle to intersect
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> second rectangle to intersect
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the intersection is not empty.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-rectangle-is-empty"></a><h3>swfdec_rectangle_is_empty ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            swfdec_rectangle_is_empty           (const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *rectangle);</pre>
+<p>
+Checks if the given <em class="parameter"><code>rectangle</code></em> is empty.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> rectangle to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the rectangle is emtpy
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="swfdec-rectangle-union"></a><h3>swfdec_rectangle_union ()</h3>
+<pre class="programlisting">void                swfdec_rectangle_union              (<a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *dest,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *a,
+                                                         const <a class="link" href="swfdec-SwfdecRectangle.html#SwfdecRectangle" title="SwfdecRectangle">SwfdecRectangle</a> *b);</pre>
+<p>
+Computes the smallest rectangle that contains both <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> and puts it in 
+<em class="parameter"><code>dest</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dest</code></em> :</span></p></td>
+<td> destination to take the union
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> first rectangle to union
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> second rectangle to union
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

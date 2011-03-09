@@ -1,0 +1,987 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="swfdec-Enumerations-and-Types">
+<refmeta>
+<refentrytitle role="top_of_page" id="swfdec-Enumerations-and-Types.top_of_page">Enumerations</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>SWFDEC Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Enumerations</refname>
+<refpurpose>enumerations used in Swfdec</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="swfdec-Enumerations-and-Types.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+#include &lt;swfdec/swfdec.h&gt;
+
+#define             <link linkend="SWFDEC-TYPE-TIME-VAL:CAPS">SWFDEC_TYPE_TIME_VAL</link>
+enum                <link linkend="SwfdecAsContextState">SwfdecAsContextState</link>;
+enum                <link linkend="SwfdecAsDeleteReturn">SwfdecAsDeleteReturn</link>;
+enum                <link linkend="SwfdecLoaderDataType">SwfdecLoaderDataType</link>;
+const <link linkend="char">char</link>*         <link linkend="swfdec-loader-data-type-get-extension">swfdec_loader_data_type_get_extension</link>
+                                                        (<link linkend="SwfdecLoaderDataType">SwfdecLoaderDataType</link> type);
+enum                <link linkend="SwfdecAlignment">SwfdecAlignment</link>;
+enum                <link linkend="SwfdecKey">SwfdecKey</link>;
+enum                <link linkend="SwfdecMouseCursor">SwfdecMouseCursor</link>;
+enum                <link linkend="SwfdecScaleMode">SwfdecScaleMode</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="swfdec-Enumerations-and-Types.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This file lists all of the enumerations used in various parts of Swfdec.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="swfdec-Enumerations-and-Types.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="SWFDEC-TYPE-TIME-VAL:CAPS" role="macro">
+<title>SWFDEC_TYPE_TIME_VAL</title>
+<indexterm zone="SWFDEC-TYPE-TIME-VAL:CAPS"><primary>SWFDEC_TYPE_TIME_VAL</primary></indexterm><programlisting>#define SWFDEC_TYPE_TIME_VAL swfdec_time_val_get_type()
+</programlisting>
+<para>
+This type wraps a <parameter>GTimeVal</parameter> object as a boxed type and makes it available 
+for use in object properties.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="SwfdecAsContextState" role="enum">
+<title>enum SwfdecAsContextState</title>
+<indexterm zone="SwfdecAsContextState"><primary>SwfdecAsContextState</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_AS_CONTEXT_NEW,
+  SWFDEC_AS_CONTEXT_RUNNING,
+  SWFDEC_AS_CONTEXT_INTERRUPTED,
+  SWFDEC_AS_CONTEXT_ABORTED
+} SwfdecAsContextState;
+</programlisting>
+<para>
+The state of the context describes what operations are possible on the context.
+It will be in the state <parameter>SWFDEC_AS_CONTEXT_STATE_RUNNING</parameter> almost all the time. If
+it is in the state <parameter>SWFDEC_AS_CONTEXT_STATE_ABORTED</parameter>, it will not work anymore and
+every operation on it will instantly fail.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-AS-CONTEXT-NEW:CAPS" role="constant">
+<term><literal>SWFDEC_AS_CONTEXT_NEW</literal></term>
+<listitem><simpara> the context is not yet initialized, 
+                        <link linkend="swfdec-as-context-startup"><function>swfdec_as_context_startup()</function></link> needs to be called.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-CONTEXT-RUNNING:CAPS" role="constant">
+<term><literal>SWFDEC_AS_CONTEXT_RUNNING</literal></term>
+<listitem><simpara> the context is running normally
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-CONTEXT-INTERRUPTED:CAPS" role="constant">
+<term><literal>SWFDEC_AS_CONTEXT_INTERRUPTED</literal></term>
+<listitem><simpara> the context has been interrupted by a 
+                            debugger
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-CONTEXT-ABORTED:CAPS" role="constant">
+<term><literal>SWFDEC_AS_CONTEXT_ABORTED</literal></term>
+<listitem><simpara> the context has aborted execution due to a 
+                        fatal error
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecAsDeleteReturn" role="enum">
+<title>enum SwfdecAsDeleteReturn</title>
+<indexterm zone="SwfdecAsDeleteReturn"><primary>SwfdecAsDeleteReturn</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_AS_DELETE_NOT_FOUND = 0,
+  SWFDEC_AS_DELETE_DELETED,
+  SWFDEC_AS_DELETE_NOT_DELETED
+} SwfdecAsDeleteReturn;
+</programlisting>
+<para>
+This is the return value used by <link linkend="swfdec-as-object-delete-variable"><function>swfdec_as_object_delete_variable()</function></link>. It 
+describes the various outcomes of trying to delete a variable.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-AS-DELETE-NOT-FOUND:CAPS" role="constant">
+<term><literal>SWFDEC_AS_DELETE_NOT_FOUND</literal></term>
+<listitem><simpara> The variable was not found and therefore 
+                             couldn't be deleted.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-DELETE-DELETED:CAPS" role="constant">
+<term><literal>SWFDEC_AS_DELETE_DELETED</literal></term>
+<listitem><simpara> The variable was deleted.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-AS-DELETE-NOT-DELETED:CAPS" role="constant">
+<term><literal>SWFDEC_AS_DELETE_NOT_DELETED</literal></term>
+<listitem><simpara> The variable was found but could not be 
+                               deleted.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecLoaderDataType" role="enum">
+<title>enum SwfdecLoaderDataType</title>
+<indexterm zone="SwfdecLoaderDataType"><primary>SwfdecLoaderDataType</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_LOADER_DATA_UNKNOWN,
+  SWFDEC_LOADER_DATA_SWF,
+  SWFDEC_LOADER_DATA_FLV,
+  SWFDEC_LOADER_DATA_XML,
+  SWFDEC_LOADER_DATA_TEXT,
+  SWFDEC_LOADER_DATA_JPEG,
+  SWFDEC_LOADER_DATA_PNG
+} SwfdecLoaderDataType;
+</programlisting>
+<para>
+This type describes the different types of data that can be loaded inside 
+Swfdec. Swfdec identifies its data streams and you can use the 
+<link linkend="swfdec-loader-get-data-type"><function>swfdec_loader_get_data_type()</function></link> to acquire more information about the data
+inside a <link linkend="SwfdecLoader"><type>SwfdecLoader</type></link>.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-LOADER-DATA-UNKNOWN:CAPS" role="constant">
+<term><literal>SWFDEC_LOADER_DATA_UNKNOWN</literal></term>
+<listitem><simpara> Unidentified data or data that cannot be 
+                             identified.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-LOADER-DATA-SWF:CAPS" role="constant">
+<term><literal>SWFDEC_LOADER_DATA_SWF</literal></term>
+<listitem><simpara> Data describing a normal Flash file.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-LOADER-DATA-FLV:CAPS" role="constant">
+<term><literal>SWFDEC_LOADER_DATA_FLV</literal></term>
+<listitem><simpara> Data describing a Flash video stream.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-LOADER-DATA-XML:CAPS" role="constant">
+<term><literal>SWFDEC_LOADER_DATA_XML</literal></term>
+<listitem><simpara> Data in XML format.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-LOADER-DATA-TEXT:CAPS" role="constant">
+<term><literal>SWFDEC_LOADER_DATA_TEXT</literal></term>
+<listitem><simpara> Textual data.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-LOADER-DATA-JPEG:CAPS" role="constant">
+<term><literal>SWFDEC_LOADER_DATA_JPEG</literal></term>
+<listitem><simpara> a JPEG image
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-LOADER-DATA-PNG:CAPS" role="constant">
+<term><literal>SWFDEC_LOADER_DATA_PNG</literal></term>
+<listitem><simpara> a PNG image
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="swfdec-loader-data-type-get-extension" role="function">
+<title>swfdec_loader_data_type_get_extension ()</title>
+<indexterm zone="swfdec-loader-data-type-get-extension"><primary>swfdec_loader_data_type_get_extension</primary></indexterm><programlisting>const <link linkend="char">char</link>*         swfdec_loader_data_type_get_extension
+                                                        (<link linkend="SwfdecLoaderDataType">SwfdecLoaderDataType</link> type);</programlisting>
+<para>
+Queries the extension to be used for data of the given <parameter>type</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="SwfdecLoaderDataType"><type>SwfdecLoaderDataType</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the typical extension for this data type or the empty string
+         if the type has no extension
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecAlignment" role="enum">
+<title>enum SwfdecAlignment</title>
+<indexterm zone="SwfdecAlignment"><primary>SwfdecAlignment</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_ALIGNMENT_TOP_LEFT,
+  SWFDEC_ALIGNMENT_TOP,
+  SWFDEC_ALIGNMENT_TOP_RIGHT,
+  SWFDEC_ALIGNMENT_LEFT,
+  SWFDEC_ALIGNMENT_CENTER,
+  SWFDEC_ALIGNMENT_RIGHT,
+  SWFDEC_ALIGNMENT_BOTTOM_LEFT,
+  SWFDEC_ALIGNMENT_BOTTOM,
+  SWFDEC_ALIGNMENT_BOTTOM_RIGHT
+} SwfdecAlignment;
+</programlisting>
+<para>
+These are the possible values for the alignment of an unscaled movie.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-ALIGNMENT-TOP-LEFT:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_TOP_LEFT</literal></term>
+<listitem><simpara> top left
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-TOP:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_TOP</literal></term>
+<listitem><simpara> top
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-TOP-RIGHT:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_TOP_RIGHT</literal></term>
+<listitem><simpara> top right
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-LEFT:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_LEFT</literal></term>
+<listitem><simpara> left
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-CENTER:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_CENTER</literal></term>
+<listitem><simpara> center
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-RIGHT:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_RIGHT</literal></term>
+<listitem><simpara> right
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-BOTTOM-LEFT:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_BOTTOM_LEFT</literal></term>
+<listitem><simpara> left
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-BOTTOM:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_BOTTOM</literal></term>
+<listitem><simpara> bottom
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-ALIGNMENT-BOTTOM-RIGHT:CAPS" role="constant">
+<term><literal>SWFDEC_ALIGNMENT_BOTTOM_RIGHT</literal></term>
+<listitem><simpara> bottom right
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecKey" role="enum">
+<title>enum SwfdecKey</title>
+<indexterm zone="SwfdecKey"><primary>SwfdecKey</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_KEY_LEFT_MOUSE = 1,
+  SWFDEC_KEY_RIGHT_MOUSE = 2,
+  SWFDEC_KEY_MIDDLE_MOUSE = 4,
+  SWFDEC_KEY_BACKSPACE = 8,
+  SWFDEC_KEY_TAB = 9,
+  SWFDEC_KEY_CLEAR = 12,
+  SWFDEC_KEY_ENTER = 13,
+  SWFDEC_KEY_SHIFT = 16,
+  SWFDEC_KEY_CONTROL = 17,
+  SWFDEC_KEY_ALT = 18,
+  SWFDEC_KEY_CAPS_LOCK = 20,
+  SWFDEC_KEY_ESCAPE = 27,
+  SWFDEC_KEY_SPACE = 32,
+  SWFDEC_KEY_PAGE_UP = 33,
+  SWFDEC_KEY_PAGE_DOWN = 34,
+  SWFDEC_KEY_END = 35,
+  SWFDEC_KEY_HOME = 36,
+  SWFDEC_KEY_LEFT = 37,
+  SWFDEC_KEY_UP = 38,
+  SWFDEC_KEY_RIGHT = 39,
+  SWFDEC_KEY_DOWN = 40,
+  SWFDEC_KEY_INSERT = 45,
+  SWFDEC_KEY_DELETE = 46,
+  SWFDEC_KEY_HELP = 47,
+  SWFDEC_KEY_0 = 48,
+  SWFDEC_KEY_1 = 49,
+  SWFDEC_KEY_2 = 50,
+  SWFDEC_KEY_3 = 51,
+  SWFDEC_KEY_4 = 52,
+  SWFDEC_KEY_5 = 53,
+  SWFDEC_KEY_6 = 54,
+  SWFDEC_KEY_7 = 55,
+  SWFDEC_KEY_8 = 56,
+  SWFDEC_KEY_9 = 57,
+  SWFDEC_KEY_A = 65,
+  SWFDEC_KEY_B = 66,
+  SWFDEC_KEY_C = 67,
+  SWFDEC_KEY_D = 68,
+  SWFDEC_KEY_E = 69,
+  SWFDEC_KEY_F = 70,
+  SWFDEC_KEY_G = 71,
+  SWFDEC_KEY_H = 72,
+  SWFDEC_KEY_I = 73,
+  SWFDEC_KEY_J = 74,
+  SWFDEC_KEY_K = 75,
+  SWFDEC_KEY_L = 76,
+  SWFDEC_KEY_M = 77,
+  SWFDEC_KEY_N = 78,
+  SWFDEC_KEY_O = 79,
+  SWFDEC_KEY_P = 80,
+  SWFDEC_KEY_Q = 81,
+  SWFDEC_KEY_R = 82,
+  SWFDEC_KEY_S = 83,
+  SWFDEC_KEY_T = 84,
+  SWFDEC_KEY_U = 85,
+  SWFDEC_KEY_V = 86,
+  SWFDEC_KEY_W = 87,
+  SWFDEC_KEY_X = 88,
+  SWFDEC_KEY_Y = 89,
+  SWFDEC_KEY_Z = 90,
+  SWFDEC_KEY_NUMPAD_0 = 96,
+  SWFDEC_KEY_NUMPAD_1 = 97,
+  SWFDEC_KEY_NUMPAD_2 = 98,
+  SWFDEC_KEY_NUMPAD_3 = 99,
+  SWFDEC_KEY_NUMPAD_4 = 100,
+  SWFDEC_KEY_NUMPAD_5 = 101,
+  SWFDEC_KEY_NUMPAD_6 = 102,
+  SWFDEC_KEY_NUMPAD_7 = 103,
+  SWFDEC_KEY_NUMPAD_8 = 104,
+  SWFDEC_KEY_NUMPAD_9 = 105,
+  SWFDEC_KEY_NUMPAD_MULTIPLY = 106,
+  SWFDEC_KEY_NUMPAD_ADD = 107,
+  SWFDEC_KEY_NUMPAD_SUBTRACT = 109,
+  SWFDEC_KEY_NUMPAD_DECIMAL = 110,
+  SWFDEC_KEY_NUMPAD_DIVIDE = 111,
+  SWFDEC_KEY_F1 = 112,
+  SWFDEC_KEY_F2 = 113,
+  SWFDEC_KEY_F3 = 114,
+  SWFDEC_KEY_F4 = 115,
+  SWFDEC_KEY_F5 = 116,
+  SWFDEC_KEY_F6 = 117,
+  SWFDEC_KEY_F7 = 118,
+  SWFDEC_KEY_F8 = 119,
+  SWFDEC_KEY_F9 = 120,
+  SWFDEC_KEY_F10 = 121,
+  SWFDEC_KEY_F11 = 122,
+  SWFDEC_KEY_F12 = 123,
+  SWFDEC_KEY_F13 = 124,
+  SWFDEC_KEY_F14 = 125,
+  SWFDEC_KEY_F15 = 126,
+  SWFDEC_KEY_NUM_LOCK = 144,
+  SWFDEC_KEY_SCROLL_LOCK = 145,
+  SWFDEC_KEY_SEMICOLON = 186,
+  SWFDEC_KEY_EQUAL = 187,
+  SWFDEC_KEY_COMMA = 188,
+  SWFDEC_KEY_MINUS = 189,
+  SWFDEC_KEY_DOT = 190,
+  SWFDEC_KEY_SLASH = 191,
+  SWFDEC_KEY_GRAVE = 192,
+  SWFDEC_KEY_LEFT_BRACKET = 219,
+  SWFDEC_KEY_BACKSLASH = 220,
+  SWFDEC_KEY_RIGHT_BRACKET = 221,
+  SWFDEC_KEY_APOSTROPHE = 222,
+} SwfdecKey;
+</programlisting>
+<para>
+Lists all known key codes in Swfdec and their meanings on an English 
+keyboard. Note that key codes in Flash represent virtual key codes as used
+in Microsoft Windows.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-KEY-LEFT-MOUSE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_LEFT_MOUSE</literal></term>
+<listitem><simpara> the left mouse button
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-RIGHT-MOUSE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_RIGHT_MOUSE</literal></term>
+<listitem><simpara> the left mouse button
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-MIDDLE-MOUSE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_MIDDLE_MOUSE</literal></term>
+<listitem><simpara> the middle mouse button
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-BACKSPACE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_BACKSPACE</literal></term>
+<listitem><simpara> the backspace key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-TAB:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_TAB</literal></term>
+<listitem><simpara> the tab key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-CLEAR:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_CLEAR</literal></term>
+<listitem><simpara> the clear key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-ENTER:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_ENTER</literal></term>
+<listitem><simpara> the enter key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-SHIFT:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_SHIFT</literal></term>
+<listitem><simpara> the shift key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-CONTROL:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_CONTROL</literal></term>
+<listitem><simpara> the control key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-ALT:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_ALT</literal></term>
+<listitem><simpara> the alt key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-CAPS-LOCK:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_CAPS_LOCK</literal></term>
+<listitem><simpara> the caps lock key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-ESCAPE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_ESCAPE</literal></term>
+<listitem><simpara> the escape key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-SPACE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_SPACE</literal></term>
+<listitem><simpara> the space key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-PAGE-UP:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_PAGE_UP</literal></term>
+<listitem><simpara> the page up key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-PAGE-DOWN:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_PAGE_DOWN</literal></term>
+<listitem><simpara> the page down key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-END:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_END</literal></term>
+<listitem><simpara> the end key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-HOME:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_HOME</literal></term>
+<listitem><simpara> the home key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-LEFT:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_LEFT</literal></term>
+<listitem><simpara> the left key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-UP:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_UP</literal></term>
+<listitem><simpara> the up key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-RIGHT:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_RIGHT</literal></term>
+<listitem><simpara> the right key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-DOWN:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_DOWN</literal></term>
+<listitem><simpara> the down key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-INSERT:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_INSERT</literal></term>
+<listitem><simpara> the insert key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-DELETE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_DELETE</literal></term>
+<listitem><simpara> the delete key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-HELP:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_HELP</literal></term>
+<listitem><simpara> the help key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-0:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_0</literal></term>
+<listitem><simpara> the 0 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-1:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_1</literal></term>
+<listitem><simpara> the 1 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-2:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_2</literal></term>
+<listitem><simpara> the 2 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-3:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_3</literal></term>
+<listitem><simpara> the 3 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-4:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_4</literal></term>
+<listitem><simpara> the 4 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-5:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_5</literal></term>
+<listitem><simpara> the 5 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-6:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_6</literal></term>
+<listitem><simpara> the 6 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-7:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_7</literal></term>
+<listitem><simpara> the 7 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-8:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_8</literal></term>
+<listitem><simpara> the 8 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-9:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_9</literal></term>
+<listitem><simpara> the 9 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-A:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_A</literal></term>
+<listitem><simpara> the ! key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-B:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_B</literal></term>
+<listitem><simpara> the B key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-C:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_C</literal></term>
+<listitem><simpara> the C key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-D:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_D</literal></term>
+<listitem><simpara> the D key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-E:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_E</literal></term>
+<listitem><simpara> the E key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F</literal></term>
+<listitem><simpara> the F key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-G:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_G</literal></term>
+<listitem><simpara> the G key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-H:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_H</literal></term>
+<listitem><simpara> the H key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-I:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_I</literal></term>
+<listitem><simpara> the I key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-J:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_J</literal></term>
+<listitem><simpara> the J key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-K:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_K</literal></term>
+<listitem><simpara> the K key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-L:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_L</literal></term>
+<listitem><simpara> the L key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-M:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_M</literal></term>
+<listitem><simpara> the M key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-N:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_N</literal></term>
+<listitem><simpara> the N key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-O:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_O</literal></term>
+<listitem><simpara> the O key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-P:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_P</literal></term>
+<listitem><simpara> the P key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-Q:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_Q</literal></term>
+<listitem><simpara> the Q key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-R:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_R</literal></term>
+<listitem><simpara> the R key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-S:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_S</literal></term>
+<listitem><simpara> the S key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-T:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_T</literal></term>
+<listitem><simpara> the T key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-U:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_U</literal></term>
+<listitem><simpara> the U key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-V:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_V</literal></term>
+<listitem><simpara> the V key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-W:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_W</literal></term>
+<listitem><simpara> the W key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-X:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_X</literal></term>
+<listitem><simpara> the X key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-Y:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_Y</literal></term>
+<listitem><simpara> the Y key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-Z:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_Z</literal></term>
+<listitem><simpara> the Z key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-0:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_0</literal></term>
+<listitem><simpara> the 0 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-1:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_1</literal></term>
+<listitem><simpara> the 1 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-2:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_2</literal></term>
+<listitem><simpara> the 2 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-3:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_3</literal></term>
+<listitem><simpara> the 3 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-4:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_4</literal></term>
+<listitem><simpara> the 4 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-5:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_5</literal></term>
+<listitem><simpara> the 5 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-6:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_6</literal></term>
+<listitem><simpara> the 6 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-7:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_7</literal></term>
+<listitem><simpara> the 7 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-8:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_8</literal></term>
+<listitem><simpara> the 8 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-9:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_9</literal></term>
+<listitem><simpara> the 9 key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-MULTIPLY:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_MULTIPLY</literal></term>
+<listitem><simpara> the multiply key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-ADD:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_ADD</literal></term>
+<listitem><simpara> the add key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-SUBTRACT:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_SUBTRACT</literal></term>
+<listitem><simpara> the subtract key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-DECIMAL:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_DECIMAL</literal></term>
+<listitem><simpara> the decimal key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUMPAD-DIVIDE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUMPAD_DIVIDE</literal></term>
+<listitem><simpara> the divide key on the numeric keypad
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F1:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F1</literal></term>
+<listitem><simpara> the F1 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F2:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F2</literal></term>
+<listitem><simpara> the F2 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F3:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F3</literal></term>
+<listitem><simpara> the F3 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F4:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F4</literal></term>
+<listitem><simpara> the F4 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F5:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F5</literal></term>
+<listitem><simpara> the F5 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F6:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F6</literal></term>
+<listitem><simpara> the F6 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F7:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F7</literal></term>
+<listitem><simpara> the F7 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F8:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F8</literal></term>
+<listitem><simpara> the F8 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F9:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F9</literal></term>
+<listitem><simpara> the F9 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F10:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F10</literal></term>
+<listitem><simpara> the F10 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F11:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F11</literal></term>
+<listitem><simpara> the F11 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F12:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F12</literal></term>
+<listitem><simpara> the F12 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F13:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F13</literal></term>
+<listitem><simpara> the F13 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F14:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F14</literal></term>
+<listitem><simpara> the F14 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-F15:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_F15</literal></term>
+<listitem><simpara> the F15 key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-NUM-LOCK:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_NUM_LOCK</literal></term>
+<listitem><simpara> the num lock key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-SCROLL-LOCK:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_SCROLL_LOCK</literal></term>
+<listitem><simpara> the scroll lock key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-SEMICOLON:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_SEMICOLON</literal></term>
+<listitem><simpara> the semicolon key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-EQUAL:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_EQUAL</literal></term>
+<listitem><simpara> the equal key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-COMMA:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_COMMA</literal></term>
+<listitem><simpara> the comma key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-MINUS:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_MINUS</literal></term>
+<listitem><simpara> the minus key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-DOT:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_DOT</literal></term>
+<listitem><simpara> the dot key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-SLASH:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_SLASH</literal></term>
+<listitem><simpara> the slash key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-GRAVE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_GRAVE</literal></term>
+<listitem><simpara> the grave key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-LEFT-BRACKET:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_LEFT_BRACKET</literal></term>
+<listitem><simpara> the left bracket key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-BACKSLASH:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_BACKSLASH</literal></term>
+<listitem><simpara> the backslash key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-RIGHT-BRACKET:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_RIGHT_BRACKET</literal></term>
+<listitem><simpara> the right bracket key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-KEY-APOSTROPHE:CAPS" role="constant">
+<term><literal>SWFDEC_KEY_APOSTROPHE</literal></term>
+<listitem><simpara> the apostrophe key (on English keyboards)
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecMouseCursor" role="enum">
+<title>enum SwfdecMouseCursor</title>
+<indexterm zone="SwfdecMouseCursor"><primary>SwfdecMouseCursor</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_MOUSE_CURSOR_NORMAL,
+  SWFDEC_MOUSE_CURSOR_NONE,
+  SWFDEC_MOUSE_CURSOR_TEXT,
+  SWFDEC_MOUSE_CURSOR_CLICK
+} SwfdecMouseCursor;
+</programlisting>
+<para>
+This enumeration describes the possible types for the SwfdecPlayer::mouse-cursor
+property.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-MOUSE-CURSOR-NORMAL:CAPS" role="constant">
+<term><literal>SWFDEC_MOUSE_CURSOR_NORMAL</literal></term>
+<listitem><simpara> a normal mouse cursor
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-MOUSE-CURSOR-NONE:CAPS" role="constant">
+<term><literal>SWFDEC_MOUSE_CURSOR_NONE</literal></term>
+<listitem><simpara> no mouse image
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-MOUSE-CURSOR-TEXT:CAPS" role="constant">
+<term><literal>SWFDEC_MOUSE_CURSOR_TEXT</literal></term>
+<listitem><simpara> a mouse cursor suitable for text editing
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-MOUSE-CURSOR-CLICK:CAPS" role="constant">
+<term><literal>SWFDEC_MOUSE_CURSOR_CLICK</literal></term>
+<listitem><simpara> a mouse cursor for clicking a hyperlink or a 
+                            button
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="SwfdecScaleMode" role="enum">
+<title>enum SwfdecScaleMode</title>
+<indexterm zone="SwfdecScaleMode"><primary>SwfdecScaleMode</primary></indexterm><programlisting>typedef enum {
+  SWFDEC_SCALE_SHOW_ALL,
+  SWFDEC_SCALE_NO_BORDER,
+  SWFDEC_SCALE_EXACT_FIT,
+  SWFDEC_SCALE_NONE
+} SwfdecScaleMode;
+</programlisting>
+<para>
+Describes how the movie should be scaled if the given size doesn't equal the
+movie's size.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="SWFDEC-SCALE-SHOW-ALL:CAPS" role="constant">
+<term><literal>SWFDEC_SCALE_SHOW_ALL</literal></term>
+<listitem><simpara> Show the whole content as large as possible
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-SCALE-NO-BORDER:CAPS" role="constant">
+<term><literal>SWFDEC_SCALE_NO_BORDER</literal></term>
+<listitem><simpara> Fill the whole area, possibly cropping parts
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-SCALE-EXACT-FIT:CAPS" role="constant">
+<term><literal>SWFDEC_SCALE_EXACT_FIT</literal></term>
+<listitem><simpara> Fill the whole area, don't keep aspect ratio
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="SWFDEC-SCALE-NONE:CAPS" role="constant">
+<term><literal>SWFDEC_SCALE_NONE</literal></term>
+<listitem><simpara> Do not scale the movie at all
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

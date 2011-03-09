@@ -1,0 +1,222 @@
+<!-- ##### SECTION Title ##### -->
+SwfdecURL
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT SwfdecURL ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION swfdec_url_new ##### -->
+<para>
+
+</para>
+
+@string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_new_from_input ##### -->
+<para>
+
+</para>
+
+@input: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_new_components ##### -->
+<para>
+
+</para>
+
+@protocol: 
+@hostname: 
+@port: 
+@path: 
+@query: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_new_relative ##### -->
+<para>
+
+</para>
+
+@url: 
+@string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_new_parent ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_copy ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_free ##### -->
+<para>
+
+</para>
+
+@url: 
+
+
+<!-- ##### FUNCTION swfdec_url_get_protocol ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_has_protocol ##### -->
+<para>
+
+</para>
+
+@url: 
+@protocol: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_get_host ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_get_port ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_get_path ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_get_query ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_get_url ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_is_local ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_is_parent ##### -->
+<para>
+
+</para>
+
+@parent: 
+@child: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_format_for_display ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_hash ##### -->
+<para>
+
+</para>
+
+@url: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_equal ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_host_equal ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION swfdec_url_path_is_relative ##### -->
+<para>
+
+</para>
+
+@path: 
+@Returns: 
+
+

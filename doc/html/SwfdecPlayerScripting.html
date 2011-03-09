@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SwfdecPlayerScripting</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Swfdec Reference Manual">
+<link rel="up" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="prev" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="next" href="SwfdecRenderer.html" title="SwfdecRenderer">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Swfdec Gtk library">
+<link rel="chapter" href="ch02.html" title="Swfdec library">
+<link rel="chapter" href="ch03.html" title="extending SwfdecPlayer">
+<link rel="chapter" href="ch04.html" title="Actionscript interpreter">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch03.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Swfdec Reference Manual</th>
+<td><a accesskey="n" href="SwfdecRenderer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#SwfdecPlayerScripting.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#SwfdecPlayerScripting.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#SwfdecPlayerScripting.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SwfdecPlayerScripting"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="SwfdecPlayerScripting.top_of_page"></a>SwfdecPlayerScripting</span></h2>
+<p>SwfdecPlayerScripting — integration with external scripts</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="SwfdecPlayerScripting.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;swfdec/swfdec.h&gt;
+
+                    <a class="link" href="SwfdecPlayerScripting.html#SwfdecPlayerScripting-struct" title="SwfdecPlayerScripting">SwfdecPlayerScripting</a>;
+                    <a class="link" href="SwfdecPlayerScripting.html#SwfdecPlayerScriptingClass" title="SwfdecPlayerScriptingClass">SwfdecPlayerScriptingClass</a>;
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayerScripting.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SwfdecPlayerScripting
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayerScripting.description"></a><h2>Description</h2>
+<p>
+The <em class="parameter"><code>SwfdecPlayerScripting</code></em> object is used to implement the ExternalInterface
+object inside Flash. By providing your own custom implementation of this 
+object using <a class="link" href="SwfdecPlayer.html#swfdec-player-set-scripting" title="swfdec_player_set_scripting ()"><code class="function">swfdec_player_set_scripting()</code></a>, you can allow a Flash file to 
+call your own custom functions. And you can call functions inside the Flash 
+player.
+</p>
+<p>
+The functions are emitted using a custom XML format. The same format is used
+to call functions in the Flash player. FIXME: describe the XML format in use.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="SwfdecPlayerScripting.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayerScripting-struct"></a><h3>SwfdecPlayerScripting</h3>
+<pre class="programlisting">typedef struct _SwfdecPlayerScripting SwfdecPlayerScripting;</pre>
+<p>
+The object you have to create.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="SwfdecPlayerScriptingClass"></a><h3>SwfdecPlayerScriptingClass</h3>
+<pre class="programlisting">typedef struct {
+  char *		(* js_get_id)	(SwfdecPlayerScripting *scripting,
+					 SwfdecPlayer *		player);
+  char *		(* js_call)	(SwfdecPlayerScripting *scripting,
+					 SwfdecPlayer *         player,
+					 const char *		code);
+  char *		(* xml_call)	(SwfdecPlayerScripting *scripting,
+					 SwfdecPlayer *         player,
+					 const char *		xml);
+} SwfdecPlayerScriptingClass;
+</pre>
+<p>
+You have to implement the virtual functions in this object to get a working
+scripting implementation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>js_get_id</code></em> ()</span></p></td>
+<td> optional function. Returns the string by which the scripting 
+            object can reference itself in calls to the <em class="parameter"><code>js_call</code></em> function.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>js_call</code></em> ()</span></p></td>
+<td> optional function. Emits Javascript code that you have to 
+          interpret. You must also implement the <em class="parameter"><code>js_get_id</code></em> function to make
+          this function work. The return value must be in the custom XML 
+          format.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>xml_call</code></em> ()</span></p></td>
+<td> optional function. If the Javascript functions aren't implemented,
+           an xml format is used to encode the function call and the call is
+           then done using this function. The return value is to be provided
+           in the same custom XML format.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>
